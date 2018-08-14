@@ -1,0 +1,254 @@
+\ProvidesPackage{druv-macros}
+\usepackage{druv-pkg}
+% MACROS
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mailto}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\eps}{\varepsilon}
+%\newcommand{\vocab}[1]{\textit{{\color{Blue} #1}}}
+%\newcommand{\vocab}[1]{\textsf{{\color{Blue} #1}}}
+\newcommand{\vocab}[1]{\textbf{{\color{Blue} #1}}}
+%\newcommand{\vocab}[1]{{\color{Blue} #1}}
+\newcommand{\catname}{\mathsf}
+\newcommand{\hrulebar}{
+  \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
+  \par\nointerlineskip \vspace{\baselineskip}
+}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\placeimg}[2]
+{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=#1]{#2}
+    \end{figure}
+}
+\newcommand{\placetwoimg}[4]
+{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=#1]{#3}
+        \includegraphics[scale=#2]{#4}
+    \end{figure}
+}
+
+%For use in author command
+\newcommand{\berkeleylogo}{/Users/druvpai/Library/texmf/tex/latex/druv/berkeley-logo}
+\newcommand{\plusemail}[1]{\normalfont \texttt{\mailto{#1}}}
+\newcommand{\studentid}{3033848822}
+\newcommand{\userid}{1614758}
+
+% Exponential, imaginary
+\newcommand{\eul}{\mathsf{e}}
+\newcommand{\imag}{\iota}
+
+% Physics
+\newcommand{\fnet}{\vb{F}_{\mathrm{net}}}
+\newcommand{\tme}{E_{\mathrm{M}}}
+\newcommand{\ini}{_{\mathrm{i}}}
+\newcommand{\fin}{_{\mathrm{f}}}
+\newcommand{\enc}{_{\mathrm{enc}}}
+\newcommand{\eq}{_{\mathrm{eq}}}
+\newcommand{\tot}{_{\mathrm{tot}}}
+\DeclareMathSymbol{\iiiii}{\mathalpha}{letters}{"10}
+\DeclareMathSymbol{\jjjjj}{\mathalpha}{letters}{"11}
+%\newcommand{\vi}{\vu{\iiiii}}
+%\newcommand{\vj}{\vu{\jjjjj}}
+\newcommand{\vi}{\vu{\textbf{\i}}}
+\newcommand{\vj}{\vu{\textbf{\j}}}
+\newcommand{\vk}{\vu{k}}
+\newcommand{\ve}{\vu{e}}
+
+% Algorithm
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+% Chemistry
+\newcommand{\avo}{N_{\mathrm{A}}}
+\newcommand{\zeff}{Z_{\mathrm{eff}}}
+\newcommand{\veff}{\VV_{\mathrm{eff}}}
+\newcommand{\staten}[1]{\state[superscript-right=]{#1}}
+\newcommand{\secc}{\textit{sec}}
+
+%More commands and math operators
+\newcommand{\dst}{\displaystyle}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\pow}{pow}
+\DeclareMathOperator{\qcnt}{qcnt}
+\DeclareMathOperator{\rem}{rem}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Ex}{Ex}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\PDF}{PDF}
+\DeclareMathOperator{\PMF}{PMF}
+\DeclareMathOperator{\CDF}{CDF}
+\DeclareMathOperator*{\argmin}{arg min}
+\DeclareMathOperator*{\argmax}{arg max}
+
+
+%Convenient Environments
+\newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
+\newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}
+
+%Inequalities
+\newcommand{\cycsum}{\sum_{\mathrm{cyc}}}
+\newcommand{\symsum}{\sum_{\mathrm{sym}}}
+\newcommand{\cycprod}{\prod_{\mathrm{cyc}}}
+\newcommand{\symprod}{\prod_{\mathrm{sym}}}
+
+%From H113 "Introduction to Abstract Algebra" at UC Berkeley
+\newcommand{\bC}{\mathbb C}
+\newcommand{\bD}{\mathbb D}
+\newcommand{\bE}{\mathbb E}
+\newcommand{\bF}{\mathbb F}
+\newcommand{\bH}{\mathbb H}
+\newcommand{\bK}{\mathbb K}
+\newcommand{\bM}{\mathbb M}
+\newcommand{\bN}{\mathbb N}
+\newcommand{\bP}{\mathbb P}
+\newcommand{\bQ}{\mathbb Q}
+\newcommand{\bR}{\mathbb R}
+\newcommand{\bS}{\mathbb S}
+\newcommand{\bU}{\mathbb U}
+\newcommand{\bV}{\mathbb V}
+\newcommand{\bW}{\mathbb W}
+\newcommand{\bZ}{\mathbb Z}
+\newcommand{\charin}{\text{ char }}
+\DeclareMathOperator{\Sign}{Sign}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL} % General linear group
+\DeclareMathOperator{\SL}{SL} % Special linear group
+
+
+\newcommand{\dang}{\measuredangle} %% Directed angle
+\newcommand{\ray}[1]{\overrightarrow{#1}} 
+\newcommand{\seg}[1]{\overline{#1}}
+\newcommand{\geoarc}[1]{\wideparen{#1}}
+
+%From M275 "Topology" at SJSU
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\taking}[1]{\xrightarrow{#1}}
+\newcommand{\inv}{^{-1}}
+
+%From M170 "Introduction to Graph Theory" at SJSU
+\DeclareMathOperator{\Diam}{Diam}
+\DeclareMathOperator{\Ord}{Ord}
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+
+%From the USAMO .tex files
+\newcommand{\st}{^{\text{st}}}
+\newcommand{\nd}{^{\text{nd}}}
+\renewcommand{\th}{^{\text{th}}}
+\newcommand{\dg}{^\circ}
+\newcommand{\ii}{\item}
+
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lthen}{\rightarrow}
+\newcommand{\opname}{\operatorname}
+\newcommand{\surjto}{\twoheadrightarrow}
+\newcommand{\injto}{\hookrightarrow}
+\DeclareMathOperator{\inj}{inj}
+\DeclareMathOperator{\surj}{surj}
+\DeclareMathOperator{\bij}{bij}
+\newcommand{\On}{\mathrm{On}} % ordinals
+\DeclareMathOperator{\Diag}{diag} % diagonal
+\DeclareMathOperator{\Card}{Card} % cardinality
+\DeclareMathOperator{\adj}{adj} % adjugate
+\DeclareMathOperator{\Row}{Row} % row space
+\DeclareMathOperator{\Col}{Col} % column space
+\DeclareMathOperator{\Nul}{Nul} % null space
+\DeclareMathOperator{\rnk}{rank} % rank
+\DeclareMathOperator{\nulty}{nullity} % nullity
+\DeclareMathOperator{\Img}{Im} % Image
+\DeclareMathOperator{\Coker}{Coker} % Cokernel
+\DeclareMathOperator{\Ker}{Ker} % kernel
+\DeclareMathOperator{\Spec}{Spec} % spectrum
+\DeclareMathOperator{\Span}{Span} % span
+\DeclareMathOperator{\proj}{proj} % projection
+\DeclareMathOperator{\Pred}{Pred} % predecessor
+\DeclareMathOperator{\dom}{domain} % domain
+\DeclareMathOperator{\codom}{codomain} % codomain
+\DeclareMathOperator{\ran}{range} % range
+\DeclareMathOperator{\Hom}{Hom} % homomorphism
+\DeclareMathOperator{\End}{End} % endomorphism
+
+
+% Things Lie
+\newcommand{\fb}{\mathfrak b}
+\newcommand{\fg}{\mathfrak g}
+\newcommand{\fh}{\mathfrak h}
+\newcommand{\fm}{\mathfrak m}
+\newcommand{\fn}{\mathfrak n}
+\newcommand{\fp}{\mathfrak p}
+\newcommand{\fu}{\mathfrak u}
+\newcommand{\fz}{\mathfrak z}
+\newcommand{\fF}{\mathfrak F}
+\newcommand{\fT}{\mathfrak T}
+\DeclareMathOperator{\Ext}{Ext} % Ext functor (and extension)
+\DeclareMathOperator{\Tor}{Tor} % Tor functor
+\newcommand{\gl}{\opname{\mathfrak{gl}}} % frak gl group
+\renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak gl group
+
+% More script letters etc.
+\newcommand{\sA}{\mathscr A}
+\newcommand{\sB}{\mathscr B}
+\newcommand{\sC}{\mathscr C}
+\newcommand{\sD}{\mathscr D}
+\newcommand{\sE}{\mathscr E}
+\newcommand{\sF}{\mathscr F}
+\newcommand{\sG}{\mathscr G}
+\newcommand{\sH}{\mathscr H}
+\newcommand{\sL}{\mathscr L}
+\newcommand{\sM}{\mathscr M}
+\newcommand{\sT}{\mathscr T}
+
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cU}{\mathcal U}
+\newcommand{\cW}{\mathcal W}
+\newcommand{\cV}{\mathcal V}
+
+% Fields
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\field}{\mathbb{F}}
+
+% Vector spaces
+\newcommand{\vs}[1]{\mathbf{\textsf{#1}}}
+\newcommand{\rvs}[1]{\vs{R}\qty(#1)}
+\newcommand{\cvs}[1]{\vs{C}\qty(#1)}
+\newcommand{\svs}[1]{\vs{S}\qty(#1)}
+\newcommand{\sbs}[1]{\vs{S}\qty{#1}}
+\newcommand{\nvs}[1]{\vs{N}\qty(#1)}
+\newcommand{\evs}[1]{\vs{E}\qty(#1)}
+\newcommand{\ebs}[1]{\vs{E}\qty{#1}}
+
+%% Napkin commands
+\newcommand{\prototype}[1]{
+	\emph{{\color{Blue} Prototypical example for this section:} #1} \par\medskip
+}
+\newenvironment{moral}{%
+	\begin{mdframed}[linecolor=purple!70!black]%
+	\bfseries\color{purple!70!black}}%
+	{\end{mdframed}}

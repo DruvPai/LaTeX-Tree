@@ -1,0 +1,160 @@
+\ProvidesPackage{druv-pkg}
+
+%%% PACKAGES AND MACROS %%%
+% Essentials
+% AMS Stuff
+\usepackage{amsmath,amssymb, amsthm}
+% For theorems!
+\usepackage{thmtools}
+% For colors!
+\usepackage[usenames, svgnames, dvipsnames, table, xcdraw]{xcolor}
+% Essential images and graphs
+\usepackage{tikz}
+\usepackage{pgfplots}
+% Fonts
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} \usepackage[defaultsans]{lato} % default
+%\usepackage{pxfonts} \usepackage[defaultsans]{lato}
+%\usepackage{lmodern} \usepackage[lite]{mtpro2} \usepackage[defaultsans]{lato}
+%\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
+%\usepackage{newtxtext} \usepackage[lite]{mtpro2} \usepackage{helvet}
+%\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
+%\usepackage{mathpazo} \usepackage[defaultsans]{lato}
+% More theorems!
+\usepackage[framemethod=TikZ]{mdframed}
+% Little optimizations and QoL stuff
+\usepackage{mathtools}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage[capitalize]{cleveref}
+\usepackage{booktabs}
+\usepackage{import}
+\usepackage{etoolbox}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{subfiles}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage[style=mla,backend=biber]{biblatex}
+% Images    
+%\usepackage{pst-all}
+%\usepackage{pst-func}
+%\usepackage{pst-3dplot}
+%\usepackage{graphicx}
+%\newif\ifloadpictureprocessing\loadpictureprocessingfalse
+%\DeclareOption{pictures}{\loadpictureprocessingtrue}
+%\ProcessOptions\relax
+%\ifloadpictureprocessing
+%    \usepackage[runs=2, crop=off]{auto-pst-pdf}
+%\fi
+% Auxiliary Packages
+% Multiple columns in ToC (Comes later)
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage[tocindentauto]{tocstyle}
+% Scientific typesetting
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{esint}
+\usepackage{chemmacros}
+\usepackage{chemgreek}
+\usepackage{chemfig}
+\usepackage{lewis}
+\usepackage{chemformula}
+\usepackage{ghsystem}
+\usepackage{modiagram}
+% More optimizations!
+\usepackage{xpatch}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{textcomp}
+\usepackage[shortlabels]{enumitem}
+\usepackage[noend]{algpseudocode}
+\@ifundefined{chapter}
+{
+    \usepackage[ruled, section]{algorithm}
+}
+{
+    \usepackage[ruled,chapter]{algorithm}
+}
+\usepackage[obeyFinal,textsize=scriptsize,shadow]{todonotes}
+\usepackage{microtype}
+% Page Setup
+\usepackage{titling}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage[parfill]{parskip}
+
+
+% PACKAGE SETUP
+
+% Multicolumn TOCs
+\renewcommand\tableofcontents{%
+    \begin{multicols}{2}[\section*{\contentsname
+        \@mkboth{%
+           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}]%
+    \@starttoc{toc}%
+    \end{multicols}%
+    }
+\setlength{\columnsep}{2cm}
+\setcounter{tocdepth}{1} % part, chapter and section
+%\setcounter{tocdepth}{0} % part and chapter
+%\setcounter{tocdepth}{-1} % part
+
+% SIUnitX
+\sisetup{
+add-decimal-zero = false,
+add-integer-zero = false,
+%per-mode=fraction
+}
+\DeclareSIUnit\year{y}
+\DeclareSIUnit\lightspeed{c}
+\DeclareSIUnit\lightyear{ly}
+\DeclareSIUnit\dyne{dyn}
+\DeclareSIUnit\ergon{erg}
+\DeclareSIUnit\revolution{rev}
+\DeclareSIUnit\gauss{G}
+\DeclareSIUnit\lb{lb}
+\DeclareSIUnit\atom{atom}
+\DeclareSIUnit\molecule{molecule}
+\DeclareSIUnit\radian{rad}
+
+% Chemistry
+\chemsetup{modules=all}
+\chemsetup[reactions]
+{
+    tag-open = (,
+    tag-close = )
+}
+
+
+% Random Listings Formatting
+\lstset{basicstyle=\footnotesize\ttfamily,
+numbers=left,
+numbersep=5pt,
+numberstyle=\tiny,
+keywordstyle=\bfseries,
+showstringspaces=false,
+tabsize=4,
+frame=single,
+keywordstyle=\bfseries\color{blue},
+commentstyle=\color{green!70!black},
+identifierstyle=\color{green!20!black},
+stringstyle=\color{orange},
+breaklines=true,
+breakatwhitespace=true,
+frame=none
+}
+
+% PGFPlots
+\pgfplotsset{compat=1.8}
+\usetikzlibrary{arrows}
+\usepgfplotslibrary{fillbetween}
+
+% PSTricks
+%\psset{algebraic, ticks=none,labels=none, unit=0.6cm, stepFactor=0.1}
+
+% Hyperref
+\hypersetup{urlcolor=Purple,linkcolor=RoyalBlue,citecolor=Purple}
