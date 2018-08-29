@@ -9,7 +9,7 @@
     {\normalfont}{}%
     {\sffamily\bfseries}{ }%
     { }%
-    {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3):}}
 
 \mdfsetup{skipabove=0pt,skipbelow=0pt} % this makes spacing play nice
 
@@ -170,14 +170,14 @@
 
 
 \newtheorem{abuse}{Abuse of Notation}
-\newtheorem{answer}{Answer}
-\newtheorem{conjecture}{Conjecture}
+\newtheorem{answer}{Answer}[section]
+\newtheorem{conjecture}{Conjecture}[section]
 \newtheorem{ques}{Question}
 \newtheorem{note}{Note}
 \newtheorem{remark}{Remark}
-\newtheorem{exercise}{Exercise}
-\newtheorem{problem}{Problem}
-\newtheorem{soln}{Solution}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{problem}{Problem}[section]
+\newtheorem{soln}{Solution}[section]
 
 \newtheorem*{answer*}{Answer}
 \newtheorem*{abuse*}{Abuse of Notation}
@@ -198,7 +198,7 @@
     {\normalfont}{}%
     {\sffamily\small\bfseries}{ }%
     { }%
-    {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3):}}
 
 \theoremstyle{subdef}
 
@@ -218,7 +218,10 @@
 \AtEndEnvironment{soln}{\null\hfill\qedsymbol}
 \AtEndEnvironment{thmproof}{\null\hfill\qedsymbol}
 \AtEndEnvironment{soln*}{\null\hfill\qedsymbol}
-\AtEndEnvironment{probproof}{\null\hfill\qedsymbol}
+\AtEndEnvironment{probproof}{\null\hfill$\blacksquare$}
 
-\AtEndEnvironment{thmsubproof}{\null\hfill\blacksquare}
-\AtEndEnvironment{probsubproof}{\null\hfill\blacksquare}
+\AtEndEnvironment{thmsubproof}{\null\hfill$\blacksquare$}
+\AtEndEnvironment{probsubproof}{\null\hfill$\blacksquare$}
+
+\renewcommand{\theproblem}{\arabic{problem}}
+

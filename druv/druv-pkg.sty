@@ -9,6 +9,8 @@
 % For colors!
 \usepackage[usenames, svgnames, dvipsnames, table, xcdraw]{xcolor}
 % Essential images and graphs
+\usepackage{asymptote}
+\usepackage{pgf}
 \usepackage{tikz}
 \usepackage{pgfplots}
 % Fonts
@@ -30,11 +32,14 @@
 \usepackage[capitalize]{cleveref}
 \usepackage{booktabs}
 \usepackage{import}
+\usepackage{calc}
 \usepackage{etoolbox}
 \usepackage{verbatim}
+\usepackage{overpic}
 \usepackage{float}
 \usepackage{bm}
 \usepackage{subfiles}
+\usepackage{ifthen}
 \usepackage{caption}
 \usepackage{csquotes}
 \usepackage[style=mla,backend=biber]{biblatex}
@@ -42,6 +47,7 @@
 %\usepackage{pst-all}
 %\usepackage{pst-func}
 %\usepackage{pst-3dplot}
+%\usepackage{pdftricks}
 %\usepackage{graphicx}
 %\newif\ifloadpictureprocessing\loadpictureprocessingfalse
 %\DeclareOption{pictures}{\loadpictureprocessingtrue}
@@ -84,11 +90,23 @@
 \usepackage{microtype}
 % Page Setup
 \usepackage{titling}
-\usepackage[headsepline]{scrlayer-scrpage}
-\usepackage[parfill]{parskip}
-
+\newif\ifcheatsheet\cheatsheetfalse
+\DeclareOption{cheatsheet}{\cheatsheettrue}
+\ProcessOptions\relax
+\ifcheatsheet
+    \usepackage{paralist}
+    \usepackage[small,compact]{titlesec}
+    \usepackage{xparse}
+    \usepackage{mathptmx} % for study guides; most compressed font
+    \usepackage[left=4.5mm, right=4.5mm, top=4.5mm, bottom=6mm, landscape, nohead, nofoot]{geometry}
+\else 
+    \usepackage[headsepline]{scrlayer-scrpage}
+    \usepackage[parfill]{parskip}
+\fi 
 
 % PACKAGE SETUP
+% Tikz
+\usetikzlibrary{arrows}
 
 % Multicolumn TOCs
 \renewcommand\tableofcontents{%
