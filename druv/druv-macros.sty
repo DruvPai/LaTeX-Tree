@@ -44,8 +44,8 @@
 \newcommand{\userid}{1614758}
 
 % Exponential, imaginary
-\newcommand{\eul}{\mathsf{e}}
-\newcommand{\imag}{\iota}
+\newcommand{\eul}{\mathrm{e}}
+\newcommand{\imag}{\mathrm{i}}
 
 % Physics
 \newcommand{\fnet}{\vb{F}_{\mathrm{net}}}
@@ -59,10 +59,10 @@
 \DeclareMathSymbol{\jjjjj}{\mathalpha}{letters}{"11}
 %\newcommand{\vi}{\vu{\iiiii}}
 %\newcommand{\vj}{\vu{\jjjjj}}
-\newcommand{\vi}{\vu{\textbf{\i}}}
-\newcommand{\vj}{\vu{\textbf{\j}}}
-\newcommand{\vk}{\vu{k}}
-\newcommand{\ve}{\vu{e}}
+\newcommand{\vi}{\vb{i}}
+\newcommand{\vj}{\vb{j}}
+\newcommand{\vk}{\vb{k}}
+\newcommand{\ve}{\vb{e}}
 
 % Algorithm
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -83,7 +83,9 @@
 \DeclareMathOperator{\rem}{rem}
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Ex}{Ex}
+\DeclareMathOperator{\Prob}{Pr} % unnecessary because \Pr is already Pr
 \DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\PDF}{PDF}
 \DeclareMathOperator{\PMF}{PMF}
 \DeclareMathOperator{\CDF}{CDF}
@@ -119,7 +121,7 @@
 \newcommand{\bW}{\mathbb W}
 \newcommand{\bZ}{\mathbb Z}
 \newcommand{\charin}{\text{ char }}
-\DeclareMathOperator{\rref}{\textsc{RREF}}
+\DeclareMathOperator{\rref}{\text{rref}}
 \DeclareMathOperator{\Sign}{Sign}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Inn}{Inn}
@@ -148,8 +150,11 @@
 \newcommand{\st}{^{\text{st}}}
 \newcommand{\nd}{^{\text{nd}}}
 \renewcommand{\th}{^{\text{th}}}
+\DeclareMathOperator{\sign}{sgn}
 \newcommand{\dg}{^\circ}
 \newcommand{\ii}{\item}
+\newcommand{\tran}{^{\text{T}}}
+\newcommand{\maxl}{_{\text{ML}}}
 
 \newcommand{\liff}{\leftrightarrow}
 \newcommand{\lthen}{\rightarrow}
@@ -160,7 +165,7 @@
 \DeclareMathOperator{\surj}{surj}
 \DeclareMathOperator{\bij}{bij}
 \newcommand{\On}{\mathrm{On}} % ordinals
-\DeclareMathOperator{\Diag}{diag} % diagonal
+\DeclareMathOperator{\diag}{diag} % diagonal
 \DeclareMathOperator{\Card}{Card} % cardinality
 \DeclareMathOperator{\adj}{adj} % adjugate
 \DeclareMathOperator{\Row}{Row} % row space
@@ -174,6 +179,7 @@
 \DeclareMathOperator{\Spec}{Spec} % spectrum
 \DeclareMathOperator{\Span}{Span} % span
 \DeclareMathOperator{\proj}{proj} % projection
+\DeclareMathOperator{\comp}{comp} % component
 \DeclareMathOperator{\Pred}{Pred} % predecessor
 \DeclareMathOperator{\dom}{domain} % domain
 \DeclareMathOperator{\codom}{codomain} % codomain
@@ -209,6 +215,7 @@
 \newcommand{\sH}{\mathscr H}
 \newcommand{\sL}{\mathscr L}
 \newcommand{\sM}{\mathscr M}
+\newcommand{\sS}{\mathscr S}
 \newcommand{\sT}{\mathscr T}
 
 \newcommand{\cA}{\mathcal A}
@@ -221,6 +228,7 @@
 \newcommand{\cH}{\mathcal H}
 \newcommand{\cI}{\mathcal I}
 \newcommand{\cL}{\mathcal L}
+\newcommand{\cN}{\mathcal N}
 \newcommand{\cO}{\mathcal O}
 \newcommand{\cP}{\mathcal P}
 \newcommand{\cT}{\mathcal T}
@@ -243,6 +251,7 @@
 \newcommand{\svs}[1]{\vs{S}\qty(#1)}
 \newcommand{\sbs}[1]{\vs{S}\qty{#1}}
 \newcommand{\nvs}[1]{\vs{N}\qty(#1)}
+\newcommand{\lnvs}[1]{\vs{LN}\qty(#1)}
 \newcommand{\evs}[1]{\vs{E}\qty(#1)}
 \newcommand{\ebs}[1]{\vs{E}\qty{#1}}
 
