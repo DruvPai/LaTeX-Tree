@@ -9,7 +9,7 @@
 % For colors!
 \usepackage[usenames, svgnames, dvipsnames, table, xcdraw]{xcolor}
 % Essential images and graphs
-\usepackage{asymptote}
+%\usepackage[inline]{asymptote}
 \usepackage{pgf}
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -42,7 +42,7 @@
 \usepackage{ifthen}
 \usepackage{caption}
 \usepackage{csquotes}
-\usepackage[style=mla,backend=biber]{biblatex}
+%\usepackage[style=mla,backend=biber]{biblatex}
 % Images    
 %\usepackage{pst-all}
 %\usepackage{pst-func}
@@ -90,24 +90,10 @@
 \usepackage{microtype}
 % Page Setup
 \usepackage{titling}
-\newif\ifcheatsheet\cheatsheetfalse
-\DeclareOption{cheatsheet}{\cheatsheettrue}
-\ProcessOptions\relax
-\ifcheatsheet
-    \usepackage{paralist}
-    \usepackage[small,compact]{titlesec}
-    \usepackage{xparse}
-    \usepackage{mathptmx} % for study guides; most compressed font
-    \usepackage[left=4.5mm, right=4.5mm, top=4.5mm, bottom=6mm, landscape, nohead, nofoot]{geometry}
-\else 
-    \usepackage[headsepline]{scrlayer-scrpage}
-    \usepackage[parfill]{parskip}
-\fi 
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage[parfill]{parskip}
 
 % PACKAGE SETUP
-% Tikz
-\usetikzlibrary{arrows}
-
 % Multicolumn TOCs
 \renewcommand\tableofcontents{%
     \begin{multicols}{2}[\section*{\contentsname
@@ -168,8 +154,12 @@ frame=none
 
 % PGFPlots
 \pgfplotsset{compat=1.8}
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows, calc, matrix, shapes, trees, decorations.pathmorphing}
+\usepackage{tikz-3dplot, tikz-cd}
+\tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
 \usepgfplotslibrary{fillbetween}
+\pgfplotsset{ticks=none}
+
 
 % PSTricks
 %\psset{algebraic, ticks=none,labels=none, unit=0.6cm, stepFactor=0.1}
