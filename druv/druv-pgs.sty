@@ -51,7 +51,7 @@
     \setlength{\postauthordrop}{1em}
     \pretitle{\begin{center}\bfseries \sffamily \Large}
     \posttitle{\end{center}\vspace{\posttitledrop}}
-    \preauthor{\begin{center} \scshape}
+    \preauthor{\begin{center} \bfseries \sffamily}
     \postauthor{\end{center}\vspace{\postauthordrop}}
     \predate{\begin{center}\small}
     \postdate{\end{center}}
@@ -62,27 +62,31 @@
     \setlength{\postauthordrop}{0.5em}
     \pretitle{\begin{center}\bfseries \sffamily \Huge}
     \posttitle{\end{center}\vspace{\posttitledrop}}
-    \preauthor{\begin{center} \scshape \LARGE}
+    \preauthor{\begin{center} \sffamily \LARGE}
     \postauthor{\end{center}\vspace{\postauthordrop}}
     \predate{\begin{center} \Large}
     \postdate{\end{center}}
 }
-\newcommand{\theclassid}{}
+
+% Cover pages for assignments
+\newcommand{\theclassid}{Class ID}
 \newcommand{\classid}[1]{\renewcommand{\theclassid}{#1}}
-\newcommand{\thesubject}{}
+\newcommand{\thesubject}{Class Subject}
 \renewcommand{\subject}[1]{\renewcommand{\thesubject}{#1}}
 % title, subtitle, author already done
+\newcommand{\thebook}{Book}
+\newcommand{\textbook}[1]{\renewcommand{\thebook}{#1}}
 \newcommand{\theemail}{druv@berkeley.edu}
 \newcommand{\email}[1]{\renewcommand{\theemail}{#1}}
-\newcommand{\theid}{}
+\newcommand{\theid}{\studentid}
 \newcommand{\idnumber}[1]{\renewcommand{\theid}{#1}}
-\newcommand{\theprof}{}
+\newcommand{\theprof}{Professor}
 \newcommand{\professor}[1]{\renewcommand{\theprof}{#1}}
-\newcommand{\thegsi}{}
+\newcommand{\thegsi}{GSI}
 \newcommand{\gsi}[1]{\renewcommand{\thegsi}{#1}}
-\newcommand{\theassignment}{}
+\newcommand{\theassignment}{Assignment}
 \newcommand{\assignment}[1]{\renewcommand{\theassignment}{#1}\setcounter{problem}{0}\setcounter{answer}{0}\setcounter{soln}{0}}
-\newcommand{\theproblems}{}
+\newcommand{\theproblems}{Problems}
 \newcommand{\problems}[1]{\renewcommand{\theproblems}{#1}}
 
 \newcommand{\coverpage}{
@@ -96,8 +100,8 @@
             \vspace{2cm}
             {\sffamily \bfseries \Huge \thetitle \par}
             \vspace{0.4cm}
-            {\sffamily \bfseries \LARGE \thesubtitle \par}
-            \vfill
+            {\sffamily \bfseries \LARGE Textbook: \thebook \par}
+            \vspace{2cm}
             {\scshape \Large \theauthor \par}
             \vspace{0.1cm}
             {\scshape \Large \plusemail{\theemail} \par}
@@ -111,6 +115,7 @@
     \end{titlepage}
 }
 \newcommand{\assignmentcover}{
+    \subtitle{\theassignment}
     \begin{titlepage}
         \begin{center}
             {\sffamily \bfseries \LARGE \theclassid \par}
@@ -120,7 +125,7 @@
             {\sffamily \bfseries \Huge \theassignment \par}
             \vspace{0.4cm}
             {\sffamily \bfseries \LARGE \theproblems \par} 
-            \vfill
+            \vspace{5cm}
             {\scshape \Large \theauthor \par}
             \vspace{0.1cm}
             {\scshape \Large \plusemail{\theemail} \par}
@@ -139,23 +144,24 @@
 % PAGE SETUP
 
 % Horizontal
-\setlength{\footskip}{0.5in}
-\setlength{\hoffset}{-0.5in}
-\setlength{\textwidth}{6.75in}
 \setlength{\paperwidth}{8.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\footskip}{0.5in}
+\setlength{\hoffset}{-0.25in}
+\setlength{\textwidth}{7in}
 % Vertical
-\renewcommand{\headfont}{\bfseries\sffamily}%{\bfseries}
+\renewcommand{\headfont}{\bfseries\sffamily\large}%{\bfseries}
 \setlength{\parindent}{0cm}
-\setlength{\voffset}{0in} 
-\setlength{\textheight}{9.6in}
+\setlength{\voffset}{-0.25in} 
+\setlength{\textheight}{9in}
 \setlength{\headsep}{10pt}
 \setlength{\paperheight}{11in}
 
 \ihead{\theauthor}
 
-\chead{\thesubject}
+\chead{\thesubtitle}
 
-\ohead{\theassignment}
+\ohead{\thetitle}
 
 %\renewcommand*{\pagemark}{}
 \cfoot{\pagemark}

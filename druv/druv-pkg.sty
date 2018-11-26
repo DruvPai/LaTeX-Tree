@@ -1,5 +1,13 @@
 \ProvidesPackage{druv-pkg}
 
+\newif\ifdruvdiagram\druvdiagramfalse
+\newif\ifdruvbib\druvbibfalse
+\newif\ifdruvchem\druvchemfalse
+\DeclareOption{diagram}{\druvdiagramtrue}
+\DeclareOption{bib}{\druvbibtrue}
+\DeclareOption{chem}{\druvchemtrue}
+\ProcessOptions\relax
+
 %%% PACKAGES AND MACROS %%%
 % Essentials
 % AMS Stuff
@@ -9,10 +17,11 @@
 % For colors!
 \usepackage[usenames, svgnames, dvipsnames, table, xcdraw]{xcolor}
 % Essential images and graphs
-%\usepackage[inline]{asymptote}
-\usepackage{pgf}
 \usepackage{tikz}
-\usepackage{pgfplots}
+\ifdruvdiagram
+    \usepackage{pgf}
+    \usepackage{pgfplots}
+\fi
 % Fonts
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
@@ -33,67 +42,62 @@
 \usepackage{booktabs}
 \usepackage{import}
 \usepackage{calc}
-\usepackage{etoolbox}
 \usepackage{verbatim}
 \usepackage{overpic}
 \usepackage{float}
 \usepackage{bm}
-\usepackage{subfiles}
-\usepackage{ifthen}
+\@ifundefined{KOMAClassName}{}{
+    \usepackage{subfiles}
+    \usepackage{ifthen}
+    \usepackage{etoolbox}
+    \usepackage{xpatch}
+}
 \usepackage{caption}
 \usepackage{csquotes}
-%\usepackage[style=mla,backend=biber]{biblatex}
-% Images    
-%\usepackage{pst-all}
-%\usepackage{pst-func}
-%\usepackage{pst-3dplot}
-%\usepackage{pdftricks}
-%\usepackage{graphicx}
-%\newif\ifloadpictureprocessing\loadpictureprocessingfalse
-%\DeclareOption{pictures}{\loadpictureprocessingtrue}
-%\ProcessOptions\relax
-%\ifloadpictureprocessing
-%    \usepackage[runs=2, crop=off]{auto-pst-pdf}
-%\fi
+\ifdruvbib
+    \usepackage[style=mla,backend=biber]{biblatex}
+\fi
 % Auxiliary Packages
 % Multiple columns in ToC (Comes later)
-\usepackage{multicol}
-\usepackage{paracol}
-\usepackage[tocindentauto]{tocstyle}
+\@ifundefined{KOMAClassName}{}{
+    \usepackage{multicol}
+    \usepackage{paracol}
+    \usepackage[tocindentauto]{tocstyle}
+}
 % Scientific typesetting
 \usepackage{array}
 \usepackage{siunitx}
 \usepackage{physics}
 \usepackage{esint}
-\usepackage{chemmacros}
-\usepackage{chemgreek}
-\usepackage{chemfig}
-\usepackage{lewis}
-\usepackage{chemformula}
-\usepackage{ghsystem}
-\usepackage{modiagram}
+\ifdruvchem
+    \usepackage{chemgreek}
+    \usepackage{chemmacros}
+    \usepackage{chemfig}
+    \usepackage{lewis}
+    \usepackage{chemformula}
+    \usepackage{ghsystem}
+    \usepackage{modiagram}
+\fi
 % More optimizations!
-\usepackage{xpatch}
 \usepackage{listings}
 \usepackage{mathrsfs}
 \usepackage{textcomp}
 \usepackage[shortlabels]{enumitem}
 \usepackage[noend]{algpseudocode}
-\@ifundefined{chapter}
-{
-    \usepackage[ruled, section]{algorithm}
-}
-{
-    \usepackage[ruled,chapter]{algorithm}
-}
+\@ifundefined{chapter}{\usepackage[ruled, section]{algorithm}}{\usepackage[ruled,chapter]{algorithm}}
 \usepackage[obeyFinal,textsize=scriptsize,shadow]{todonotes}
 \usepackage{microtype}
 % Page Setup
-\usepackage{titling}
-\usepackage[headsepline]{scrlayer-scrpage}
-\usepackage[parfill]{parskip}
+\usepackage{geometry}
+\usepackage{wrapfig}
+\@ifundefined{KOMAClassName}{}{
+    \usepackage{titling}
+    \usepackage[headsepline]{scrlayer-scrpage}
+    \usepackage[parfill]{parskip}
+}
 
 % PACKAGE SETUP
+\@ifundefined{KOMAClassName}{}{
 % Multicolumn TOCs
 \renewcommand\tableofcontents{%
     \begin{multicols}{2}[\section*{\contentsname
@@ -106,6 +110,7 @@
 \setcounter{tocdepth}{1} % part, chapter and section
 %\setcounter{tocdepth}{0} % part and chapter
 %\setcounter{tocdepth}{-1} % part
+}
 
 % SIUnitX
 \sisetup{
@@ -126,13 +131,10 @@ add-integer-zero = false,
 \DeclareSIUnit\radian{rad}
 
 % Chemistry
-\chemsetup{modules=all}
-\chemsetup[reactions]
-{
-    tag-open = (,
-    tag-close = )
-}
-
+\ifdruvchem
+    \chemsetup{modules=all}
+    \chemsetup[reactions] {tag-open = (, tag-close = )}
+\fi
 
 % Random Listings Formatting
 \lstset{basicstyle=\footnotesize\ttfamily,
@@ -152,17 +154,16 @@ breakatwhitespace=true,
 frame=none
 }
 
-% PGFPlots
-\pgfplotsset{compat=1.8}
-\usetikzlibrary{arrows, calc, matrix, shapes, trees, decorations.pathmorphing}
-\usepackage{tikz-3dplot, tikz-cd}
-\tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
-\usepgfplotslibrary{fillbetween}
-\pgfplotsset{ticks=none}
+% Diagram package configurations
+\ifdruvdiagram
+    \pgfplotsset{compat=1.8}
+    \usetikzlibrary{arrows, calc, graphs, graphs.standard, matrix, positioning, shapes, trees, decorations.pathmorphing}
+    \usepackage{tikz-3dplot, tikz-cd}
+    \tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
+    \usepgfplotslibrary{fillbetween}
+    \pgfplotsset{ticks=none}
+\fi
 
-
-% PSTricks
-%\psset{algebraic, ticks=none,labels=none, unit=0.6cm, stepFactor=0.1}
 
 % Hyperref
 \hypersetup{urlcolor=Purple,linkcolor=RoyalBlue,citecolor=Purple}
