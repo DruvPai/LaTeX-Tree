@@ -30,7 +30,7 @@
 %\usepackage{pxfonts} \usepackage[defaultsans]{lato}
 %\usepackage{lmodern} \usepackage[lite]{mtpro2} \usepackage[defaultsans]{lato}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
-%\usepackage{newtxtext} \usepackage[lite]{mtpro2} \usepackage{helvet}
+%\usepackage{newtxtext} \usepackage[lite]{newtxmath} \usepackage{helvet}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
 %\usepackage{mathpazo} \usepackage[defaultsans]{lato}
 % More theorems!
@@ -59,8 +59,8 @@
 \fi
 % Auxiliary Packages
 % Multiple columns in ToC (Comes later)
+\usepackage{multicol}
 \@ifundefined{KOMAClassName}{}{
-    \usepackage{multicol}
     \usepackage{paracol}
     \usepackage[tocindentauto]{tocstyle}
 }

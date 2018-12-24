@@ -1,32 +1,17 @@
 \ProvidesPackage{cram-sheet}
-\usepackage[utf8]{inputenc}
-\usepackage{tikz}
-\usepackage{physics}
-\usepackage{esint}
-\usetikzlibrary{shapes,positioning,arrows,fit,calc,graphs,graphs.standard}
-\usepackage{tikz-cd}
-\newcommand\hmmax{0}
-\newcommand\bmmax{0}
-\usepackage[T1]{fontenc}
-\usepackage{newtxtext} \usepackage[lite]{mtpro2}
-\usepackage{multicol}
-\usepackage{wrapfig}
-\usepackage[top=0mm,bottom=1mm,left=0mm,right=1mm]{geometry}
-\usepackage[framemethod=tikz]{mdframed}
-\usepackage{microtype}
-
-\let\bar\overline
+\usepackage{druv-pkg}
+\usepackage{druv-macros}
+\geometry{
+  total={11in, 8.5in},
+  top=0mm,
+  bottom=1mm,
+  left=0mm,
+  right=1mm
+}
+\usepackage{mathpazo} \usepackage[scaled]{helvet}
 
 \definecolor{myblue}{cmyk}{1,.72,0,.38}
 
-\def\firstcircle{(0,0) circle (1.5cm)}
-\def\secondcircle{(0:2cm) circle (1.5cm)}
-
-\colorlet{circle edge}{myblue}
-\colorlet{circle area}{myblue!5}
-
-\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
-    outline/.style={draw=circle edge, thick}}
 
 \pgfdeclarelayer{background}
 \pgfsetlayers{background,main}
@@ -42,12 +27,15 @@ linecolor=gray,linewidth=1pt,%
 leftmargin=0mm,rightmargin=0mm,skipbelow=0mm,skipabove=0mm,
 }
 
+\newcommand{\thesubj}{}
+\newcommand{\subj}[1]{\renewcommand{\thesubj}{#1}}
+
 \newcommand{\header}{
 \begin{mdframed}[style=header]
 \footnotesize
 \sffamily
-Cheat sheet\\
-by~Your~Name,~page~\thepage~of~2
+\thesubj\  Cheat Sheet\\
+by Druv Pai
 \end{mdframed}
 }
 
@@ -178,5 +166,5 @@ by~Your~Name,~page~\thepage~of~2
 \setlength{\parindent}{0pt}
 
 \AtBeginDocument{
-    \small
+    \scriptsize
 }
