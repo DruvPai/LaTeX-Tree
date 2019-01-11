@@ -11,10 +11,7 @@
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
 \newcommand{\eps}{\varepsilon}
-%\newcommand{\vocab}[1]{\textit{{\color{Blue} #1}}}
-%\newcommand{\vocab}[1]{\textsf{{\color{Blue} #1}}}
 \newcommand{\vocab}[1]{\textbf{{\color{Blue} #1}}}
-%\newcommand{\vocab}[1]{{\color{Blue} #1}}
 \newcommand{\catname}{\mathsf}
 \newcommand{\hrulebar}{
   \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
@@ -43,26 +40,21 @@
 \newcommand{\studentid}{3033848822}
 \newcommand{\userid}{1614758}
 
-% Exponential, imaginary
+% Exponential, imaginar
 \newcommand{\eul}{\mathrm{e}}
 \newcommand{\imag}{\mathrm{i}}
 
 % Physics
-\newcommand{\fnet}{\vb{F}_{\mathrm{net}}}
+\renewcommand{\vec}[1]{\va{#1}}
+\newcommand{\mat}[1]{\vb{#1}}
+\newcommand{\fnet}{\vec{F}_{\mathrm{net}}}
 \newcommand{\tme}{E_{\mathrm{M}}}
-\newcommand{\ini}{_{\mathrm{i}}}
-\newcommand{\fin}{_{\mathrm{f}}}
-\newcommand{\enc}{_{\mathrm{enc}}}
-\newcommand{\eq}{_{\mathrm{eq}}}
-\newcommand{\tot}{_{\mathrm{tot}}}
-\DeclareMathSymbol{\iiiii}{\mathalpha}{letters}{"10}
-\DeclareMathSymbol{\jjjjj}{\mathalpha}{letters}{"11}
-%\newcommand{\vi}{\vu{\iiiii}}
-%\newcommand{\vj}{\vu{\jjjjj}}
-\newcommand{\vi}{\vb{i}}
-\newcommand{\vj}{\vb{j}}
-\newcommand{\vk}{\vb{k}}
-\newcommand{\ve}{\vb{e}}
+\newcommand{\ini}{{\mathrm{i}}}
+\newcommand{\fin}{{\mathrm{f}}}
+\newcommand{\enc}{{\mathrm{enc}}}
+\newcommand{\eq}{{\mathrm{eq}}}
+\newcommand{\tot}{{\mathrm{tot}}}
+\newcommand{\ve}{\vec{e}}
 
 % Algorithm
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -72,8 +64,9 @@
 \newcommand{\avo}{N_{\mathrm{A}}}
 \newcommand{\zeff}{Z_{\mathrm{eff}}}
 \newcommand{\veff}{\VV_{\mathrm{eff}}}
-%\newcommand{\staten}[1]{\state[superscript-right=]{#1}}
 \newcommand{\secc}{\textit{sec}}
+\newcommand{\ads}{{\mathrm{ads}}}
+\newcommand{\sat}{{\mathrm{sat}}}
 
 %More commands and math operators
 \newcommand{\dst}{\displaystyle}
@@ -123,16 +116,16 @@
 \newcommand{\charin}{\text{ char }}
 \DeclareMathOperator{\rref}{\text{rref}}
 \DeclareMathOperator{\Sign}{Sign}
-\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Aut}{Aut} % Autormorphism
 \DeclareMathOperator{\Inn}{Inn}
-\DeclareMathOperator{\Syl}{Syl}
-\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Syl}{Syl} % Sylow group
+\DeclareMathOperator{\Gal}{Gal} % Galois group
 \DeclareMathOperator{\GL}{GL} % General linear group
 \DeclareMathOperator{\SL}{SL} % Special linear group
 
 
 \newcommand{\dang}{\measuredangle} %% Directed angle
-\newcommand{\ray}[1]{\overrightarrow{#1}} 
+\newcommand{\ray}[1]{\overrightarrow{#1}}
 \newcommand{\seg}[1]{\overline{#1}}
 \newcommand{\geoarc}[1]{\wideparen{#1}}
 
@@ -144,7 +137,7 @@
 %From M170 "Introduction to Graph Theory" at SJSU
 \DeclareMathOperator{\Diam}{Diam}
 \DeclareMathOperator{\Ord}{Ord}
-\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+\newcommand{\def}{\overset{\mathrm{def}}{=}}
 
 %From the USAMO .tex files
 \newcommand{\st}{^{\text{st}}}
@@ -171,8 +164,7 @@
 \DeclareMathOperator{\Row}{Row} % row space
 \DeclareMathOperator{\Col}{Col} % column space
 \DeclareMathOperator{\Nul}{Nul} % null space
-\DeclareMathOperator{\rnk}{rank} % rank
-\DeclareMathOperator{\nulty}{nullity} % nullity
+\DeclareMathOperator{\nulty}{nullity} % nullity (rank in Physics package)
 \DeclareMathOperator{\Img}{Im} % Image
 \DeclareMathOperator{\Coker}{Coker} % Cokernel
 \DeclareMathOperator{\Ker}{Ker} % kernel
@@ -185,8 +177,8 @@
 \DeclareMathOperator{\codom}{codomain} % codomain
 \DeclareMathOperator{\ran}{range} % range
 \DeclareMathOperator{\Ran}{Ran} % range
-\DeclareMathOperator{\Hom}{Hom} % homomorphism
-\DeclareMathOperator{\End}{End} % endomorphism
+\DeclareMathOperator{\Hom}{Hom} % Hom functor
+\DeclareMathOperator{\End}{End} % End functor
 
 
 % Things Lie

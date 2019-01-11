@@ -67,7 +67,7 @@
 % Scientific typesetting
 \usepackage{array}
 \usepackage{siunitx}
-\usepackage{physics}
+\usepackage[arrowdel]{physics}
 \usepackage{esint}
 \ifdruvchem
     \usepackage{chemgreek}
@@ -134,6 +134,9 @@ add-integer-zero = false,
 \ifdruvchem
     \chemsetup{modules=all}
     \chemsetup[reactions] {tag-open = (, tag-close = )}
+    \newcommand{\staten}[1]{\state[superscript-right=]{#1}}
+    \newcommand{\conc}[1]{[\ch{#1}]}
+    % we put these here since it's not easy to pass options to macro package
 \fi
 
 % Random Listings Formatting
