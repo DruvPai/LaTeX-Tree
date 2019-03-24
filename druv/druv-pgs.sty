@@ -76,7 +76,7 @@
 % title, subtitle, author already done
 \newcommand{\thebook}{Book}
 \newcommand{\textbook}[1]{\renewcommand{\thebook}{#1}}
-\newcommand{\theemail}{druv@berkeley.edu}
+\newcommand{\theemail}{druvpai@berkeley.edu}
 \newcommand{\email}[1]{\renewcommand{\theemail}{#1}}
 \newcommand{\theid}{\studentid}
 \newcommand{\idnumber}[1]{\renewcommand{\theid}{#1}}
@@ -96,12 +96,10 @@
             \vspace{0.3cm}
             {\sffamily \bfseries \LARGE \thesubject \par}
             \vspace{2cm}
-            {\includegraphics[width=0.3\textwidth]{\berkeleylogo}\par}
-            \vspace{2cm}
             {\sffamily \bfseries \Huge \thetitle \par}
             \vspace{0.4cm}
             {\sffamily \bfseries \LARGE Textbook: \thebook \par}
-            \vspace{2cm}
+            \vfill
             {\scshape \Large \theauthor \par}
             \vspace{0.1cm}
             {\scshape \Large \plusemail{\theemail} \par}
@@ -119,22 +117,18 @@
     \begin{titlepage}
         \begin{center}
             {\sffamily \bfseries \LARGE \theclassid \par}
-            \vspace{0.3cm}
+
             {\sffamily \bfseries \LARGE \thesubject \par}
-            \vspace{7cm}
+            \vfill
             {\sffamily \bfseries \Huge \theassignment \par}
-            \vspace{0.4cm}
+
             {\sffamily \bfseries \LARGE \theproblems \par} 
-            \vspace{4cm}
+            \vfill
             {\scshape \Large \theauthor \par}
-            \vspace{0.1cm}
+
             {\scshape \Large \plusemail{\theemail} \par}
-            \vspace{0.1cm}
+
             {\scshape \Large ID: \theid \par}
-            \vspace{1cm} 
-            {\scshape \Large Professor: \theprof \par}
-            \vspace{0.1cm}
-            {\scshape \Large GSI: \thegsi}
         \end{center}
     \end{titlepage}
 }

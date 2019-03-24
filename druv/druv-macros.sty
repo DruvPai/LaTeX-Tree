@@ -35,18 +35,45 @@
 }
 
 %For use in author command
-\newcommand{\berkeleylogo}{/Users/druvpai/Library/texmf/tex/latex/druv/berkeley-logo}
 \newcommand{\plusemail}[1]{\normalfont \texttt{\mailto{#1}}}
 \newcommand{\studentid}{3033848822}
 \newcommand{\userid}{1614758}
 
-% Exponential, imaginar
+% Exponential, imaginary
 \newcommand{\eul}{\mathrm{e}}
 \newcommand{\imag}{\mathrm{i}}
 
 % Physics
-\renewcommand{\vec}[1]{\va{#1}}
-\newcommand{\mat}[1]{\vb{#1}}
+\newcommand{\straightgreekchange}{
+    \renewcommand{\alpha}{\upalpha}
+    \renewcommand{\beta}{\upbeta}
+    \renewcommand{\gamma}{\upgamma}
+    \renewcommand{\delta}{\updelta}
+    \renewcommand{\epsilon}{\upepsilon}
+    \renewcommand{\zeta}{\upzeta}
+    \renewcommand{\eta}{\upeta}
+    \renewcommand{\theta}{\uptheta}
+    \renewcommand{\kappa}{\upkappa}
+    \renewcommand{\lambda}{\uplambda}
+    \renewcommand{\mu}{\upmu}
+    \renewcommand{\nu}{\upnu}
+    \renewcommand{\xi}{\upxi}
+    \renewcommand{\pi}{\uppi}
+    \renewcommand{\rho}{\uprho}
+    \renewcommand{\sigma}{\upsigma}
+    \renewcommand{\tau}{\uptau}
+    \renewcommand{\upsilon}{\upupsilon}
+    \renewcommand{\phi}{\upphi}
+    \renewcommand{\chi}{\upchi}
+    \renewcommand{\psi}{\uppsi}
+    \renewcommand{\omega}{\upomega}
+}
+\renewcommand{\vec}[1]{{\straightgreekchange
+    {\IfSubStr{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}{#1}
+        {\mathbf{#1}}
+        {\bm{#1}}}}}
+\newcommand{\mat}[1]{\vb*{#1}}
+\newcommand{\tens}[1]{\straightgreekchange\mathsf{#1}}
 \newcommand{\fnet}{\vec{F}_{\mathrm{net}}}
 \newcommand{\tme}{E_{\mathrm{M}}}
 \newcommand{\ini}{{\mathrm{i}}}
@@ -67,6 +94,11 @@
 \newcommand{\secc}{\textit{sec}}
 \newcommand{\ads}{{\mathrm{ads}}}
 \newcommand{\sat}{{\mathrm{sat}}}
+
+% Boolean Logic
+\DeclareMathOperator{\tru}{True}
+\DeclareMathOperator{\fal}{False}
+
 
 %More commands and math operators
 \newcommand{\dst}{\displaystyle}
@@ -137,7 +169,8 @@
 %From M170 "Introduction to Graph Theory" at SJSU
 \DeclareMathOperator{\Diam}{Diam}
 \DeclareMathOperator{\Ord}{Ord}
-\newcommand{\def}{\overset{\mathrm{def}}{=}}
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+\newcommand{\defequiv}{\overset{\mathrm{def}}{\equiv}}
 
 %From the USAMO .tex files
 \newcommand{\st}{^{\text{st}}}
@@ -149,8 +182,6 @@
 \newcommand{\tran}{^{\text{T}}}
 \newcommand{\maxl}{_{\text{ML}}}
 
-\newcommand{\liff}{\leftrightarrow}
-\newcommand{\lthen}{\rightarrow}
 \newcommand{\opname}{\operatorname}
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}

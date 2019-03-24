@@ -26,17 +26,19 @@
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern} \usepackage[defaultsans]{lato} % default
+%\usepackage[lcgreekalpha, upint]{stix} \usepackage[defaultsans]{lato} % default
+%\usepackage{lmodern} \usepackage[defaultsans]{lato}
 %\usepackage{pxfonts} \usepackage[defaultsans]{lato}
 %\usepackage{lmodern} \usepackage[lite]{mtpro2} \usepackage[defaultsans]{lato}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
 %\usepackage{newtxtext} \usepackage[lite]{newtxmath} \usepackage{helvet}
-%\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
+\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
 %\usepackage{mathpazo} \usepackage[defaultsans]{lato}
 % More theorems!
 \usepackage[framemethod=TikZ]{mdframed}
 % Little optimizations and QoL stuff
 \usepackage{mathtools}
+\usepackage[Symbol]{upgreek}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage[capitalize]{cleveref}
 \usepackage{booktabs}
@@ -50,9 +52,11 @@
     \usepackage{subfiles}
     \usepackage{ifthen}
     \usepackage{etoolbox}
+    \usepackage{xstring}
     \usepackage{xpatch}
 }
 \usepackage{caption}
+\usepackage{centernot}
 \usepackage{csquotes}
 \ifdruvbib
     \usepackage[style=mla,backend=biber]{biblatex}
@@ -67,7 +71,7 @@
 % Scientific typesetting
 \usepackage{array}
 \usepackage{siunitx}
-\usepackage[arrowdel]{physics}
+\usepackage{physics}
 \usepackage{esint}
 \ifdruvchem
     \usepackage{chemgreek}
@@ -76,7 +80,6 @@
     \usepackage{lewis}
     \usepackage{chemformula}
     \usepackage{ghsystem}
-    \usepackage{modiagram}
 \fi
 % More optimizations!
 \usepackage{listings}
@@ -140,7 +143,7 @@ add-integer-zero = false,
 \fi
 
 % Random Listings Formatting
-\lstset{basicstyle=\footnotesize\ttfamily,
+\lstset{basicstyle=\normalsize\ttfamily,
 numbers=left,
 numbersep=5pt,
 numberstyle=\tiny,
@@ -154,14 +157,17 @@ identifierstyle=\color{green!20!black},
 stringstyle=\color{orange},
 breaklines=true,
 breakatwhitespace=true,
-frame=none
+xleftmargin=10pt,
+aboveskip=-10pt,
+belowskip=0pt
 }
 
 % Diagram package configurations
 \ifdruvdiagram
     \pgfplotsset{compat=1.8}
     \usetikzlibrary{arrows, calc, graphs, graphs.standard, matrix, positioning, shapes, trees, decorations.pathmorphing}
-    \usepackage{tikz-3dplot, tikz-cd}
+    \usepackage{tikz-3dplot, tikz-cd, tkz-berge, tkz-graph, forest}
+    \usepackage[siunitx, american, cuteinductors, smartlabels, betterproportions]{circuitikz}
     \tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
     \usepgfplotslibrary{fillbetween}
     \pgfplotsset{ticks=none}
