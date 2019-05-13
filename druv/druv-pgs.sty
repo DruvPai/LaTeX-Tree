@@ -20,14 +20,21 @@
     {\color{Blue}\thesubsection\enskip}
 \renewcommand*{\subsubsectionformat}%
     {\color{Blue}\thesubsubsection\enskip}
+% Section heading numbers in the margin
+\renewcommand{\sectionlinesformat}[4]{\makebox[0pt][r]{#3}#4}
+
 \KOMAoptions{numbers=noenddot}
-\usepackage[tocindentauto]{tocstyle}
-\usetocstyle{KOMAlike}
+\allowdisplaybreaks
+
+% Make itemize bullets smaller
+\setlist{noitemsep, topsep = 0.4em, listparindent=\parindent}
+\renewcommand\labelitemi{\raisebox{0.15em}{\tiny\textbullet}}
+\renewcommand{\arraystretch}{0.8}
 
 % Title
 \newcommand{\thesubtitle}{}
 \@ifundefined{chapter}{
-    % No \chapter, so small style
+    % no \chapter, so small style
 
     \renewcommand{\subtitle}[1]{%
         \renewcommand{\thesubtitle}{#1}
@@ -85,7 +92,7 @@
 \newcommand{\thegsi}{GSI}
 \newcommand{\gsi}[1]{\renewcommand{\thegsi}{#1}}
 \newcommand{\theassignment}{Assignment}
-\newcommand{\assignment}[1]{\renewcommand{\theassignment}{#1}\setcounter{problem}{0}\setcounter{answer}{0}\setcounter{soln}{0}}
+\newcommand{\assignment}[1]{\renewcommand{\theassignment}{#1}}
 \newcommand{\theproblems}{Problems}
 \newcommand{\problems}[1]{\renewcommand{\theproblems}{#1}}
 
@@ -124,11 +131,11 @@
 
             {\sffamily \bfseries \LARGE \theproblems \par} 
             \vfill
-            {\scshape \Large \theauthor \par}
+            {\scshape \LARGE \theauthor \par}
 
             {\scshape \Large \plusemail{\theemail} \par}
 
-            {\scshape \Large ID: \theid \par}
+            {\scshape \Large \theid \par}
         \end{center}
     \end{titlepage}
 }

@@ -28,12 +28,13 @@
 \usepackage[T1]{fontenc}
 %\usepackage[lcgreekalpha, upint]{stix} \usepackage[defaultsans]{lato} % default
 %\usepackage{lmodern} \usepackage[defaultsans]{lato}
+%\usepackage[varg]{txfonts} \usepackage[defaultsans]{lato}
 %\usepackage{pxfonts} \usepackage[defaultsans]{lato}
 %\usepackage{lmodern} \usepackage[lite]{mtpro2} \usepackage[defaultsans]{lato}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
 %\usepackage{newtxtext} \usepackage[lite]{newtxmath} \usepackage{helvet}
-\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
-%\usepackage{mathpazo} \usepackage[defaultsans]{lato}
+%\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans]{lato}
+\usepackage{mathpazo} \usepackage{mathrsfs} \usepackage[defaultsans]{lato}
 % More theorems!
 \usepackage[framemethod=TikZ]{mdframed}
 % Little optimizations and QoL stuff
@@ -54,6 +55,7 @@
     \usepackage{etoolbox}
     \usepackage{xstring}
     \usepackage{xpatch}
+    \KOMAoptions{parskip=full}
 }
 \usepackage{caption}
 \usepackage{centernot}
@@ -66,7 +68,6 @@
 \usepackage{multicol}
 \@ifundefined{KOMAClassName}{}{
     \usepackage{paracol}
-    \usepackage[tocindentauto]{tocstyle}
 }
 % Scientific typesetting
 \usepackage{array}
@@ -83,7 +84,7 @@
 \fi
 % More optimizations!
 \usepackage{listings}
-\usepackage{mathrsfs}
+%\usepackage{mathrsfs}
 \usepackage{textcomp}
 \usepackage[shortlabels]{enumitem}
 \usepackage[noend]{algpseudocode}
@@ -96,7 +97,6 @@
 \@ifundefined{KOMAClassName}{}{
     \usepackage{titling}
     \usepackage[headsepline]{scrlayer-scrpage}
-    \usepackage[parfill]{parskip}
 }
 
 % PACKAGE SETUP

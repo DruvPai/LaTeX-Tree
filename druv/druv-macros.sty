@@ -36,7 +36,7 @@
 
 %For use in author command
 \newcommand{\plusemail}[1]{\normalfont \texttt{\mailto{#1}}}
-\newcommand{\studentid}{3033848822}
+\newcommand{\studentid}{SID: 3033848822}
 \newcommand{\userid}{1614758}
 
 % Exponential, imaginary
@@ -107,16 +107,25 @@
 \DeclareMathOperator{\qcnt}{qcnt}
 \DeclareMathOperator{\rem}{rem}
 \DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator{\Ex}{Ex}
-\DeclareMathOperator{\Prob}{Pr} % unnecessary because \Pr is already Pr
-\DeclareMathOperator{\Var}{Var}
-\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\Ex}[1]{\mathrm{Ex}\qty[#1]}
+\newcommand{\Prob}[1]{\mathrm{Pr}\qty[#1]}
+\newcommand{\Var}[1]{\mathrm{Var}\qty[#1]}
+\newcommand{\Cov}[1]{\mathrm{Cov}\qty[#1]}
+\newcommand{\Corr}[1]{\mathrm{Corr}\qty[#1]}
 \DeclareMathOperator{\PDF}{PDF}
 \DeclareMathOperator{\PMF}{PMF}
 \DeclareMathOperator{\CDF}{CDF}
 \DeclareMathOperator*{\argmin}{arg min}
 \DeclareMathOperator*{\argmax}{arg max}
 
+%Distributions
+\newcommand{\berd}[1]{\mathrm{Bernoulli}\qty(#1)}
+\newcommand{\bind}[2]{\mathrm{Binomial}\qty(#1, #2)}
+\newcommand{\geod}[1]{\mathrm{Geometric}\qty(#1)}
+\newcommand{\unid}[1]{\mathrm{Uniform}\qty(#1)}
+\newcommand{\poid}[1]{\mathrm{Poisson}\qty(#1)}
+\newcommand{\expd}[1]{\mathrm{Exponential}\qty(#1)}
+\newcommand{\nord}[1]{\mathrm{Normal}\qty(#1)}
 
 %Convenient Environments
 \newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
@@ -179,8 +188,12 @@
 \DeclareMathOperator{\sign}{sgn}
 \newcommand{\dg}{^\circ}
 \newcommand{\ii}{\item}
-\newcommand{\tran}{^{\text{T}}}
-\newcommand{\maxl}{_{\text{ML}}}
+
+%From CS189 "Introduction to Machine Learning" at Berkeley
+\newcommand{\tran}{^{\mathrm{T}}}
+\newcommand{\maxl}{_{\mathrm{ML}}}
+\newcommand{\train}{_{\mathrm{train}}}
+\newcommand{\test}{_{\mathrm{test}}}
 
 \newcommand{\opname}{\operatorname}
 \newcommand{\surjto}{\twoheadrightarrow}
@@ -202,7 +215,6 @@
 \DeclareMathOperator{\Spec}{Spec} % spectrum
 \DeclareMathOperator{\Span}{Span} % span
 \DeclareMathOperator{\proj}{proj} % projection
-\DeclareMathOperator{\comp}{comp} % component
 \DeclareMathOperator{\Pred}{Pred} % predecessor
 \DeclareMathOperator{\dom}{domain} % domain
 \DeclareMathOperator{\codom}{codomain} % codomain
@@ -268,7 +280,7 @@
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\field}{\mathbb{F}}
 
-% Vector spaces
+% From Math 54 - "Linear Algebra and Differential Equations" at Berkeley
 \newcommand{\vs}[1]{\mathbf{\textsf{#1}}}
 \newcommand{\rvs}[1]{\vs{R}\qty(#1)}
 \newcommand{\cvs}[1]{\vs{C}\qty(#1)}
