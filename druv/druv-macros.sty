@@ -1,6 +1,7 @@
 \ProvidesPackage{druv-macros}
 \usepackage{druv-pkg}
 % MACROS
+\newcommand{\br}[1]{\qty(#1)}
 \newcommand{\cil}[1]{\lstinline|#1|}
 \newcommand{\cbrt}[1]{\sqrt[3]{#1}}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
@@ -11,6 +12,8 @@
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
 \newcommand{\eps}{\varepsilon}
+\newcommand{\listnums}[2]{{#1}, \dots, {#2}}
+\newcommand{\listsubs}[3]{{#1}_{#2}, \dots, {#1}_{#3}}
 \newcommand{\vocab}[1]{\textbf{{\color{Blue} #1}}}
 \newcommand{\catname}{\mathsf}
 \newcommand{\hrulebar}{
@@ -18,20 +21,20 @@
   \par\nointerlineskip \vspace{\baselineskip}
 }
 \newcommand{\half}{\frac{1}{2}}
-\newcommand{\placeimg}[2]
+\newcommand{\placeimg}[2][0.5]
 {
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=#1]{#2}
-    \end{figure}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=#1]{#2}
+  \end{figure}
 }
 \newcommand{\placetwoimg}[4]
 {
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=#1]{#3}
-        \includegraphics[scale=#2]{#4}
-    \end{figure}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=#1]{#3}
+    \includegraphics[scale=#2]{#4}
+  \end{figure}
 }
 
 %For use in author command
@@ -45,33 +48,34 @@
 
 % Physics
 \newcommand{\straightgreekchange}{
-    \renewcommand{\alpha}{\upalpha}
-    \renewcommand{\beta}{\upbeta}
-    \renewcommand{\gamma}{\upgamma}
-    \renewcommand{\delta}{\updelta}
-    \renewcommand{\epsilon}{\upepsilon}
-    \renewcommand{\zeta}{\upzeta}
-    \renewcommand{\eta}{\upeta}
-    \renewcommand{\theta}{\uptheta}
-    \renewcommand{\kappa}{\upkappa}
-    \renewcommand{\lambda}{\uplambda}
-    \renewcommand{\mu}{\upmu}
-    \renewcommand{\nu}{\upnu}
-    \renewcommand{\xi}{\upxi}
-    \renewcommand{\pi}{\uppi}
-    \renewcommand{\rho}{\uprho}
-    \renewcommand{\sigma}{\upsigma}
-    \renewcommand{\tau}{\uptau}
-    \renewcommand{\upsilon}{\upupsilon}
-    \renewcommand{\phi}{\upphi}
-    \renewcommand{\chi}{\upchi}
-    \renewcommand{\psi}{\uppsi}
-    \renewcommand{\omega}{\upomega}
+  \renewcommand{\alpha}{\upalpha}
+  \renewcommand{\beta}{\upbeta}
+  \renewcommand{\gamma}{\upgamma}
+  \renewcommand{\delta}{\updelta}
+  \renewcommand{\epsilon}{\upepsilon}
+  \renewcommand{\zeta}{\upzeta}
+  \renewcommand{\eta}{\upeta}
+  \renewcommand{\theta}{\uptheta}
+  \renewcommand{\kappa}{\upkappa}
+  \renewcommand{\lambda}{\uplambda}
+  \renewcommand{\mu}{\upmu}
+  \renewcommand{\nu}{\upnu}
+  \renewcommand{\xi}{\upxi}
+  \renewcommand{\pi}{\uppi}
+  \renewcommand{\rho}{\uprho}
+  \renewcommand{\sigma}{\upsigma}
+  \renewcommand{\tau}{\uptau}
+  \renewcommand{\upsilon}{\upupsilon}
+  \renewcommand{\phi}{\upphi}
+  \renewcommand{\chi}{\upchi}
+  \renewcommand{\psi}{\uppsi}
+  \renewcommand{\omega}{\upomega}
+  \renewcommand{\varepsilon}{\upepsilon}
 }
 \renewcommand{\vec}[1]{{\straightgreekchange
     {\IfSubStr{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}{#1}
-        {\mathbf{#1}}
-        {\bm{#1}}}}}
+      {\mathbf{#1}}
+{\bm{#1}}}}}
 \newcommand{\mat}[1]{\vb*{#1}}
 \newcommand{\tens}[1]{\straightgreekchange\mathsf{#1}}
 \newcommand{\fnet}{\vec{F}_{\mathrm{net}}}
@@ -82,6 +86,139 @@
 \newcommand{\eq}{{\mathrm{eq}}}
 \newcommand{\tot}{{\mathrm{tot}}}
 \newcommand{\ve}{\vec{e}}
+\renewcommand{\complement}{\mathrm{c}}
+
+% Other fonts
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\bI}{\mathbb{I}}
+\newcommand{\bJ}{\mathbb{J}}
+\newcommand{\bK}{\mathbb{K}}
+\newcommand{\bL}{\mathbb{L}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bO}{\mathbb{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bV}{\mathbb{V}}
+\newcommand{\bW}{\mathbb{W}}
+\newcommand{\bX}{\mathbb{X}}
+\newcommand{\bY}{\mathbb{Y}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\sA}{\mathscr{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sI}{\mathscr{I}}
+\newcommand{\sJ}{\mathscr{J}}
+\newcommand{\sK}{\mathscr{K}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\sM}{\mathscr{M}}
+\newcommand{\sN}{\mathscr{N}}
+\newcommand{\sO}{\mathscr{O}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\sQ}{\mathscr{Q}}
+\newcommand{\sR}{\mathscr{R}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sT}{\mathscr{T}}
+\newcommand{\sU}{\mathscr{U}}
+\newcommand{\sV}{\mathscr{V}}
+\newcommand{\sW}{\mathscr{W}}
+\newcommand{\sX}{\mathscr{X}}
+\newcommand{\sY}{\mathscr{Y}}
+\newcommand{\sZ}{\mathscr{Z}}
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fC}{\mathfrak{C}}
+\newcommand{\fD}{\mathfrak{D}}
+\newcommand{\fE}{\mathfrak{E}}
+\newcommand{\fF}{\mathfrak{F}}
+\newcommand{\fG}{\mathfrak{G}}
+\newcommand{\fH}{\mathfrak{H}}
+\newcommand{\fI}{\mathfrak{I}}
+\newcommand{\fJ}{\mathfrak{J}}
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fL}{\mathfrak{L}}
+\newcommand{\fM}{\mathfrak{M}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fP}{\mathfrak{P}}
+\newcommand{\fQ}{\mathfrak{Q}}
+\newcommand{\fR}{\mathfrak{R}}
+\newcommand{\fS}{\mathfrak{S}}
+\newcommand{\fT}{\mathfrak{T}}
+\newcommand{\fU}{\mathfrak{U}}
+\newcommand{\fV}{\mathfrak{V}}
+\newcommand{\fW}{\mathfrak{W}}
+\newcommand{\fX}{\mathfrak{X}}
+\newcommand{\fY}{\mathfrak{Y}}
+\newcommand{\fZ}{\mathfrak{Z}}
+\newcommand{\fa}{\mathfrak{a}}
+\newcommand{\fb}{\mathfrak{b}}
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\fd}{\mathfrak{d}}
+\newcommand{\fe}{\mathfrak{e}}
+\newcommand{\ff}{\mathfrak{f}}
+\newcommand{\fg}{\mathfrak{g}}
+\newcommand{\fh}{\mathfrak{h}}
+\newcommand{\fri}{\mathfrak{i}}
+\newcommand{\fj}{\mathfrak{j}}
+\newcommand{\fk}{\mathfrak{k}}
+\newcommand{\fl}{\mathfrak{l}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\fn}{\mathfrak{n}}
+\newcommand{\fo}{\mathfrak{o}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\fq}{\mathfrak{q}}
+\newcommand{\fr}{\mathfrak{r}}
+\newcommand{\fs}{\mathfrak{s}}
+\newcommand{\ft}{\mathfrak{t}}
+\newcommand{\fu}{\mathfrak{u}}
+\newcommand{\fv}{\mathfrak{v}}
+\newcommand{\fw}{\mathfrak{w}}
+\newcommand{\fx}{\mathfrak{x}}
+\newcommand{\fy}{\mathfrak{y}}
+\newcommand{\fz}{\mathfrak{z}}
 
 % Algorithm
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -107,25 +244,30 @@
 \DeclareMathOperator{\qcnt}{qcnt}
 \DeclareMathOperator{\rem}{rem}
 \DeclareMathOperator{\lcm}{lcm}
-\newcommand{\Ex}[2][]{\mathrm{Ex}_{#1}\qty[#2]}
-\newcommand{\Prob}[1]{\mathrm{Pr}\qty[#1]}
-\newcommand{\Var}[1]{\mathrm{Var}\qty[#1]}
-\newcommand{\Cov}[1]{\mathrm{Cov}\qty[#1]}
-\newcommand{\Corr}[1]{\mathrm{Corr}\qty[#1]}
-\DeclareMathOperator{\PDF}{PDF}
-\DeclareMathOperator{\PMF}{PMF}
-\DeclareMathOperator{\CDF}{CDF}
+\newcommand{\Ex}[2][]{\mathrm{Ex}_{#1}\br{#2}}
+\newcommand{\Prob}[2][]{\mathrm{Pr}_{#1}\br{#2}}
+\newcommand{\Var}[2][]{\mathrm{Var}_{#1}\br{#2}}
+\newcommand{\Cov}[2][]{\mathrm{Cov}_{#1}\br{#2}}
+\newcommand{\Corr}[2][]{\mathrm{Corr}_{#1}\br{#2}}
+\newcommand{\indrv}[2][]{\mathrm{Ind}_{#1}\br{#2}}
+\newcommand{\pdf}[2][]{\mathrm{PDF}_{#1}\br{#2}}
+\newcommand{\pmf}[2][]{\mathrm{PMF}_{#1}\br{#2}}
+\newcommand{\cdf}[2][]{\mathrm{CDF}_{#1}\br{#2}}
+\newcommand{\cmf}[2][]{\mathrm{CMF}_{#1}\br{#2}}
 \DeclareMathOperator*{\argmin}{arg min}
 \DeclareMathOperator*{\argmax}{arg max}
 
 %Distributions
-\newcommand{\berd}[1]{\mathrm{Bernoulli}\qty(#1)}
-\newcommand{\bind}[2]{\mathrm{Binomial}\qty(#1, #2)}
-\newcommand{\geod}[1]{\mathrm{Geometric}\qty(#1)}
-\newcommand{\unid}[1]{\mathrm{Uniform}\qty(#1)}
-\newcommand{\poid}[1]{\mathrm{Poisson}\qty(#1)}
-\newcommand{\expd}[1]{\mathrm{Exponential}\qty(#1)}
-\newcommand{\nord}[1]{\mathrm{Normal}\qty(#1)}
+\newcommand{\berd}[1]{\mathrm{Bernoulli}\br{#1}}
+\newcommand{\bind}[2]{\mathrm{Binomial}\br{#1, #2}}
+\newcommand{\geod}[1]{\mathrm{Geometric}\br{#1}}
+\newcommand{\unid}[1]{\mathrm{Uniform}\br{#1}}
+\newcommand{\poid}[1]{\mathrm{Poisson}\br{#1}}
+\newcommand{\expd}[1]{\mathrm{Exponential}\br{#1}}
+\newcommand{\nord}[2]{\mathrm{Normal}\br{#1, #2}}
+\newcommand{\chid}[1]{\chi^{2}(#1)}
+\newcommand{\teed}[1]{\mathrm{T}\br{#1}}
+\newcommand{\effd}[2]{\mathrm{F}\br{#1, #2}}
 
 %Convenient Environments
 \newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
@@ -138,23 +280,8 @@
 \newcommand{\symprod}{\prod_{\mathrm{sym}}}
 
 %From H113 "Introduction to Abstract Algebra" at UC Berkeley
-\newcommand{\bC}{\mathbb C}
-\newcommand{\bD}{\mathbb D}
-\newcommand{\bE}{\mathbb E}
-\newcommand{\bF}{\mathbb F}
-\newcommand{\bH}{\mathbb H}
-\newcommand{\bK}{\mathbb K}
-\newcommand{\bM}{\mathbb M}
-\newcommand{\bN}{\mathbb N}
-\newcommand{\bP}{\mathbb P}
-\newcommand{\bQ}{\mathbb Q}
-\newcommand{\bR}{\mathbb R}
-\newcommand{\bS}{\mathbb S}
-\newcommand{\bU}{\mathbb U}
-\newcommand{\bV}{\mathbb V}
-\newcommand{\bW}{\mathbb W}
-\newcommand{\bZ}{\mathbb Z}
 \newcommand{\charin}{\text{ char }}
+\renewcommand{\tr}[2][]{\mathrm{trace}_{#1}\br{#2}}
 \DeclareMathOperator{\rref}{\text{rref}}
 \DeclareMathOperator{\Sign}{Sign}
 \DeclareMathOperator{\Aut}{Aut} % Autormorphism
@@ -173,7 +300,7 @@
 %From M275 "Topology" at SJSU
 \newcommand{\Id}{\mathrm{Id}}
 \newcommand{\taking}[1]{\xrightarrow{#1}}
-\newcommand{\inv}{^{-1}}
+\newcommand{\inv}{-1}
 
 %From M170 "Introduction to Graph Theory" at SJSU
 \DeclareMathOperator{\Diam}{Diam}
@@ -190,114 +317,61 @@
 \newcommand{\ii}{\item}
 
 %From CS189 "Introduction to Machine Learning" at Berkeley
-\newcommand{\tran}{^{\mathrm{T}}}
-\newcommand{\maxl}{_{\mathrm{ML}}}
-\newcommand{\train}{_{\mathrm{train}}}
-\newcommand{\test}{_{\mathrm{test}}}
-\newcommand{\rss}[1]{\mathrm{RSS}\qty(#1)}
-\newcommand{\epe}[1]{\mathrm{EPE}\qty{#1}}
+\newcommand{\tran}{\mathrm{T}}
+\newcommand{\herm}{\mathrm{H}}
+\newcommand{\mpi}{+}
+\newcommand{\maxl}{\mathrm{ML}}
+\newcommand{\train}{\mathrm{train}}
+\newcommand{\test}{\mathrm{test}}
+\newcommand{\rss}[2][]{\mathrm{RSS}_{#1}\br{#2}}
+\newcommand{\prss}[2][]{\mathrm{PRSS}_{#1}\br{#2}}
+\newcommand{\epe}[2][]{\mathrm{EPE}_{#1}\br{#2}}
+\newcommand{\mse}[2][]{\mathrm{MSE}_{#1}\br{#2}}
+\newcommand{\BiasSq}[2][]{\mathrm{Bias}_{#1}^{2}\br{#2}}
+\newcommand{\mle}[2][]{\mathrm{MLE}_{#1}\br{#2}}
+\newcommand{\map}[2][]{\mathrm{MAP}_{#1}\br{#2}}
+\newcommand{\given}{\left\vert\vphantom{\frac{1}{1}}\right.}
 
 \newcommand{\opname}{\operatorname}
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
-\DeclareMathOperator{\inj}{inj}
-\DeclareMathOperator{\surj}{surj}
-\DeclareMathOperator{\bij}{bij}
 \newcommand{\On}{\mathrm{On}} % ordinals
-\DeclareMathOperator{\diag}{diag} % diagonal
-\DeclareMathOperator{\Card}{Card} % cardinality
-\DeclareMathOperator{\adj}{adj} % adjugate
-\DeclareMathOperator{\Row}{Row} % row space
-\DeclareMathOperator{\Col}{Col} % column space
-\DeclareMathOperator{\Nul}{Nul} % null space
-\DeclareMathOperator{\nulty}{nullity} % nullity (rank in Physics package)
-\DeclareMathOperator{\Img}{Im} % Image
-\DeclareMathOperator{\Coker}{Coker} % Cokernel
-\DeclareMathOperator{\Ker}{Ker} % kernel
+\newcommand{\diag}[1]{\mathrm{diag}\br{#1}} % diagonal
+\newcommand{\size}[1]{\abs{#1}} % size
+\newcommand{\card}[1]{\size{#1}} % cardinality
+\newcommand{\domain}[2][]{\mathrm{domain}_{#1}\br{#2}} % domain
+\newcommand{\codomain}[2][]{\mathrm{codomain}_{#1}\br{#2}} % codomain
+\newcommand{\range}[2][]{\mathrm{range}_{#1}\br{#2}}
+\newcommand{\image}[2][]{\mathrm{image}_{#1}\br{#2}} % image
+\newcommand{\kernel}[2][]{\mathrm{kernel}_{#1}\br{#2}} % kernel
+\newcommand{\cokernel}[2][]{\mathrm{cokernel}_{#1}\br{#2}} % cokernel
 \DeclareMathOperator{\Spec}{Spec} % spectrum
-\DeclareMathOperator{\Span}{Span} % span
-\DeclareMathOperator{\proj}{proj} % projection
 \DeclareMathOperator{\Pred}{Pred} % predecessor
-\DeclareMathOperator{\dom}{domain} % domain
-\DeclareMathOperator{\codom}{codomain} % codomain
-\DeclareMathOperator{\ran}{range} % range
-\DeclareMathOperator{\Ran}{Ran} % range
 \DeclareMathOperator{\Hom}{Hom} % Hom functor
 \DeclareMathOperator{\End}{End} % End functor
 
 
 % Things Lie
-\newcommand{\fb}{\mathfrak b}
-\newcommand{\fg}{\mathfrak g}
-\newcommand{\fh}{\mathfrak h}
-\newcommand{\fm}{\mathfrak m}
-\newcommand{\fn}{\mathfrak n}
-\newcommand{\fp}{\mathfrak p}
-\newcommand{\fu}{\mathfrak u}
-\newcommand{\fz}{\mathfrak z}
-\newcommand{\fF}{\mathfrak F}
-\newcommand{\fT}{\mathfrak T}
 \DeclareMathOperator{\Ext}{Ext} % Ext functor (and extension)
 \DeclareMathOperator{\Tor}{Tor} % Tor functor
 \newcommand{\gl}{\opname{\mathfrak{gl}}} % frak gl group
 \renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak gl group
 
-% More script letters etc.
-\newcommand{\sA}{\mathscr A}
-\newcommand{\sB}{\mathscr B}
-\newcommand{\sC}{\mathscr C}
-\newcommand{\sD}{\mathscr D}
-\newcommand{\sE}{\mathscr E}
-\newcommand{\sF}{\mathscr F}
-\newcommand{\sG}{\mathscr G}
-\newcommand{\sH}{\mathscr H}
-\newcommand{\sL}{\mathscr L}
-\newcommand{\sM}{\mathscr M}
-\newcommand{\sS}{\mathscr S}
-\newcommand{\sT}{\mathscr T}
-
-\newcommand{\cA}{\mathcal A}
-\newcommand{\cB}{\mathcal B}
-\newcommand{\cC}{\mathcal C}
-\newcommand{\cD}{\mathcal D}
-\newcommand{\cE}{\mathcal E}
-\newcommand{\cF}{\mathcal F}
-\newcommand{\cG}{\mathcal G}
-\newcommand{\cH}{\mathcal H}
-\newcommand{\cI}{\mathcal I}
-\newcommand{\cL}{\mathcal L}
-\newcommand{\cN}{\mathcal N}
-\newcommand{\cO}{\mathcal O}
-\newcommand{\cP}{\mathcal P}
-\newcommand{\cT}{\mathcal T}
-\newcommand{\cU}{\mathcal U}
-\newcommand{\cW}{\mathcal W}
-\newcommand{\cV}{\mathcal V}
-
-% Fields
-\newcommand{\reals}{\mathbb{R}}
-\newcommand{\complexes}{\mathbb{C}}
-\newcommand{\rationals}{\mathbb{Q}}
-\newcommand{\integers}{\mathbb{Z}}
-\newcommand{\naturals}{\mathbb{N}}
-\newcommand{\field}{\mathbb{F}}
-
 % From Math 54 - "Linear Algebra and Differential Equations" at Berkeley
-\newcommand{\vs}[1]{\mathbf{\textsf{#1}}}
-\newcommand{\rvs}[1]{\vs{R}\qty(#1)}
-\newcommand{\cvs}[1]{\vs{C}\qty(#1)}
-\newcommand{\svs}[1]{\vs{S}\qty(#1)}
-\newcommand{\sbs}[1]{\vs{S}\qty{#1}}
-\newcommand{\nvs}[1]{\vs{N}\qty(#1)}
-\newcommand{\lnvs}[1]{\vs{LN}\qty(#1)}
-\newcommand{\evs}[1]{\vs{E}\qty(#1)}
-\newcommand{\ebs}[1]{\vs{E}\qty{#1}}
+\newcommand{\spanvs}[1]{\mathrm{span}\br{#1}}
+\newcommand{\colvs}[1]{\mathrm{col}\br{#1}}
+\newcommand{\nullvs}[1]{\mathrm{null}\br{#1}}
+\newcommand{\rowvs}[1]{\mathrm{row}\br{#1}}
+\newcommand{\lnullvs}[1]{\mathrm{leftnull}\br{#1}}
+\newcommand{\proj}[2][]{\mathrm{proj}_{#1}\br{#2}}
+\renewcommand{\dim}[2][]{\mathrm{dim}_{#1}\br{#2}}
+
 
 %% Napkin commands
 \newcommand{\prototype}[1]{
-	\emph{{\color{Blue} Prototypical example for this section:} #1} \par\medskip
+  \emph{{\color{Blue} Prototypical example for this section:} #1} \par\medskip
 }
 \newenvironment{moral}{%
-	\begin{mdframed}[linecolor=purple!70!black]%
-	\bfseries\color{purple!70!black}}%
-	{\end{mdframed}}
+  \begin{mdframed}[linecolor=purple!70!black]%
+  \bfseries\color{purple!70!black}}%
+{\end{mdframed}}

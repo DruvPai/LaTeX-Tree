@@ -15,7 +15,9 @@
 % For theorems!
 \usepackage{thmtools}
 % For colors!
-\usepackage[usenames, svgnames, dvipsnames, table, xcdraw]{xcolor}
+\@ifundefined{KOMAClassName}{}{
+    \usepackage[usenames, svgnames, dvipsnames, table, xcdraw]{xcolor}
+}
 % Essential images and graphs
 \usepackage{tikz}
 \ifdruvdiagram
@@ -26,13 +28,16 @@
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
 \usepackage[T1]{fontenc}
-%\usepackage[lcgreekalpha, upint]{stix} \usepackage[defaultsans, scale=0.95]{lato} % default
+%\usepackage{mathrsfs} % default
+\usepackage{lmodern} \usepackage{mathrsfs}
+%\usepackage{ae} \usepackage{mathrsfs}
+%\usepackage[lcgreekalpha, upint]{stix} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{lmodern} \usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage[varg]{txfonts} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{pxfonts} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{lmodern} \usepackage[lite]{mtpro2} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans, scale=0.95]{lato}
-\usepackage{newtxtext} \usepackage{newtxmath} \usepackage{mathrsfs} \usepackage{helvet}
+%\usepackage{newtxtext} \usepackage{newtxmath} \usepackage{mathrsfs} \usepackage{helvet}
 %\usepackage{newtxtext} \usepackage[lite]{mtpro2} \usepackage{helvet}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{mathpazo} \usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
@@ -41,8 +46,6 @@
 % Little optimizations and QoL stuff
 \usepackage{mathtools}
 \usepackage[Symbol]{upgreek}
-\usepackage[colorlinks=true]{hyperref}
-\usepackage[capitalize]{cleveref}
 \usepackage{booktabs}
 \usepackage{import}
 \usepackage{calc}
@@ -51,6 +54,8 @@
 \usepackage{float}
 \usepackage{bm}
 \@ifundefined{KOMAClassName}{}{
+    \usepackage[colorlinks=true]{hyperref}
+    \usepackage[capitalize]{cleveref}
     \usepackage{subfiles}
     \usepackage{ifthen}
     \usepackage{etoolbox}
@@ -86,7 +91,7 @@
 \usepackage{listings}
 %\usepackage{mathrsfs}
 \usepackage{textcomp}
-\usepackage[shortlabels]{enumitem}
+\@ifclassloaded{beamer}{}{\usepackage[shortlabels]{enumitem}\usepackage{changepage}}
 \usepackage[noend]{algpseudocode}
 \@ifundefined{chapter}{\usepackage[ruled, section]{algorithm}}{\usepackage[ruled,chapter]{algorithm}}
 \usepackage[obeyFinal,textsize=scriptsize,shadow]{todonotes}
@@ -101,25 +106,25 @@
 
 % PACKAGE SETUP
 \@ifundefined{KOMAClassName}{}{
-% Multicolumn TOCs
-\renewcommand\tableofcontents{%
-    \begin{multicols}{2}[\section*{\contentsname
-        \@mkboth{%
-           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}]%
-    \@starttoc{toc}%
-    \end{multicols}%
+    % Multicolumn TOCs
+    \renewcommand\tableofcontents{%
+        \begin{multicols}{2}[\section*{\contentsname
+                \@mkboth{%
+            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}]%
+            \@starttoc{toc}%
+        \end{multicols}%
     }
-\setlength{\columnsep}{2cm}
-\setcounter{tocdepth}{1} % part, chapter and section
-%\setcounter{tocdepth}{0} % part and chapter
-%\setcounter{tocdepth}{-1} % part
+    \setlength{\columnsep}{2cm}
+    \setcounter{tocdepth}{1} % part, chapter and section
+    %\setcounter{tocdepth}{0} % part and chapter
+    %\setcounter{tocdepth}{-1} % part
 }
 
 % SIUnitX
 \sisetup{
-add-decimal-zero = false,
-add-integer-zero = false,
-%per-mode=fraction
+    add-decimal-zero = false,
+    add-integer-zero = false,
+    %per-mode=fraction
 }
 \DeclareSIUnit\year{y}
 \DeclareSIUnit\lightspeed{c}
@@ -144,22 +149,22 @@ add-integer-zero = false,
 
 % Random Listings Formatting
 \lstset{basicstyle=\normalsize\ttfamily,
-numbers=left,
-numbersep=5pt,
-numberstyle=\tiny,
-keywordstyle=\bfseries,
-showstringspaces=false,
-tabsize=4,
-frame=single,
-keywordstyle=\bfseries\color{blue},
-commentstyle=\color{green!70!black},
-identifierstyle=\color{green!20!black},
-stringstyle=\color{orange},
-breaklines=true,
-breakatwhitespace=true,
-xleftmargin=10pt,
-aboveskip=-10pt,
-belowskip=0pt
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny,
+    keywordstyle=\bfseries,
+    showstringspaces=false,
+    tabsize=4,
+    frame=single,
+    keywordstyle=\bfseries\color{blue},
+    commentstyle=\color{green!70!black},
+    identifierstyle=\color{green!20!black},
+    stringstyle=\color{orange},
+    breaklines=true,
+    breakatwhitespace=true,
+    xleftmargin=10pt,
+    aboveskip=10pt,
+    belowskip=10pt
 }
 
 % Diagram package configurations
@@ -175,4 +180,4 @@ belowskip=0pt
 
 
 % Hyperref
-\hypersetup{urlcolor=Purple,linkcolor=RoyalBlue,citecolor=Purple}
+\hypersetup{urlcolor = RubineRed, linkcolor = RoyalBlue, citecolor = ForestGreen}

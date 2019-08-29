@@ -7,19 +7,19 @@
 \@ifundefined{chapter}{}{
     \addtokomafont{partprefix}{\sffamily}
     \renewcommand*{\partformat}{\color{Blue}
-        \scalebox{2.5}{\thepart}\enlargethispage{2em}}
+    \scalebox{2.5}{\thepart}\enlargethispage{2em}}
     \addtokomafont{chapterprefix}{\raggedleft}
     \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
     \renewcommand*{\chapterformat}{\mbox{%
-        \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
-        \scalebox{2.718}{\color{Blue}\thechapter}\enskip}}
+            \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
+    \scalebox{2.718}{\color{Blue}\thechapter}\enskip}}
 }
 \renewcommand*{\sectionformat}%
-    {\color{Blue}\thesection\enskip}
+{\color{Blue}\thesection\enskip}
 \renewcommand*{\subsectionformat}%
-    {\color{Blue}\thesubsection\enskip}
+{\color{Blue}\thesubsection\enskip}
 \renewcommand*{\subsubsectionformat}%
-    {\color{Blue}\thesubsubsection\enskip}
+{\color{Blue}\thesubsubsection\enskip}
 % Section heading numbers in the margin
 \renewcommand{\sectionlinesformat}[4]{\makebox[0pt][r]{#3}#4}
 
@@ -42,7 +42,7 @@
         \pretitle{\begin{center}\bfseries \sffamily \Large}
         \posttitle{\\ {\normalsize \thesubtitle} \end{center}\vspace{\posttitledrop}}
     }
-}{
+    }{
     % \chapter exists, so large style
     \renewcommand{\subtitle}[1]{%
         \renewcommand{\thesubtitle}{#1}
@@ -63,7 +63,7 @@
     \postauthor{\end{center}\vspace{\postauthordrop}}
     \predate{\begin{center}\small}
     \postdate{\end{center}}
-}{
+    }{
     % \chapter exists, so large style
     \setlength{\droptitle}{-8cm}
     \setlength{\posttitledrop}{1em}
@@ -76,71 +76,32 @@
     \postdate{\end{center}}
 }
 
-% Cover pages for assignments
-\newcommand{\theclassid}{Class ID}
-\newcommand{\classid}[1]{\renewcommand{\theclassid}{#1}}
-\newcommand{\thesubject}{Class Subject}
-\renewcommand{\subject}[1]{\renewcommand{\thesubject}{#1}}
-% title, subtitle, author already done
-\newcommand{\thebook}{Book}
-\newcommand{\textbook}[1]{\renewcommand{\thebook}{#1}}
-\newcommand{\theemail}{druvpai@berkeley.edu}
-\newcommand{\email}[1]{\renewcommand{\theemail}{#1}}
-\newcommand{\theid}{\studentid}
-\newcommand{\idnumber}[1]{\renewcommand{\theid}{#1}}
-\newcommand{\theprof}{Professor}
-\newcommand{\professor}[1]{\renewcommand{\theprof}{#1}}
-\newcommand{\thegsi}{GSI}
-\newcommand{\gsi}[1]{\renewcommand{\thegsi}{#1}}
-\newcommand{\theassignment}{Assignment}
-\newcommand{\assignment}[1]{\renewcommand{\theassignment}{#1}}
-\newcommand{\theproblems}{Problems}
-\newcommand{\problems}[1]{\renewcommand{\theproblems}{#1}}
-
-\newcommand{\coverpage}{
+\newcommand{\coverpage}[4][]{
+    \title{#2}
+    \subtitle{#3}
+    \author{#4}
     \begin{titlepage}
-        \begin{center}
-            {\sffamily \bfseries \LARGE \theclassid \par}
-            \vspace{0.3cm}
-            {\sffamily \bfseries \LARGE \thesubject \par}
-            \vspace{2cm}
-            {\sffamily \bfseries \Huge \thetitle \par}
-            \vspace{0.4cm}
-            {\sffamily \bfseries \LARGE Textbook: \thebook \par}
+        \begin{center}\bfseries \sffamily
+            \null
             \vfill
-            {\scshape \Large \theauthor \par}
-            \vspace{0.1cm}
-            {\scshape \Large \plusemail{\theemail} \par}
-            \vspace{0.1cm}
-            {\scshape \Large ID: \theid \par}
-            \vspace{1cm}
-            {\scshape \Large Professor: \theprof \par}
-            \vspace{0.1cm}
-            {\scshape \Large GSI: \thegsi}
+            {\Huge #2 \par}
+            {\LARGE #1 \par}
+            \vfill
+            \null
+            \vfill
+            \null
+            \vfill
+            {\Huge #3 \par}
+            \vfill
+            \null
+            \vfill
+            \null
+            \vfill
+            {\LARGE #4 \par}
+            \vfill
         \end{center}
     \end{titlepage}
 }
-\newcommand{\assignmentcover}{
-    \subtitle{\theassignment}
-    \begin{titlepage}
-        \begin{center}
-            {\sffamily \bfseries \LARGE \theclassid \par}
-
-            {\sffamily \bfseries \LARGE \thesubject \par}
-            \vfill
-            {\sffamily \bfseries \Huge \theassignment \par}
-
-            {\sffamily \bfseries \LARGE \theproblems \par} 
-            \vfill
-            {\scshape \LARGE \theauthor \par}
-
-            {\scshape \Large \plusemail{\theemail} \par}
-
-            {\scshape \Large \theid \par}
-        \end{center}
-    \end{titlepage}
-}
-
 
 
 % PAGE SETUP
@@ -154,16 +115,16 @@
 % Vertical
 \renewcommand{\headfont}{\bfseries\sffamily\large}%{\bfseries}
 %\setlength{\parindent}{0cm}
-\setlength{\voffset}{-0.25in} 
+\setlength{\voffset}{-0.25in}
 \setlength{\textheight}{9in}
 \setlength{\headsep}{10pt}
 \setlength{\paperheight}{11in}
 
 \ihead{\theauthor}
 
-\chead{\thesubtitle}
+\ohead{\thesubtitle}
 
-\ohead{\thetitle}
+\chead{\thetitle}
 
 %\renewcommand*{\pagemark}{}
 \cfoot{\pagemark}
@@ -171,6 +132,6 @@
 
 \AtBeginDocument{%
     \title{}
-    \author{Druv Pai}
+    \author{}
     \date{}
 }
