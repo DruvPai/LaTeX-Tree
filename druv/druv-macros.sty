@@ -14,7 +14,8 @@
 \newcommand{\eps}{\varepsilon}
 \newcommand{\listnums}[2]{{#1}, \dots, {#2}}
 \newcommand{\listsubs}[3]{{#1}_{#2}, \dots, {#1}_{#3}}
-\newcommand{\vocab}[1]{\textbf{{\color{Blue} #1}}}
+\renewcommand{\emph}[1]{\textbf{{\color{NavyBlue} #1}}}
+\newcommand{\vocab}[1]{\emph{#1}}
 \newcommand{\catname}{\mathsf}
 \newcommand{\hrulebar}{
   \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
@@ -233,9 +234,8 @@
 \newcommand{\sat}{{\mathrm{sat}}}
 
 % Boolean Logic
-\DeclareMathOperator{\tru}{True}
-\DeclareMathOperator{\fal}{False}
-
+\newcommand{\tru}{\texttt{\small TRUE}}
+\newcommand{\fls}{\texttt{\small FALSE}}
 
 %More commands and math operators
 \newcommand{\dst}{\displaystyle}
@@ -249,15 +249,16 @@
 \newcommand{\Var}[2][]{\mathrm{Var}_{#1}\br{#2}}
 \newcommand{\Cov}[2][]{\mathrm{Cov}_{#1}\br{#2}}
 \newcommand{\Corr}[2][]{\mathrm{Corr}_{#1}\br{#2}}
-\newcommand{\indrv}[2][]{\mathrm{Ind}_{#1}\br{#2}}
+\newcommand{\indrv}[2][]{\mathbbm{1}_{#1}\br{#2}}
 \newcommand{\pdf}[2][]{\mathrm{PDF}_{#1}\br{#2}}
 \newcommand{\pmf}[2][]{\mathrm{PMF}_{#1}\br{#2}}
 \newcommand{\cdf}[2][]{\mathrm{CDF}_{#1}\br{#2}}
 \newcommand{\cmf}[2][]{\mathrm{CMF}_{#1}\br{#2}}
+\newcommand{\mgf}[2][]{\mathrm{MGF}_{#1}\br{#2}}
 \DeclareMathOperator*{\argmin}{arg min}
 \DeclareMathOperator*{\argmax}{arg max}
 
-%Distributions
+% From EE 126 `Probability and Random Processes" at UC Berkeley
 \newcommand{\berd}[1]{\mathrm{Bernoulli}\br{#1}}
 \newcommand{\bind}[2]{\mathrm{Binomial}\br{#1, #2}}
 \newcommand{\geod}[1]{\mathrm{Geometric}\br{#1}}
@@ -268,6 +269,8 @@
 \newcommand{\chid}[1]{\chi^{2}(#1)}
 \newcommand{\teed}[1]{\mathrm{T}\br{#1}}
 \newcommand{\effd}[2]{\mathrm{F}\br{#1, #2}}
+\newcommand{\iid}{\text{i.i.d}}
+\newcommand{\simiid}{\stackrel{\iid}{\sim}}
 
 %Convenient Environments
 \newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
@@ -320,7 +323,8 @@
 \newcommand{\tran}{\mathrm{T}}
 \newcommand{\herm}{\mathrm{H}}
 \newcommand{\mpi}{+}
-\newcommand{\maxl}{\mathrm{ML}}
+\newcommand{\maxl}{\mathrm{MLE}}
+\newcommand{\maxap}{\mathrm{MAP}}
 \newcommand{\train}{\mathrm{train}}
 \newcommand{\test}{\mathrm{test}}
 \newcommand{\rss}[2][]{\mathrm{RSS}_{#1}\br{#2}}
@@ -365,6 +369,27 @@
 \newcommand{\lnullvs}[1]{\mathrm{leftnull}\br{#1}}
 \newcommand{\proj}[2][]{\mathrm{proj}_{#1}\br{#2}}
 \renewcommand{\dim}[2][]{\mathrm{dim}_{#1}\br{#2}}
+
+% From CS 170 - "Efficient Algorithms and Intractable Problems" at Berkeley
+\newcommand{\fourpartproof}[4]{
+  \begin{quote}
+  \textit{\small Overview}: #1
+  \end{quote}
+
+  \begin{quote}
+  \textit{\small Algorithm}:
+
+  #2
+
+  \end{quote}
+
+  \begin{quote}
+  \textit{\small Correctness}: #3
+  \end{quote}
+  \begin{quote}
+  \textit{\small Runtime}: #4
+  \end{quote}
+}
 
 
 %% Napkin commands
