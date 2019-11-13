@@ -244,6 +244,26 @@
 \DeclareMathOperator{\qcnt}{qcnt}
 \DeclareMathOperator{\rem}{rem}
 \DeclareMathOperator{\lcm}{lcm}
+\newcommand{\opt}{\mathrm{opt}}
+\DeclareMathOperator*{\argmin}{arg min}
+\DeclareMathOperator*{\argmax}{arg max}
+
+% From EE 126 `Probability and Random Processes" at UC Berkeley
+\newcommand{\berd}[1]{\mathrm{Bernoulli}\br{#1}}
+\newcommand{\bind}[2]{\mathrm{Binomial}\br{#1, #2}}
+\newcommand{\geod}[1]{\mathrm{Geometric}\br{#1}}
+\newcommand{\unid}[1]{\mathrm{Uniform}\br{#1}}
+\newcommand{\poid}[1]{\mathrm{Poisson}\br{#1}}
+\newcommand{\poip}[3][\lambda]{\mathrm{Poisson}_{#1}\br{#2, #3}}
+\newcommand{\expd}[1]{\mathrm{Exponential}\br{#1}}
+\newcommand{\nord}[2]{\mathrm{Normal}\br{#1, #2}}
+\newcommand{\erld}[2]{\mathrm{Erlang}\br{#1, #2}}
+\newcommand{\chid}[1]{\chi^{2}(#1)}
+\newcommand{\teed}[1]{\mathrm{T}\br{#1}}
+\newcommand{\effd}[2]{\mathrm{F}\br{#1, #2}}
+\newcommand{\lapd}[2]{\mathrm{Laplace}\br{#1, #2}}
+\newcommand{\iid}{\text{i.i.d.}}
+\newcommand{\simiid}{\stackrel{\iid}{\sim}}
 \newcommand{\Ex}[2][]{\mathrm{Ex}_{#1}\br{#2}}
 \newcommand{\Prob}[2][]{\mathrm{Pr}_{#1}\br{#2}}
 \newcommand{\Var}[2][]{\mathrm{Var}_{#1}\br{#2}}
@@ -255,22 +275,21 @@
 \newcommand{\cdf}[2][]{\mathrm{CDF}_{#1}\br{#2}}
 \newcommand{\cmf}[2][]{\mathrm{CMF}_{#1}\br{#2}}
 \newcommand{\mgf}[2][]{\mathrm{MGF}_{#1}\br{#2}}
-\DeclareMathOperator*{\argmin}{arg min}
-\DeclareMathOperator*{\argmax}{arg max}
+\newcommand{\convp}{\stackrel{\mathrm{prob.}}{\to}}
+\newcommand{\convas}{\stackrel{\mathrm{a.s.}}{\to}}
+\newcommand{\convr}[1][r]{\stackrel{L^{#1}}{\to}}
+\newcommand{\convptw}{\stackrel{\mathrm{pointwise}}{\to}}
+\newcommand{\convw}{\stackrel{\mathrm{weak}}{\to}}
+\newcommand{\markovgraph}[2][1]{
+  \tikzstyle{every state}=[fill=white,draw=black,semithick,text=black, scale=1]
+  \begin{center}
+  \scalebox{#1}{
+  \begin{tikzpicture}[->,>=stealth',auto,semithick,node distance=3cm]
+    #2
+  \end{tikzpicture}}
+  \end{center}
+}
 
-% From EE 126 `Probability and Random Processes" at UC Berkeley
-\newcommand{\berd}[1]{\mathrm{Bernoulli}\br{#1}}
-\newcommand{\bind}[2]{\mathrm{Binomial}\br{#1, #2}}
-\newcommand{\geod}[1]{\mathrm{Geometric}\br{#1}}
-\newcommand{\unid}[1]{\mathrm{Uniform}\br{#1}}
-\newcommand{\poid}[1]{\mathrm{Poisson}\br{#1}}
-\newcommand{\expd}[1]{\mathrm{Exponential}\br{#1}}
-\newcommand{\nord}[2]{\mathrm{Normal}\br{#1, #2}}
-\newcommand{\chid}[1]{\chi^{2}(#1)}
-\newcommand{\teed}[1]{\mathrm{T}\br{#1}}
-\newcommand{\effd}[2]{\mathrm{F}\br{#1, #2}}
-\newcommand{\iid}{\text{i.i.d}}
-\newcommand{\simiid}{\stackrel{\iid}{\sim}}
 
 %Convenient Environments
 \newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
