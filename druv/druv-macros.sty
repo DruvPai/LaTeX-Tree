@@ -1,7 +1,15 @@
 \ProvidesPackage{druv-macros}
 \usepackage{druv-pkg}
 % MACROS
-\newcommand{\br}[1]{\qty(#1)}
+%\newcommand{\br}[1]{\qty(#1)}
+\newcommand{\sbr}[1]{\qty[#1]}
+\newcommand{\pbr}[1]{\qty(#1)}
+\newcommand{\bbr}[1]{\qty{#1}}
+\newcommand{\operator}[3][]{\operatorname{#2}_{#1}\mathopen{}\br{#3}}
+\newcommand{\soperator}[3][]{\operatorname{#2}_{#1}\mathopen{}\sbr{#3}}
+\newcommand{\poperator}[3][]{\operatorname{#2}_{#1}\mathopen{}\pbr{#3}}
+\newcommand{\boperator}[3][]{\operatorname{#2}_{#1}\mathopen{}\bbr{#3}}
+\newcommand{\set}[1]{\qty{#1}}
 \newcommand{\cil}[1]{\lstinline|#1|}
 \newcommand{\cbrt}[1]{\sqrt[3]{#1}}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
@@ -85,6 +93,7 @@
 \newcommand{\fin}{{\mathrm{f}}}
 \newcommand{\enc}{{\mathrm{enc}}}
 \newcommand{\eq}{{\mathrm{eq}}}
+\newcommand{\new}{{\mathrm{new}}}
 \newcommand{\tot}{{\mathrm{tot}}}
 \newcommand{\ve}{\vec{e}}
 \renewcommand{\complement}{\mathrm{c}}
@@ -248,46 +257,64 @@
 \DeclareMathOperator*{\argmin}{arg min}
 \DeclareMathOperator*{\argmax}{arg max}
 
-% From EE 126 `Probability and Random Processes" at UC Berkeley
-\newcommand{\berd}[1]{\mathrm{Bernoulli}\br{#1}}
-\newcommand{\bind}[2]{\mathrm{Binomial}\br{#1, #2}}
-\newcommand{\geod}[1]{\mathrm{Geometric}\br{#1}}
-\newcommand{\unid}[1]{\mathrm{Uniform}\br{#1}}
-\newcommand{\poid}[1]{\mathrm{Poisson}\br{#1}}
-\newcommand{\poip}[3][\lambda]{\mathrm{Poisson}_{#1}\br{#2, #3}}
-\newcommand{\expd}[1]{\mathrm{Exponential}\br{#1}}
-\newcommand{\nord}[2]{\mathrm{Normal}\br{#1, #2}}
-\newcommand{\erld}[2]{\mathrm{Erlang}\br{#1, #2}}
-\newcommand{\chid}[1]{\chi^{2}(#1)}
-\newcommand{\teed}[1]{\mathrm{T}\br{#1}}
-\newcommand{\effd}[2]{\mathrm{F}\br{#1, #2}}
-\newcommand{\lapd}[2]{\mathrm{Laplace}\br{#1, #2}}
+% From CS 170 ``Algorithms'' at UC Berkeley
+\newcommand{\p}{\textsf{P}}
+\newcommand{\np}{\textsf{NP}}
+\newcommand{\bqp}{\textsf{BQP}}
+\newcommand{\optsol}{\textsf{OPT}}
+
+% From EE 126 ``Probability and Random Processes" at UC Berkeley
+\newcommand{\berd}[1]{\poperator{Bernoulli}{#1}}
+\newcommand{\bind}[2]{\poperator{Binomial}{#1, #2}}
+\newcommand{\geod}[1]{\poperator{Geometric}{#1}}
+\newcommand{\unid}[1]{\poperator{Uniform}{#1}}
+\newcommand{\poid}[1]{\poperator{Poisson}{#1}}
+\newcommand{\poip}[3][\lambda]{\poperator[#1]{Poisson}{#2, #3}}
+\newcommand{\expd}[1]{\poperator{Exponential}{#1}}
+\newcommand{\nord}[2]{\poperator{Normal}{#1, #2}}
+\newcommand{\erld}[2]{\poperator{Erlang}{#1, #2}}
+\newcommand{\chid}[1]{\chi^{2}\br{#1}}
+\newcommand{\teed}[1]{\poperator{T}{#1}}
+\newcommand{\effd}[2]{\poperator{F}{#1}}
+\newcommand{\lapd}[2]{\poperator{Laplace}{#1, #2}}
 \newcommand{\iid}{\text{i.i.d.}}
 \newcommand{\simiid}{\stackrel{\iid}{\sim}}
-\newcommand{\Ex}[2][]{\mathrm{Ex}_{#1}\br{#2}}
-\newcommand{\Prob}[2][]{\mathrm{Pr}_{#1}\br{#2}}
-\newcommand{\Var}[2][]{\mathrm{Var}_{#1}\br{#2}}
-\newcommand{\Cov}[2][]{\mathrm{Cov}_{#1}\br{#2}}
-\newcommand{\Corr}[2][]{\mathrm{Corr}_{#1}\br{#2}}
+\newcommand{\given}{\, \middle\vert \,}
+\newcommand{\Ex}[2][]{\soperator[#1]{Ex}{#2}}
+\renewcommand{\Pr}[2][]{\soperator[#1]{Pr}{#2}}
+\newcommand{\Var}[2][]{\soperator[#1]{Var}{#2}}
+\newcommand{\Cov}[3][]{\soperator[#1]{Cov}{#2, #3}}
+\newcommand{\Corr}[3][]{\soperator[#1]{Corr}{#2, #3}}
 \newcommand{\indrv}[2][]{\mathbbm{1}_{#1}\br{#2}}
-\newcommand{\pdf}[2][]{\mathrm{PDF}_{#1}\br{#2}}
-\newcommand{\pmf}[2][]{\mathrm{PMF}_{#1}\br{#2}}
-\newcommand{\cdf}[2][]{\mathrm{CDF}_{#1}\br{#2}}
-\newcommand{\cmf}[2][]{\mathrm{CMF}_{#1}\br{#2}}
-\newcommand{\mgf}[2][]{\mathrm{MGF}_{#1}\br{#2}}
+\newcommand{\pdf}[2][]{\poperator[#1]{PDF}{#2}}
+\newcommand{\pmf}[2][]{\poperator[#1]{PMF}{#2}}
+\newcommand{\cdf}[2][]{\poperator[#1]{CDF}{#2}}
+\newcommand{\cmf}[2][]{\poperator[#1]{CMF}{#2}}
+\newcommand{\mgf}[2][]{\poperator[#1]{MGF}{#2}}
 \newcommand{\convp}{\stackrel{\mathrm{prob.}}{\to}}
 \newcommand{\convas}{\stackrel{\mathrm{a.s.}}{\to}}
 \newcommand{\convr}[1][r]{\stackrel{L^{#1}}{\to}}
 \newcommand{\convptw}{\stackrel{\mathrm{pointwise}}{\to}}
 \newcommand{\convw}{\stackrel{\mathrm{weak}}{\to}}
+\newcommand{\tikzpic}[2][1]{
+  \begin{figure}[H]
+    \centering
+    \scalebox{#1} {
+      \begin{tikzpicture}
+        #2
+      \end{tikzpicture}
+    }
+  \end{figure}
+}
 \newcommand{\markovgraph}[2][1]{
   \tikzstyle{every state}=[fill=white,draw=black,semithick,text=black, scale=1]
-  \begin{center}
-  \scalebox{#1}{
-  \begin{tikzpicture}[->,>=stealth',auto,semithick,node distance=3cm]
-    #2
-  \end{tikzpicture}}
-  \end{center}
+  \begin{figure}[H]
+    \centering
+    \scalebox{#1}{
+    \begin{tikzpicture}[->,>=stealth',auto,semithick,node distance=3cm]
+      #2
+    \end{tikzpicture}}
+  \end{figure}
 }
 
 
@@ -303,7 +330,7 @@
 
 %From H113 "Introduction to Abstract Algebra" at UC Berkeley
 \newcommand{\charin}{\text{ char }}
-\renewcommand{\tr}[2][]{\mathrm{trace}_{#1}\br{#2}}
+\renewcommand{\tr}[2][]{\operatorname{trace}_{#1}\br{#2}}
 \DeclareMathOperator{\rref}{\text{rref}}
 \DeclareMathOperator{\Sign}{Sign}
 \DeclareMathOperator{\Aut}{Aut} % Autormorphism
@@ -346,32 +373,30 @@
 \newcommand{\maxap}{\mathrm{MAP}}
 \newcommand{\train}{\mathrm{train}}
 \newcommand{\test}{\mathrm{test}}
-\newcommand{\rss}[2][]{\mathrm{RSS}_{#1}\br{#2}}
-\newcommand{\prss}[2][]{\mathrm{PRSS}_{#1}\br{#2}}
-\newcommand{\epe}[2][]{\mathrm{EPE}_{#1}\br{#2}}
-\newcommand{\mse}[2][]{\mathrm{MSE}_{#1}\br{#2}}
-\newcommand{\BiasSq}[2][]{\mathrm{Bias}_{#1}^{2}\br{#2}}
-\newcommand{\mle}[2][]{\mathrm{MLE}_{#1}\br{#2}}
-\newcommand{\map}[2][]{\mathrm{MAP}_{#1}\br{#2}}
-\newcommand{\given}{\left\vert\vphantom{\frac{1}{1}}\right.}
+\newcommand{\rss}[2][]{\poperator[#1]{RSS}{#2}}
+\newcommand{\prss}[2][]{\poperator[#1]{PRSS}{#2}}
+\newcommand{\epe}[2][]{\poperator[#1]{EPE}{#2}}
+\newcommand{\mse}[2][]{\poperator[#1]{MSE}{#2}}
+\newcommand{\llse}[2][]{\poperator[#1]{LLSE}{#2}}
+\newcommand{\mmse}[2][]{\poperator[#1]{MMSE}{#2}}
+\newcommand{\BiasSq}[2][]{\poperator[#1]{Bias}{#2}^{2}}
+\newcommand{\mle}[2][]{\poperator[#1]{MLE}{#2}}
+\newcommand{\map}[2][]{\poperator[#1]{MAP}{#2}}
 
-\newcommand{\opname}{\operatorname}
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
 \newcommand{\On}{\mathrm{On}} % ordinals
 \newcommand{\diag}[1]{\mathrm{diag}\br{#1}} % diagonal
 \newcommand{\size}[1]{\abs{#1}} % size
 \newcommand{\card}[1]{\size{#1}} % cardinality
-\newcommand{\domain}[2][]{\mathrm{domain}_{#1}\br{#2}} % domain
-\newcommand{\codomain}[2][]{\mathrm{codomain}_{#1}\br{#2}} % codomain
-\newcommand{\range}[2][]{\mathrm{range}_{#1}\br{#2}}
-\newcommand{\image}[2][]{\mathrm{image}_{#1}\br{#2}} % image
-\newcommand{\kernel}[2][]{\mathrm{kernel}_{#1}\br{#2}} % kernel
-\newcommand{\cokernel}[2][]{\mathrm{cokernel}_{#1}\br{#2}} % cokernel
-\DeclareMathOperator{\Spec}{Spec} % spectrum
-\DeclareMathOperator{\Pred}{Pred} % predecessor
-\DeclareMathOperator{\Hom}{Hom} % Hom functor
-\DeclareMathOperator{\End}{End} % End functor
+\newcommand{\domain}[2][]{\poperator[#1]{domain}{#2}} % domain
+\newcommand{\codomain}[2][]{\poperator[#1]{codomain}{#2}} % codomain
+\newcommand{\range}[2][]{\poperator[#1]{range}{#2}}
+\newcommand{\image}[2][]{\poperator[#1]{image}{#2}} % image
+\newcommand{\kernel}[2][]{\poperator[#1]{kernel}{#2}} % kernel
+\newcommand{\cokernel}[2][]{\poperator[#1]{cokernel}{#2}} % cokernel
+\newcommand{\spec}[2][]{\poperator[#1]{Spec}{#2}}
+\renewcommand{\hom}[3][]{\poperator[#1]{Hom}{#2, #3}}
 
 
 % Things Lie
@@ -381,13 +406,13 @@
 \renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak gl group
 
 % From Math 54 - "Linear Algebra and Differential Equations" at Berkeley
-\newcommand{\spanvs}[1]{\mathrm{span}\br{#1}}
-\newcommand{\colvs}[1]{\mathrm{col}\br{#1}}
-\newcommand{\nullvs}[1]{\mathrm{null}\br{#1}}
-\newcommand{\rowvs}[1]{\mathrm{row}\br{#1}}
-\newcommand{\lnullvs}[1]{\mathrm{leftnull}\br{#1}}
-\newcommand{\proj}[2][]{\mathrm{proj}_{#1}\br{#2}}
-\renewcommand{\dim}[2][]{\mathrm{dim}_{#1}\br{#2}}
+\newcommand{\spanvs}[2][]{\boperator[#1]{span}{#2}}
+\newcommand{\colvs}[2][]{\boperator[#1]{col}{#2}}
+\newcommand{\nullvs}[2][]{\boperator[#1]{null}{#2}}
+\newcommand{\rowvs}[2][]{\boperator[#1]{row}{#2}}
+\newcommand{\lnullvs}[2][]{\boperator[#1]{leftnull}{#2}}
+\newcommand{\proj}[2][]{\boperator[#1]{proj}{#2}}
+\renewcommand{\dim}[2][]{\boperator[#1]{dim}{#2}}
 
 % From CS 170 - "Efficient Algorithms and Intractable Problems" at Berkeley
 \newcommand{\fourpartproof}[4]{

@@ -29,7 +29,7 @@
 \newcommand\bmmax{0}
 \usepackage[T1]{fontenc}
 %\usepackage{mathrsfs} % default
-\usepackage{lmodern} \usepackage{mathrsfs}
+%\usepackage{lmodern} \usepackage{mathrsfs}
 %\usepackage{ae} \usepackage{mathrsfs}
 %\usepackage[lcgreekalpha, upint]{stix} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{lmodern} \usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
@@ -38,14 +38,20 @@
 %\usepackage{lmodern} \usepackage[lite]{mtpro2} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{newtxtext} \usepackage{newtxmath} \usepackage{mathrsfs} \usepackage{helvet}
+%\usepackage{newtxtext} \usepackage{newtxmath} \usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{newtxtext} \usepackage[lite]{mtpro2} \usepackage{helvet}
+%\usepackage{newtxtext} \usepackage[lite]{mtpro2} \usepackage[defaultsans, scale=0.95]{lato}
 %\usepackage{lmodern} \usepackage{newtxtext} \usepackage[defaultsans, scale=0.95]{lato}
-%\usepackage{mathpazo} \usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
+% \usepackage{mathpazo} \usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
+\usepackage{newcent} \usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
 \usepackage{bbm}
 % More theorems!
 \usepackage[framemethod=TikZ]{mdframed}
 % Little optimizations and QoL stuff
 \usepackage{mathtools}
+\usepackage{bropd}
+\usepackage{interval}
+\usepackage{cancel}
 \usepackage[Symbol]{upgreek}
 \usepackage{booktabs}
 \usepackage{import}
@@ -90,7 +96,6 @@
 \fi
 % More optimizations!
 \usepackage{listings}
-%\usepackage{mathrsfs}
 \usepackage{textcomp}
 \@ifclassloaded{beamer}{}{\usepackage[shortlabels]{enumitem}\usepackage{changepage}}
 \usepackage[noend]{algpseudocode}
@@ -171,7 +176,7 @@
 % Diagram package configurations
 \ifdruvdiagram
     \pgfplotsset{compat=1.8}
-    \usetikzlibrary{automata, arrows, calc, graphs, graphs.standard, matrix, positioning, shapes, trees, decorations.pathmorphing}
+    \usetikzlibrary{automata, arrows, calc, external, graphs, graphs.standard, matrix, positioning, shapes, trees, decorations.pathmorphing}
     \usepackage{tikz-3dplot, tikz-cd, tkz-berge, tkz-graph, forest}
     \usepackage[siunitx, american, cuteinductors, smartlabels, betterproportions]{circuitikz}
     \tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
@@ -179,6 +184,14 @@
     \pgfplotsset{ticks=none}
 \fi
 
+% Interval configuration
+\newcommand{\inter}[2]{\interval[scaled]{#1}{#2}}
+\newcommand{\ointer}[2]{\interval[open, scaled]{#1}{#2}}
+\newcommand{\linter}[2]{\interval[open left, scaled]{#1}{#2}}
+\newcommand{\rinter}[2]{\interval[open right, scaled]{#1}{#2}}
+\intervalconfig {
+    soft open fences,
+}
 
 % Hyperref
 \hypersetup{urlcolor = RubineRed, linkcolor = RoyalBlue, citecolor = ForestGreen}

@@ -18,12 +18,7 @@
 }
 
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
-\newenvironment{theoremproof}[1][\proofname]
-{\begin{proof}[#1]\renewcommand*{\qedsymbol}{\(\blacksquare\)}}
-{\end{proof}}
-\newenvironment{lemmaproof}[1][\proofname]
-{\begin{proof}[#1]\renewcommand*{\qedsymbol}{\textcolor{blue!70}{\(\blacksquare\)}}}
-{\end{proof}}
+
 
 
 \newcommand{\thmboxstyle}[4]{
@@ -40,11 +35,10 @@
     ]{#1}
 }
 
+
 \thmboxstyle{graybox}{mdgraybox}{grayforeground}{graybackground}
-\thmboxstyle{defbox}{mdredbox}{red!70!black}{red!7}
-\thmboxstyle{thmbox}{mdbluebox}{blue}{blue!7}
-\thmboxstyle{exbox}{mdgreenbox}{green!50!black}{green!7}
-\thmboxstyle{notebox}{mdorangebox}{orange!98!black}{orange!8}
+\thmboxstyle{theorembox}{mdbluebox}{blue}{blue!7}
+\thmboxstyle{lemmabox}{mdgreenbox}{green!50!black}{green!7}
 
 \declaretheoremstyle[
 headfont = \bfseries,
@@ -54,43 +48,36 @@ bodyfont = \normalfont
 
 \newcommand{\boxhack}{~\vspace{-2em}}
 
-\declaretheorem[style = thmbox, name = Theorem]{theorem}
-\declaretheorem[style = thmbox, name = Theorem, numbered = no]{theorem*}
-\declaretheorem[style = thmbox, name = Lemma, sibling = theorem]{lemma}
-\declaretheorem[style = thmbox, name = Lemma, numbered = no]{lemma*}
-\declaretheorem[style = thmbox, name = Proposition, sibling = theorem]{proposition}
-\declaretheorem[style = thmbox, name = Proposition, numbered = no]{proposition*}
-\declaretheorem[style = thmbox, name = Corollary, sibling = theorem]{corollary}
-\declaretheorem[style = thmbox, name = Corollary, numbered = no]{corollary*}
-\declaretheorem[style = thmbox, name = Conjecture, sibling = theorem]{conjecture}
-\declaretheorem[style = thmbox, name = Conjecture, numbered = no]{conjecture*}
-\declaretheorem[style = thmbox, name = Algorithm, sibling = theorem]{algo}
-\declaretheorem[style = thmbox, name = Algorithm, numbered = no]{algo*}
-\declaretheorem[style = defbox, name = Definition, sibling = theorem]{definition}
-\declaretheorem[style = defbox, name = Definition, numbered = no]{definition*}
+\declaretheorem[style = theorembox, name = Theorem]{theorem}
+\declaretheorem[style = theorembox, name = Theorem, numbered = no]{theorem*}
+\declaretheorem[style = lemmabox, name = Lemma, sibling = theorem]{lemma}
+\declaretheorem[style = lemmabox, name = Lemma, numbered = no]{lemma*}
 
-\declaretheorem[style = exbox, name = Example, sibling = theorem]{example}
-\declaretheorem[style = exbox, name = Example, numbered = no]{example*}
-
-\declaretheorem[style = notebox, name = Fact, sibling = theorem]{fact}
-\declaretheorem[style = notebox, name = Fact, numbered = no]{fact*}
-\declaretheorem[style = notebox, name = Note, sibling = theorem]{note}
-\declaretheorem[style = notebox, name = Note, numbered = no]{note*}
-
-\declaretheorem[style = plain, name = Exercise, sibling = theorem]{exercise}
-\declaretheorem[style = plain, name = Exercise, numbered = no]{exercise*}
-\declaretheorem[style = plain, name = Problem, sibling = theorem]{problem}
-\declaretheorem[style = plain, name = Problem, numbered = no]{problem*}
-\declaretheorem[style = plain, name = Question, sibling = theorem]{question}
-\declaretheorem[style = plain, name = Question, numbered = no]{question*}
-\declaretheorem[style = plain, name = Answer, sibling = theorem]{answer}
-\declaretheorem[style = plain, name = Answer, numbered = no]{answer*}
-\declaretheorem[style = plain, name = Remark, sibling = theorem]{remark}
-\declaretheorem[style = plain, name = Remark, numbered = no]{remark*}
+\declaretheorem[style = plain, name = Corollary, sibling = theorem]{corollary}
+\declaretheorem[style = plain, name = Corollary, numbered = no]{corollary*}
 \declaretheorem[style = plain, name = Case, sibling = theorem]{case}
 \declaretheorem[style = plain, name = Case, numbered = no]{case*}
 \declaretheorem[style = plain, name = Claim, sibling = theorem]{claim}
 \declaretheorem[style = plain, name = Claim, numbered = no]{claim*}
+\declaretheorem[style = plain, name = Definition, sibling = theorem]{definition}
+\declaretheorem[style = plain, name = Definition, numbered = no]{definition*}
+\declaretheorem[style = plain, name = Problem, sibling = theorem]{problem}
+\declaretheorem[style = plain, name = Problem, numbered = no]{problem*}
+
+\declaretheorem[style = plain, name = Algorithm, sibling = theorem]{algo}
+\declaretheorem[style = plain, name = Algorithm, numbered = no]{algo*}
+\declaretheorem[style = plain, name = Conjecture, sibling = theorem]{conjecture}
+\declaretheorem[style = plain, name = Conjecture, numbered = no]{conjecture*}
+\declaretheorem[style = plain, name = Example, sibling = theorem]{example}
+\declaretheorem[style = plain, name = Example, numbered = no]{example*}
+\declaretheorem[style = plain, name = Exercise, sibling = theorem]{exercise}
+\declaretheorem[style = plain, name = Exercise, numbered = no]{exercise*}
+\declaretheorem[style = plain, name = Fact, sibling = theorem]{fact}
+\declaretheorem[style = plain, name = Fact, numbered = no]{fact*}
+\declaretheorem[style = plain, name = Question, sibling = theorem]{question}
+\declaretheorem[style = plain, name = Question, numbered = no]{question*}
+\declaretheorem[style = plain, name = Remark, sibling = theorem]{remark}
+\declaretheorem[style = plain, name = Remark, numbered = no]{remark*}
 
 \declaretheoremstyle[
 spaceabove = 1em,
