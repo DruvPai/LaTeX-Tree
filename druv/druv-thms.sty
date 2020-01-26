@@ -63,6 +63,8 @@ bodyfont = \normalfont
 \declaretheorem[style = plain, name = Definition, numbered = no]{definition*}
 \declaretheorem[style = plain, name = Problem, sibling = theorem]{problem}
 \declaretheorem[style = plain, name = Problem, numbered = no]{problem*}
+\declaretheorem[style = plain, name = Proposition, sibling = theorem]{proposition}
+\declaretheorem[style = plain, name = Proposition, numbered = no]{proposition*}
 
 \declaretheorem[style = plain, name = Algorithm, sibling = theorem]{algo}
 \declaretheorem[style = plain, name = Algorithm, numbered = no]{algo*}
@@ -80,17 +82,19 @@ bodyfont = \normalfont
 \declaretheorem[style = plain, name = Remark, numbered = no]{remark*}
 
 \declaretheoremstyle[
-spaceabove = 1em,
 headfont = \itshape,
 notefont = \itshape,
 bodyfont = \normalfont,
-preheadhook = \vspace{-2em}\begin{quote},
-postfoothook = \end{quote}
 ]{smallplain}
+
+\declaretheoremstyle[
+headfont = \itshape,
+notefont = \itshape,
+bodyfont = \normalfont,
+prefoothook = \hfill $\blacksquare$,
+]{smallplainproof}
 
 \declaretheorem[style = smallplain, name = Case, numbered = no]{smallcase}
 \declaretheorem[style = smallplain, name = Claim, numbered = no]{smallclaim}
 \declaretheorem[style = smallplain, name = Lemma, numbered = no]{smalllemma}
-\newenvironment{smallproof}[1][\proofname]
-{\begin{quote}\begin{proof}[#1]\renewcommand*{\qedsymbol}{\textcolor{red!70}{\(\blacksquare\)}}}
-{\end{proof}\end{quote}}
+\declaretheorem[style = smallplainproof, name = Proof, numbered = no]{smallproof}
