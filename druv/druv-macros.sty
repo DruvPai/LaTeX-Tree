@@ -20,6 +20,7 @@
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
 \newcommand{\eps}{\varepsilon}
+\renewcommand{\eval}[1]{\sbr{#1}}
 \newcommand{\listnums}[2]{{#1}, \dots, {#2}}
 \newcommand{\listsubs}[3]{{#1}_{#2}, \dots, {#1}_{#3}}
 \renewcommand{\emph}[1]{\textbf{{\color{NavyBlue} #1}}}
@@ -315,7 +316,7 @@
 \newcommand{\Var}[2][]{\soperator[#1]{Var}{#2}}
 \newcommand{\Cov}[3][]{\soperator[#1]{Cov}{#2, #3}}
 \newcommand{\Corr}[3][]{\soperator[#1]{Corr}{#2, #3}}
-\newcommand{\indrv}[2][]{\mathbbm{1}_{#1}\br{#2}}
+\newcommand{\indrv}[2][]{\poperator[#1]{\mathds{1}}{#2}}
 \newcommand{\pdf}[2][]{\poperator[#1]{PDF}{#2}}
 \newcommand{\pmf}[2][]{\poperator[#1]{PMF}{#2}}
 \newcommand{\cdf}[2][]{\poperator[#1]{CDF}{#2}}
@@ -378,6 +379,7 @@
 \newcommand{\geoarc}[1]{\wideparen{#1}}
 \newcommand{\area}[1]{\poperator{area}{#1}}
 
+
 %From M275 "Topology" at SJSU
 \newcommand{\Id}{\mathrm{Id}}
 \newcommand{\taking}[1]{\xrightarrow{#1}}
@@ -400,8 +402,8 @@
 \newcommand{\ii}{\item}
 
 %From CS189 "Introduction to Machine Learning" at Berkeley
-\newcommand{\tran}{\mathrm{T}}
-\newcommand{\herm}{\mathrm{H}}
+\newcommand{\tran}{\mathsf{T}}
+\newcommand{\herm}{\mathsf{H}}
 \newcommand{\mpi}{+}
 \newcommand{\maxl}{\mathrm{MLE}}
 \newcommand{\maxap}{\mathrm{MAP}}
@@ -417,13 +419,20 @@
 \newcommand{\mle}[2][]{\poperator[#1]{MLE}{#2}}
 \newcommand{\map}[2][]{\poperator[#1]{MAP}{#2}}
 \newcommand{\softmax}[2][]{\poperator[#1]{softmax}{#2}}
+\newcommand{\bayes}{\mathrm{Bayes}}
+\newcommand{\data}{\mathrm{data}}
+\newcommand{\ud}{\mathrm{u.d.}}
+
+% From CS161 "Introduction to Computer Security" at Berkeley
+\newcommand{\pub}{\mathrm{pub}}
+\newcommand{\priv}{\mathrm{priv}}
 
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
 \newcommand{\On}{\mathrm{On}} % ordinals
 \newcommand{\diag}[1]{\mathrm{diag}\br{#1}} % diagonal
 \newcommand{\size}[1]{\abs{#1}} % size
-\newcommand{\card}[1]{\size{#1}} % cardinality
+\newcommand{\card}[1]{\poperator{card}{#1}} % cardinality
 \newcommand{\domain}[2][]{\poperator[#1]{domain}{#2}} % domain
 \newcommand{\codomain}[2][]{\poperator[#1]{codomain}{#2}} % codomain
 \newcommand{\range}[2][]{\poperator[#1]{range}{#2}}
@@ -438,8 +447,8 @@
 \newcommand{\ointer}[2]{\interval[open, scaled]{#1}{#2}}
 \newcommand{\linter}[2]{\interval[open left, scaled]{#1}{#2}}
 \newcommand{\rinter}[2]{\interval[open right, scaled]{#1}{#2}}
-\intervalconfig {
-    soft open fences,
+\intervalconfig{
+  soft open fences
 }
 
 % Things Lie
@@ -449,15 +458,17 @@
 \renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak gl group
 
 % From Math 54 - "Linear Algebra and Differential Equations" at Berkeley
-\newcommand{\spanvs}[2][]{\boperator[#1]{span}{#2}}
-\newcommand{\colvs}[2][]{\boperator[#1]{col}{#2}}
-\newcommand{\nullvs}[2][]{\boperator[#1]{null}{#2}}
-\newcommand{\rowvs}[2][]{\boperator[#1]{row}{#2}}
-\newcommand{\lnullvs}[2][]{\boperator[#1]{leftnull}{#2}}
-\newcommand{\proj}[2][]{\boperator[#1]{proj}{#2}}
-\renewcommand{\dim}[2][]{\boperator[#1]{dim}{#2}}
+\newcommand{\spanvs}[2][]{\poperator[#1]{span}{#2}}
+\newcommand{\colvs}[2][]{\poperator[#1]{col}{#2}}
+\newcommand{\rangevs}[2][]{\poperator[#1]{range}{#2}}
+\newcommand{\nullvs}[2][]{\poperator[#1]{null}{#2}}
+\newcommand{\rowvs}[2][]{\poperator[#1]{row}{#2}}
+\newcommand{\lnullvs}[2][]{\poperator[#1]{leftnull}{#2}}
+\newcommand{\proj}[2][]{\poperator[#1]{proj}{#2}}
+\renewcommand{\dim}[2][]{\poperator[#1]{dim}{#2}}
 \renewcommand{\trace}[2][]{\poperator[#1]{trace}{#2}}
 \renewcommand{\rank}[2][]{\poperator[#1]{rank}{#2}}
+\newcommand{\nullity}[2][]{\poperator[#1]{nullity}{#2}}
 \renewcommand{\det}[2][]{\poperator[#1]{det}{#2}}
 
 % From CS 170 - "Efficient Algorithms and Intractable Problems" at Berkeley
@@ -481,6 +492,10 @@
   \end{quote}
 }
 
+% Minted Commands
+\newcommand{\pythonin}[1]{\mintinline{python}{#1}}
+\newcommand{\cin}[1]{\mintinline{c}{#1}}
+\newcommand{\cppin}[1]{\mintinline{cpp}{#1}}
 
 %% Napkin commands
 \newcommand{\prototype}[1]{

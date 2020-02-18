@@ -28,9 +28,10 @@
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{mathrsfs} \usepackage[defaultsans, scale=0.95]{lato}
-\usepackage{bbm}
+\usepackage{newtxtext} \usepackage[lite]{mtpro2}
+\usepackage{mathrsfs} %\usepackage[defaultsans]{lato}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{dsfont}
 % More theorems!
 \usepackage[framemethod=tex]{mdframed}
 % Little optimizations and QoL stuff
@@ -38,16 +39,20 @@
 \usepackage{bropd}
 \usepackage{interval}
 \usepackage{cancel}
-\usepackage[Symbol]{upgreek}
 \usepackage{booktabs}
 \usepackage{import}
 \usepackage{calc}
 \usepackage{verbatim}
 \usepackage{overpic}
 \usepackage{float}
+\usepackage[final]{pdfpages}
 \usepackage{bm}
+\usepackage{fancyref}
+\usepackage{csquotes}
 \@ifundefined{KOMAClassName}{}{
+    \usepackage{varioref}
     \usepackage[colorlinks=true]{hyperref}
+    \hypersetup{urlcolor = RoyalPurple, linkcolor = RoyalBlue, citecolor = ForestGreen}
     \usepackage[capitalize]{cleveref}
     \usepackage{subfiles}
     \usepackage{ifthen}
@@ -57,7 +62,6 @@
 }
 \usepackage{caption}
 \usepackage{centernot}
-\usepackage{csquotes}
 \ifdruvbib
     \usepackage[style=mla,backend=biber]{biblatex}
 \fi
@@ -82,6 +86,7 @@
 \fi
 % More optimizations!
 \usepackage{listings}
+\usepackage{minted}
 \usepackage{textcomp}
 \@ifclassloaded{beamer}{}{\usepackage[shortlabels]{enumitem}\usepackage{changepage}}
 \usepackage[noend]{algpseudocode}
@@ -158,6 +163,9 @@
     belowskip=10pt
 }
 
+% Minted formatting
+\setminted{autogobble, breaklines, fontsize=\small, frame=lines, framerule=1pt}
+
 % Diagram package configurations
 \ifdruvdiagram
     \pgfplotsset{compat=1.8}
@@ -165,10 +173,8 @@
     \usepackage{tikz-3dplot, tikz-cd, tkz-berge, tkz-graph, forest}
     \usepackage[siunitx, oldvoltagedirection, american, cuteinductors, smartlabels, betterproportions]{circuitikz}
     \tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
-    \usepgfplotslibrary{fillbetween}
+    \usepgfplotslibrary{fillbetween, external}
     \pgfplotsset{ticks=none}
 \fi
 
 
-% Hyperref
-\hypersetup{urlcolor = RubineRed, linkcolor = RoyalBlue, citecolor = ForestGreen}
