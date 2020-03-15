@@ -23,7 +23,6 @@
 \renewcommand{\eval}[1]{\sbr{#1}}
 \newcommand{\listnums}[2]{{#1}, \dots, {#2}}
 \newcommand{\listsubs}[3]{{#1}_{#2}, \dots, {#1}_{#3}}
-\renewcommand{\emph}[1]{\textbf{{\color{NavyBlue} #1}}}
 \newcommand{\vocab}[1]{\emph{#1}}
 \newcommand{\catname}{\mathsf}
 \newcommand{\hrulebar}{
@@ -356,10 +355,12 @@
 \newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}
 
 %Inequalities
-\newcommand{\cycsum}{\sum_{\mathrm{cyc}}}
-\newcommand{\symsum}{\sum_{\mathrm{sym}}}
-\newcommand{\cycprod}{\prod_{\mathrm{cyc}}}
-\newcommand{\symprod}{\prod_{\mathrm{sym}}}
+\newcommand{\sym}{\mathrm{sym}}
+\newcommand{\cyc}{\mathrm{cyc}}
+\newcommand{\cycsum}{\sum_{\cyc}}
+\newcommand{\symsum}{\sum_{\sym}}
+\newcommand{\cycprod}{\prod_{\cyc}}
+\newcommand{\symprod}{\prod_{\sym}}
 
 %From H113 "Introduction to Abstract Algebra" at UC Berkeley
 \newcommand{\charin}{\text{ char }}
@@ -397,7 +398,7 @@
 \newcommand{\st}{^{\text{st}}}
 \newcommand{\nd}{^{\text{nd}}}
 \renewcommand{\th}{^{\text{th}}}
-\newcommand{\sign}[1]{\poperator{sign}{#1}}
+\newcommand{\sign}[2][]{\poperator[#1]{sign}{#2}}
 \newcommand{\dg}{^\circ}
 \newcommand{\ii}{\item}
 
@@ -423,14 +424,20 @@
 \newcommand{\data}{\mathrm{data}}
 \newcommand{\ud}{\mathrm{u.d.}}
 
-% From CS161 "Introduction to Computer Security" at Berkeley
+% From EE 127 "Convex Optimization" at Berkeley
+\newcommand{\epi}[2][]{\poperator[#1]{epi}{#2}}
+
+% From CS 161 "Introduction to Computer Security" at Berkeley
 \newcommand{\pub}{\mathrm{pub}}
 \newcommand{\priv}{\mathrm{priv}}
+\newcommand{\mac}[2][]{\poperator[#1]{MAC}{#2}}
+\newcommand{\verify}[2][]{\poperator[#1]{verify}{#2}}
+\newcommand{\asym}{\mathrm{asym}}
 
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
 \newcommand{\On}{\mathrm{On}} % ordinals
-\newcommand{\diag}[1]{\mathrm{diag}\br{#1}} % diagonal
+\newcommand{\diag}[1]{\poperator{diag}{#1}} % diagonal
 \newcommand{\size}[1]{\abs{#1}} % size
 \newcommand{\card}[1]{\poperator{card}{#1}} % cardinality
 \newcommand{\domain}[2][]{\poperator[#1]{domain}{#2}} % domain
@@ -441,6 +448,9 @@
 \newcommand{\cokernel}[2][]{\poperator[#1]{cokernel}{#2}} % cokernel
 \newcommand{\spec}[2][]{\poperator[#1]{Spec}{#2}}
 \renewcommand{\hom}[3][]{\poperator[#1]{Hom}{#2, #3}}
+
+% From Linguistics 5
+\newcommand{\ipa}[1]{\textipa{#1}}
 
 % Interval configuration
 \newcommand{\inter}[2]{\interval[scaled]{#1}{#2}}
@@ -470,6 +480,7 @@
 \renewcommand{\rank}[2][]{\poperator[#1]{rank}{#2}}
 \newcommand{\nullity}[2][]{\poperator[#1]{nullity}{#2}}
 \renewcommand{\det}[2][]{\poperator[#1]{det}{#2}}
+
 
 % From CS 170 - "Efficient Algorithms and Intractable Problems" at Berkeley
 \newcommand{\fourpartproof}[4]{

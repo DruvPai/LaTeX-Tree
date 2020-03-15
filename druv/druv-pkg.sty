@@ -27,10 +27,10 @@
 % Fonts
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
-\usepackage[T1]{fontenc}
-\usepackage{newtxtext} \usepackage[lite]{mtpro2}
-\usepackage{mathrsfs} %\usepackage[defaultsans]{lato}
-\usepackage[scaled=0.92]{helvet}
+\usepackage[T1]{fontenc} \usepackage{lmodern}
+%\usepackage{newtxtext} \usepackage[lite]{mtpro2}
+\usepackage{mathrsfs} \usepackage[defaultsans]{lato}
+%\usepackage[scaled=0.92]{helvet}
 \usepackage{dsfont}
 % More theorems!
 \usepackage[framemethod=tex]{mdframed}
@@ -44,15 +44,17 @@
 \usepackage{calc}
 \usepackage{verbatim}
 \usepackage{overpic}
+\usepackage[safe]{tipa}
 \usepackage{float}
 \usepackage[final]{pdfpages}
 \usepackage{bm}
 \usepackage{fancyref}
 \usepackage{csquotes}
 \@ifundefined{KOMAClassName}{}{
+    \usepackage{parskip}
     \usepackage{varioref}
     \usepackage[colorlinks=true]{hyperref}
-    \hypersetup{urlcolor = RoyalPurple, linkcolor = RoyalBlue, citecolor = ForestGreen}
+    \hypersetup{urlcolor = RoyalPurple, linkcolor = RoyalBlue, citecolor = Periwinkle}
     \usepackage[capitalize]{cleveref}
     \usepackage{subfiles}
     \usepackage{ifthen}
