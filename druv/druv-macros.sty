@@ -1,14 +1,15 @@
 \ProvidesPackage{druv-macros}
 \usepackage{druv-pkg}
 % MACROS
+
 %\newcommand{\br}[1]{\qty(#1)}
 \newcommand{\sbr}[1]{\qty[#1]}
 \newcommand{\pbr}[1]{\qty(#1)}
 \newcommand{\bbr}[1]{\qty{#1}}
-\newcommand{\operator}[3][]{\operatorname{#2}_{#1}\mathopen{}\br{#3}}
-\newcommand{\soperator}[3][]{\operatorname{#2}_{#1}\mathopen{}\sbr{#3}}
-\newcommand{\poperator}[3][]{\operatorname{#2}_{#1}\mathopen{}\pbr{#3}}
-\newcommand{\boperator}[3][]{\operatorname{#2}_{#1}\mathopen{}\bbr{#3}}
+\newcommand{\operator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\br{#3}}
+\newcommand{\soperator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\sbr{#3}}
+\newcommand{\poperator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\pbr{#3}}
+\newcommand{\boperator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\bbr{#3}}
 \newcommand{\set}[1]{\qty{#1}}
 \newcommand{\cil}[1]{\lstinline|#1|}
 \newcommand{\cbrt}[1]{\sqrt[3]{#1}}
@@ -313,8 +314,10 @@
 \newcommand{\Ex}[2][]{\soperator[#1]{Ex}{#2}}
 \renewcommand{\Pr}[2][]{\soperator[#1]{Pr}{#2}}
 \newcommand{\Var}[2][]{\soperator[#1]{Var}{#2}}
-\newcommand{\Cov}[3][]{\soperator[#1]{Cov}{#2, #3}}
-\newcommand{\Corr}[3][]{\soperator[#1]{Corr}{#2, #3}}
+\NewDocumentCommand{\Cov}{ O{} m
+g}{\IfNoValueTF{#3}{\soperator[#1]{Cov}{#2}}{\soperator[#1]{Cov}{#2, #3}}}
+\NewDocumentCommand{\Corr}{ O{} m
+g}{\IfNoValueTF{#3}{\soperator[#1]{Corr}{#2}}{\soperator[#1]{Corr}{#2, #3}}}
 \newcommand{\indrv}[2][]{\poperator[#1]{\mathds{1}}{#2}}
 \newcommand{\pdf}[2][]{\poperator[#1]{PDF}{#2}}
 \newcommand{\pmf}[2][]{\poperator[#1]{PMF}{#2}}
@@ -444,6 +447,7 @@
 \newcommand{\codomain}[2][]{\poperator[#1]{codomain}{#2}} % codomain
 \newcommand{\range}[2][]{\poperator[#1]{range}{#2}}
 \newcommand{\image}[2][]{\poperator[#1]{image}{#2}} % image
+\newcommand{\coimage}[2][]{\poperator[#1]{coimage}{#2}} % image
 \newcommand{\kernel}[2][]{\poperator[#1]{kernel}{#2}} % kernel
 \newcommand{\cokernel}[2][]{\poperator[#1]{cokernel}{#2}} % cokernel
 \newcommand{\spec}[2][]{\poperator[#1]{Spec}{#2}}
