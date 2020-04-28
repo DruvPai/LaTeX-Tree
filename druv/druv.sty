@@ -1,23 +1,5 @@
 \ProvidesPackage{druv}
 
-\newif\ifdruvdiagram\druvdiagramfalse
-\newif\ifdruvbib\druvbibfalse
-\newif\ifdruvchem\druvchemfalse
-\DeclareOption{diagram}{\druvdiagramtrue}
-\DeclareOption{bib}{\druvbibtrue}
-\DeclareOption{chem}{\druvchemtrue}
-\ProcessOptions\relax
-
-\ifdruvdiagram
-    \PassOptionsToPackage{diagram}{druv-pkg}
-\fi
-\ifdruvbib
-    \PassOptionsToPackage{bib}{druv-pkg}
-\fi
-\ifdruvchem
-    \PassOptionsToPackage{chem}{druv-pkg}
-\fi
-
 \usepackage{druv-pkg}
 \usepackage{druv-macros}
 \usepackage{druv-thms}

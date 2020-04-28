@@ -1,12 +1,5 @@
 \ProvidesPackage{druv-pkg}
 
-\newif\ifdruvdiagram\druvdiagramfalse
-\newif\ifdruvbib\druvbibfalse
-\newif\ifdruvchem\druvchemfalse
-\DeclareOption{diagram}{\druvdiagramtrue}
-\DeclareOption{bib}{\druvbibtrue}
-\DeclareOption{chem}{\druvchemtrue}
-\ProcessOptions\relax
 
 %%% PACKAGES AND MACROS %%%
 % Essentials
@@ -20,101 +13,72 @@
 }
 % Essential images and graphs
 \usepackage{tikz}
-\ifdruvdiagram
-    \usepackage{pgf}
-    \usepackage{pgfplots}
-\fi
+\usepackage{pgf}
+\usepackage{pgfplots}
 % Fonts
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
 \usepackage[T1]{fontenc} \usepackage{lmodern}
-%\usepackage{newtxtext} \usepackage[lite]{mtpro2}
 \usepackage{mathrsfs} \usepackage[defaultsans]{lato}
-%\usepackage[scaled=0.92]{helvet}
 \usepackage{dsfont}
 % More theorems!
-\usepackage[framemethod=tex]{mdframed}
+\usepackage[framemethod=tex]{mdframed} % theorem environment setup
 % Little optimizations and QoL stuff
-\usepackage{mathtools}
-\usepackage{bropd}
-\usepackage{interval}
-\usepackage{cancel}
-\usepackage{booktabs}
-\usepackage{import}
-\usepackage{calc}
-\usepackage{verbatim}
-\usepackage{overpic}
-\usepackage[safe]{tipa}
-\usepackage{float}
-\usepackage[final]{pdfpages}
-\usepackage{bm}
-\usepackage{fancyref}
-\usepackage{xparse}
-\usepackage{csquotes}
-\@ifundefined{KOMAClassName}{}{
-    \usepackage{parskip}
-    \usepackage{varioref}
-    \usepackage[colorlinks=true]{hyperref}
-    \hypersetup{urlcolor = RoyalPurple, linkcolor = RoyalBlue, citecolor = Periwinkle}
-    \usepackage[capitalize]{cleveref}
-    \usepackage{subfiles}
-    \usepackage{ifthen}
-    \usepackage{etoolbox}
-    \usepackage{xstring}
-    \usepackage{xpatch}
+\usepackage{mathtools} % used for miscellanous cool math typesteting
+\usepackage{bropd} % used for brackets
+\usepackage{interval} % used for intervals
+\usepackage{cancel} % used to strikethrough terms
+\usepackage{booktabs} % used to typeset tables
+\usepackage{calc} % allows to do arithmetic in page layout computation
+\usepackage[safe]{tipa} % linguistic typesetting
+\usepackage{float} % gives good float environments
+\usepackage[final]{pdfpages} % import pdf
+\usepackage{bm} % bold math font
+\usepackage{fancyref} % supplies \fref for labels
+\usepackage{xparse} % supplies multi-optional {} args
+\usepackage{parskip} % paragraphs separated by vertical space instead of indents
+\@ifclassloaded{beamer}{}{
+    \usepackage[colorlinks=true]{hyperref} % hyperref
+    \hypersetup{urlcolor = purple, linkcolor = blue, citecolor = violet}
 }
-\usepackage{caption}
-\usepackage{centernot}
-\ifdruvbib
-    \usepackage[style=mla,backend=biber]{biblatex}
-\fi
-% Auxiliary Packages
-% Multiple columns in ToC (Comes later)
-\usepackage{multicol}
-\@ifundefined{KOMAClassName}{}{
-    \usepackage{paracol}
-}
+\usepackage{subfiles} % import files while having each file be standalone
+\usepackage{etoolbox} % insert into environments and other programming tools
+\usepackage{xpatch} % extends macro patching by etoolbox
+\usepackage{caption} % can customize captions in floating environments
+\usepackage{centernot} % provides \centernot{x}
+\usepackage[style=numeric, citestyle=numeric-comp, backend=biber]{biblatex} % provides bibliography support for papers
+\usepackage{paracol}
 % Scientific typesetting
-\usepackage{array}
-\usepackage{siunitx}
-\usepackage{physics}
-\usepackage{esint}
-\ifdruvchem
-    \usepackage{chemgreek}
-    \usepackage{chemmacros}
-    \usepackage{chemfig}
-    \usepackage{lewis}
-    \usepackage{chemformula}
-    \usepackage{ghsystem}
-\fi
-% More optimizations!
-\usepackage{listings}
-\usepackage{minted}
-\usepackage{textcomp}
-\@ifclassloaded{beamer}{}{\usepackage[shortlabels]{enumitem}\usepackage{changepage}}
-\usepackage[noend]{algpseudocode}
-\@ifundefined{chapter}{\usepackage[ruled]{algorithm}}{\usepackage[ruled,chapter]{algorithm}}
-% \usepackage[obeyFinal,textsize=scriptsize,shadow]{todonotes}
-\usepackage{microtype}
+\usepackage{array} % adds options to array/table environment
+\usepackage{siunitx} % si unit typesetting
+\usepackage{physics} % various brackets/ip/integral/whatever
+\usepackage{esint} % alternate/additional integral symbols
+% Code setting packages
+\usepackage{minted} % code typesetting
+\usepackage[shortlabels]{enumitem} % control layout of itemize, enumerate, etc
+\@ifclassloaded{beamer}{}{
+    \usepackage{changepage} % provides commands to change page layout in the middle of a document
+}
+\usepackage[noend]{algpseudocode} % algorithmicx package
+\usepackage[ruled]{algorithm} % provides fancy algorithm wrapper
 % Page Setup
-\usepackage{geometry}
-\usepackage{wrapfig}
+\usepackage{geometry} % page setup options
 \@ifundefined{KOMAClassName}{}{
-    \usepackage{titling}
-    \usepackage[headsepline]{scrlayer-scrpage}
+    \usepackage{titling} % change maketitle for komascript
+    \usepackage[headsepline]{scrlayer-scrpage} % provides API for komascript
 }
 
 % PACKAGE SETUP
 \@ifundefined{KOMAClassName}{}{
     % Multicolumn TOCs
-    \renewcommand\tableofcontents{%
-        \begin{multicols}{2}[\section*{\contentsname
-                \@mkboth{%
-            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}]%
-            \@starttoc{toc}%
-        \end{multicols}%
-    }
-    \setlength{\columnsep}{2cm}
+    % \renewcommand\tableofcontents{%
+    %     \setlength{\columnsep}{2cm}
+    %     \begin{multicols}{2}[\section*{\contentsname
+    %             \@mkboth{%
+    %         \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}]%
+    %         \@starttoc{toc}%
+    %     \end{multicols}%
+    % }
     \setcounter{tocdepth}{1} % part, chapter and section
     %\setcounter{tocdepth}{0} % part and chapter
     %\setcounter{tocdepth}{-1} % part
@@ -138,46 +102,14 @@
 \DeclareSIUnit\molecule{molecule}
 \DeclareSIUnit\radian{rad}
 
-% Chemistry
-\ifdruvchem
-    \chemsetup{modules=all}
-    \chemsetup[reactions] {tag-open = (, tag-close = )}
-    \newcommand{\staten}[1]{\state[superscript-right=]{#1}}
-    \newcommand{\conc}[1]{[\ch{#1}]}
-    % we put these here since it's not easy to pass options to macro package
-\fi
-
-% Random Listings Formatting
-\lstset{basicstyle=\small\ttfamily,
-    numbers=none,
-    numbersep=5pt,
-    numberstyle=\tiny,
-    showstringspaces=false,
-    tabsize=4,
-    frame=single,
-    keywordstyle=\bfseries\color{blue},
-    commentstyle=\color{green!70!black},
-    identifierstyle=\color{green!20!black},
-    stringstyle=\color{orange},
-    breaklines=true,
-    breakatwhitespace=true,
-    xleftmargin=10pt,
-    aboveskip=10pt,
-    belowskip=10pt
-}
-
 % Minted formatting
 \setminted{autogobble, breaklines, fontsize=\small, frame=lines, framerule=1pt}
 
 % Diagram package configurations
-\ifdruvdiagram
-    \pgfplotsset{compat=1.8}
-    \usetikzlibrary{angles, automata, arrows, calc, external, graphs, graphs.standard, matrix, positioning, shapes, trees, decorations.pathmorphing}
-    \usepackage{tikz-3dplot, tikz-cd, tkz-berge, tkz-graph, forest}
-    \usepackage[siunitx, oldvoltagedirection, american, cuteinductors, smartlabels, betterproportions]{circuitikz}
-    \tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
-    \usepgfplotslibrary{fillbetween, external}
-    \pgfplotsset{ticks=none}
-\fi
-
-
+\pgfplotsset{compat=1.8}
+\usetikzlibrary{angles, automata, arrows, calc, external, graphs, graphs.standard, matrix, positioning, shapes, trees, decorations.pathmorphing}
+\usepackage{tikz-3dplot, tikz-cd, tkz-berge, tkz-graph, forest}
+\usepackage[siunitx, oldvoltagedirection, american, cuteinductors, smartlabels, betterproportions]{circuitikz}
+\tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
+\usepgfplotslibrary{fillbetween, external}
+\pgfplotsset{ticks=none}

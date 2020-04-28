@@ -2,335 +2,259 @@
 \usepackage{druv-pkg}
 % MACROS
 
-%\newcommand{\br}[1]{\qty(#1)}
-\newcommand{\sbr}[1]{\qty[#1]}
-\newcommand{\pbr}[1]{\qty(#1)}
-\newcommand{\bbr}[1]{\qty{#1}}
-\newcommand{\operator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\br{#3}}
-\newcommand{\soperator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\sbr{#3}}
-\newcommand{\poperator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\pbr{#3}}
-\newcommand{\boperator}[3][]{\operatorname*{#2}_{#1}\mathopen{}\bbr{#3}}
-\newcommand{\set}[1]{\qty{#1}}
-\newcommand{\cil}[1]{\lstinline|#1|}
-\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
-\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
-\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
-\newcommand{\mailto}[1]{\href{mailto:#1}{\texttt{#1}}}
-\newcommand{\ol}{\overline}
-\newcommand{\ul}{\underline}
-\newcommand{\wt}{\widetilde}
-\newcommand{\wh}{\widehat}
-\newcommand{\eps}{\varepsilon}
-\renewcommand{\eval}[1]{\sbr{#1}}
-\newcommand{\listnums}[2]{{#1}, \dots, {#2}}
-\newcommand{\listsubs}[3]{{#1}_{#2}, \dots, {#1}_{#3}}
-\newcommand{\vocab}[1]{\emph{#1}}
-\newcommand{\catname}{\mathsf}
-\newcommand{\hrulebar}{
-  \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
-  \par\nointerlineskip \vspace{\baselineskip}
-}
-\newcommand{\half}{\frac{1}{2}}
-\newcommand{\placeimg}[2][0.5]
-{
-  \begin{figure}[H]
-    \centering
-    \includegraphics[scale=#1]{#2}
-  \end{figure}
-}
-\newcommand{\placetwoimg}[4]
-{
-  \begin{figure}[H]
-    \centering
-    \includegraphics[scale=#1]{#3}
-    \includegraphics[scale=#2]{#4}
-  \end{figure}
-}
+\NewDocumentCommand{\bs}{m}{\left[#1\right]}
+\NewDocumentCommand{\bp}{m}{\left(#1\right)}
+\NewDocumentCommand{\bc}{m}{\left\{#1\right\}}
+\NewDocumentCommand{\operator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\br{#3}}
+\NewDocumentCommand{\soperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bs{#3}}
+\NewDocumentCommand{\poperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bp{#3}}
+\NewDocumentCommand{\boperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bc{#3}}
+\NewDocumentCommand{\floor}{m}{\left\lfloor #1 \right\rfloor}
+\NewDocumentCommand{\ceiling}{m}{\left\lceil #1 \right\rceil}
+\NewDocumentCommand{\ans}{m}{\textcolor{blue}{#1}}
+\NewDocumentCommand{\mailto}{m}{\href{mailto:#1}{\texttt{#1}}}
+\NewDocumentCommand{\ol}{}{\overline}
+\NewDocumentCommand{\ul}{}{\underline}
+\NewDocumentCommand{\wt}{}{\widetilde}
+\NewDocumentCommand{\wh}{}{\widehat}
+\NewDocumentCommand{\eps}{}{\varepsilon}
+\RenewDocumentCommand{\eval}{m}{\bs{#1}}
+\NewDocumentCommand{\vocab}{m}{{\color{blue}\textbf{#1}}}
+\NewDocumentCommand{\casework}{m}{\begin{cases}#1\end{cases}}
 
 %For use in author command
-\newcommand{\plusemail}[1]{\normalfont \texttt{\mailto{#1}}}
-\newcommand{\studentid}{SID: 3033848822}
-\newcommand{\userid}{1614758}
+\NewDocumentCommand{\plusemail}{m}{\normalfont \texttt{\mailto{#1}}}
+\NewDocumentCommand{\studentid}{}{SID: 3033848822}
+\NewDocumentCommand{\userid}{}{1614758}
 
 % Exponential, imaginary
-\newcommand{\e}{\mathrm{e}}
-\renewcommand{\i}{\mathrm{i}}
+\NewDocumentCommand{\e}{}{\mathrm{e}}
+\RenewDocumentCommand{\i}{}{\mathrm{i}}
 
 % Fix trig/log/etc operators
-\renewcommand{\sin}[1]{\poperator{sin}{#1}}
-\renewcommand{\cos}[1]{\poperator{cos}{#1}}
-\renewcommand{\tan}[1]{\poperator{tan}{#1}}
-\renewcommand{\csc}[1]{\poperator{csc}{#1}}
-\renewcommand{\sec}[1]{\poperator{sec}{#1}}
-\renewcommand{\cot}[1]{\poperator{cot}{#1}}
-\renewcommand{\sinh}[1]{\poperator{sinh}{#1}}
-\renewcommand{\cosh}[1]{\poperator{cosh}{#1}}
-\renewcommand{\tanh}[1]{\poperator{tanh}{#1}}
-\renewcommand{\csch}[1]{\poperator{csch}{#1}}
-\renewcommand{\sech}[1]{\poperator{sech}{#1}}
-\renewcommand{\coth}[1]{\poperator{coth}{#1}}
-\renewcommand{\arcsin}[1]{\poperator{sin^{\inv}}{#1}}
-\renewcommand{\arccos}[1]{\poperator{cos^{\inv}}{#1}}
-\renewcommand{\arctan}[1]{\poperator{tan^{\inv}}{#1}}
-\renewcommand{\arccsc}[1]{\poperator{csc^{\inv}}{#1}}
-\renewcommand{\arcsec}[1]{\poperator{sec^{\inv}}{#1}}
-\renewcommand{\arccot}[1]{\poperator{cot^{\inv}}{#1}}
-\newcommand{\arcsinh}[1]{\poperator{sinh^{\inv}}{#1}}
-\newcommand{\arccosh}[1]{\poperator{cosh^{\inv}}{#1}}
-\newcommand{\arctanh}[1]{\poperator{tanh^{\inv}}{#1}}
-\newcommand{\arccsch}[1]{\poperator{csch^{\inv}}{#1}}
-\newcommand{\arcsech}[1]{\poperator{sech^{\inv}}{#1}}
-\newcommand{\arccoth}[1]{\poperator{coth^{\inv}}{#1}}
-\renewcommand{\exp}[1]{\poperator{exp}{#1}}
-\renewcommand{\log}[2][]{\poperator[#1]{log}{#2}}
+\RenewDocumentCommand{\sin}{m}{\poperator{sin}{#1}}
+\RenewDocumentCommand{\cos}{m}{\poperator{cos}{#1}}
+\RenewDocumentCommand{\tan}{m}{\poperator{tan}{#1}}
+\RenewDocumentCommand{\csc}{m}{\poperator{csc}{#1}}
+\RenewDocumentCommand{\sec}{m}{\poperator{sec}{#1}}
+\RenewDocumentCommand{\cot}{m}{\poperator{cot}{#1}}
+\RenewDocumentCommand{\sinh}{m}{\poperator{sinh}{#1}}
+\RenewDocumentCommand{\cosh}{m}{\poperator{cosh}{#1}}
+\RenewDocumentCommand{\tanh}{m}{\poperator{tanh}{#1}}
+\RenewDocumentCommand{\csch}{m}{\poperator{csch}{#1}}
+\RenewDocumentCommand{\sech}{m}{\poperator{sech}{#1}}
+\RenewDocumentCommand{\coth}{m}{\poperator{coth}{#1}}
+\RenewDocumentCommand{\arcsin}{m}{\poperator{sin^{\inv}}{#1}}
+\RenewDocumentCommand{\arccos}{m}{\poperator{cos^{\inv}}{#1}}
+\RenewDocumentCommand{\arctan}{m}{\poperator{tan^{\inv}}{#1}}
+\RenewDocumentCommand{\arccsc}{m}{\poperator{csc^{\inv}}{#1}}
+\RenewDocumentCommand{\arcsec}{m}{\poperator{sec^{\inv}}{#1}}
+\RenewDocumentCommand{\arccot}{m}{\poperator{cot^{\inv}}{#1}}
+\NewDocumentCommand{\arcsinh}{m}{\poperator{sinh^{\inv}}{#1}}
+\NewDocumentCommand{\arccosh}{m}{\poperator{cosh^{\inv}}{#1}}
+\NewDocumentCommand{\arctanh}{m}{\poperator{tanh^{\inv}}{#1}}
+\NewDocumentCommand{\arccsch}{m}{\poperator{csch^{\inv}}{#1}}
+\NewDocumentCommand{\arcsech}{m}{\poperator{sech^{\inv}}{#1}}
+\NewDocumentCommand{\arccoth}{m}{\poperator{coth^{\inv}}{#1}}
+\RenewDocumentCommand{\exp}{m}{\poperator{exp}{#1}}
+\RenewDocumentCommand{\log}{O{}m}{\poperator[#1]{log}{#2}}
 
-
-% Physics
-\newcommand{\straightgreekchange}{
-  \renewcommand{\alpha}{\upalpha}
-  \renewcommand{\beta}{\upbeta}
-  \renewcommand{\gamma}{\upgamma}
-  \renewcommand{\delta}{\updelta}
-  \renewcommand{\epsilon}{\upepsilon}
-  \renewcommand{\zeta}{\upzeta}
-  \renewcommand{\eta}{\upeta}
-  \renewcommand{\theta}{\uptheta}
-  \renewcommand{\kappa}{\upkappa}
-  \renewcommand{\lambda}{\uplambda}
-  \renewcommand{\mu}{\upmu}
-  \renewcommand{\nu}{\upnu}
-  \renewcommand{\xi}{\upxi}
-  \renewcommand{\pi}{\uppi}
-  \renewcommand{\rho}{\uprho}
-  \renewcommand{\sigma}{\upsigma}
-  \renewcommand{\tau}{\uptau}
-  \renewcommand{\upsilon}{\upupsilon}
-  \renewcommand{\phi}{\upphi}
-  \renewcommand{\chi}{\upchi}
-  \renewcommand{\psi}{\uppsi}
-  \renewcommand{\omega}{\upomega}
-  \renewcommand{\varepsilon}{\upepsilon}
-}
-\renewcommand{\vec}[1]{{\straightgreekchange
-    {\IfSubStr{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}{#1}
-      {\mathbf{#1}}
-{\bm{#1}}}}}
-\newcommand{\mat}[1]{\vb*{#1}}
-\newcommand{\tens}[1]{\straightgreekchange\mathsf{#1}}
-\newcommand{\fnet}{\vec{F}_{\mathrm{net}}}
-\newcommand{\tme}{E_{\mathrm{M}}}
-\newcommand{\ini}{{\mathrm{i}}}
-\newcommand{\fin}{{\mathrm{f}}}
-\newcommand{\enc}{{\mathrm{enc}}}
-\newcommand{\eq}{{\mathrm{eq}}}
-\newcommand{\new}{{\mathrm{new}}}
-\newcommand{\tot}{{\mathrm{tot}}}
-\newcommand{\ve}{\vec{e}}
-\renewcommand{\complement}{\mathrm{c}}
+\RenewDocumentCommand{\complement}{}{\mathrm{c}}
 
 % Other fonts
-\newcommand{\bA}{\mathbb{A}}
-\newcommand{\bB}{\mathbb{B}}
-\newcommand{\bC}{\mathbb{C}}
-\newcommand{\bD}{\mathbb{D}}
-\newcommand{\bE}{\mathbb{E}}
-\newcommand{\bF}{\mathbb{F}}
-\newcommand{\bG}{\mathbb{G}}
-\newcommand{\bH}{\mathbb{H}}
-\newcommand{\bI}{\mathbb{I}}
-\newcommand{\bJ}{\mathbb{J}}
-\newcommand{\bK}{\mathbb{K}}
-\newcommand{\bL}{\mathbb{L}}
-\newcommand{\bM}{\mathbb{M}}
-\newcommand{\bN}{\mathbb{N}}
-\newcommand{\bO}{\mathbb{O}}
-\newcommand{\bP}{\mathbb{P}}
-\newcommand{\bQ}{\mathbb{Q}}
-\newcommand{\bR}{\mathbb{R}}
-\newcommand{\bS}{\mathbb{S}}
-\newcommand{\bT}{\mathbb{T}}
-\newcommand{\bU}{\mathbb{U}}
-\newcommand{\bV}{\mathbb{V}}
-\newcommand{\bW}{\mathbb{W}}
-\newcommand{\bX}{\mathbb{X}}
-\newcommand{\bY}{\mathbb{Y}}
-\newcommand{\bZ}{\mathbb{Z}}
-\newcommand{\cA}{\mathcal{A}}
-\newcommand{\cB}{\mathcal{B}}
-\newcommand{\cC}{\mathcal{C}}
-\newcommand{\cD}{\mathcal{D}}
-\newcommand{\cE}{\mathcal{E}}
-\newcommand{\cF}{\mathcal{F}}
-\newcommand{\cG}{\mathcal{G}}
-\newcommand{\cH}{\mathcal{H}}
-\newcommand{\cI}{\mathcal{I}}
-\newcommand{\cJ}{\mathcal{J}}
-\newcommand{\cK}{\mathcal{K}}
-\newcommand{\cL}{\mathcal{L}}
-\newcommand{\cM}{\mathcal{M}}
-\newcommand{\cN}{\mathcal{N}}
-\newcommand{\cO}{\mathcal{O}}
-\newcommand{\cP}{\mathcal{P}}
-\newcommand{\cQ}{\mathcal{Q}}
-\newcommand{\cR}{\mathcal{R}}
-\newcommand{\cS}{\mathcal{S}}
-\newcommand{\cT}{\mathcal{T}}
-\newcommand{\cU}{\mathcal{U}}
-\newcommand{\cV}{\mathcal{V}}
-\newcommand{\cW}{\mathcal{W}}
-\newcommand{\cX}{\mathcal{X}}
-\newcommand{\cY}{\mathcal{Y}}
-\newcommand{\cZ}{\mathcal{Z}}
-\newcommand{\sA}{\mathscr{A}}
-\newcommand{\sB}{\mathscr{B}}
-\newcommand{\sC}{\mathscr{C}}
-\newcommand{\sD}{\mathscr{D}}
-\newcommand{\sE}{\mathscr{E}}
-\newcommand{\sF}{\mathscr{F}}
-\newcommand{\sG}{\mathscr{G}}
-\newcommand{\sH}{\mathscr{H}}
-\newcommand{\sI}{\mathscr{I}}
-\newcommand{\sJ}{\mathscr{J}}
-\newcommand{\sK}{\mathscr{K}}
-\newcommand{\sL}{\mathscr{L}}
-\newcommand{\sM}{\mathscr{M}}
-\newcommand{\sN}{\mathscr{N}}
-\newcommand{\sO}{\mathscr{O}}
-\newcommand{\sP}{\mathscr{P}}
-\newcommand{\sQ}{\mathscr{Q}}
-\newcommand{\sR}{\mathscr{R}}
-\newcommand{\sS}{\mathscr{S}}
-\newcommand{\sT}{\mathscr{T}}
-\newcommand{\sU}{\mathscr{U}}
-\newcommand{\sV}{\mathscr{V}}
-\newcommand{\sW}{\mathscr{W}}
-\newcommand{\sX}{\mathscr{X}}
-\newcommand{\sY}{\mathscr{Y}}
-\newcommand{\sZ}{\mathscr{Z}}
-\newcommand{\fA}{\mathfrak{A}}
-\newcommand{\fB}{\mathfrak{B}}
-\newcommand{\fC}{\mathfrak{C}}
-\newcommand{\fD}{\mathfrak{D}}
-\newcommand{\fE}{\mathfrak{E}}
-\newcommand{\fF}{\mathfrak{F}}
-\newcommand{\fG}{\mathfrak{G}}
-\newcommand{\fH}{\mathfrak{H}}
-\newcommand{\fI}{\mathfrak{I}}
-\newcommand{\fJ}{\mathfrak{J}}
-\newcommand{\fK}{\mathfrak{K}}
-\newcommand{\fL}{\mathfrak{L}}
-\newcommand{\fM}{\mathfrak{M}}
-\newcommand{\fN}{\mathfrak{N}}
-\newcommand{\fO}{\mathfrak{O}}
-\newcommand{\fP}{\mathfrak{P}}
-\newcommand{\fQ}{\mathfrak{Q}}
-\newcommand{\fR}{\mathfrak{R}}
-\newcommand{\fS}{\mathfrak{S}}
-\newcommand{\fT}{\mathfrak{T}}
-\newcommand{\fU}{\mathfrak{U}}
-\newcommand{\fV}{\mathfrak{V}}
-\newcommand{\fW}{\mathfrak{W}}
-\newcommand{\fX}{\mathfrak{X}}
-\newcommand{\fY}{\mathfrak{Y}}
-\newcommand{\fZ}{\mathfrak{Z}}
-\newcommand{\fa}{\mathfrak{a}}
-\newcommand{\fb}{\mathfrak{b}}
-\newcommand{\fc}{\mathfrak{c}}
-\newcommand{\fd}{\mathfrak{d}}
-\newcommand{\fe}{\mathfrak{e}}
-\newcommand{\ff}{\mathfrak{f}}
-\newcommand{\fg}{\mathfrak{g}}
-\newcommand{\fh}{\mathfrak{h}}
-\newcommand{\fri}{\mathfrak{i}}
-\newcommand{\fj}{\mathfrak{j}}
-\newcommand{\fk}{\mathfrak{k}}
-\newcommand{\fl}{\mathfrak{l}}
-\newcommand{\fm}{\mathfrak{m}}
-\newcommand{\fn}{\mathfrak{n}}
-\newcommand{\fo}{\mathfrak{o}}
-\newcommand{\fp}{\mathfrak{p}}
-\newcommand{\fq}{\mathfrak{q}}
-\newcommand{\fr}{\mathfrak{r}}
-\newcommand{\fs}{\mathfrak{s}}
-\newcommand{\ft}{\mathfrak{t}}
-\newcommand{\fu}{\mathfrak{u}}
-\newcommand{\fv}{\mathfrak{v}}
-\newcommand{\fw}{\mathfrak{w}}
-\newcommand{\fx}{\mathfrak{x}}
-\newcommand{\fy}{\mathfrak{y}}
-\newcommand{\fz}{\mathfrak{z}}
+\NewDocumentCommand{\bA}{}{\mathbb{A}}
+\NewDocumentCommand{\bB}{}{\mathbb{B}}
+\NewDocumentCommand{\bC}{}{\mathbb{C}}
+\NewDocumentCommand{\bD}{}{\mathbb{D}}
+\NewDocumentCommand{\bE}{}{\mathbb{E}}
+\NewDocumentCommand{\bF}{}{\mathbb{F}}
+\NewDocumentCommand{\bG}{}{\mathbb{G}}
+\NewDocumentCommand{\bH}{}{\mathbb{H}}
+\NewDocumentCommand{\bI}{}{\mathbb{I}}
+\NewDocumentCommand{\bJ}{}{\mathbb{J}}
+\NewDocumentCommand{\bK}{}{\mathbb{K}}
+\NewDocumentCommand{\bL}{}{\mathbb{L}}
+\NewDocumentCommand{\bM}{}{\mathbb{M}}
+\NewDocumentCommand{\bN}{}{\mathbb{N}}
+\NewDocumentCommand{\bO}{}{\mathbb{O}}
+\NewDocumentCommand{\bP}{}{\mathbb{P}}
+\NewDocumentCommand{\bQ}{}{\mathbb{Q}}
+\NewDocumentCommand{\bR}{}{\mathbb{R}}
+\NewDocumentCommand{\bS}{}{\mathbb{S}}
+\NewDocumentCommand{\bT}{}{\mathbb{T}}
+\NewDocumentCommand{\bU}{}{\mathbb{U}}
+\NewDocumentCommand{\bV}{}{\mathbb{V}}
+\NewDocumentCommand{\bW}{}{\mathbb{W}}
+\NewDocumentCommand{\bX}{}{\mathbb{X}}
+\NewDocumentCommand{\bY}{}{\mathbb{Y}}
+\NewDocumentCommand{\bZ}{}{\mathbb{Z}}
+\NewDocumentCommand{\cA}{}{\mathcal{A}}
+\NewDocumentCommand{\cB}{}{\mathcal{B}}
+\NewDocumentCommand{\cC}{}{\mathcal{C}}
+\NewDocumentCommand{\cD}{}{\mathcal{D}}
+\NewDocumentCommand{\cE}{}{\mathcal{E}}
+\NewDocumentCommand{\cF}{}{\mathcal{F}}
+\NewDocumentCommand{\cG}{}{\mathcal{G}}
+\NewDocumentCommand{\cH}{}{\mathcal{H}}
+\NewDocumentCommand{\cI}{}{\mathcal{I}}
+\NewDocumentCommand{\cJ}{}{\mathcal{J}}
+\NewDocumentCommand{\cK}{}{\mathcal{K}}
+\NewDocumentCommand{\cL}{}{\mathcal{L}}
+\NewDocumentCommand{\cM}{}{\mathcal{M}}
+\NewDocumentCommand{\cN}{}{\mathcal{N}}
+\NewDocumentCommand{\cO}{}{\mathcal{O}}
+\NewDocumentCommand{\cP}{}{\mathcal{P}}
+\NewDocumentCommand{\cQ}{}{\mathcal{Q}}
+\NewDocumentCommand{\cR}{}{\mathcal{R}}
+\NewDocumentCommand{\cS}{}{\mathcal{S}}
+\NewDocumentCommand{\cT}{}{\mathcal{T}}
+\NewDocumentCommand{\cU}{}{\mathcal{U}}
+\NewDocumentCommand{\cV}{}{\mathcal{V}}
+\NewDocumentCommand{\cW}{}{\mathcal{W}}
+\NewDocumentCommand{\cX}{}{\mathcal{X}}
+\NewDocumentCommand{\cY}{}{\mathcal{Y}}
+\NewDocumentCommand{\cZ}{}{\mathcal{Z}}
+\NewDocumentCommand{\sA}{}{\mathscr{A}}
+\NewDocumentCommand{\sB}{}{\mathscr{B}}
+\NewDocumentCommand{\sC}{}{\mathscr{C}}
+\NewDocumentCommand{\sD}{}{\mathscr{D}}
+\NewDocumentCommand{\sE}{}{\mathscr{E}}
+\NewDocumentCommand{\sF}{}{\mathscr{F}}
+\NewDocumentCommand{\sG}{}{\mathscr{G}}
+\NewDocumentCommand{\sH}{}{\mathscr{H}}
+\NewDocumentCommand{\sI}{}{\mathscr{I}}
+\NewDocumentCommand{\sJ}{}{\mathscr{J}}
+\NewDocumentCommand{\sK}{}{\mathscr{K}}
+\NewDocumentCommand{\sL}{}{\mathscr{L}}
+\NewDocumentCommand{\sM}{}{\mathscr{M}}
+\NewDocumentCommand{\sN}{}{\mathscr{N}}
+\NewDocumentCommand{\sO}{}{\mathscr{O}}
+\NewDocumentCommand{\sP}{}{\mathscr{P}}
+\NewDocumentCommand{\sQ}{}{\mathscr{Q}}
+\NewDocumentCommand{\sR}{}{\mathscr{R}}
+\NewDocumentCommand{\sS}{}{\mathscr{S}}
+\NewDocumentCommand{\sT}{}{\mathscr{T}}
+\NewDocumentCommand{\sU}{}{\mathscr{U}}
+\NewDocumentCommand{\sV}{}{\mathscr{V}}
+\NewDocumentCommand{\sW}{}{\mathscr{W}}
+\NewDocumentCommand{\sX}{}{\mathscr{X}}
+\NewDocumentCommand{\sY}{}{\mathscr{Y}}
+\NewDocumentCommand{\sZ}{}{\mathscr{Z}}
+\NewDocumentCommand{\fA}{}{\mathfrak{A}}
+\NewDocumentCommand{\fB}{}{\mathfrak{B}}
+\NewDocumentCommand{\fC}{}{\mathfrak{C}}
+\NewDocumentCommand{\fD}{}{\mathfrak{D}}
+\NewDocumentCommand{\fE}{}{\mathfrak{E}}
+\NewDocumentCommand{\fF}{}{\mathfrak{F}}
+\NewDocumentCommand{\fG}{}{\mathfrak{G}}
+\NewDocumentCommand{\fH}{}{\mathfrak{H}}
+\NewDocumentCommand{\fI}{}{\mathfrak{I}}
+\NewDocumentCommand{\fJ}{}{\mathfrak{J}}
+\NewDocumentCommand{\fK}{}{\mathfrak{K}}
+\NewDocumentCommand{\fL}{}{\mathfrak{L}}
+\NewDocumentCommand{\fM}{}{\mathfrak{M}}
+\NewDocumentCommand{\fN}{}{\mathfrak{N}}
+\NewDocumentCommand{\fO}{}{\mathfrak{O}}
+\NewDocumentCommand{\fP}{}{\mathfrak{P}}
+\NewDocumentCommand{\fQ}{}{\mathfrak{Q}}
+\NewDocumentCommand{\fR}{}{\mathfrak{R}}
+\NewDocumentCommand{\fS}{}{\mathfrak{S}}
+\NewDocumentCommand{\fT}{}{\mathfrak{T}}
+\NewDocumentCommand{\fU}{}{\mathfrak{U}}
+\NewDocumentCommand{\fV}{}{\mathfrak{V}}
+\NewDocumentCommand{\fW}{}{\mathfrak{W}}
+\NewDocumentCommand{\fX}{}{\mathfrak{X}}
+\NewDocumentCommand{\fY}{}{\mathfrak{Y}}
+\NewDocumentCommand{\fZ}{}{\mathfrak{Z}}
+\NewDocumentCommand{\fa}{}{\mathfrak{a}}
+\NewDocumentCommand{\fb}{}{\mathfrak{b}}
+\NewDocumentCommand{\fc}{}{\mathfrak{c}}
+\NewDocumentCommand{\fd}{}{\mathfrak{d}}
+\NewDocumentCommand{\fe}{}{\mathfrak{e}}
+\NewDocumentCommand{\ff}{}{\mathfrak{f}}
+\NewDocumentCommand{\fg}{}{\mathfrak{g}}
+\NewDocumentCommand{\fh}{}{\mathfrak{h}}
+\NewDocumentCommand{\fri}{}{\mathfrak{i}}
+\NewDocumentCommand{\fj}{}{\mathfrak{j}}
+\NewDocumentCommand{\fk}{}{\mathfrak{k}}
+\NewDocumentCommand{\fl}{}{\mathfrak{l}}
+\NewDocumentCommand{\fm}{}{\mathfrak{m}}
+\NewDocumentCommand{\fn}{}{\mathfrak{n}}
+\NewDocumentCommand{\fo}{}{\mathfrak{o}}
+\NewDocumentCommand{\fp}{}{\mathfrak{p}}
+\NewDocumentCommand{\fq}{}{\mathfrak{q}}
+\NewDocumentCommand{\fr}{}{\mathfrak{r}}
+\NewDocumentCommand{\fs}{}{\mathfrak{s}}
+\NewDocumentCommand{\ft}{}{\mathfrak{t}}
+\NewDocumentCommand{\fu}{}{\mathfrak{u}}
+\NewDocumentCommand{\fv}{}{\mathfrak{v}}
+\NewDocumentCommand{\fw}{}{\mathfrak{w}}
+\NewDocumentCommand{\fx}{}{\mathfrak{x}}
+\NewDocumentCommand{\fy}{}{\mathfrak{y}}
+\NewDocumentCommand{\fz}{}{\mathfrak{z}}
 
 % Algorithm
-\renewcommand{\algorithmicrequire}{\textbf{Input:}}
-\renewcommand{\algorithmicensure}{\textbf{Output:}}
-
-% Chemistry
-\newcommand{\avo}{N_{\mathrm{A}}}
-\newcommand{\zeff}{Z_{\mathrm{eff}}}
-\newcommand{\veff}{\VV_{\mathrm{eff}}}
-\newcommand{\secc}{\textit{sec}}
-\newcommand{\ads}{{\mathrm{ads}}}
-\newcommand{\sat}{{\mathrm{sat}}}
+\RenewDocumentCommand{\algorithmicrequire}{}{\textbf{Input:}}
+\RenewDocumentCommand{\algorithmicensure}{}{\textbf{Output:}}
 
 % Boolean Logic
-\newcommand{\tru}{\texttt{\small TRUE}}
-\newcommand{\fls}{\texttt{\small FALSE}}
+\NewDocumentCommand{\tru}{}{\texttt{\small TRUE}}
+\NewDocumentCommand{\fls}{}{\texttt{\small FALSE}}
+\NewDocumentCommand{\rmtrue}{}{\mathrm{true}}
+\NewDocumentCommand{\rmfalse}{}{\mathrm{false}}
 
 %More commands and math operators
-\newcommand{\dst}{\displaystyle}
-\DeclareMathOperator{\cis}{cis}
-\DeclareMathOperator{\pow}{pow}
-\DeclareMathOperator{\qcnt}{qcnt}
-\DeclareMathOperator{\rem}{rem}
-\DeclareMathOperator{\lcm}{lcm}
-\newcommand{\opt}{\mathrm{opt}}
 \DeclareMathOperator*{\argmin}{arg min}
 \DeclareMathOperator*{\argmax}{arg max}
-\newcommand{\res}[2][]{\poperator[#1]{Res}{#2}}
+\DeclareMathOperator*{\arginf}{arg inf}
+\DeclareMathOperator*{\argsup}{arg sup}
+\NewDocumentCommand{\res}{O{}m}{\poperator[#1]{Res}{#2}}
 
 % From CS 170 ``Algorithms'' at UC Berkeley
-\newcommand{\p}{\textsf{P}}
-\newcommand{\np}{\textsf{NP}}
-\newcommand{\bqp}{\textsf{BQP}}
-\newcommand{\optsol}{\textsf{OPT}}
+\NewDocumentCommand{\p}{}{\textsf{P}}
+\NewDocumentCommand{\np}{}{\textsf{NP}}
+\NewDocumentCommand{\bqp}{}{\textsf{BQP}}
+\NewDocumentCommand{\opt}{}{\textsf{OPT}}
 
 % From EE 126 ``Probability and Random Processes" at UC Berkeley
-\newcommand{\berd}[1]{\poperator{Bernoulli}{#1}}
-\newcommand{\bind}[2]{\poperator{Binomial}{#1, #2}}
-\newcommand{\geod}[1]{\poperator{Geometric}{#1}}
-\newcommand{\unid}[1]{\poperator{Uniform}{#1}}
-\newcommand{\poid}[1]{\poperator{Poisson}{#1}}
-\newcommand{\poip}[3][\lambda]{\poperator[#1]{Poisson}{#2, #3}}
-\newcommand{\expd}[1]{\poperator{Exponential}{#1}}
-\newcommand{\nord}[2]{\poperator{Normal}{#1, #2}}
-\newcommand{\erld}[2]{\poperator{Erlang}{#1, #2}}
-\newcommand{\chid}[1]{\chi^{2}\br{#1}}
-\newcommand{\teed}[1]{\poperator{T}{#1}}
-\newcommand{\effd}[2]{\poperator{F}{#1}}
-\newcommand{\lapd}[2]{\poperator{Laplace}{#1, #2}}
-\newcommand{\iid}{\text{i.i.d.}}
-\newcommand{\simiid}{\stackrel{\iid}{\sim}}
-\newcommand{\given}{\, \middle\vert \,}
-\newcommand{\Ex}[2][]{\soperator[#1]{Ex}{#2}}
-\renewcommand{\Pr}[2][]{\soperator[#1]{Pr}{#2}}
-\newcommand{\Var}[2][]{\soperator[#1]{Var}{#2}}
-\NewDocumentCommand{\Cov}{ O{} m
-g}{\IfNoValueTF{#3}{\soperator[#1]{Cov}{#2}}{\soperator[#1]{Cov}{#2, #3}}}
-\NewDocumentCommand{\Corr}{ O{} m
-g}{\IfNoValueTF{#3}{\soperator[#1]{Corr}{#2}}{\soperator[#1]{Corr}{#2, #3}}}
-\newcommand{\indrv}[2][]{\poperator[#1]{\mathds{1}}{#2}}
-\newcommand{\pdf}[2][]{\poperator[#1]{PDF}{#2}}
-\newcommand{\pmf}[2][]{\poperator[#1]{PMF}{#2}}
-\newcommand{\cdf}[2][]{\poperator[#1]{CDF}{#2}}
-\newcommand{\cmf}[2][]{\poperator[#1]{CMF}{#2}}
-\newcommand{\mgf}[2][]{\poperator[#1]{MGF}{#2}}
-\newcommand{\convp}{\stackrel{\mathrm{prob.}}{\to}}
-\newcommand{\convas}{\stackrel{\mathrm{a.s.}}{\to}}
-\newcommand{\convr}[1][r]{\stackrel{L^{#1}}{\to}}
-\newcommand{\convptw}{\stackrel{\mathrm{pointwise}}{\to}}
-\newcommand{\convw}{\stackrel{\mathrm{weak}}{\to}}
-\renewcommand{\erf}[2][]{\poperator[#1]{erf}{#2}}
-\newcommand{\tikzpic}[2][1]{
+\NewDocumentCommand{\berd}{m}{\poperator{Bernoulli}{#1}}
+\NewDocumentCommand{\bind}{mg}{\poperator{Binomial}{\IfNoValueTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\geod}{m}{\poperator{Geometric}{#1}}
+\NewDocumentCommand{\unid}{m}{\poperator{Uniform}{#1}}
+\NewDocumentCommand{\poid}{m}{\poperator{Poisson}{#1}}
+\NewDocumentCommand{\poip}{O{\lambda}mg}{\poperator[#1]{Poisson}{\IfNoValueTF{#3}{#2}{#2,
+#3}}}
+\NewDocumentCommand{\expd}{m}{\poperator{Exponential}{#1}}
+\NewDocumentCommand{\nord}{mg}{\poperator{Normal}{\IfNoValueTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\erld}{mg}{\poperator{Erlang}{\IfNoValueTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\chid}{m}{\chi^{2}\br{#1}}
+\NewDocumentCommand{\teed}{m}{\poperator{T}{#1}}
+\NewDocumentCommand{\effd}{m}{\poperator{F}{#1}}
+\NewDocumentCommand{\lapd}{mg}{\poperator{Laplace}{\IfNoValueTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\iid}{}{\text{i.i.d.}}
+\NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
+\NewDocumentCommand{\given}{}{\, \middle\vert \,}
+\NewDocumentCommand{\Ex}{O{}m}{\soperator[#1]{Ex}{#2}}
+\RenewDocumentCommand{\Pr}{O{}m}{\soperator[#1]{Pr}{#2}}
+\NewDocumentCommand{\Var}{O{}m}{\soperator[#1]{Var}{#2}}
+\NewDocumentCommand{\Cov}{O{}mg}{\soperator[#1]{Cov}{\IfNoValueTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\Corr}{O{}mg}{\soperator[#1]{Corr}{\IfNoValueTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\indrv}{O{}m}{\poperator[#1]{\mathds{1}}{#2}}
+\NewDocumentCommand{\charfn}{mm}{\poperator[#1]{1}{#2}}
+\NewDocumentCommand{\pdf}{O{}m}{\poperator[#1]{PDF}{#2}}
+\NewDocumentCommand{\pmf}{O{}m}{\poperator[#1]{PMF}{#2}}
+\NewDocumentCommand{\cdf}{O{}m}{\poperator[#1]{CDF}{#2}}
+\NewDocumentCommand{\cmf}{O{}m}{\poperator[#1]{CMF}{#2}}
+\NewDocumentCommand{\mgf}{O{}m}{\poperator[#1]{MGF}{#2}}
+\NewDocumentCommand{\convp}{}{\stackrel{\mathrm{prob.}}{\to}}
+\NewDocumentCommand{\convas}{}{\stackrel{\mathrm{a.s.}}{\to}}
+\NewDocumentCommand{\convr}{O{r}}{\stackrel{L^{#1}}{\to}}
+\NewDocumentCommand{\convptw}{}{\stackrel{\mathrm{pointwise}}{\to}}
+\NewDocumentCommand{\convw}{}{\stackrel{\mathrm{weak}}{\to}}
+
+\RenewDocumentCommand{\erf}{O{}m}{\poperator[#1]{erf}{#2}}
+\NewDocumentCommand{\insertpdf}{m}{\includepdf[pages=-, pagecommand={},width=\textwidth]{#1}}
+\NewDocumentCommand{\tikzpic}{O{1}m}{
   \tikzstyle{dot} = [circle, fill, inner sep=1pt]
   \begin{figure}[H]
     \centering
@@ -341,7 +265,7 @@ g}{\IfNoValueTF{#3}{\soperator[#1]{Corr}{#2}}{\soperator[#1]{Corr}{#2, #3}}}
     }
   \end{figure}
 }
-\newcommand{\markovgraph}[2][1]{
+\NewDocumentCommand{\markovgraph}{O{1}m}{
   \tikzstyle{every state}=[fill=white,draw=black,semithick,text=black, scale=1]
   \begin{figure}[H]
     \centering
@@ -352,171 +276,103 @@ g}{\IfNoValueTF{#3}{\soperator[#1]{Corr}{#2}}{\soperator[#1]{Corr}{#2, #3}}}
   \end{figure}
 }
 
-
-%Convenient Environments
-\newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
-\newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}
-
 %Inequalities
-\newcommand{\sym}{\mathrm{sym}}
-\newcommand{\cyc}{\mathrm{cyc}}
-\newcommand{\cycsum}{\sum_{\cyc}}
-\newcommand{\symsum}{\sum_{\sym}}
-\newcommand{\cycprod}{\prod_{\cyc}}
-\newcommand{\symprod}{\prod_{\sym}}
+\NewDocumentCommand{\sym}{}{\mathrm{sym}}
+\NewDocumentCommand{\cyc}{}{\mathrm{cyc}}
 
-%From H113 "Introduction to Abstract Algebra" at UC Berkeley
-\newcommand{\charin}{\text{ char }}
-\DeclareMathOperator{\rref}{\text{rref}}
-\DeclareMathOperator{\Sign}{Sign}
-\DeclareMathOperator{\Aut}{Aut} % Autormorphism
-\DeclareMathOperator{\Inn}{Inn}
-\DeclareMathOperator{\Syl}{Syl} % Sylow group
-\DeclareMathOperator{\Gal}{Gal} % Galois group
-\DeclareMathOperator{\GL}{GL} % General linear group
-\DeclareMathOperator{\SL}{SL} % Special linear group
-
-
-\newcommand{\dang}{\measuredangle} %% Directed angle
-\newcommand{\ray}[1]{\overrightarrow{#1}}
-\newcommand{\seg}[1]{\overline{#1}}
-\newcommand{\geoarc}[1]{\wideparen{#1}}
-\newcommand{\area}[1]{\poperator{area}{#1}}
+% Geometry
+\NewDocumentCommand{\dang}{}{\measuredangle} %% Directed angle
+\NewDocumentCommand{\ray}{m}{\overrightarrow{#1}}
+\NewDocumentCommand{\seg}{m}{\overline{#1}}
+\NewDocumentCommand{\geoarc}{m}{\wideparen{#1}}
+\NewDocumentCommand{\area}{O{}m}{\poperator[#1]{area}{#2}}
 
 
 %From M275 "Topology" at SJSU
-\newcommand{\Id}{\mathrm{Id}}
-\newcommand{\taking}[1]{\xrightarrow{#1}}
-\newcommand{\inv}{-1}
+\NewDocumentCommand{\Id}{}{\mathrm{Id}}
+\NewDocumentCommand{\inv}{}{-1}
 
 %From M170 "Introduction to Graph Theory" at SJSU
-\DeclareMathOperator{\Diam}{Diam}
-\DeclareMathOperator{\Ord}{Ord}
-\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
-\newcommand{\defequiv}{\overset{\mathrm{def}}{\equiv}}
-\newcommand{\seteq}{\overset{\mathrm{set}}{=}}
-\newcommand{\setequiv}{\overset{\mathrm{set}}{\equiv}}
+\NewDocumentCommand{\diam}{O{}m}{\poperator[#1]{diam}{#2}}
+\NewDocumentCommand{\ord}{O{}m}{\poperator[#1]{ord}{#2}}
+\NewDocumentCommand{\defeq}{}{\overset{\mathrm{def}}{=}}
+\NewDocumentCommand{\defequiv}{}{\overset{\mathrm{def}}{\equiv}}
+\NewDocumentCommand{\seteq}{}{\overset{\mathrm{set}}{=}}
+\NewDocumentCommand{\setequiv}{}{\overset{\mathrm{set}}{\equiv}}
 
 %From the USAMO .tex files
-\newcommand{\st}{^{\text{st}}}
-\newcommand{\nd}{^{\text{nd}}}
-\renewcommand{\th}{^{\text{th}}}
-\newcommand{\sign}[2][]{\poperator[#1]{sign}{#2}}
-\newcommand{\dg}{^\circ}
-\newcommand{\ii}{\item}
+\NewDocumentCommand{\st}{}{^{\text{st}}}
+\NewDocumentCommand{\nd}{}{^{\text{nd}}}
+\RenewDocumentCommand{\th}{}{^{\text{th}}}
+\NewDocumentCommand{\sign}{O{}m}{\poperator[#1]{sign}{#2}}
 
 %From CS189 "Introduction to Machine Learning" at Berkeley
-\newcommand{\tran}{\mathsf{T}}
-\newcommand{\herm}{\mathsf{H}}
-\newcommand{\mpi}{+}
-\newcommand{\maxl}{\mathrm{MLE}}
-\newcommand{\maxap}{\mathrm{MAP}}
-\newcommand{\train}{\mathrm{train}}
-\newcommand{\test}{\mathrm{test}}
-\newcommand{\rss}[2][]{\poperator[#1]{RSS}{#2}}
-\newcommand{\prss}[2][]{\poperator[#1]{PRSS}{#2}}
-\newcommand{\epe}[2][]{\poperator[#1]{EPE}{#2}}
-\newcommand{\mse}[2][]{\poperator[#1]{MSE}{#2}}
-\newcommand{\llse}[2][]{\poperator[#1]{LLSE}{#2}}
-\newcommand{\mmse}[2][]{\poperator[#1]{MMSE}{#2}}
-\newcommand{\bias}[2][]{\poperator[#1]{Bias}{#2}}
-\newcommand{\mle}[2][]{\poperator[#1]{MLE}{#2}}
-\newcommand{\map}[2][]{\poperator[#1]{MAP}{#2}}
-\newcommand{\softmax}[2][]{\poperator[#1]{softmax}{#2}}
-\newcommand{\bayes}{\mathrm{Bayes}}
-\newcommand{\data}{\mathrm{data}}
-\newcommand{\ud}{\mathrm{u.d.}}
+\NewDocumentCommand{\tran}{}{\mathsf{T}}
+\NewDocumentCommand{\herm}{}{\mathsf{H}}
+\NewDocumentCommand{\train}{}{\mathrm{train}}
+\NewDocumentCommand{\test}{}{\mathrm{test}}
+\NewDocumentCommand{\rss}{O{}m}{\poperator[#1]{RSS}{#2}}
+\NewDocumentCommand{\prss}{O{}m}{\poperator[#1]{PRSS}{#2}}
+\NewDocumentCommand{\epe}{O{}m}{\poperator[#1]{EPE}{#2}}
+\NewDocumentCommand{\mse}{O{}m}{\poperator[#1]{MSE}{#2}}
+\NewDocumentCommand{\llse}{O{}m}{\poperator[#1]{LLSE}{#2}}
+\NewDocumentCommand{\mmse}{O{}m}{\poperator[#1]{MMSE}{#2}}
+\NewDocumentCommand{\bias}{O{}m}{\poperator[#1]{Bias}{#2}}
+\NewDocumentCommand{\mle}{O{}m}{\poperator[#1]{MLE}{#2}}
+\NewDocumentCommand{\map}{O{}m}{\poperator[#1]{MAP}{#2}}
+\NewDocumentCommand{\softmax}{O{}m}{\poperator[#1]{softmax}{#2}}
+\NewDocumentCommand{\bayes}{}{\mathrm{Bayes}}
+\NewDocumentCommand{\data}{}{\mathrm{data}}
+\NewDocumentCommand{\ud}{}{\mathrm{u.d.}}
+\NewDocumentCommand{\relu}{O{}m}{\poperator[#1]{ReLU}{#2}}
 
 % From EE 127 "Convex Optimization" at Berkeley
-\newcommand{\epi}[2][]{\poperator[#1]{epi}{#2}}
+\NewDocumentCommand{\epi}{O{}m}{\poperator[#1]{epi}{#2}}
+\NewDocumentCommand{\con}{O{}mg}{\poperator[#1]{con}{\IfNoValueTF{#3}{#2}{#2, #3}}}
 
-% From CS 161 "Introduction to Computer Security" at Berkeley
-\newcommand{\pub}{\mathrm{pub}}
-\newcommand{\priv}{\mathrm{priv}}
-\newcommand{\mac}[2][]{\poperator[#1]{MAC}{#2}}
-\newcommand{\verify}[2][]{\poperator[#1]{verify}{#2}}
-\newcommand{\asym}{\mathrm{asym}}
-
-\newcommand{\surjto}{\twoheadrightarrow}
-\newcommand{\injto}{\hookrightarrow}
-\newcommand{\On}{\mathrm{On}} % ordinals
-\newcommand{\diag}[1]{\poperator{diag}{#1}} % diagonal
-\newcommand{\size}[1]{\abs{#1}} % size
-\newcommand{\card}[1]{\poperator{card}{#1}} % cardinality
-\newcommand{\domain}[2][]{\poperator[#1]{domain}{#2}} % domain
-\newcommand{\codomain}[2][]{\poperator[#1]{codomain}{#2}} % codomain
-\newcommand{\range}[2][]{\poperator[#1]{range}{#2}}
-\newcommand{\image}[2][]{\poperator[#1]{image}{#2}} % image
-\newcommand{\coimage}[2][]{\poperator[#1]{coimage}{#2}} % image
-\newcommand{\kernel}[2][]{\poperator[#1]{kernel}{#2}} % kernel
-\newcommand{\cokernel}[2][]{\poperator[#1]{cokernel}{#2}} % cokernel
-\newcommand{\spec}[2][]{\poperator[#1]{Spec}{#2}}
-\renewcommand{\hom}[3][]{\poperator[#1]{Hom}{#2, #3}}
+% Linear algebra and other assorted mathematics
+\NewDocumentCommand{\surjto}{}{\twoheadrightarrow}
+\NewDocumentCommand{\injto}{}{\hookrightarrow}
+\NewDocumentCommand{\diag}{m}{\poperator{diag}{#1}} % diagonal
+\NewDocumentCommand{\size}{m}{\abs{#1}} % size
+\NewDocumentCommand{\card}{m}{\poperator{card}{#1}} % cardinality
+\NewDocumentCommand{\domain}{O{}m}{\poperator[#1]{domain}{#2}} % domain
+\NewDocumentCommand{\codomain}{O{}m}{\poperator[#1]{codomain}{#2}} % codomain
+\NewDocumentCommand{\range}{O{}m}{\poperator[#1]{range}{#2}}
+\NewDocumentCommand{\image}{O{}m}{\poperator[#1]{image}{#2}} % image
+\NewDocumentCommand{\coimage}{O{}m}{\poperator[#1]{coimage}{#2}} % image
+\NewDocumentCommand{\kernel}{O{}m}{\poperator[#1]{kernel}{#2}} % kernel
+\NewDocumentCommand{\cokernel}{O{}m}{\poperator[#1]{cokernel}{#2}} % cokernel
+\NewDocumentCommand{\spec}{O{}m}{\poperator[#1]{Spec}{#2}} % spectrum
+\RenewDocumentCommand{\hom}{O{}mg}{\poperator[#1]{Hom}{\IfNoValueTF{#3}{#2}{#2, #3}}}
 
 % From Linguistics 5
-\newcommand{\ipa}[1]{\textipa{#1}}
+\NewDocumentCommand{\ipa}{m}{\textipa{#1}}
 
 % Interval configuration
-\newcommand{\inter}[2]{\interval[scaled]{#1}{#2}}
-\newcommand{\ointer}[2]{\interval[open, scaled]{#1}{#2}}
-\newcommand{\linter}[2]{\interval[open left, scaled]{#1}{#2}}
-\newcommand{\rinter}[2]{\interval[open right, scaled]{#1}{#2}}
+\NewDocumentCommand{\inter}{mm}{\interval[scaled]{#1}{#2}}
+\NewDocumentCommand{\ointer}{mm}{\interval[open, scaled]{#1}{#2}}
+\NewDocumentCommand{\linter}{mm}{\interval[open left, scaled]{#1}{#2}}
+\NewDocumentCommand{\rinter}{mm}{\interval[open right, scaled]{#1}{#2}}
 \intervalconfig{
   soft open fences
 }
 
-% Things Lie
-\DeclareMathOperator{\Ext}{Ext} % Ext functor (and extension)
-\DeclareMathOperator{\Tor}{Tor} % Tor functor
-\newcommand{\gl}{\opname{\mathfrak{gl}}} % frak gl group
-\renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak gl group
-
 % From Math 54 - "Linear Algebra and Differential Equations" at Berkeley
-\newcommand{\spanvs}[2][]{\poperator[#1]{span}{#2}}
-\newcommand{\colvs}[2][]{\poperator[#1]{col}{#2}}
-\newcommand{\rangevs}[2][]{\poperator[#1]{range}{#2}}
-\newcommand{\nullvs}[2][]{\poperator[#1]{null}{#2}}
-\newcommand{\rowvs}[2][]{\poperator[#1]{row}{#2}}
-\newcommand{\lnullvs}[2][]{\poperator[#1]{leftnull}{#2}}
-\newcommand{\proj}[2][]{\poperator[#1]{proj}{#2}}
-\renewcommand{\dim}[2][]{\poperator[#1]{dim}{#2}}
-\renewcommand{\trace}[2][]{\poperator[#1]{trace}{#2}}
-\renewcommand{\rank}[2][]{\poperator[#1]{rank}{#2}}
-\newcommand{\nullity}[2][]{\poperator[#1]{nullity}{#2}}
-\renewcommand{\det}[2][]{\poperator[#1]{det}{#2}}
-
-
-% From CS 170 - "Efficient Algorithms and Intractable Problems" at Berkeley
-\newcommand{\fourpartproof}[4]{
-  \begin{quote}
-  \textit{\small Overview}: #1
-  \end{quote}
-
-  \begin{quote}
-  \textit{\small Algorithm}:
-
-  #2
-
-  \end{quote}
-
-  \begin{quote}
-  \textit{\small Correctness}: #3
-  \end{quote}
-  \begin{quote}
-  \textit{\small Runtime}: #4
-  \end{quote}
-}
+\NewDocumentCommand{\spanvs}{O{}m}{\poperator[#1]{span}{#2}}
+\NewDocumentCommand{\colvs}{O{}m}{\poperator[#1]{col}{#2}}
+\NewDocumentCommand{\rangevs}{O{}m}{\poperator[#1]{range}{#2}}
+\NewDocumentCommand{\nullvs}{O{}m}{\poperator[#1]{null}{#2}}
+\NewDocumentCommand{\rowvs}{O{}m}{\poperator[#1]{row}{#2}}
+\NewDocumentCommand{\lnullvs}{O{}m}{\poperator[#1]{leftnull}{#2}}
+\NewDocumentCommand{\proj}{O{}m}{\poperator[#1]{proj}{#2}}
+\RenewDocumentCommand{\dim}{O{}m}{\poperator[#1]{dim}{#2}}
+\RenewDocumentCommand{\trace}{O{}m}{\poperator[#1]{trace}{#2}}
+\RenewDocumentCommand{\rank}{O{}m}{\poperator[#1]{rank}{#2}}
+\NewDocumentCommand{\nullity}{O{}m}{\poperator[#1]{nullity}{#2}}
+\RenewDocumentCommand{\det}{O{}m}{\poperator[#1]{det}{#2}}
 
 % Minted Commands
-\newcommand{\pythonin}[1]{\mintinline{python}{#1}}
-\newcommand{\cin}[1]{\mintinline{c}{#1}}
-\newcommand{\cppin}[1]{\mintinline{cpp}{#1}}
-
-%% Napkin commands
-\newcommand{\prototype}[1]{
-  \emph{{\color{Blue} Prototypical example for this section:} #1} \par\medskip
-}
-\newenvironment{moral}{%
-  \begin{mdframed}[linecolor=purple!70!black]%
-  \bfseries\color{purple!70!black}}%
-{\end{mdframed}}
+\NewDocumentCommand{\pythonin}{m}{\mintinline{python}{#1}}
+\NewDocumentCommand{\cin}{m}{\mintinline{c}{#1}}
+\NewDocumentCommand{\cppin}{m}{\mintinline{cpp}{#1}}
