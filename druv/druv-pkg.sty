@@ -19,10 +19,13 @@
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
 \usepackage[T1]{fontenc} \usepackage{lmodern}
-\usepackage{mathrsfs} \usepackage[defaultsans]{lato}
+\usepackage[defaultsans]{lato}
+\usepackage{mathrsfs}
+% \usepackage{mathpazo}
 \usepackage{dsfont}
 % More theorems!
-\usepackage[framemethod=tex]{mdframed} % theorem environment setup
+\usepackage[most]{tcolorbox} % theorem environment setup
+\tcbuselibrary{breakable} % theorems tolerate page breaks
 % Little optimizations and QoL stuff
 \usepackage{mathtools} % used for miscellanous cool math typesteting
 \usepackage{bropd} % used for brackets
@@ -34,19 +37,21 @@
 \usepackage{float} % gives good float environments
 \usepackage[final]{pdfpages} % import pdf
 \usepackage{bm} % bold math font
-\usepackage{fancyref} % supplies \fref for labels
 \usepackage{xparse} % supplies multi-optional {} args
 \usepackage{parskip} % paragraphs separated by vertical space instead of indents
 \@ifclassloaded{beamer}{}{
     \usepackage[colorlinks=true]{hyperref} % hyperref
     \hypersetup{urlcolor = purple, linkcolor = blue, citecolor = violet}
 }
+\usepackage{fancyref} % supplies \fref for labels
+\usepackage[nameinlink, capitalize]{cleveref} % supplies \cref for labels
 \usepackage{subfiles} % import files while having each file be standalone
 \usepackage{etoolbox} % insert into environments and other programming tools
 \usepackage{xpatch} % extends macro patching by etoolbox
+\usepackage{ifthen} % provides for/while loops!
 \usepackage{caption} % can customize captions in floating environments
 \usepackage{centernot} % provides \centernot{x}
-\usepackage[style=numeric, citestyle=numeric-comp, backend=biber]{biblatex} % provides bibliography support for papers
+% \usepackage[style=numeric, citestyle=numeric-comp, backend=biber]{biblatex} % provides bibliography support for papers
 \usepackage{paracol}
 % Scientific typesetting
 \usepackage{array} % adds options to array/table environment
@@ -69,20 +74,6 @@
 }
 
 % PACKAGE SETUP
-\@ifundefined{KOMAClassName}{}{
-    % Multicolumn TOCs
-    % \renewcommand\tableofcontents{%
-    %     \setlength{\columnsep}{2cm}
-    %     \begin{multicols}{2}[\section*{\contentsname
-    %             \@mkboth{%
-    %         \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}]%
-    %         \@starttoc{toc}%
-    %     \end{multicols}%
-    % }
-    \setcounter{tocdepth}{1} % part, chapter and section
-    %\setcounter{tocdepth}{0} % part and chapter
-    %\setcounter{tocdepth}{-1} % part
-}
 
 % SIUnitX
 \sisetup{
@@ -107,9 +98,37 @@
 
 % Diagram package configurations
 \pgfplotsset{compat=1.8}
-\usetikzlibrary{angles, automata, arrows, calc, external, graphs, graphs.standard, matrix, positioning, shapes, trees, decorations.pathmorphing}
-\usepackage{tikz-3dplot, tikz-cd, tkz-berge, tkz-graph, forest}
+\usetikzlibrary{angles, automata, arrows, calc, external, graphs, graphs.standard, matrix, patterns, positioning, shapes, trees, decorations.pathmorphing, lindenmayersystems}
+\usepackage{tikz-3dplot, tikz-cd, forest}
 \usepackage[siunitx, oldvoltagedirection, american, cuteinductors, smartlabels, betterproportions]{circuitikz}
-\tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
 \usepgfplotslibrary{fillbetween, external}
 \pgfplotsset{ticks=none}
+\tikzset{
+    dot/.style={circle, fill, inner sep=1pt},
+    every state/.style={fill=white,draw=black,semithick,text=black},
+    %external/up to date check=diff
+}
+\def\temp{&} \catcode`&=\active \let&=\temp
+
+\newcommand{\mytikzcdcontext}[2]{
+  \begin{tikzpicture}[baseline=(maintikzcdnode.base)]
+    \node (maintikzcdnode) [inner sep=0, outer sep=0] {\begin{tikzcd}[#2]
+        #1
+    \end{tikzcd}};
+  \end{tikzpicture}}
+
+\NewEnviron{mytikzcd}[1][]{%
+% In the following, we need \BODY to expanded before \mytikzcdcontext
+% such that the md5 function gets the tikzcd content with \BODY expanded.
+% Howerver, expand it only once, because the \tikz-macros aren't
+% defined at this point yet. The same thing holds for the arguments to
+% the tikzcd-environment.
+\def\myargs{#1}%
+\edef\mydiagram{\noexpand\mytikzcdcontext{\expandonce\BODY}{\expandonce\myargs}}%
+\mydiagram%
+}
+% cantor set
+\pgfdeclarelindenmayersystem{cantor set}{
+  \rule{F -> FfF}
+  \rule{f -> fff}
+}

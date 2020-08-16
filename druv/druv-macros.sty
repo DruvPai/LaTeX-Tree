@@ -2,9 +2,9 @@
 \usepackage{druv-pkg}
 % MACROS
 
-\NewDocumentCommand{\bs}{m}{\left[#1\right]}
-\NewDocumentCommand{\bp}{m}{\left(#1\right)}
-\NewDocumentCommand{\bc}{m}{\left\{#1\right\}}
+\NewDocumentCommand{\bs}{m}{\qty[#1]}
+\NewDocumentCommand{\bp}{m}{\qty(#1)}
+\NewDocumentCommand{\bc}{m}{\qty{#1}}
 \NewDocumentCommand{\operator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\br{#3}}
 \NewDocumentCommand{\soperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bs{#3}}
 \NewDocumentCommand{\poperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bp{#3}}
@@ -18,9 +18,10 @@
 \NewDocumentCommand{\wt}{}{\widetilde}
 \NewDocumentCommand{\wh}{}{\widehat}
 \NewDocumentCommand{\eps}{}{\varepsilon}
-\RenewDocumentCommand{\eval}{m}{\bs{#1}}
 \NewDocumentCommand{\vocab}{m}{{\color{blue}\textbf{#1}}}
 \NewDocumentCommand{\casework}{m}{\begin{cases}#1\end{cases}}
+\NewDocumentCommand{\numberthis}{}{\addtocounter{equation}{1}\tag{\theequation}}
+
 
 %For use in author command
 \NewDocumentCommand{\plusemail}{m}{\normalfont \texttt{\mailto{#1}}}
@@ -30,6 +31,8 @@
 % Exponential, imaginary
 \NewDocumentCommand{\e}{}{\mathrm{e}}
 \RenewDocumentCommand{\i}{}{\mathrm{i}}
+\RenewDocumentCommand{\Re}{m}{\poperator{Re}{#1}}
+\RenewDocumentCommand{\Im}{m}{\poperator{Im}{#1}}
 
 % Fix trig/log/etc operators
 \RenewDocumentCommand{\sin}{m}{\poperator{sin}{#1}}
@@ -44,20 +47,22 @@
 \RenewDocumentCommand{\csch}{m}{\poperator{csch}{#1}}
 \RenewDocumentCommand{\sech}{m}{\poperator{sech}{#1}}
 \RenewDocumentCommand{\coth}{m}{\poperator{coth}{#1}}
-\RenewDocumentCommand{\arcsin}{m}{\poperator{sin^{\inv}}{#1}}
-\RenewDocumentCommand{\arccos}{m}{\poperator{cos^{\inv}}{#1}}
-\RenewDocumentCommand{\arctan}{m}{\poperator{tan^{\inv}}{#1}}
-\RenewDocumentCommand{\arccsc}{m}{\poperator{csc^{\inv}}{#1}}
-\RenewDocumentCommand{\arcsec}{m}{\poperator{sec^{\inv}}{#1}}
-\RenewDocumentCommand{\arccot}{m}{\poperator{cot^{\inv}}{#1}}
-\NewDocumentCommand{\arcsinh}{m}{\poperator{sinh^{\inv}}{#1}}
-\NewDocumentCommand{\arccosh}{m}{\poperator{cosh^{\inv}}{#1}}
-\NewDocumentCommand{\arctanh}{m}{\poperator{tanh^{\inv}}{#1}}
-\NewDocumentCommand{\arccsch}{m}{\poperator{csch^{\inv}}{#1}}
-\NewDocumentCommand{\arcsech}{m}{\poperator{sech^{\inv}}{#1}}
-\NewDocumentCommand{\arccoth}{m}{\poperator{coth^{\inv}}{#1}}
+\RenewDocumentCommand{\arcsin}{m}{\poperator{sin^{-1}}{#1}}
+\RenewDocumentCommand{\arccos}{m}{\poperator{cos^{-1}}{#1}}
+\RenewDocumentCommand{\arctan}{m}{\poperator{tan^{-1}}{#1}}
+\RenewDocumentCommand{\arccsc}{m}{\poperator{csc^{-1}}{#1}}
+\RenewDocumentCommand{\arcsec}{m}{\poperator{sec^{-1}}{#1}}
+\RenewDocumentCommand{\arccot}{m}{\poperator{cot^{-1}}{#1}}
+\NewDocumentCommand{\arcsinh}{m}{\poperator{sinh^{-1}}{#1}}
+\NewDocumentCommand{\arccosh}{m}{\poperator{cosh^{-1}}{#1}}
+\NewDocumentCommand{\arctanh}{m}{\poperator{tanh^{-1}}{#1}}
+\NewDocumentCommand{\arccsch}{m}{\poperator{csch^{-1}}{#1}}
+\NewDocumentCommand{\arcsech}{m}{\poperator{sech^{-1}}{#1}}
+\NewDocumentCommand{\arccoth}{m}{\poperator{coth^{-1}}{#1}}
 \RenewDocumentCommand{\exp}{m}{\poperator{exp}{#1}}
 \RenewDocumentCommand{\log}{O{}m}{\poperator[#1]{log}{#2}}
+\RenewDocumentCommand{\gcd}{m}{\poperator{gcd}{#1}}
+\NewDocumentCommand{\lcm}{m}{\poperator{lcm}{#1}}
 
 \RenewDocumentCommand{\complement}{}{\mathrm{c}}
 
@@ -234,8 +239,8 @@
 \NewDocumentCommand{\iid}{}{\text{i.i.d.}}
 \NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
 \NewDocumentCommand{\given}{}{\, \middle\vert \,}
-\NewDocumentCommand{\Ex}{O{}m}{\soperator[#1]{Ex}{#2}}
-\RenewDocumentCommand{\Pr}{O{}m}{\soperator[#1]{Pr}{#2}}
+\NewDocumentCommand{\Ex}{O{}m}{\bE_{#1}\bs{#2}}
+\RenewDocumentCommand{\Pr}{O{}m}{\bP_{#1}\bs{#2}}
 \NewDocumentCommand{\Var}{O{}m}{\soperator[#1]{Var}{#2}}
 \NewDocumentCommand{\Cov}{O{}mg}{\soperator[#1]{Cov}{\IfNoValueTF{#3}{#2}{#2, #3}}}
 \NewDocumentCommand{\Corr}{O{}mg}{\soperator[#1]{Corr}{\IfNoValueTF{#3}{#2}{#2, #3}}}
@@ -251,22 +256,11 @@
 \NewDocumentCommand{\convr}{O{r}}{\stackrel{L^{#1}}{\to}}
 \NewDocumentCommand{\convptw}{}{\stackrel{\mathrm{pointwise}}{\to}}
 \NewDocumentCommand{\convw}{}{\stackrel{\mathrm{weak}}{\to}}
+\NewDocumentCommand{\weakto}{}{\rightharpoonup}
 
 \RenewDocumentCommand{\erf}{O{}m}{\poperator[#1]{erf}{#2}}
 \NewDocumentCommand{\insertpdf}{m}{\includepdf[pages=-, pagecommand={},width=\textwidth]{#1}}
-\NewDocumentCommand{\tikzpic}{O{1}m}{
-  \tikzstyle{dot} = [circle, fill, inner sep=1pt]
-  \begin{figure}[H]
-    \centering
-    \scalebox{#1} {
-      \begin{tikzpicture}
-        #2
-      \end{tikzpicture}
-    }
-  \end{figure}
-}
 \NewDocumentCommand{\markovgraph}{O{1}m}{
-  \tikzstyle{every state}=[fill=white,draw=black,semithick,text=black, scale=1]
   \begin{figure}[H]
     \centering
     \scalebox{#1}{
@@ -290,7 +284,9 @@
 
 %From M275 "Topology" at SJSU
 \NewDocumentCommand{\Id}{}{\mathrm{Id}}
-\NewDocumentCommand{\inv}{}{-1}
+\NewDocumentCommand{\id}{}{\mathrm{id}}
+\NewDocumentCommand{\sign}{O{}m}{\poperator[#1]{sign}{#2}}
+\NewDocumentCommand{\pre}{}{\mathrm{pre}}
 
 %From M170 "Introduction to Graph Theory" at SJSU
 \NewDocumentCommand{\diam}{O{}m}{\poperator[#1]{diam}{#2}}
@@ -304,7 +300,6 @@
 \NewDocumentCommand{\st}{}{^{\text{st}}}
 \NewDocumentCommand{\nd}{}{^{\text{nd}}}
 \RenewDocumentCommand{\th}{}{^{\text{th}}}
-\NewDocumentCommand{\sign}{O{}m}{\poperator[#1]{sign}{#2}}
 
 %From CS189 "Introduction to Machine Learning" at Berkeley
 \NewDocumentCommand{\tran}{}{\mathsf{T}}
@@ -331,18 +326,19 @@
 \NewDocumentCommand{\con}{O{}mg}{\poperator[#1]{con}{\IfNoValueTF{#3}{#2}{#2, #3}}}
 
 % Linear algebra and other assorted mathematics
-\NewDocumentCommand{\surjto}{}{\twoheadrightarrow}
-\NewDocumentCommand{\injto}{}{\hookrightarrow}
+\NewDocumentCommand{\surjects}{}{\mathbin{\twoheadrightarrow}}
+\NewDocumentCommand{\injects}{}{\mathbin{\rightarrowtail}}
+\NewDocumentCommand{\bijects}{}{\mathbin{\rightarrowtail \hspace{-1em} \twoheadrightarrow}}
 \NewDocumentCommand{\diag}{m}{\poperator{diag}{#1}} % diagonal
 \NewDocumentCommand{\size}{m}{\abs{#1}} % size
 \NewDocumentCommand{\card}{m}{\poperator{card}{#1}} % cardinality
-\NewDocumentCommand{\domain}{O{}m}{\poperator[#1]{domain}{#2}} % domain
-\NewDocumentCommand{\codomain}{O{}m}{\poperator[#1]{codomain}{#2}} % codomain
-\NewDocumentCommand{\range}{O{}m}{\poperator[#1]{range}{#2}}
-\NewDocumentCommand{\image}{O{}m}{\poperator[#1]{image}{#2}} % image
-\NewDocumentCommand{\coimage}{O{}m}{\poperator[#1]{coimage}{#2}} % image
-\NewDocumentCommand{\kernel}{O{}m}{\poperator[#1]{kernel}{#2}} % kernel
-\NewDocumentCommand{\cokernel}{O{}m}{\poperator[#1]{cokernel}{#2}} % cokernel
+\NewDocumentCommand{\domain}{O{}m}{\poperator[#1]{dom}{#2}} % domain
+\NewDocumentCommand{\codomain}{O{}m}{\poperator[#1]{codom}{#2}} % codomain
+\NewDocumentCommand{\range}{O{}m}{\poperator[#1]{ran}{#2}}
+\NewDocumentCommand{\image}{O{}m}{\poperator[#1]{im}{#2}} % image
+\NewDocumentCommand{\coimage}{O{}m}{\poperator[#1]{coim}{#2}} % image
+\NewDocumentCommand{\kernel}{O{}m}{\poperator[#1]{ker}{#2}} % kernel
+\NewDocumentCommand{\cokernel}{O{}m}{\poperator[#1]{coker}{#2}} % cokernel
 \NewDocumentCommand{\spec}{O{}m}{\poperator[#1]{Spec}{#2}} % spectrum
 \RenewDocumentCommand{\hom}{O{}mg}{\poperator[#1]{Hom}{\IfNoValueTF{#3}{#2}{#2, #3}}}
 
@@ -371,6 +367,7 @@
 \RenewDocumentCommand{\rank}{O{}m}{\poperator[#1]{rank}{#2}}
 \NewDocumentCommand{\nullity}{O{}m}{\poperator[#1]{nullity}{#2}}
 \RenewDocumentCommand{\det}{O{}m}{\poperator[#1]{det}{#2}}
+\RenewDocumentCommand{\ip}{mg}{\left\langle #1, \IfNoValueTF{#2}{#1}{#2} \right\rangle}
 
 % Minted Commands
 \NewDocumentCommand{\pythonin}{m}{\mintinline{python}{#1}}

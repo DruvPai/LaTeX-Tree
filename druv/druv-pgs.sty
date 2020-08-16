@@ -23,6 +23,29 @@
 % Section heading numbers in the margin
 %\renewcommand{\sectionlinesformat}[4]{\makebox[0pt][r]{#3}#4}
 
+% table of contents configuration
+\@ifundefined{KOMAClassName}{}{
+    % Multicolumn TOCs
+    % \renewcommand\tableofcontents{%
+    %     \setlength{\columnsep}{2cm}
+    %     \begin{multicols}{2}[\section*{\contentsname
+    %             \@mkboth{%
+    %         \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}]%
+    %         \@starttoc{toc}%
+    %     \end{multicols}%
+    % }
+    \setcounter{tocdepth}{1} % part, chapter and section
+    %\setcounter{tocdepth}{0} % part and chapter
+    %\setcounter{tocdepth}{-1} % part
+    \@ifundefined{chapter}{
+        \addtokomafont{sectionentry}{\rmfamily}
+    }{
+        \addtokomafont{partentry}{\rmfamily}
+        \addtokomafont{chapterentry}{\rmfamily}
+    }
+}
+
+
 \KOMAoptions{numbers=noenddot}
 %\KOMAoptions{parskip=half}
 \allowdisplaybreaks
