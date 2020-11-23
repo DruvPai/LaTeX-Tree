@@ -22,10 +22,12 @@
 \usepackage[defaultsans]{lato}
 \usepackage{mathrsfs}
 % \usepackage{mathpazo}
+\usepackage{newtxtext} % \usepackage{newtxmath}
+% \usepackage{mathptmx}
 \usepackage{dsfont}
 % More theorems!
-\usepackage[most]{tcolorbox} % theorem environment setup
-\tcbuselibrary{breakable} % theorems tolerate page breaks
+% \usepackage[most]{tcolorbox} % theorem environment setup
+% \tcbuselibrary{breakable} % theorems tolerate page breaks
 % Little optimizations and QoL stuff
 \usepackage{mathtools} % used for miscellanous cool math typesteting
 \usepackage{bropd} % used for brackets
@@ -38,7 +40,7 @@
 \usepackage[final]{pdfpages} % import pdf
 \usepackage{bm} % bold math font
 \usepackage{xparse} % supplies multi-optional {} args
-\usepackage{parskip} % paragraphs separated by vertical space instead of indents
+% \usepackage{parskip} % paragraphs separated by vertical space instead of indents
 \@ifclassloaded{beamer}{}{
     \usepackage[colorlinks=true]{hyperref} % hyperref
     \hypersetup{urlcolor = purple, linkcolor = blue, citecolor = violet}
@@ -55,13 +57,14 @@
 \usepackage{paracol}
 % Scientific typesetting
 \usepackage{array} % adds options to array/table environment
+\usepackage{multirow} % adds additional table formatting
 \usepackage{siunitx} % si unit typesetting
 \usepackage{physics} % various brackets/ip/integral/whatever
 \usepackage{esint} % alternate/additional integral symbols
 % Code setting packages
-\usepackage{minted} % code typesetting
-\usepackage[shortlabels]{enumitem} % control layout of itemize, enumerate, etc
+\usepackage{listings} % code typesetting
 \@ifclassloaded{beamer}{}{
+    \usepackage[shortlabels]{enumitem} % control layout of itemize, enumerate, etc
     \usepackage{changepage} % provides commands to change page layout in the middle of a document
 }
 \usepackage[noend]{algpseudocode} % algorithmicx package
@@ -94,7 +97,23 @@
 \DeclareSIUnit\radian{rad}
 
 % Minted formatting
-\setminted{autogobble, breaklines, fontsize=\small, frame=lines, framerule=1pt}
+\lstset{basicstyle=\footnotesize\ttfamily,
+		numbers=none,
+		numbersep=5pt,
+		numberstyle=\tiny,
+		keywordstyle=\bfseries,
+		% title=\lstname,
+		showstringspaces=false,
+		tabsize=4,
+		frame=single,
+		keywordstyle=\bfseries\color{blue},
+		commentstyle=\color{green!70!black},
+		identifierstyle=\color{green!20!black},
+		stringstyle=\color{orange},
+		breaklines=true,
+		breakatwhitespace=true,
+		frame=none
+}
 
 % Diagram package configurations
 \pgfplotsset{compat=1.8}

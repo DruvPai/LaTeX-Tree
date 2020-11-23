@@ -1,14 +1,25 @@
 \ProvidesPackage{druv-macros}
 \usepackage{druv-pkg}
+% xparse setup
+\ExplSyntaxOn
+\DeclareExpandableDocumentCommand{\IfNoValueOrEmptyTF}{mmm}
+ {
+  \IfNoValueTF{#1}{#2}
+   {
+    \tl_if_empty:nTF {#1} {#2} {#3}
+   }
+ }
+\ExplSyntaxOff
+
 % MACROS
 
 \NewDocumentCommand{\bs}{m}{\qty[#1]}
 \NewDocumentCommand{\bp}{m}{\qty(#1)}
 \NewDocumentCommand{\bc}{m}{\qty{#1}}
-\NewDocumentCommand{\operator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\br{#3}}
-\NewDocumentCommand{\soperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bs{#3}}
-\NewDocumentCommand{\poperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bp{#3}}
-\NewDocumentCommand{\boperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bc{#3}}
+\NewDocumentCommand{\operator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\br{#3}}
+\NewDocumentCommand{\soperator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\bs{#3}}
+\NewDocumentCommand{\poperator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\bp{#3}}
+\NewDocumentCommand{\boperator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\bc{#3}}
 \NewDocumentCommand{\floor}{m}{\left\lfloor #1 \right\rfloor}
 \NewDocumentCommand{\ceiling}{m}{\left\lceil #1 \right\rceil}
 \NewDocumentCommand{\ans}{m}{\textcolor{blue}{#1}}
@@ -21,6 +32,7 @@
 \NewDocumentCommand{\vocab}{m}{{\color{blue}\textbf{#1}}}
 \NewDocumentCommand{\casework}{m}{\begin{cases}#1\end{cases}}
 \NewDocumentCommand{\numberthis}{}{\addtocounter{equation}{1}\tag{\theequation}}
+\RenewDocumentCommand{\eval}{m}{\bs{#1}}
 
 
 %For use in author command
@@ -205,8 +217,8 @@
 % Boolean Logic
 \NewDocumentCommand{\tru}{}{\texttt{\small TRUE}}
 \NewDocumentCommand{\fls}{}{\texttt{\small FALSE}}
-\NewDocumentCommand{\rmtrue}{}{\mathrm{true}}
-\NewDocumentCommand{\rmfalse}{}{\mathrm{false}}
+\NewDocumentCommand{\rmtrue}{}{\true{true}}
+\NewDocumentCommand{\rmfalse}{}{\true{false}}
 
 %More commands and math operators
 \DeclareMathOperator*{\argmin}{arg min}
@@ -222,41 +234,51 @@
 \NewDocumentCommand{\opt}{}{\textsf{OPT}}
 
 % From EE 126 ``Probability and Random Processes" at UC Berkeley
-\NewDocumentCommand{\berd}{m}{\poperator{Bernoulli}{#1}}
-\NewDocumentCommand{\bind}{mg}{\poperator{Binomial}{\IfNoValueTF{#2}{#1}{#1, #2}}}
-\NewDocumentCommand{\geod}{m}{\poperator{Geometric}{#1}}
-\NewDocumentCommand{\unid}{m}{\poperator{Uniform}{#1}}
-\NewDocumentCommand{\poid}{m}{\poperator{Poisson}{#1}}
-\NewDocumentCommand{\poip}{O{\lambda}mg}{\poperator[#1]{Poisson}{\IfNoValueTF{#3}{#2}{#2,
+\NewDocumentCommand{\berd}{m}{\poperator{Bern}{#1}}
+\NewDocumentCommand{\bind}{mg}{\poperator{Binom}{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\geod}{m}{\poperator{Geo}{#1}}
+\NewDocumentCommand{\unid}{m}{\poperator{Uni}{#1}}
+\NewDocumentCommand{\poid}{m}{\poperator{Pois}{#1}}
+\NewDocumentCommand{\poip}{O{\lambda}mg}{\poperator[#1]{Poisson}{\IfNoValueOrEmptyTF{#3}{#2}{#2,
 #3}}}
-\NewDocumentCommand{\expd}{m}{\poperator{Exponential}{#1}}
-\NewDocumentCommand{\nord}{mg}{\poperator{Normal}{\IfNoValueTF{#2}{#1}{#1, #2}}}
-\NewDocumentCommand{\erld}{mg}{\poperator{Erlang}{\IfNoValueTF{#2}{#1}{#1, #2}}}
-\NewDocumentCommand{\chid}{m}{\chi^{2}\br{#1}}
-\NewDocumentCommand{\teed}{m}{\poperator{T}{#1}}
-\NewDocumentCommand{\effd}{m}{\poperator{F}{#1}}
-\NewDocumentCommand{\lapd}{mg}{\poperator{Laplace}{\IfNoValueTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\expd}{m}{\poperator{Exp}{#1}}
+\NewDocumentCommand{\nord}{mg}{\cN\bp{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\erld}{mg}{\poperator{Erlang}{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\gamd}{mg}{\poperator{Gamma}{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\chid}{m}{\chi_{#1}^{2}}
+\NewDocumentCommand{\tdist}{m}{t_{#1}}
+\NewDocumentCommand{\fdist}{mg}{F_{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\lapd}{mg}{\poperator{Laplace}{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
 \NewDocumentCommand{\iid}{}{\text{i.i.d.}}
 \NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
+\NewDocumentCommand{\simind}{}{\stackrel{\text{ind}}{\sim}}
 \NewDocumentCommand{\given}{}{\, \middle\vert \,}
 \NewDocumentCommand{\Ex}{O{}m}{\bE_{#1}\bs{#2}}
-\RenewDocumentCommand{\Pr}{O{}m}{\bP_{#1}\bs{#2}}
-\NewDocumentCommand{\Var}{O{}m}{\soperator[#1]{Var}{#2}}
-\NewDocumentCommand{\Cov}{O{}mg}{\soperator[#1]{Cov}{\IfNoValueTF{#3}{#2}{#2, #3}}}
-\NewDocumentCommand{\Corr}{O{}mg}{\soperator[#1]{Corr}{\IfNoValueTF{#3}{#2}{#2, #3}}}
+\RenewDocumentCommand{\Pr}{O{}m}{\bP_{#1}\bp{#2}}
+\NewDocumentCommand{\Var}{O{}m}{\poperator[#1]{Var}{#2}}
+\NewDocumentCommand{\Cov}{O{}mg}{\poperator[#1]{Cov}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\Corr}{O{}mg}{\poperator[#1]{Corr}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\charv}{m}{\mathds{1}_{#1}}
 \NewDocumentCommand{\indrv}{O{}m}{\poperator[#1]{\mathds{1}}{#2}}
-\NewDocumentCommand{\charfn}{mm}{\poperator[#1]{1}{#2}}
+\NewDocumentCommand{\charfn}{O{}m}{\indrv[#1]{#2}}
 \NewDocumentCommand{\pdf}{O{}m}{\poperator[#1]{PDF}{#2}}
 \NewDocumentCommand{\pmf}{O{}m}{\poperator[#1]{PMF}{#2}}
 \NewDocumentCommand{\cdf}{O{}m}{\poperator[#1]{CDF}{#2}}
 \NewDocumentCommand{\cmf}{O{}m}{\poperator[#1]{CMF}{#2}}
 \NewDocumentCommand{\mgf}{O{}m}{\poperator[#1]{MGF}{#2}}
-\NewDocumentCommand{\convp}{}{\stackrel{\mathrm{prob.}}{\to}}
-\NewDocumentCommand{\convas}{}{\stackrel{\mathrm{a.s.}}{\to}}
+% \NewDocumentCommand{\convp}{}{\stackrel{\text{prob.}}{\to}}
+\NewDocumentCommand{\convae}{O{}}{\stackrel{\IfNoValueOrEmptyTF{#1}{}{#1\text{-}}\text{a.e.}}{\to}}
+\NewDocumentCommand{\convd}{}{\stackrel{d}{\to}}
+\NewDocumentCommand{\convm}{O{\mu}}{\stackrel{#1}{\to}}
+\NewDocumentCommand{\convp}{O{p}}{\convm[#1]}
 \NewDocumentCommand{\convr}{O{r}}{\stackrel{L^{#1}}{\to}}
-\NewDocumentCommand{\convptw}{}{\stackrel{\mathrm{pointwise}}{\to}}
-\NewDocumentCommand{\convw}{}{\stackrel{\mathrm{weak}}{\to}}
+\NewDocumentCommand{\convptw}{}{\stackrel{\text{pointwise}}{\to}}
+\NewDocumentCommand{\convw}{}{\stackrel{\text{weak}}{\to}}
 \NewDocumentCommand{\weakto}{}{\rightharpoonup}
+\NewDocumentCommand{\eqae}{O{}}{\stackrel{\IfNoValueOrEmptyTF{#1}{}{#1\text{-}}\text{a.e.}}{=}}
+\NewDocumentCommand{\eqp}{O{}}{\stackrel{\IfNoValueOrEmptyTF{#1}{p}}{=}}
+\NewDocumentCommand{\eqd}{O{}}{\stackrel{d}{=}}
+\NewDocumentCommand{\independent}{}{\perp \!\!\! \perp}
 
 \RenewDocumentCommand{\erf}{O{}m}{\poperator[#1]{erf}{#2}}
 \NewDocumentCommand{\insertpdf}{m}{\includepdf[pages=-, pagecommand={},width=\textwidth]{#1}}
@@ -271,8 +293,8 @@
 }
 
 %Inequalities
-\NewDocumentCommand{\sym}{}{\mathrm{sym}}
-\NewDocumentCommand{\cyc}{}{\mathrm{cyc}}
+\NewDocumentCommand{\sym}{}{\text{sym}}
+\NewDocumentCommand{\cyc}{}{\text{cyc}}
 
 % Geometry
 \NewDocumentCommand{\dang}{}{\measuredangle} %% Directed angle
@@ -283,32 +305,34 @@
 
 
 %From M275 "Topology" at SJSU
-\NewDocumentCommand{\Id}{}{\mathrm{Id}}
-\NewDocumentCommand{\id}{}{\mathrm{id}}
+\NewDocumentCommand{\Id}{}{\text{Id}}
+\NewDocumentCommand{\id}{}{\text{id}}
 \NewDocumentCommand{\sign}{O{}m}{\poperator[#1]{sign}{#2}}
-\NewDocumentCommand{\pre}{}{\mathrm{pre}}
+\NewDocumentCommand{\pre}{}{\text{pre}}
 
 %From M170 "Introduction to Graph Theory" at SJSU
 \NewDocumentCommand{\diam}{O{}m}{\poperator[#1]{diam}{#2}}
 \NewDocumentCommand{\ord}{O{}m}{\poperator[#1]{ord}{#2}}
-\NewDocumentCommand{\defeq}{}{\overset{\mathrm{def}}{=}}
-\NewDocumentCommand{\defequiv}{}{\overset{\mathrm{def}}{\equiv}}
-\NewDocumentCommand{\seteq}{}{\overset{\mathrm{set}}{=}}
-\NewDocumentCommand{\setequiv}{}{\overset{\mathrm{set}}{\equiv}}
+\NewDocumentCommand{\defeq}{}{\overset{\text{def}}{=}}
+\NewDocumentCommand{\defequiv}{}{\overset{\text{def}}{\equiv}}
+\NewDocumentCommand{\seteq}{}{\overset{\text{set}}{=}}
+\NewDocumentCommand{\setequiv}{}{\overset{\text{set}}{\equiv}}
 
 %From the USAMO .tex files
 \NewDocumentCommand{\st}{}{^{\text{st}}}
 \NewDocumentCommand{\nd}{}{^{\text{nd}}}
+\NewDocumentCommand{\rd}{}{^{\text{rd}}}
 \RenewDocumentCommand{\th}{}{^{\text{th}}}
 
 %From CS189 "Introduction to Machine Learning" at Berkeley
 \NewDocumentCommand{\tran}{}{\mathsf{T}}
 \NewDocumentCommand{\herm}{}{\mathsf{H}}
-\NewDocumentCommand{\train}{}{\mathrm{train}}
-\NewDocumentCommand{\test}{}{\mathrm{test}}
+\NewDocumentCommand{\train}{}{\text{train}}
+\NewDocumentCommand{\test}{}{\text{test}}
 \NewDocumentCommand{\rss}{O{}m}{\poperator[#1]{RSS}{#2}}
 \NewDocumentCommand{\prss}{O{}m}{\poperator[#1]{PRSS}{#2}}
 \NewDocumentCommand{\epe}{O{}m}{\poperator[#1]{EPE}{#2}}
+\NewDocumentCommand{\df}{O{}m}{\poperator[#1]{DF}{#2}}
 \NewDocumentCommand{\mse}{O{}m}{\poperator[#1]{MSE}{#2}}
 \NewDocumentCommand{\llse}{O{}m}{\poperator[#1]{LLSE}{#2}}
 \NewDocumentCommand{\mmse}{O{}m}{\poperator[#1]{MMSE}{#2}}
@@ -316,14 +340,14 @@
 \NewDocumentCommand{\mle}{O{}m}{\poperator[#1]{MLE}{#2}}
 \NewDocumentCommand{\map}{O{}m}{\poperator[#1]{MAP}{#2}}
 \NewDocumentCommand{\softmax}{O{}m}{\poperator[#1]{softmax}{#2}}
-\NewDocumentCommand{\bayes}{}{\mathrm{Bayes}}
-\NewDocumentCommand{\data}{}{\mathrm{data}}
-\NewDocumentCommand{\ud}{}{\mathrm{u.d.}}
+\NewDocumentCommand{\bayes}{}{\text{Bayes}}
+\NewDocumentCommand{\data}{}{\text{data}}
+\NewDocumentCommand{\ud}{}{\text{u.d.}}
 \NewDocumentCommand{\relu}{O{}m}{\poperator[#1]{ReLU}{#2}}
 
 % From EE 127 "Convex Optimization" at Berkeley
 \NewDocumentCommand{\epi}{O{}m}{\poperator[#1]{epi}{#2}}
-\NewDocumentCommand{\con}{O{}mg}{\poperator[#1]{con}{\IfNoValueTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\con}{O{}mg}{\poperator[#1]{con}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
 
 % Linear algebra and other assorted mathematics
 \NewDocumentCommand{\surjects}{}{\mathbin{\twoheadrightarrow}}
@@ -340,7 +364,7 @@
 \NewDocumentCommand{\kernel}{O{}m}{\poperator[#1]{ker}{#2}} % kernel
 \NewDocumentCommand{\cokernel}{O{}m}{\poperator[#1]{coker}{#2}} % cokernel
 \NewDocumentCommand{\spec}{O{}m}{\poperator[#1]{Spec}{#2}} % spectrum
-\RenewDocumentCommand{\hom}{O{}mg}{\poperator[#1]{Hom}{\IfNoValueTF{#3}{#2}{#2, #3}}}
+\RenewDocumentCommand{\hom}{O{}mg}{\poperator[#1]{Hom}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
 
 % From Linguistics 5
 \NewDocumentCommand{\ipa}{m}{\textipa{#1}}
@@ -363,11 +387,12 @@
 \NewDocumentCommand{\lnullvs}{O{}m}{\poperator[#1]{leftnull}{#2}}
 \NewDocumentCommand{\proj}{O{}m}{\poperator[#1]{proj}{#2}}
 \RenewDocumentCommand{\dim}{O{}m}{\poperator[#1]{dim}{#2}}
-\RenewDocumentCommand{\trace}{O{}m}{\poperator[#1]{trace}{#2}}
+\NewDocumentCommand{\codim}{O{}m}{\poperator[#1]{codim}{#2}}
+\RenewDocumentCommand{\trace}{O{}m}{\poperator[#1]{tr}{#2}}
 \RenewDocumentCommand{\rank}{O{}m}{\poperator[#1]{rank}{#2}}
 \NewDocumentCommand{\nullity}{O{}m}{\poperator[#1]{nullity}{#2}}
 \RenewDocumentCommand{\det}{O{}m}{\poperator[#1]{det}{#2}}
-\RenewDocumentCommand{\ip}{mg}{\left\langle #1, \IfNoValueTF{#2}{#1}{#2} \right\rangle}
+\RenewDocumentCommand{\ip}{mg}{\left\langle #1, \IfNoValueOrEmptyTF{#2}{#1}{#2} \right\rangle}
 
 % Minted Commands
 \NewDocumentCommand{\pythonin}{m}{\mintinline{python}{#1}}
