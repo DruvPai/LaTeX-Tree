@@ -394,7 +394,8 @@
 \RenewDocumentCommand{\det}{O{}m}{\poperator[#1]{det}{#2}}
 \RenewDocumentCommand{\ip}{mg}{\left\langle #1, \IfNoValueOrEmptyTF{#2}{#1}{#2} \right\rangle}
 
-% Minted Commands
-\NewDocumentCommand{\pythonin}{m}{\mintinline{python}{#1}}
-\NewDocumentCommand{\cin}{m}{\mintinline{c}{#1}}
-\NewDocumentCommand{\cppin}{m}{\mintinline{cpp}{#1}}
+% From Stat 205 - "Probability Theory" at Berkeley
+\NewDocumentCommand{\limp}{}{\lim^{p}}
+\NewDocumentCommand{\limd}{}{\lim^{d}}
+\NewDocumentCommand{\limas}{}{\lim^{\text{a.s.}}}
+\NewDocumentCommand{\limlp}{O{p}}{\lim^{L^{#1}}}
