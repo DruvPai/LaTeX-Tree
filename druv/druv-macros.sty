@@ -13,13 +13,13 @@
 
 % MACROS
 
-\NewDocumentCommand{\bs}{m}{\qty[#1]}
-\NewDocumentCommand{\bp}{m}{\qty(#1)}
-\NewDocumentCommand{\bc}{m}{\qty{#1}}
-\NewDocumentCommand{\operator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\br{#3}}
-\NewDocumentCommand{\soperator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\bs{#3}}
-\NewDocumentCommand{\poperator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\bp{#3}}
-\NewDocumentCommand{\boperator}{O{}mm}{\operatorname{#2}_{#1}\mathopen{}\bc{#3}}
+\NewDocumentCommand{\bs}{m}{\left[#1\right]}
+\NewDocumentCommand{\bp}{m}{\left(#1\right)}
+\NewDocumentCommand{\bc}{m}{\left\{#1\right\}}
+\NewDocumentCommand{\ba}{m}{\left\langle #1 \right\rangle}
+\NewDocumentCommand{\soperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bs{#3}}
+\NewDocumentCommand{\poperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bp{#3}}
+\NewDocumentCommand{\boperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bc{#3}}
 \NewDocumentCommand{\floor}{m}{\left\lfloor #1 \right\rfloor}
 \NewDocumentCommand{\ceiling}{m}{\left\lceil #1 \right\rceil}
 \NewDocumentCommand{\ans}{m}{\textcolor{blue}{#1}}
@@ -29,10 +29,16 @@
 \NewDocumentCommand{\wt}{}{\widetilde}
 \NewDocumentCommand{\wh}{}{\widehat}
 \NewDocumentCommand{\eps}{}{\varepsilon}
-\NewDocumentCommand{\vocab}{m}{{\color{blue}\textbf{#1}}}
+\NewDocumentCommand{\vocab}{m}{{\textit{#1}}}
 \NewDocumentCommand{\casework}{m}{\begin{cases}#1\end{cases}}
 \NewDocumentCommand{\numberthis}{}{\addtocounter{equation}{1}\tag{\theequation}}
-\RenewDocumentCommand{\eval}{m}{\bs{#1}}
+\NewDocumentCommand{\eval}{m}{\bs{#1}}
+\NewDocumentCommand{\abs}{m}{\left|#1\right|}
+\NewDocumentCommand{\norm}{m}{\left\Vert #1 \right\Vert}
+\NewDocumentCommand{\qq}{m}{\quad \text{#1} \quad}
+\NewDocumentCommand{\qm}{m}{\quad {#1} \quad}
+\NewDocumentCommand{\qc}{}{, \quad}
+\RenewDocumentCommand{\emptyset}{}{\varnothing}
 
 
 %For use in author command
@@ -56,15 +62,15 @@
 \RenewDocumentCommand{\sinh}{m}{\poperator{sinh}{#1}}
 \RenewDocumentCommand{\cosh}{m}{\poperator{cosh}{#1}}
 \RenewDocumentCommand{\tanh}{m}{\poperator{tanh}{#1}}
-\RenewDocumentCommand{\csch}{m}{\poperator{csch}{#1}}
-\RenewDocumentCommand{\sech}{m}{\poperator{sech}{#1}}
+\NewDocumentCommand{\csch}{m}{\poperator{csch}{#1}}
+\NewDocumentCommand{\sech}{m}{\poperator{sech}{#1}}
 \RenewDocumentCommand{\coth}{m}{\poperator{coth}{#1}}
 \RenewDocumentCommand{\arcsin}{m}{\poperator{sin^{-1}}{#1}}
 \RenewDocumentCommand{\arccos}{m}{\poperator{cos^{-1}}{#1}}
 \RenewDocumentCommand{\arctan}{m}{\poperator{tan^{-1}}{#1}}
-\RenewDocumentCommand{\arccsc}{m}{\poperator{csc^{-1}}{#1}}
-\RenewDocumentCommand{\arcsec}{m}{\poperator{sec^{-1}}{#1}}
-\RenewDocumentCommand{\arccot}{m}{\poperator{cot^{-1}}{#1}}
+\NewDocumentCommand{\arccsc}{m}{\poperator{csc^{-1}}{#1}}
+\NewDocumentCommand{\arcsec}{m}{\poperator{sec^{-1}}{#1}}
+\NewDocumentCommand{\arccot}{m}{\poperator{cot^{-1}}{#1}}
 \NewDocumentCommand{\arcsinh}{m}{\poperator{sinh^{-1}}{#1}}
 \NewDocumentCommand{\arccosh}{m}{\poperator{cosh^{-1}}{#1}}
 \NewDocumentCommand{\arctanh}{m}{\poperator{tanh^{-1}}{#1}}
@@ -232,6 +238,7 @@
 \NewDocumentCommand{\np}{}{\textsf{NP}}
 \NewDocumentCommand{\bqp}{}{\textsf{BQP}}
 \NewDocumentCommand{\opt}{}{\textsf{OPT}}
+\NewDocumentCommand{\tm}{}{\textsf{TM}}
 
 % From EE 126 ``Probability and Random Processes" at UC Berkeley
 \NewDocumentCommand{\berd}{m}{\poperator{Bern}{#1}}
@@ -253,8 +260,8 @@
 \NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
 \NewDocumentCommand{\simind}{}{\stackrel{\text{ind}}{\sim}}
 \NewDocumentCommand{\given}{}{\, \middle\vert \,}
-\NewDocumentCommand{\Ex}{O{}m}{\bE_{#1}\bs{#2}}
-\RenewDocumentCommand{\Pr}{O{}m}{\bP_{#1}\bp{#2}}
+\NewDocumentCommand{\Ex}{O{}m}{\underset{#1}{\bE}\bs{#2}}
+\RenewDocumentCommand{\Pr}{O{}m}{\underset{#1}{\bP}\bp{#2}}
 \NewDocumentCommand{\Var}{O{}m}{\poperator[#1]{Var}{#2}}
 \NewDocumentCommand{\Cov}{O{}mg}{\poperator[#1]{Cov}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
 \NewDocumentCommand{\Corr}{O{}mg}{\poperator[#1]{Corr}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
@@ -280,7 +287,7 @@
 \NewDocumentCommand{\eqd}{O{}}{\stackrel{d}{=}}
 \NewDocumentCommand{\independent}{}{\perp \!\!\! \perp}
 
-\RenewDocumentCommand{\erf}{O{}m}{\poperator[#1]{erf}{#2}}
+\NewDocumentCommand{\erf}{O{}m}{\poperator[#1]{erf}{#2}}
 \NewDocumentCommand{\insertpdf}{m}{\includepdf[pages=-, pagecommand={},width=\textwidth]{#1}}
 \NewDocumentCommand{\markovgraph}{O{1}m}{
   \begin{figure}[H]
@@ -347,7 +354,8 @@
 
 % From EE 127 "Convex Optimization" at Berkeley
 \NewDocumentCommand{\epi}{O{}m}{\poperator[#1]{epi}{#2}}
-\NewDocumentCommand{\con}{O{}mg}{\poperator[#1]{con}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\con}{O{}mg}{\poperator[#1]{con}{\IfNoValueOrEmptyTF{#3}{#2}{#2,
+      #3}}}
 
 % Linear algebra and other assorted mathematics
 \NewDocumentCommand{\surjects}{}{\mathbin{\twoheadrightarrow}}
@@ -379,23 +387,31 @@
 }
 
 % From Math 54 - "Linear Algebra and Differential Equations" at Berkeley
+\NewDocumentCommand{\grad}{}{\nabla}
+\NewDocumentCommand{\mat}{m}{\begin{bmatrix}#1\end{bmatrix}}
 \NewDocumentCommand{\spanvs}{O{}m}{\poperator[#1]{span}{#2}}
 \NewDocumentCommand{\colvs}{O{}m}{\poperator[#1]{col}{#2}}
 \NewDocumentCommand{\rangevs}{O{}m}{\poperator[#1]{range}{#2}}
 \NewDocumentCommand{\nullvs}{O{}m}{\poperator[#1]{null}{#2}}
 \NewDocumentCommand{\rowvs}{O{}m}{\poperator[#1]{row}{#2}}
 \NewDocumentCommand{\lnullvs}{O{}m}{\poperator[#1]{leftnull}{#2}}
-\NewDocumentCommand{\proj}{O{}m}{\poperator[#1]{proj}{#2}}
+\NewDocumentCommand{\proj}{O{}m}{\Pi_{#1}\bp{#2}}
 \RenewDocumentCommand{\dim}{O{}m}{\poperator[#1]{dim}{#2}}
 \NewDocumentCommand{\codim}{O{}m}{\poperator[#1]{codim}{#2}}
-\RenewDocumentCommand{\trace}{O{}m}{\poperator[#1]{tr}{#2}}
-\RenewDocumentCommand{\rank}{O{}m}{\poperator[#1]{rank}{#2}}
+\NewDocumentCommand{\trace}{O{}m}{\poperator[#1]{tr}{#2}}
+\NewDocumentCommand{\rank}{O{}m}{\poperator[#1]{rank}{#2}}
 \NewDocumentCommand{\nullity}{O{}m}{\poperator[#1]{nullity}{#2}}
 \RenewDocumentCommand{\det}{O{}m}{\poperator[#1]{det}{#2}}
-\RenewDocumentCommand{\ip}{mg}{\left\langle #1, \IfNoValueOrEmptyTF{#2}{#1}{#2} \right\rangle}
+\NewDocumentCommand{\ip}{mg}{\ba{#1, \IfNoValueOrEmptyTF{#2}{#1}{#2}}}
 
 % From Stat 205 - "Probability Theory" at Berkeley
 \NewDocumentCommand{\limp}{}{\lim^{p}}
 \NewDocumentCommand{\limd}{}{\lim^{d}}
 \NewDocumentCommand{\limas}{}{\lim^{\text{a.s.}}}
 \NewDocumentCommand{\limlp}{O{p}}{\lim^{L^{#1}}}
+
+% From CS 270 - "Combinatorial Algorithms" at Berkeley
+\NewDocumentCommand{\mincut}{m}{\textsc{MinCut}\bp{#1}}
+\NewDocumentCommand{\minimize}{}{\operatorname*{minimize}}
+\NewDocumentCommand{\maximize}{}{\operatorname*{maximize}}
+\NewDocumentCommand{\subjectto}{}{\text{subject to}}

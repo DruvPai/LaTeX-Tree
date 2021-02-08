@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{druvlargedoc}
 
-\LoadClass[10pt, parskip]{scrreprt}
+\LoadClass[parskip]{scrreprt}
 
 \RequirePackage{druv}
