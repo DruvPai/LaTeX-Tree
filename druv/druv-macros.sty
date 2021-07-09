@@ -12,11 +12,12 @@
 \ExplSyntaxOff
 
 % MACROS
-
+\NewDocumentCommand{\mo}{}{\mathopen{}}
 \NewDocumentCommand{\bs}{m}{\left[#1\right]}
 \NewDocumentCommand{\bp}{m}{\left(#1\right)}
 \NewDocumentCommand{\bc}{m}{\left\{#1\right\}}
 \NewDocumentCommand{\ba}{m}{\left\langle #1 \right\rangle}
+\NewDocumentCommand{\bo}{m}{\mathopen{}\bp{#1}\mathclose{}}
 \NewDocumentCommand{\soperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bs{#3}}
 \NewDocumentCommand{\poperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bp{#3}}
 \NewDocumentCommand{\boperator}{O{}mm}{\operatorname*{#2}_{#1}\mathopen{}\bc{#3}}
@@ -29,10 +30,10 @@
 \NewDocumentCommand{\wt}{}{\widetilde}
 \NewDocumentCommand{\wh}{}{\widehat}
 \NewDocumentCommand{\eps}{}{\varepsilon}
-\NewDocumentCommand{\vocab}{m}{{\textit{#1}}}
+\NewDocumentCommand{\vocab}{m}{{\textbf{#1}}}
 \NewDocumentCommand{\casework}{m}{\begin{cases}#1\end{cases}}
 \NewDocumentCommand{\numberthis}{}{\addtocounter{equation}{1}\tag{\theequation}}
-\NewDocumentCommand{\eval}{m}{\bs{#1}}
+\NewDocumentCommand{\eval}{mmg}{\left.#1\right|_{#2}^{\IfNoValueOrEmptyTF{#3}{}{#3}}}
 \NewDocumentCommand{\abs}{m}{\left|#1\right|}
 \NewDocumentCommand{\norm}{m}{\left\Vert #1 \right\Vert}
 \NewDocumentCommand{\qq}{m}{\quad \text{#1} \quad}
@@ -78,11 +79,12 @@
 \NewDocumentCommand{\arcsech}{m}{\poperator{sech^{-1}}{#1}}
 \NewDocumentCommand{\arccoth}{m}{\poperator{coth^{-1}}{#1}}
 \RenewDocumentCommand{\exp}{m}{\poperator{exp}{#1}}
-\RenewDocumentCommand{\log}{O{}m}{\poperator[#1]{log}{#2}}
+\RenewDocumentCommand{\log}{O{}m}{\operatorname{log}_{#1}\mathopen{}\bp{#2}}
 \RenewDocumentCommand{\gcd}{m}{\poperator{gcd}{#1}}
 \NewDocumentCommand{\lcm}{m}{\poperator{lcm}{#1}}
 
-\RenewDocumentCommand{\complement}{}{\mathrm{c}}
+% \@ifpackageloaded{mtpro2}{\RenewDocumentCommand{\complement}{}{\mathrm{c}}}{\NewDocumentCommand{\complement}{}{\mathrm{c}}}
+
 
 % Other fonts
 \NewDocumentCommand{\bA}{}{\mathbb{A}}
@@ -249,7 +251,7 @@
 \NewDocumentCommand{\poip}{O{\lambda}mg}{\poperator[#1]{Poisson}{\IfNoValueOrEmptyTF{#3}{#2}{#2,
 #3}}}
 \NewDocumentCommand{\expd}{m}{\poperator{Exp}{#1}}
-\NewDocumentCommand{\nord}{mg}{\cN\bp{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
+\NewDocumentCommand{\nord}{mg}{\cN\bo{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
 \NewDocumentCommand{\erld}{mg}{\poperator{Erlang}{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
 \NewDocumentCommand{\gamd}{mg}{\poperator{Gamma}{\IfNoValueOrEmptyTF{#2}{#1}{#1, #2}}}
 \NewDocumentCommand{\chid}{m}{\chi_{#1}^{2}}
@@ -260,13 +262,13 @@
 \NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
 \NewDocumentCommand{\simind}{}{\stackrel{\text{ind}}{\sim}}
 \NewDocumentCommand{\given}{}{\, \middle\vert \,}
-\NewDocumentCommand{\Ex}{O{}m}{\underset{#1}{\bE}\bs{#2}}
-\RenewDocumentCommand{\Pr}{O{}m}{\underset{#1}{\bP}\bp{#2}}
-\NewDocumentCommand{\Var}{O{}m}{\poperator[#1]{Var}{#2}}
-\NewDocumentCommand{\Cov}{O{}mg}{\poperator[#1]{Cov}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
-\NewDocumentCommand{\Corr}{O{}mg}{\poperator[#1]{Corr}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
-\NewDocumentCommand{\charv}{m}{\mathds{1}_{#1}}
-\NewDocumentCommand{\indrv}{O{}m}{\poperator[#1]{\mathds{1}}{#2}}
+\NewDocumentCommand{\Ex}{O{}m}{\soperator[#1]{\mathbb{E}}{#2}}
+\RenewDocumentCommand{\Pr}{O{}m}{\soperator[#1]{\mathbb{P}}{#2}}
+\NewDocumentCommand{\Var}{O{}m}{\poperator[#1]{\mathrm{Var}}{#2}}
+\NewDocumentCommand{\Cov}{O{}mg}{\poperator[#1]{\mathrm{Cov}}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\Corr}{O{}mg}{\poperator[#1]{\mathrm{Corr}}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\charv}{m}{\mathbb{1}_{#1}}
+\NewDocumentCommand{\indrv}{O{}m}{\poperator[#1]{\mathbb{1}}{#2}}
 \NewDocumentCommand{\charfn}{O{}m}{\indrv[#1]{#2}}
 \NewDocumentCommand{\pdf}{O{}m}{\poperator[#1]{PDF}{#2}}
 \NewDocumentCommand{\pmf}{O{}m}{\poperator[#1]{PMF}{#2}}
@@ -299,10 +301,6 @@
   \end{figure}
 }
 
-%Inequalities
-\NewDocumentCommand{\sym}{}{\text{sym}}
-\NewDocumentCommand{\cyc}{}{\text{cyc}}
-
 % Geometry
 \NewDocumentCommand{\dang}{}{\measuredangle} %% Directed angle
 \NewDocumentCommand{\ray}{m}{\overrightarrow{#1}}
@@ -332,8 +330,6 @@
 \RenewDocumentCommand{\th}{}{^{\text{th}}}
 
 %From CS189 "Introduction to Machine Learning" at Berkeley
-\NewDocumentCommand{\tran}{}{\mathsf{T}}
-\NewDocumentCommand{\herm}{}{\mathsf{H}}
 \NewDocumentCommand{\train}{}{\text{train}}
 \NewDocumentCommand{\test}{}{\text{test}}
 \NewDocumentCommand{\rss}{O{}m}{\poperator[#1]{RSS}{#2}}
@@ -361,11 +357,17 @@
 \NewDocumentCommand{\surjects}{}{\mathbin{\twoheadrightarrow}}
 \NewDocumentCommand{\injects}{}{\mathbin{\rightarrowtail}}
 \NewDocumentCommand{\bijects}{}{\mathbin{\rightarrowtail \hspace{-1em} \twoheadrightarrow}}
+\NewDocumentCommand{\diagonal}{m}{\poperator{diagonal}{#1}} % degree
 \NewDocumentCommand{\diag}{m}{\poperator{diag}{#1}} % diagonal
+\RenewDocumentCommand{\deg}{m}{\poperator{deg}{#1}} % degree
 \NewDocumentCommand{\size}{m}{\abs{#1}} % size
 \NewDocumentCommand{\card}{m}{\poperator{card}{#1}} % cardinality
 \NewDocumentCommand{\domain}{O{}m}{\poperator[#1]{dom}{#2}} % domain
 \NewDocumentCommand{\codomain}{O{}m}{\poperator[#1]{codom}{#2}} % codomain
+\NewDocumentCommand{\support}{O{}m}{\poperator[#1]{supp}{#2}}
+\NewDocumentCommand{\closure}{O{}m}{\poperator[#1]{cl}{#2}}
+\NewDocumentCommand{\interior}{O{}m}{\poperator[#1]{int}{#2}}
+\NewDocumentCommand{\boundary}{O{}m}{\poperator[#1]{bd}{#2}}
 \NewDocumentCommand{\range}{O{}m}{\poperator[#1]{ran}{#2}}
 \NewDocumentCommand{\image}{O{}m}{\poperator[#1]{im}{#2}} % image
 \NewDocumentCommand{\coimage}{O{}m}{\poperator[#1]{coim}{#2}} % image
@@ -373,6 +375,18 @@
 \NewDocumentCommand{\cokernel}{O{}m}{\poperator[#1]{coker}{#2}} % cokernel
 \NewDocumentCommand{\spec}{O{}m}{\poperator[#1]{Spec}{#2}} % spectrum
 \RenewDocumentCommand{\hom}{O{}mg}{\poperator[#1]{Hom}{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\sym}{O{}m}{\poperator[#1]{Sym}{#2}} % symmetric
+\NewDocumentCommand{\herm}{O{}m}{\poperator[#1]{Herm}{#2}} % hermitian
+\NewDocumentCommand{\psd}{O{}m}{\poperator[#1]{PSD}{#2}} % positive semidefinite
+\NewDocumentCommand{\pd}{O{}m}{\poperator[#1]{PD}{#2}} % positive definite
+\NewDocumentCommand{\go}{O{}m}{\poperator[#1]{O}{#2}} % general orthogonal
+\NewDocumentCommand{\gu}{O{}m}{\poperator[#1]{U}{#2}} % general unitary
+\NewDocumentCommand{\gl}{O{}m}{\poperator[#1]{GL}{#2}} % general linear
+\NewDocumentCommand{\so}{O{}m}{\poperator[#1]{SO}{#2}} % special orthogonal
+\NewDocumentCommand{\su}{O{}m}{\poperator[#1]{SU}{#2}} % special unitary
+\RenewDocumentCommand{\sl}{O{}m}{\poperator[#1]{SL}{#2}} % special linear
+\NewDocumentCommand{\ball}{O{}mg}{\bB_{#1}\mo\bp{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
+\NewDocumentCommand{\sphere}{O{}mg}{\bS_{#1}\mo\bp{\IfNoValueOrEmptyTF{#3}{#2}{#2, #3}}}
 
 % From Linguistics 5
 \NewDocumentCommand{\ipa}{m}{\textipa{#1}}
@@ -401,6 +415,7 @@
 \NewDocumentCommand{\trace}{O{}m}{\poperator[#1]{tr}{#2}}
 \NewDocumentCommand{\rank}{O{}m}{\poperator[#1]{rank}{#2}}
 \NewDocumentCommand{\nullity}{O{}m}{\poperator[#1]{nullity}{#2}}
+\NewDocumentCommand{\logdet}{O{}m}{\poperator[#1]{logdet}{#2}}
 \RenewDocumentCommand{\det}{O{}m}{\poperator[#1]{det}{#2}}
 \NewDocumentCommand{\ip}{mg}{\ba{#1, \IfNoValueOrEmptyTF{#2}{#1}{#2}}}
 
@@ -415,3 +430,12 @@
 \NewDocumentCommand{\minimize}{}{\operatorname*{minimize}}
 \NewDocumentCommand{\maximize}{}{\operatorname*{maximize}}
 \NewDocumentCommand{\subjectto}{}{\text{subject to}}
+
+% From CS 294 - ``Computational Learning Theory'' at Berkeley
+\NewDocumentCommand{\erm}{O{}}{\mathrm{ERM}_{#1}}
+\NewDocumentCommand{\noise}{O{}m}{\poperator[#1]{noise}{#2}}
+\NewDocumentCommand{\vc}{O{}m}{\textsf{VC}_{#1}\mathopen{}\bp{#2}}
+\NewDocumentCommand{\vcentropy}{O{}m}{\textsf{VCEnt}_{#1}\mathopen{}\bp{#2}}
+\NewDocumentCommand{\rad}{O{}m}{\textsf{Rad}_{#1}\mathopen{}\bp{#2}}
+\NewDocumentCommand{\convexhull}{O{}m}{\poperator[#1]{\mathsf{ConvexHull}}{#2}}
+\NewDocumentCommand{\encodinglength}{O{}m}{\poperator[#1]{\mathsf{EncodingLength}}{#2}}

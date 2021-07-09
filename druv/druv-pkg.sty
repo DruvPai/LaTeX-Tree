@@ -3,8 +3,21 @@
 
 %%% PACKAGES AND MACROS %%%
 % Essentials
+% Font
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+\usepackage[T1]{fontenc}
+
+% \usepackage{newtxtext}
+% \usepackage[complete, subscriptcorrection, mtpcal, mtpfrak, mtpbb, zswash]{mtpro2}
+\usepackage[scaled]{helvet}
+\usepackage{mathrsfs}
 % AMS Stuff
-\usepackage{amsmath,amssymb, amsthm}
+\usepackage{amsmath}
+\@ifpackageloaded{mtpro2}{}{
+  \usepackage{amssymb}
+}
+\usepackage{amsthm}
 % For theorems!
 \usepackage{thmtools}
 % For colors!
@@ -16,18 +29,9 @@
 \usepackage{pgf}
 \usepackage{pgfplots}
 % Fonts
-\newcommand\hmmax{0}
-\newcommand\bmmax{0}
-\usepackage[T1]{fontenc} % \usepackage{lmodern}
-\usepackage[scaled]{helvet}
-\usepackage{mathrsfs}
-% \usepackage{mathpazo}
-% \usepackage{newtxtext} % \usepackage{newtxmath}
-% \usepackage{mathptmx}
-\usepackage{dsfont}
 % More theorems!
-\usepackage[most]{tcolorbox} % theorem environment setup
-\tcbuselibrary{breakable} % theorems tolerate page breaks
+%\usepackage[most]{tcolorbox} \tcbuselibrary{breakable} % theorem environment setup
+\usepackage[framemethod=TikZ]{mdframed}
 % Little optimizations and QoL stuff
 \usepackage{mathtools} % used for miscellanous cool math typesteting
 \usepackage{interval} % used for intervals
@@ -52,13 +56,15 @@
 \usepackage{ifthen} % provides for/while loops!
 \usepackage{caption} % can customize captions in floating environments
 \usepackage{centernot} % provides \centernot{x}
-% \usepackage[style=numeric, citestyle=numeric-comp, backend=biber]{biblatex} % provides bibliography support for papers
+\usepackage[style=numeric, citestyle=numeric-comp, backend=biber]{biblatex} % provides bibliography support for papers
 \usepackage{paracol}
 % Scientific typesetting
 \usepackage{array} % adds options to array/table environment
 \usepackage{multirow} % adds additional table formatting
+\usepackage{multicol} % adds additional table formatting
 \usepackage{siunitx} % si unit typesetting
-\usepackage[ISO]{diffcoeff} % differential
+% \usepackage[ISO]{diffcoeff} % differential
+\usepackage{diffcoeff}
 % \usepackage{physics} % various brackets/ip/integral/whatever
 \usepackage{esint} % alternate/additional integral symbols
 % Code setting packages

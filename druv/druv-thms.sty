@@ -34,6 +34,20 @@
 \SetEnumitemKey{caselist}{label={{Case} \arabic*.}, leftmargin=*}
 
 % Homework environment
+\newcommand{\boxhack}{~\vspace{-2em}}
+
+\newcommand{\thmboxstyle}[4]{
+    \mdfdefinestyle{#2}{
+        linecolor = #3,
+        backgroundcolor = #4,
+    }
+    \declaretheoremstyle[
+        headfont = \sffamily\bfseries\color{#3},
+        mdframed = {style = #2},
+        headpunct = {\\[0.4pt]},
+        postheadspace = {0pt}
+    ]{#1}
+}
 
 \declaretheoremstyle[
 headfont = \bfseries,
@@ -41,165 +55,209 @@ notefont = \bfseries,
 bodyfont = \normalfont
 ]{plain}
 
-\declaretheorem[style = plain, name = Problem]{hwkproblem}
-
-\newcommand{\boxhack}{~\vspace{-2em}}
-
-% TCBox
-\tcbset{
-    % frame stuff
-    breakable,enhanced,frame empty,interior empty,
-    colframe=white,
-    % borderline west={2pt}{2pt}{#4},
-    left=1.5em,
-    % title stuff
-    attach boxed title to top left={yshift=0mm,xshift=0mm},
-    % boxed title style={colframe=#5},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colback=white,
-    colbacktitle=white,
-    boxed title style={boxrule=.5pt,sharp corners}
-}
+\thmboxstyle{graybox}{mdgraybox}{grayforeground}{graybackground}
+\thmboxstyle{defbox}{mdredbox}{red!70!black}{red!7}
+\thmboxstyle{thmbox}{mdbluebox}{blue}{blue!7}
+\thmboxstyle{exbox}{mdgreenbox}{green!50!black}{green!7}
+\thmboxstyle{notebox}{mdorangebox}{orange!98!black}{orange!8}
 
 \@ifundefined{chapter}{
-    \newtcbtheorem{ttheorem}{Theorem}{
-        borderline west={1pt}{10pt}{blue},
-        boxed title style={colframe=blue},
-        label type=theorem
-    }{tthm}
+    \declaretheorem[style = thmbox, name = Theorem]{theorem}
 }{
-    \newtcbtheorem[number within=chapter]{ttheorem}{Theorem}{
-        borderline west={1pt}{10pt}{blue},
-        boxed title style={colframe=blue},
-        label type=theorem
-    }{tthm}
+    \declaretheorem[style = thmbox, name = Theorem, parent = chapter]{theorem}
 }
+\declaretheorem[style = thmbox, name = Theorem, numbered = no]{theorem*}
+\declaretheorem[style = thmbox, name = Lemma, sibling = theorem]{lemma}
+\declaretheorem[style = thmbox, name = Lemma, numbered = no]{lemma*}
+\declaretheorem[style = thmbox, name = Proposition, sibling = theorem]{proposition}
+\declaretheorem[style = thmbox, name = Proposition, numbered = no]{proposition*}
+\declaretheorem[style = thmbox, name = Corollary, sibling = theorem]{corollary}
+\declaretheorem[style = thmbox, name = Corollary, numbered = no]{corollary*}
+\declaretheorem[style = thmbox, name = Conjecture, sibling = theorem]{conjecture}
+\declaretheorem[style = thmbox, name = Conjecture, numbered = no]{conjecture*}
+\declaretheorem[style = thmbox, name = Algorithm, sibling = theorem]{algo}
+\declaretheorem[style = thmbox, name = Algorithm, numbered = no]{algo*}
+\declaretheorem[style = defbox, name = Definition, sibling = theorem]{definition}
+\declaretheorem[style = defbox, name = Definition, numbered = no]{definition*}
 
-\newenvironment{theorem}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{ttheorem}{}{}}{\begin{ttheorem}{#1}{}}}{\end{ttheorem}}
-\newenvironment{theorem*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{ttheorem*}{}}{\begin{ttheorem*}{#1}}}{\end{ttheorem*}}
+\declaretheorem[style = exbox, name = Example, sibling = theorem]{example}
+\declaretheorem[style = exbox, name = Example, numbered = no]{example*}
 
-\newtcbtheorem[use counter from=ttheorem]{tlemma}{Lemma}{
-    borderline west={1pt}{10pt}{blue!50!teal},
-    boxed title style={colframe=blue!50!teal},
-    label type=lemma
-}{tlem}
+\declaretheorem[style = notebox, name = Fact, sibling = theorem]{fact}
+\declaretheorem[style = notebox, name = Fact, numbered = no]{fact*}
+\declaretheorem[style = notebox, name = Note, sibling = theorem]{note}
+\declaretheorem[style = notebox, name = Note, numbered = no]{note*}
+\declaretheorem[style = notebox, name = Notation, sibling = theorem]{notation}
+\declaretheorem[style = notebox, name = Notation, numbered = no]{notation*}
 
-\newenvironment{lemma}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tlemma}{}{}}{\begin{tlemma}{#1}{}}}{\end{tlemma}}
-\newenvironment{lemma*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tlemma*}{}}{\begin{tlemma*}{#1}}}{\end{tlemma}}
+\declaretheorem[style = plain, name = Exercise, sibling = theorem]{exercise}
+\declaretheorem[style = plain, name = Exercise, numbered = no]{exercise*}
+\declaretheorem[style = plain, name = Problem, sibling = theorem]{problem}
+\declaretheorem[style = plain, name = Problem, numbered = no]{problem*}
+\declaretheorem[style = plain, name = Question, sibling = theorem]{question}
+\declaretheorem[style = plain, name = Question, numbered = no]{question*}
+\declaretheorem[style = plain, name = Answer, sibling = theorem]{answer}
+\declaretheorem[style = plain, name = Answer, numbered = no]{answer*}
+\declaretheorem[style = plain, name = Remark, sibling = theorem]{remark}
+\declaretheorem[style = plain, name = Remark, numbered = no]{remark*}
 
-\newtcbtheorem[use counter from=ttheorem]{tcorollary}{Corollary}{
-    borderline west={1pt}{10pt}{blue!50!green},
-    boxed title style={colframe=blue!50!green},
-    label type=corollary
-}{tcor}
+\declaretheorem[style = plain, name = Problem]{hwkproblem}
 
-\newenvironment{corollary}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tcorollary}{}{}}{\begin{tcorollary}{#1}{}}}{\end{tcorollary}}
-\newenvironment{corollary*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tcorollary*}{}}{\begin{tcorollary*}{#1}}}{\end{tcorollary*}}
+% % TCBox
+% \tcbset{
+%     % frame stuff
+%     breakable,enhanced,frame empty,interior empty,
+%     colframe=white,
+%     % borderline west={2pt}{2pt}{#4},
+%     left=1.5em,
+%     % title stuff
+%     attach boxed title to top left={yshift=0mm,xshift=0mm},
+%     % boxed title style={colframe=#5},
+%     coltitle=black,
+%     fonttitle=\bfseries,
+%     colback=white,
+%     colbacktitle=white,
+%     boxed title style={boxrule=.5pt,sharp corners}
+% }
 
-\newtcbtheorem[use counter from=ttheorem]{tclaim}{Claim}{
-    borderline west={1pt}{10pt}{blue!50!violet},
-    boxed title style={colframe=blue!50!violet},
-    label type=claim
-}{tclaim}
+% \@ifundefined{chapter}{
+%     \newtcbtheorem{ttheorem}{Theorem}{
+%         borderline west={1pt}{10pt}{blue},
+%         boxed title style={colframe=blue},
+%         label type=theorem
+%     }{tthm}
+% }{
+%     \newtcbtheorem[number within=chapter]{ttheorem}{Theorem}{
+%         borderline west={1pt}{10pt}{blue},
+%         boxed title style={colframe=blue},
+%         label type=theorem
+%     }{tthm}
+% }
 
-\newenvironment{claim}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tclaim}{}{}}{\begin{tclaim}{#1}{}}}{\end{tclaim}}
-\newenvironment{claim*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tclaim*}{}}{\begin{tclaim*}{#1}}}{\end{tclaim*}}
+% \newenvironment{theorem}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{ttheorem}{}{}}{\begin{ttheorem}{#1}{}}}{\end{ttheorem}}
+% \newenvironment{theorem*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{ttheorem*}{}}{\begin{ttheorem*}{#1}}}{\end{ttheorem*}}
 
-\newtcbtheorem[use counter from=ttheorem]{tdefinition}{Definition}{
-    borderline west={1pt}{10pt}{violet},
-    boxed title style={colframe=violet},
-    label type=definition
-}{tdef}
+% \newtcbtheorem[use counter from=ttheorem]{tlemma}{Lemma}{
+%     borderline west={1pt}{10pt}{blue!50!teal},
+%     boxed title style={colframe=blue!50!teal},
+%     label type=lemma
+% }{tlem}
 
-\newenvironment{definition}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tdefinition}{}{}}{\begin{tdefinition}{#1}{}}}{\end{tdefinition}}
-\newenvironment{definition*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tdefinition*}{}}{\begin{tdefinition*}{#1}}}{\end{tdefinition*}}
+% \newenvironment{lemma}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tlemma}{}{}}{\begin{tlemma}{#1}{}}}{\end{tlemma}}
+% \newenvironment{lemma*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tlemma*}{}}{\begin{tlemma*}{#1}}}{\end{tlemma}}
 
-\newtcbtheorem[use counter from=ttheorem]{tproposition}{Proposition}{
-    borderline west={1pt}{10pt}{teal},
-    boxed title style={colframe=teal},
-    label type=proposition
-}{tprop}
+% \newtcbtheorem[use counter from=ttheorem]{tcorollary}{Corollary}{
+%     borderline west={1pt}{10pt}{blue!50!green},
+%     boxed title style={colframe=blue!50!green},
+%     label type=corollary
+% }{tcor}
 
-\newenvironment{proposition}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproposition}{}{}}{\begin{tproposition}{#1}{}}}{\end{tproposition}}
-\newenvironment{proposition*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproposition*}{}}{\begin{tproposition*}{#1}}}{\end{tproposition*}}
+% \newenvironment{corollary}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tcorollary}{}{}}{\begin{tcorollary}{#1}{}}}{\end{tcorollary}}
+% \newenvironment{corollary*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tcorollary*}{}}{\begin{tcorollary*}{#1}}}{\end{tcorollary*}}
 
-\newtcbtheorem[use counter from=ttheorem]{tproblem}{Problem}{
-    borderline west={1pt}{10pt}{teal!50!violet},
-    boxed title style={colframe=teal!50!violet},
-    label type=problem
-}{tprob}
+% \newtcbtheorem[use counter from=ttheorem]{tclaim}{Claim}{
+%     borderline west={1pt}{10pt}{blue!50!violet},
+%     boxed title style={colframe=blue!50!violet},
+%     label type=claim
+% }{tclaim}
 
-\newenvironment{problem}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproblem}{}{}}{\begin{tproblem}{#1}{}}}{\end{tproblem}}
-\newenvironment{problem*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproblem*}{}}{\begin{tproblem*}{#1}}}{\end{tproblem*}}
+% \newenvironment{claim}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tclaim}{}{}}{\begin{tclaim}{#1}{}}}{\end{tclaim}}
+% \newenvironment{claim*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tclaim*}{}}{\begin{tclaim*}{#1}}}{\end{tclaim*}}
 
-\newtcbtheorem[use counter from=ttheorem]{tnotation}{Notation}{
-    borderline west={1pt}{10pt}{gray},
-    boxed title style={colframe=gray},
-    label type=notation
-}{tnotation}
+% \newtcbtheorem[use counter from=ttheorem]{tdefinition}{Definition}{
+%     borderline west={1pt}{10pt}{violet},
+%     boxed title style={colframe=violet},
+%     label type=definition
+% }{tdef}
 
-\newenvironment{notation}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tnotation}{}{}}{\begin{tnotation}{#1}{}}}{\end{tnotation}}
-\newenvironment{notation*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tnotation*}{}}{\begin{tnotation*}{#1}}}{\end{tnotation*}}
+% \newenvironment{definition}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tdefinition}{}{}}{\begin{tdefinition}{#1}{}}}{\end{tdefinition}}
+% \newenvironment{definition*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tdefinition*}{}}{\begin{tdefinition*}{#1}}}{\end{tdefinition*}}
 
-\newtcbtheorem[use counter from=ttheorem]{tcode}{Code Snippet}{
-    borderline west={1pt}{10pt}{gray!75!teal},
-    boxed title style={colframe=gray!75!teal},
-    label type=code
-}{tcode}
+% \newtcbtheorem[use counter from=ttheorem]{tproposition}{Proposition}{
+%     borderline west={1pt}{10pt}{teal},
+%     boxed title style={colframe=teal},
+%     label type=proposition
+% }{tprop}
 
-\newenvironment{code}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tcode}{}{}}{\begin{tcode}{#1}{}}}{\end{tcode}}
+% \newenvironment{proposition}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproposition}{}{}}{\begin{tproposition}{#1}{}}}{\end{tproposition}}
+% \newenvironment{proposition*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproposition*}{}}{\begin{tproposition*}{#1}}}{\end{tproposition*}}
 
-\newtcbtheorem[use counter from=ttheorem]{tconjecture}{Conjecture}{
-    borderline west={1pt}{10pt}{purple!50!violet},
-    boxed title style={colframe=purple!50!violet},
-    label type=conjecture
-}{tconj}
+% \newtcbtheorem[use counter from=ttheorem]{tproblem}{Problem}{
+%     borderline west={1pt}{10pt}{teal!50!violet},
+%     boxed title style={colframe=teal!50!violet},
+%     label type=problem
+% }{tprob}
 
-\newenvironment{conjecture}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tconjecture}{}{}}{\begin{tconjecture}{#1}{}}}{\end{tconjecture}}
-\newenvironment{conjecture*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tconjecture*}{}}{\begin{tconjecture*}{#1}}}{\end{tconjecture*}}
+% \newenvironment{problem}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproblem}{}{}}{\begin{tproblem}{#1}{}}}{\end{tproblem}}
+% \newenvironment{problem*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tproblem*}{}}{\begin{tproblem*}{#1}}}{\end{tproblem*}}
 
-\newtcbtheorem[use counter from=ttheorem]{texample}{Example}{
-    borderline west={1pt}{10pt}{purple},
-    boxed title style={colframe=purple},
-    label type=example
-}{tex}
+% \newtcbtheorem[use counter from=ttheorem]{tnotation}{Notation}{
+%     borderline west={1pt}{10pt}{gray},
+%     boxed title style={colframe=gray},
+%     label type=notation
+% }{tnotation}
 
-\newenvironment{example}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texample}{}{}}{\begin{texample}{#1}{}}}{\end{texample}}
-\newenvironment{example*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texample*}{}}{\begin{texample*}{#1}}}{\end{texample*}}
+% \newenvironment{notation}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tnotation}{}{}}{\begin{tnotation}{#1}{}}}{\end{tnotation}}
+% \newenvironment{notation*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tnotation*}{}}{\begin{tnotation*}{#1}}}{\end{tnotation*}}
 
-\newtcbtheorem[use counter from=ttheorem]{texercise}{Exercise}{
-    borderline west={1pt}{10pt}{brown},
-    boxed title style={colframe=brown},
-    label type=exercise
-}{texer}
+% \newtcbtheorem[use counter from=ttheorem]{tcode}{Code Snippet}{
+%     borderline west={1pt}{10pt}{gray!75!teal},
+%     boxed title style={colframe=gray!75!teal},
+%     label type=code
+% }{tcode}
 
-\newenvironment{exercise}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texercise}{}{}}{\begin{texercise}{#1}{}}}{\end{texercise}}
-\newenvironment{exercise*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texercise*}{}}{\begin{texercise*}{#1}}}{\end{texercise*}}
+% \newenvironment{code}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tcode}{}{}}{\begin{tcode}{#1}{}}}{\end{tcode}}
 
-\newtcbtheorem[use counter from=ttheorem]{tfact}{Fact}{
-    borderline west={1pt}{10pt}{brown!50!orange},
-    boxed title style={colframe=brown!50!orange},
-    label type=fact
-}{tfact}
+% \newtcbtheorem[use counter from=ttheorem]{tconjecture}{Conjecture}{
+%     borderline west={1pt}{10pt}{purple!50!violet},
+%     boxed title style={colframe=purple!50!violet},
+%     label type=conjecture
+% }{tconj}
 
-\newenvironment{fact}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tfact}{}{}}{\begin{tfact}{#1}{}}}{\end{tfact}}
-\newenvironment{fact*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tfact*}{}}{\begin{tfact*}{#1}}}{\end{tfact*}}
+% \newenvironment{conjecture}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tconjecture}{}{}}{\begin{tconjecture}{#1}{}}}{\end{tconjecture}}
+% \newenvironment{conjecture*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tconjecture*}{}}{\begin{tconjecture*}{#1}}}{\end{tconjecture*}}
 
-\newtcbtheorem[use counter from=ttheorem]{tremark}{Remark}{
-    borderline west={1pt}{10pt}{orange},
-    boxed title style={colframe=orange},
-    label type=remark
-}{trmk}
+% \newtcbtheorem[use counter from=ttheorem]{texample}{Example}{
+%     borderline west={1pt}{10pt}{purple},
+%     boxed title style={colframe=purple},
+%     label type=example
+% }{tex}
 
-\newenvironment{remark}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tremark}{}{}}{\begin{tremark}{#1}{}}}{\end{tremark}}
-\newenvironment{remark*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tremark*}{}}{\begin{tremark*}{#1}}}{\end{tremark*}}
+% \newenvironment{example}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texample}{}{}}{\begin{texample}{#1}{}}}{\end{texample}}
+% \newenvironment{example*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texample*}{}}{\begin{texample*}{#1}}}{\end{texample*}}
 
-\newtcbtheorem[use counter from=ttheorem]{tquestion}{Question}{
-    borderline west={1pt}{10pt}{orange!50!yellow},
-    boxed title style={colframe=orange!50!yellow},
-    label type=question
-}{tques}
+% \newtcbtheorem[use counter from=ttheorem]{texercise}{Exercise}{
+%     borderline west={1pt}{10pt}{brown},
+%     boxed title style={colframe=brown},
+%     label type=exercise
+% }{texer}
 
-\newenvironment{question}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tquestion}{}{}}{\begin{tquestion}{#1}{}}}{\end{tquestion}}
-\newenvironment{question*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tquestion*}{}}{\begin{tquestion*}{#1}}}{\end{tquestion*}}
+% \newenvironment{exercise}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texercise}{}{}}{\begin{texercise}{#1}{}}}{\end{texercise}}
+% \newenvironment{exercise*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{texercise*}{}}{\begin{texercise*}{#1}}}{\end{texercise*}}
+
+% \newtcbtheorem[use counter from=ttheorem]{tfact}{Fact}{
+%     borderline west={1pt}{10pt}{brown!50!orange},
+%     boxed title style={colframe=brown!50!orange},
+%     label type=fact
+% }{tfact}
+
+% \newenvironment{fact}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tfact}{}{}}{\begin{tfact}{#1}{}}}{\end{tfact}}
+% \newenvironment{fact*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tfact*}{}}{\begin{tfact*}{#1}}}{\end{tfact*}}
+
+% \newtcbtheorem[use counter from=ttheorem]{tremark}{Remark}{
+%     borderline west={1pt}{10pt}{orange},
+%     boxed title style={colframe=orange},
+%     label type=remark
+% }{trmk}
+
+% \newenvironment{remark}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tremark}{}{}}{\begin{tremark}{#1}{}}}{\end{tremark}}
+% \newenvironment{remark*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tremark*}{}}{\begin{tremark*}{#1}}}{\end{tremark*}}
+
+% \newtcbtheorem[use counter from=ttheorem]{tquestion}{Question}{
+%     borderline west={1pt}{10pt}{orange!50!yellow},
+%     boxed title style={colframe=orange!50!yellow},
+%     label type=question
+% }{tques}
+
+% \newenvironment{question}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tquestion}{}{}}{\begin{tquestion}{#1}{}}}{\end{tquestion}}
+% \newenvironment{question*}[1][]{\IfNoValueOrEmptyTF{#1}{\begin{tquestion*}{}}{\begin{tquestion*}{#1}}}{\end{tquestion*}}
