@@ -1,0 +1,93 @@
+\ProvidesPackage{druv-thm}
+
+%%%%% ASSUMPTION: NOT USING BEAMER
+
+%%%%% PACKAGE ARGUMENTS
+%%% TOGGLES
+\newtoggle{druvlargedoc} \togglefalse{druvlargedoc}
+%%% OPTIONS
+\DeclareOption{largedoc}{\toggletrue{druvlargedoc}}
+\ProcessOptions
+
+\RequirePackage[framed, hyperref, thmmarks]{ntheorem} % http://mirrors.ctan.org/macros/latex/contrib/ntheorem/ntheorem.pdf
+
+%%%%% THEOREM STYLE ENVIRONMENTS
+%%% STYLE
+\theoremstyle{break}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\slshape}
+\theoremseparator{.}
+\theoreminframepreskip{-2em}
+\theoreminframepostskip{0em}
+%%% THEOREMS
+\newframedtheorem{theorem}{Theorem}[section]
+\newframedtheorem{lemma}[theorem]{Lemma}
+\newframedtheorem{corollary}[theorem]{Corollary}
+\newframedtheorem{proposition}[theorem]{Proposition}
+\newframedtheorem{conjecture}[theorem]{Conjecture}
+\newframedtheorem{criterion}[theorem]{Criterion}
+\newframedtheorem{assertion}[theorem]{Assertion}
+
+%%%%% DEFINITION STYLE ENVIRONMENTS
+%%% STYLE
+\theoremstyle{plain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremprework{\bigskip\hrule}
+\theorempostwork{\hrule\bigskip}
+%%% ENVIRONMENTS
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+%%%%%% REMARK STYLE ENVIRONMENTS
+%%% STYLE
+\theoremstyle{plain}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+%%% ENVIRONMENTS
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{conclusion}[theorem]{Conclusion}
+
+%%%%% PSET STYLE ENVIRONMENTS
+%%% STYLE
+\theoremstyle{break}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+%%% ENVIRONMENTS
+\newtheorem{psetproblem}{Problem}
+\newtheorem{psettheorem}{Theorem}[psetproblem]
+\newtheorem{psetlemma}[psettheorem]{Lemma}
+\newtheorem{psetclaim}[psettheorem]{Claim}
+\newtheorem{psetcase}{Case}[psetproblem]
+
+%%%%% PROOF ENVIRONMENTS
+%%% STYLE
+\theoremheaderfont{\itshape}\theorembodyfont{\upshape}
+\theoremstyle{nonumberplain}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath{_\Box}}
+%%% ENViRONMENTS
+\newtheorem{proof}{Proof}
+\newtheorem{solution}{Solution}
+
+%%%%% EQUATION NUMBERING
+%%% TO GET EQUATION NUMBERING TO MATCH STYLE OF THEOREM
+\numberwithin{equation}{section}
