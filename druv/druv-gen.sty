@@ -14,10 +14,12 @@
 
 %%%%% AMS CORE PACKAGES
 \RequirePackage{amsmath} % https://ctan.org/pkg/amsmath?lang=en
-\RequirePackage{amssymb} % https://ctan.org/pkg/amsfonts?lang=en
+% \RequirePackage{amssymb} % https://ctan.org/pkg/amsfonts?lang=en
 
 %%%%% FONT PACKAGES
-\RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
+% \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
+\RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
+\RequirePackage[mtpbb]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
 \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
 
 %%%%% PGF/TIKZ
@@ -25,8 +27,8 @@
   \RequirePackage{tikz} % https://www.overleaf.com/learn/latex/TikZ_package
   \RequirePackage{pgf}
   \RequirePackage{pgfplots} % https://www.overleaf.com/learn/latex/Pgfplots_package
-
   \RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
+  \RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
 }{}
 
 %%%%% BIBLIOGRAPHY
@@ -48,6 +50,9 @@
   \RequirePackage[shortlabels]{enumitem} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/enumitem/enumitem.pdf
 }
 
+%%%%% SCIENCE
+\RequirePackage{siunitx}
+
 %%%%% MULTIPLE FILES 
 \iftoggle{druv-gen-beamer}{}{
   \RequirePackage{subfiles} % https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects
@@ -58,10 +63,24 @@
   \RequirePackage[colorlinks=true]{hyperref} % https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
   \hypersetup{urlcolor = purple, linkcolor = blue, citecolor = violet}
 }
-\RequirePackage{cleveref} % http://tug.ctan.org/tex-archive/macros/latex/contrib/cleveref/cleveref.pdf
+
+%%%%% PAGE BREAK
+\iftoggle{druv-gen-beamer}{}{
+  \allowdisplaybreaks
+}
 
 
 %%%%%%%%% MACROS
+%%%%% OPERATOR CONSTRUCTS
+\NewDocumentCommand{\operatornamemathbb}{m}{\operatorname{\ensuremath{\mathbb{#1}}}}
+\NewDocumentCommand{\operatornamemathbf}{m}{\operatorname{\ensuremath{\mathbf{#1}}}}
+\NewDocumentCommand{\operatornamemathcal}{m}{\operatorname{\ensuremath{\mathcal{#1}}}}
+\NewDocumentCommand{\operatornamemathsf}{m}{\operatorname{\ensuremath{\mathsf{#1}}}}
+
+
+%%%%% COLOR
+\NewDocumentCommand{\ans}{m}{{\color{blue} #1}}
+
 %%%%% DELIMITERS
 \RequirePackage{mleftright} % https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right/
 %%% FULLY SPACED DELIMITERS
@@ -75,30 +94,6 @@
 \NewDocumentCommand{\rc}{m}{\mleft\{#1\mright\}}
 \NewDocumentCommand{\ra}{m}{\mleft\langle#1\mright\rangle}
 
-%%%%% OPERATOR FRAMEWORK
-\NewDocumentCommand{\opp}{smO{}O{}m}{
-  \IfBooleanTF{#1}{ % if used with *, like \operator*{x}
-    \operatorname*{#2}_{#3}^{#4}\rp{#5}
-  }{
-    \operatorname{#2}_{#3}^{#4}\rp{#5}
-  }
-}
-
-\NewDocumentCommand{\ops}{smO{}O{}m}{
-  \IfBooleanTF{#1}{ % if used with *, like \operator*{x}
-    \operatorname*{#2}_{#3}^{#4}\rs{#5}
-  }{
-    \operatorname{#2}_{#3}^{#4}\rs{#5}
-  }
-}
-
-\NewDocumentCommand{\opc}{smO{}O{}m}{
-  \IfBooleanTF{#1}{ % if used with *, like \operator*{x}
-    \operatorname*{#2}_{#3}^{#4}\rc{#5}
-  }{
-    \operatorname{#2}_{#3}^{#5}\rc{#5}
-  }
-}
 
 %%%%% FONT SHORTHANDS
 \NewDocumentCommand{\bA}{}{\mathbb{A}}
@@ -234,10 +229,10 @@
 
 %%%%% COMMON TEXT SHORTHANDS
 \NewDocumentCommand{\vocab}{m}{\textbf{#1}}
-\NewDocumentCommand{\st}{}{^{\text{st}}}
-\NewDocumentCommand{\nd}{}{^{\text{nd}}}
-\NewDocumentCommand{\rd}{}{^{\text{rd}}}
-\RenewDocumentCommand{\th}{}{^{\text{th}}}
+\NewDocumentCommand{\st}{}{^{\textnormal{st}}}
+\NewDocumentCommand{\nd}{}{^{\textnormal{nd}}}
+\NewDocumentCommand{\rd}{}{^{\textnormal{rd}}}
+\RenewDocumentCommand{\th}{}{^{\textnormal{th}}}
 
 %%%%% COMMON MATH MODE SHORTHANDS
 \RequirePackage{centernot} % http://mirrors.ctan.org/macros/latex/contrib/oberdiek/centernot.pdf
@@ -247,126 +242,96 @@
 \NewDocumentCommand{\wh}{m}{\widehat{#1}}
 \NewDocumentCommand{\ob}{mm}{\overbrace{#1}^{#2}}
 \NewDocumentCommand{\ub}{mm}{\underbrace{#1}_{#2}}
-%%% SIGNS WITH UNDER/OVERSET
-\NewDocumentCommand{\signlimit}{O{}O{}}{\overset{#2}{\underset{#1}{\longrightarrow}}}
-\NewDocumentCommand{\signeq}{O{}O{}}{\overset{#2}{\underset{#1}{=}}}
-\NewDocumentCommand{\signequiv}{O{}O{}}{\overset{#2}{\underset{#1}{\equiv}}}
-\NewDocumentCommand{\signsim}{O{}O{}}{\overset{#2}{\underset{#1}{\sim}}}
-% DEF
-\NewDocumentCommand{\defeq}{}{\signeq[][\mathrm{def}]}
-\NewDocumentCommand{\defequiv}{}{\signequiv[][\mathrm{def}]}
-\NewDocumentCommand{\defsim}{}{\signsim[][\mathrm{def}]}
-% SET
-\NewDocumentCommand{\seteq}{}{\signeq[][\mathrm{set}]}
-\NewDocumentCommand{\setequiv}{}{\signequiv[][\mathrm{set}]}
-\NewDocumentCommand{\setsim}{}{\signsim[][\mathrm{set}]}
 
 %%%%% COMMON EQUATION SHORTHANDS
 \NewDocumentCommand{\casework}{m}{\begin{cases}#1\end{cases}}
 \NewDocumentCommand{\numberthis}{}{\addtocounter{equation}{1}\tag{\theequation}} % used when we have unnumbered equation*/align* and want to give a number to a particular line.
-\NewDocumentCommand{\qq}{m}{\quad\text{#1}\quad}
+\NewDocumentCommand{\qq}{m}{\quad\textnormal{#1}\quad}
 \NewDocumentCommand{\qm}{m}{\quad\ensuremath{#1}\quad}
 \NewDocumentCommand{\qc}{}{, \quad}
-\NewDocumentCommand{\qqq}{m}{\qquad\text{#1}\qquad}
+\NewDocumentCommand{\qqq}{m}{\qquad\textnormal{#1}\qquad}
 \NewDocumentCommand{\qqm}{m}{\qquad\ensuremath{#1}\qquad}
 \NewDocumentCommand{\qqc}{}{, \qquad}
 
 %%%%% TRIGONOMETRY
-\RenewDocumentCommand{\sin}{m}{\opp{sin}{#1}}
-\RenewDocumentCommand{\cos}{m}{\opp{cos}{#1}}
-\RenewDocumentCommand{\tan}{m}{\opp{tan}{#1}}
-\RenewDocumentCommand{\csc}{m}{\opp{csc}{#1}}
-\RenewDocumentCommand{\sec}{m}{\opp{sec}{#1}}
-\RenewDocumentCommand{\cot}{m}{\opp{cot}{#1}}
-\RenewDocumentCommand{\sinh}{m}{\opp{sinh}{#1}}
-\RenewDocumentCommand{\cosh}{m}{\opp{cosh}{#1}}
-\RenewDocumentCommand{\tanh}{m}{\opp{tanh}{#1}}
-\NewDocumentCommand{\csch}{m}{\opp{csch}{#1}}
-\NewDocumentCommand{\sech}{m}{\opp{sech}{#1}}
-\RenewDocumentCommand{\coth}{m}{\opp{coth}{#1}}
-\RenewDocumentCommand{\arcsin}{m}{\opp{sin}[][-1]{#1}}
-\RenewDocumentCommand{\arccos}{m}{\opp{cos}[][-1]{#1}}
-\RenewDocumentCommand{\arctan}{m}{\opp{tan}[][-1]{#1}}
-\NewDocumentCommand{\arccsc}{m}{\opp{csc}[][-1]{#1}}
-\NewDocumentCommand{\arcsec}{m}{\opp{sec}[][-1]{#1}}
-\NewDocumentCommand{\arccot}{m}{\opp{cot}[][-1]{#1}}
-\NewDocumentCommand{\arcsinh}{m}{\opp{sinh}[][-1]{#1}}
-\NewDocumentCommand{\arccosh}{m}{\opp{cosh}[][-1]{#1}}
-\NewDocumentCommand{\arctanh}{m}{\opp{tanh}[][-1]{#1}}
-\NewDocumentCommand{\arccsch}{m}{\opp{csch}[][-1]{#1}}
-\NewDocumentCommand{\arcsech}{m}{\opp{sech}[][-1]{#1}}
-\NewDocumentCommand{\arccoth}{m}{\opp{coth}[][-1]{#1}}
+\RenewDocumentCommand{\sin}{m}{\operatorname{sin}\rp{#1}}
+\RenewDocumentCommand{\cos}{m}{\operatorname{cos}\rp{#1}}
+\RenewDocumentCommand{\tan}{m}{\operatorname{tan}\rp{#1}}
+\RenewDocumentCommand{\csc}{m}{\operatorname{csc}\rp{#1}}
+\RenewDocumentCommand{\sec}{m}{\operatorname{sec}\rp{#1}}
+\RenewDocumentCommand{\cot}{m}{\operatorname{cot}\rp{#1}}
+\RenewDocumentCommand{\sinh}{m}{\operatorname{sinh}\rp{#1}}
+\RenewDocumentCommand{\cosh}{m}{\operatorname{cosh}\rp{#1}}
+\RenewDocumentCommand{\tanh}{m}{\operatorname{tanh}\rp{#1}}
+\NewDocumentCommand{\csch}{m}{\operatorname{csch}\rp{#1}}
+\NewDocumentCommand{\sech}{m}{\operatorname{sech}\rp{#1}}
+\RenewDocumentCommand{\coth}{m}{\operatorname{coth}\rp{#1}}
+\RenewDocumentCommand{\arcsin}{m}{\operatorname{sin}^{-1}\rp{#1}}
+\RenewDocumentCommand{\arccos}{m}{\operatorname{cos}^{-1}\rp{#1}}
+\RenewDocumentCommand{\arctan}{m}{\operatorname{tan}^{-1}\rp{#1}}
+\NewDocumentCommand{\arccsc}{m}{\operatorname{csc}^{-1}\rp{#1}}
+\NewDocumentCommand{\arcsec}{m}{\operatorname{sec}^{-1}\rp{#1}}
+\NewDocumentCommand{\arccot}{m}{\operatorname{cot}^{-1}\rp{#1}}
+\NewDocumentCommand{\arcsinh}{m}{\operatorname{sinh}^{-1}\rp{#1}}
+\NewDocumentCommand{\arccosh}{m}{\operatorname{cosh}^{-1}\rp{#1}}
+\NewDocumentCommand{\arctanh}{m}{\operatorname{tanh}^{-1}{\rp#1}}
+\NewDocumentCommand{\arccsch}{m}{\operatorname{csch}^{-1}\rp{#1}}
+\NewDocumentCommand{\arcsech}{m}{\operatorname{sech}^{-1}\rp{#1}}
+\NewDocumentCommand{\arccoth}{m}{\operatorname{coth}^{-1}\rp{#1}}
 
 %%%%% REAL ANALYSIS
+%%% REAL ANALYSIS CONSTRUCTS
 \RequirePackage{derivative} % http://mirrors.ctan.org/macros/latex/contrib/derivative/derivative.pdf
 \RequirePackage{esint} % https://ctan.math.illinois.edu/macros/latex/contrib/esint/esint-doc.pdf
 \RequirePackage{interval} % https://ctan.math.illinois.edu/macros/latex/contrib/interval/interval.pdf
 \intervalconfig{soft open fences} % for open intervals, use () instead of ][
 \xpatchcmd{\interval}{interval,}{interval,scaled,}{}{} % auto-scales intervals
 \NewDocumentCommand{\eps}{}{\varepsilon}
+\NewDocumentCommand{\vphi}{}{\varphi}
 \NewDocumentCommand{\abs}{m}{\left|#1\right|}
 \NewDocumentCommand{\norm}{m}{\left\Vert#1\right\Vert}
 \NewDocumentCommand{\ip}{mm}{\ba{#1, #2}}
-\NewDocumentCommand{\ipip}{m}{\ba{#1, #1}} % Repeats the first argument in e.g. Hilbert spaces as a replacement for norm.
-\NewDocumentCommand{\eval}{m}{\left.#1\right|}
-\NewDocumentCommand{\dist}{O{}m}{\opp{dist}[#1]{#2}}
-% ALMOST EVERYWHERE
-\RenewDocumentCommand{\ae}{O{}}{
-  \IfEq{#1}{}{
-    \mathrm{a.e.}
-  }{
-    #1\mathrm{-a.e.}
-  }
-}
-\NewDocumentCommand{\aelimit}{O{}O{}}{\signlimit[#1][\ae[#2]]}
-\NewDocumentCommand{\aelim}{O{}O{}}{\lim_{#1}^{\ae[#2]}} % in case we want to use traditional limit notation
-\NewDocumentCommand{\aeeq}{O{}}{\signeq[][\ae[#1]]}
-\NewDocumentCommand{\aeequiv}{O{}}{\signequiv[][\ae[#1]]}
-\NewDocumentCommand{\aesim}{O{}}{\signsim[][\ae[#1]]}
-% ``IN MEASURE''
-\NewDocumentCommand{\measure}{}{\mathrm{meas.}}
-\NewDocumentCommand{\measurelimit}{O{}O{\measure}}{\signlimit[#1][#2]}
-\NewDocumentCommand{\measurelim}{O{}O{\measure}}{\lim_{#1}^{#2}}
-\NewDocumentCommand{\measureeq}{O{\measure}}{\signeq[][#1]}
-\NewDocumentCommand{\measureequiv}{O{\measure}}{\signequiv[][#1]}
-\NewDocumentCommand{\measuresim}{O{\measure}}{\signsim[][#1]}
-% ``IN DISTRIBUTION''
-\NewDocumentCommand{\distribution}{}{\mathrm{dist.}}
-\NewDocumentCommand{\dlimit}{O{}}{\signlimit[#1][\distribution]}
-\NewDocumentCommand{\dlim}{O{}}{\lim_{#1}^{\distribution}}
-\NewDocumentCommand{\deq}{}{\signeq[][\distribution]}
-\NewDocumentCommand{\dequiv}{}{\signequiv[][\distribution]}
-\NewDocumentCommand{\dsim}{}{\signsim[][\distribution]}
-% WEAK
-\NewDocumentCommand{\weak}{}{\mathrm{weak}}
-\NewDocumentCommand{\wlimit}{O{}}{\signlimit[#1][\weak]}
-\NewDocumentCommand{\wlim}{O{}}{\lim_{#1}^{\weak}}
-\NewDocumentCommand{\weq}{}{\signeq[][\weak]}
-\NewDocumentCommand{\wequiv}{}{\signequiv[][\weak]}
-\NewDocumentCommand{\wsim}{}{\signsim[][\weak]}
+\NewDocumentCommand{\ipip}{m}{\ip{#1}{#1}} % Repeats the first argument in e.g. Hilbert spaces as a replacement for norm.
+\NewDocumentCommand{\eval}{m}{\bs{#1}}
+\newcommand\restr[2]{{\left.#1\right|_{#2}}} 
+% https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
+
+\NewDocumentCommand{\dist}{O{}O{}m}{\operatorname{dist}_{#1}^{#2}\rp{#3}}
+\DeclareMathOperator*{\esssup}{ess\ sup}
+\DeclareMathOperator*{\essinf}{ess\ inf}
+\NewDocumentCommand{\TV}{}{\mathrm{TV}}
+%%% REAAL ANALYSIS SPACES
+\NewDocumentCommand{\BV}{O{}m}{\operatornamemathsf{BV}_{#1}\rp{#2}}  % Bounded variation
+\NewDocumentCommand{\BMO}{O{}m}{\operatornamemathsf{BMO}_{#1}\rp{#2}}  % Bounded mean oscillation
+\NewDocumentCommand{\ISF}{O{}m}{\operatornamemathsf{ISF}_{#1}\rp{#2}}  % Integrable simple functions
+\RenewDocumentCommand{\L}{}{\operatornamemathsf{L}}  % p-Integrable functions
+\NewDocumentCommand{\C}{}{\operatornamemathsf{C}}  % Continuously differentiable functions
+\NewDocumentCommand{\W}{}{\operatornamemathsf{W}}  % Sobolev spaces
+\NewDocumentCommand{\loc}{}{\mathrm{loc}}  % Local
 
 %%%%% COMPLEX ANALYSIS
 \NewDocumentCommand{\e}{}{\mathrm{e}}
 \RenewDocumentCommand{\i}{}{\mathrm{i}}
-\RenewDocumentCommand{\Re}{m}{\opp{Re}{#1}}
-\RenewDocumentCommand{\Im}{m}{\opp{Im}{#1}}
-\RenewDocumentCommand{\exp}{m}{\opp{exp}{#1}}
-\RenewDocumentCommand{\log}{O{}m}{\opp{log}[#1]{#2}}
-\NewDocumentCommand{\res}{O{}m}{\opp{Res}[#1]{#2}}
+\RenewDocumentCommand{\Re}{m}{\operatorname{Re}\rp{#1}}
+\RenewDocumentCommand{\Im}{m}{\operatorname{Im}\rp{#1}}
+\RenewDocumentCommand{\exp}{m}{\operatorname{exp}\rp{#1}}
+\RenewDocumentCommand{\log}{O{}m}{\operatorname{log}_{#1}\rp{#2}}
+\NewDocumentCommand{\res}{O{}m}{\operatorname{Res}_{#1}\rp{#2}}
 
 %%%%% DISCRETE MATH, COMBINATORICS, AND ALGORITHMS
 %%% DISCRETE MATH
-\DeclareMathOperator*{\argmin}{arg min}
-\DeclareMathOperator*{\argmax}{arg max}
+\DeclareMathOperator*{\argmin}{arg\ min}
+\DeclareMathOperator*{\argmax}{arg\ max}
 \NewDocumentCommand{\floor}{m}{\left\lfloor#1\right\rfloor}
 \NewDocumentCommand{\ceiling}{m}{\left\lceil#1\right\rceil}
-\RenewDocumentCommand{\gcd}{m}{\opp{gcd}{#1}}
-\NewDocumentCommand{\lcm}{m}{\opp{lcm}{#1}}
+\RenewDocumentCommand{\gcd}{m}{\operatorname{gcd}\rp{#1}}
+\NewDocumentCommand{\lcm}{m}{\operatorname{lcm}\rp{#1}}
 %%% COMBINATORICS
-\RenewDocumentCommand{\deg}{O{}m}{\opp{deg}[#1]{#2}}
-\NewDocumentCommand{\area}{O{}m}{\opp{area}[#1]{#2}}
-\NewDocumentCommand{\volume}{O{}m}{\opp{volume}[#1]{#2}}
-\NewDocumentCommand{\sign}{m}{\opp{sign}{#1}}
+\RenewDocumentCommand{\deg}{O{}m}{\operatorname{deg}_{#1}\rp{#2}}
+\NewDocumentCommand{\diam}{O{}m}{\operatorname{diam}_{#1}\rp{#2}}
+\NewDocumentCommand{\area}{O{}m}{\operatorname{area}_{#1}\rp{#2}}
+\NewDocumentCommand{\volume}{O{}m}{\operatorname{volume}_{#1}\rp{#2}}
+\NewDocumentCommand{\sign}{m}{\operatorname{sign}\rp{#1}}
 %%% PROGRAMMING
 \RequirePackage{minted} % https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
 %%% ALGORITHMS
@@ -380,109 +345,93 @@
 \NewDocumentCommand{\tm}{}{\textsf{TM}}
 
 %%%%% ABSTRACT ALGEBRA
-\NewDocumentCommand{\ord}{m}{\opp{ord}{#1}}
-\NewDocumentCommand{\Hom}{m}{\opp{Hom}{#1}}
-\NewDocumentCommand{\Endo}{m}{\opp{End}{#1}}
-\NewDocumentCommand{\Gal}{m}{\opp{Gal}{#1}}
-\NewDocumentCommand{\Spec}{m}{\opp{Spec}{#1}}
+\NewDocumentCommand{\ord}{m}{\operatorname{ord}\rp{#1}}
+\NewDocumentCommand{\Hom}{m}{\operatornamemathsf{Hom}\rp{#1}}
+\NewDocumentCommand{\Endo}{m}{\operatornamemathsf{End}\rp{#1}}
+\NewDocumentCommand{\Gal}{m}{\operatornamemathsf{Gal}\rp{#1}}
+\NewDocumentCommand{\Spec}{m}{\operatornamemathsf{Spec}\rp{#1}}
 
 %%%%% LINEAR ALGEBRA
 \RequirePackage{bm} % http://mirrors.ctan.org/macros/latex/required/tools/bm.pdf
 %%% COMPUTATIONAL LINEAR ALGEBRA
 \NewDocumentCommand{\mat}{m}{\begin{bmatrix}#1\end{bmatrix}}
-\NewDocumentCommand{\tr}{m}{\opp{tr}{#1}}
-\RenewDocumentCommand{\det}{m}{\opp{det}{#1}}
-\NewDocumentCommand{\proj}{mm}{\opp*{proj}[#2]{#1}}
-\NewDocumentCommand{\diag}{m}{\opp{diag}{#1}}
-\NewDocumentCommand{\Col}{m}{\opp{Col}{#1}}
-\NewDocumentCommand{\Null}{m}{\opp{Null}{#1}}
+\NewDocumentCommand{\tr}{m}{\operatorname{tr}\rp{#1}}
+\RenewDocumentCommand{\det}{m}{\operatorname{det}\rp{#1}}
+\NewDocumentCommand{\proj}{O{}O{}m}{\operatorname*{proj}_{#1}^{#2}{#3}}
+\NewDocumentCommand{\diag}{m}{\operatorname{diag}\rp{#1}}
+\NewDocumentCommand{\logdet}{m}{\operatorname{log\ det}\rp{#1}}
+\NewDocumentCommand{\Col}{m}{\operatornamemathsf{Col}\rp{#1}}
+\NewDocumentCommand{\Row}{m}{\operatornamemathsf{Row}\rp{#1}}
+\NewDocumentCommand{\Null}{m}{\operatornamemathsf{Null}\rp{#1}}
 %%% ABSTRACT LINEAR ALGEBRA
-\NewDocumentCommand{\Ker}{m}{\opp{Ker}{#1}}
-\RenewDocumentCommand{\Im}{m}{\opp{Im}{#1}}
-\NewDocumentCommand{\Span}{m}{\opp{Span}{#1}}
-\RenewDocumentCommand{\dim}{m}{\opp{dim}{#1}}
-\NewDocumentCommand{\codim}{m}{\opp{codim}{#1}}
-\NewDocumentCommand{\rank}{m}{\opp{rank}{#1}}
+\NewDocumentCommand{\Ker}{m}{\operatornamemathsf{Ker}\rp{#1}}
+\RenewDocumentCommand{\Im}{m}{\operatornamemathsf{Im}\rp{#1}}
+\NewDocumentCommand{\Span}{m}{\operatornamemathsf{Span}\rp{#1}}
+\NewDocumentCommand{\Supp}{m}{\operatornamemathsf{Supp}\rp{#1}}
+\RenewDocumentCommand{\dim}{m}{\operatorname{dim}{\rp#1}}
+\NewDocumentCommand{\codim}{m}{\operatorname{codim}\rp{#1}}
+\NewDocumentCommand{\rank}{m}{\operatorname{rank}\rp{#1}}
 %%% LINEAR ALGEBRAIC SPACES
-\NewDocumentCommand{\GL}{m}{\opp{GL}{#1}}
-\NewDocumentCommand{\SL}{m}{\opp{SL}{#1}}
-\RenewDocumentCommand{\O}{m}{\opp{O}{#1}}
-\NewDocumentCommand{\SO}{m}{\opp{SO}{#1}}
-\NewDocumentCommand{\U}{m}{\opp{U}{#1}}
-\NewDocumentCommand{\SU}{m}{\opp{SU}{#1}}
-\NewDocumentCommand{\Sym}{m}{\opp{Sym}{#1}}
-\NewDocumentCommand{\Herm}{m}{\opp{Herm}{#1}}
-\NewDocumentCommand{\PSD}{m}{\opp{PSD}{#1}}
-\NewDocumentCommand{\PD}{m}{\opp{PD}{#1}}
+\NewDocumentCommand{\GL}{m}{\operatornamemathsf{GL}\rp{#1}}
+\NewDocumentCommand{\SL}{m}{\operatornamemathsf{SL}\rp{#1}}
+\RenewDocumentCommand{\O}{m}{\operatornamemathsf{O}\rp{#1}}
+\NewDocumentCommand{\SO}{m}{\operatornamemathsf{SO}\rp{#1}}
+\NewDocumentCommand{\U}{m}{\operatornamemathsf{U}\rp{#1}}
+\NewDocumentCommand{\SU}{m}{\operatornamemathsf{SU}\rp{#1}}
+\NewDocumentCommand{\Sym}{m}{\operatornamemathsf{Sym}\rp{#1}}
+\NewDocumentCommand{\Herm}{m}{\operatornamemathsf{Herm}\rp{#1}}
+\NewDocumentCommand{\PSD}{m}{\operatornamemathsf{PSD}\rp{#1}}
+\NewDocumentCommand{\PD}{m}{\operatornamemathsf{PD}\rp{#1}}
 
 %%%%% TOPOLOGY
+%%% TOPOLOGICAL CONSTRUCTS
 \NewDocumentCommand{\id}{}{\operatorname{id}}
-\NewDocumentCommand{\Cl}{O{}m}{\opp{Cl}[#1]{#2}}
-\NewDocumentCommand{\Int}{O{}m}{\opp{Int}[#1]{#2}}
-\NewDocumentCommand{\Ext}{O{}m}{\opp{Ext}[#1]{#2}}
-\NewDocumentCommand{\Bd}{O{}m}{\opp{Bd}[#1]{#2}}
+\NewDocumentCommand{\Cl}{O{}O{}m}{\operatornamemathsf{Cl}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Int}{O{}O{}m}{\operatornamemathsf{Int}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Ext}{O{}O{}m}{\operatornamemathsf{Ext}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Bd}{O{}O{}m}{\operatornamemathsf{Bd}_{#1}^{#2}\rp{#3}}
+%%% TOPOLOGICAL SPACES
+\NewDocumentCommand{\Ball}{}{\bB}
+\NewDocumentCommand{\Sphere}{}{\bS}
+\NewDocumentCommand{\Torus}{}{\bT}
+\NewDocumentCommand{\RP}{}{\bR\bP}
+\NewDocumentCommand{\CP}{}{\bC\bP}
 
 %%%%% PROBABILITY
 %%% BASIC QUANTITIES
-\NewDocumentCommand{\possiblyconditioned}{mO{}O{}mO{}} {
-  \IfEq{#5}{}{
-    \opp{#1}[#2][#3]{#4}
-  }{
-    \opp{#1}[#2][#3]{#4 \; \middle| \; #5}
-  }
-}
-\RenewDocumentCommand{\Pr}{O{}O{}mO{}}{\possiblyconditioned{\mathbf{P}}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\Ex}{O{}O{}mO{}}{\possiblyconditioned{\mathbf{E}}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\Cov}{O{}O{}mO{}}{\possiblyconditioned{Cov}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\Var}{O{}O{}mO{}}{\possiblyconditioned{Var}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\Corr}{O{}O{}mO{}}{\possiblyconditioned{Corr}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\indvar}{m}{1_{#1}}
+\NewDocumentCommand{\given}{}{\;\ifnumequal{\currentgrouptype}{16}{\middle|}{\mid}\;}
+% https://tex.stackexchange.com/questions/54052/applying-middle-outside-of-a-left-right-group
+\NewDocumentCommand{\suchthat}{}{\given}
+
+\RenewDocumentCommand{\Pr}{O{}O{}m}{\operatornamemathbf{P}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Ex}{O{}O{}m}{\operatornamemathbf{E}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Cov}{O{}O{}m}{\operatorname{Cov}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Var}{O{}O{}m}{\operatorname{Var}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Corr}{O{}O{}m}{\operatorname{Corr}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Lin}{O{}O{}m}{\operatornamemathbf{L}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\indvar}{O{}m}{\mathbf{1}_{#1}\rp{#2}}
 \NewDocumentCommand{\iid}{}{\mathrm{i.i.d.}}
 \NewDocumentCommand{\ind}{}{\perp \!\!\! \perp}
-\NewDocumentCommand{\simiid}{}{\signsim[][\iid]}
-\NewDocumentCommand{\simind}{}{\signsim[][\ind]}
-% ALMOST SURELY
-\NewDocumentCommand{\as}{O{}}{
-  \IfEq{#1}{}{
-    \mathrm{a.s.}
-  }{
-    #1\mathrm{-a.s.}
-  }
-}
-\NewDocumentCommand{\aslimit}{O{}O{}}{\signlimit[#1][\as[#2]]}
-\NewDocumentCommand{\aslim}{O{}O{}}{\lim_{#1}^{\as[#2]}}
-\NewDocumentCommand{\aseq}{O{}}{\signeq[][\as[#1]]}
-\NewDocumentCommand{\asequiv}{O{}}{\signequiv[][\as[#1]]}
-\NewDocumentCommand{\assim}{O{}}{\signsim[][\as[#1]]}
-% ``IN PROBABILITY''
-\NewDocumentCommand{\plimit}{O{}O{\mathrm{prob.}}}{\signlimit[#1][#2]}
-\NewDocumentCommand{\plim}{O{}O{\mathrm{prob.}}}{\lim_{#1}^{#2}}
-\NewDocumentCommand{\peq}{O{\mathrm{prob.}}}{\signeq[][#1]}
-\NewDocumentCommand{\pequiv}{O{\mathrm{prob.}}}{\signequiv[][#1]}
-\NewDocumentCommand{\psim}{O{\mathrm{prob.}}}{\signsim[][#1]}
 %%% PROBABILITY DISTRIBUTIONS
 % DISCRETE DISTRIBUTIONS
-\NewDocumentCommand{\dBern}{m}{\opp{Bernoulli}{#1}}
-\NewDocumentCommand{\dBin}{m}{\opp{B}{#1}}
-\NewDocumentCommand{\dGeo}{m}{\opp{Geo}{#1}}
-\NewDocumentCommand{\dUnif}{m}{\opp{\(\cU\)}{#1}}
-\NewDocumentCommand{\dPois}{m}{\opp{Pois}{#1}}
+\NewDocumentCommand{\dBern}{m}{\operatorname{Bernoulli}\rp{#1}}
+\NewDocumentCommand{\dRad}{m}{\operatorname{Rademacher}\rp{#1}}
+\NewDocumentCommand{\dBin}{m}{\operatorname{Bin}\rp{#1}}
+\NewDocumentCommand{\dGeo}{m}{\operatorname{Geo}\rp{#1}}
+\NewDocumentCommand{\dUnif}{m}{\operatornamemathcal{U}\rp{#1}}
+\NewDocumentCommand{\dPois}{m}{\operatorname{Pois}\rp{#1}}
 % CONTINUOUS DISTRIBUTIONS
-\NewDocumentCommand{\dNorm}{m}{\opp{\(\cN\)}{#1}}
-\NewDocumentCommand{\dExp}{m}{\opp{Exp}{#1}}
-\NewDocumentCommand{\dErl}{m}{\opp{Erlang}{#1}}
-\NewDocumentCommand{\dGamma}{m}{\opp{Gamma}{#1}}
-\NewDocumentCommand{\dBeta}{m}{\opp{Beta}{#1}}
+\NewDocumentCommand{\dNorm}{m}{\operatornamemathcal{N}\rp{#1}}
+\NewDocumentCommand{\dExp}{m}{\operatorname{Exp}\rp{#1}}
+\NewDocumentCommand{\dErl}{m}{\operatorname{Erlang}\rp{#1}}
+\NewDocumentCommand{\dGamma}{m}{\operatorname{Gamma}\rp{#1}}
+\NewDocumentCommand{\dBeta}{m}{\operatorname{Beta}\rp{#1}}
+\NewDocumentCommand{\dLaplace}{m}{\operatorname{Laplace}\rp{#1}}
 
-%%%%% STATISTICS
-\NewDocumentCommand{\RSS}{O{}O{}mO{}}{\possiblyconditioned{RSS}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\PRSS}{O{}O{}mO{}}{\possiblyconditioned{PRSS}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\EPE}{O{}O{}mO{}}{\possiblyconditioned{EPE}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\DF}{O{}O{}mO{}}{\possiblyconditioned{DF}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\MSE}{O{}O{}mO{}}{\possiblyconditioned{MSE}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\LLSE}{O{}O{}mO{}}{\possiblyconditioned{LLSE}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\MMSE}{O{}O{}mO{}}{\possiblyconditioned{MMSE}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\Bias}{O{}O{}mO{}}{\possiblyconditioned{Bias}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\MLE}{O{}O{}mO{}}{\possiblyconditioned{MLE}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\MAP}{O{}O{}mO{}}{\possiblyconditioned{MAP}[#1][#2]{#3}[#4]}
-\NewDocumentCommand{\softmax}{O{}m}{\opp{softmax}[#1]{#2}}
+%%%%% ANNOYING NAMES
+\NewDocumentCommand{\Holder}{}{H\"{o}lder}
+\NewDocumentCommand{\Levy}{}{L\'evy}
+\NewDocumentCommand{\Ito}{}{It\^{o}}
+\NewDocumentCommand{\Caratheodory}{}{Carath\'eodory}
+\NewDocumentCommand{\Erdos}{}{Erd\"{o}s}
+\NewDocumentCommand{\Renyi}{}{R\'enyi}

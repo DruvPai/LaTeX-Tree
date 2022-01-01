@@ -2,7 +2,7 @@
 \ProvidesClass{druv-pset}
 
 \RequirePackage{druv-hacks}
-\LoadClass[oneside]{scrreprt}
+\LoadClass{scrreprt}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
@@ -24,4 +24,12 @@
 %%% EXTRA SPECIFIC COMMANDS
 \renewcommand\theequation{\arabic{equation}}
 
+%%% DOCUMENT FORMATTING
+\KOMAoptions{
+  paper=letter,
+  usegeometry,
+}
+\RequirePackage{geometry}
+\geometry{margin=1.5cm}
+\pagenumbering{gobble}
 

@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{druv-beamer}
+\ProvidesClass{druv-paper}
 
 \RequirePackage{druv-hacks}
-\LoadClass[aspectratio=169]{beamer}
+\LoadClass{scrartcl}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
@@ -14,10 +14,21 @@
 %%% PASS OPTIONS
 \iftoggle{druvbib}{\PassOptionsToPackage{bib}{druv-gen}}{}
 \iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv-gen}}{}
-\PassOptionsToPackage{beamer}{druv-gen}
+
 
 %%% LOAD PACKAGES
 \RequirePackage{druv-gen}
+\RequirePackage{druv-thm}
 
-%%% THEME
-\usetheme[block=fill]{metropolis}
+%%% DOCUMENT FORMATTING
+\KOMAoptions{
+  paper=letter,
+  fontsize=10pt,
+  usegeometry,
+}
+\RequirePackage{geometry}
+\geometry{margin=1.5cm}
+\pagenumbering{gobble}
+
+\RequirePackage[extreme]{savetrees}
+

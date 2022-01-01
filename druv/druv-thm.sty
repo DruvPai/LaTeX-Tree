@@ -9,84 +9,129 @@
 \DeclareOption{largedoc}{\toggletrue{druvlargedoc}}
 \ProcessOptions
 
-\RequirePackage[framed, hyperref, thmmarks]{ntheorem} % http://mirrors.ctan.org/macros/latex/contrib/ntheorem/ntheorem.pdf
+\RequirePackage{amsthm} % http://www.ams.org/arc/tex/amscls/amsthdoc.pdf
+\RequirePackage{thmtools} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/thmtools/doc/thmtools-manual.pdf
 
-%%%%% THEOREM STYLE ENVIRONMENTS
-%%% STYLE
-\theoremstyle{break}
-\theoremheaderfont{\normalfont\bfseries}
-\theorembodyfont{\slshape}
-\theoremseparator{.}
-\theoreminframepreskip{-2em}
-\theoreminframepostskip{0em}
-%%% THEOREMS
-\newframedtheorem{theorem}{Theorem}[section]
-\newframedtheorem{lemma}[theorem]{Lemma}
-\newframedtheorem{corollary}[theorem]{Corollary}
-\newframedtheorem{proposition}[theorem]{Proposition}
-\newframedtheorem{conjecture}[theorem]{Conjecture}
-\newframedtheorem{criterion}[theorem]{Criterion}
-\newframedtheorem{assertion}[theorem]{Assertion}
+\RequirePackage[capitalize, nameinlink]{cleveref} % http://tug.ctan.org/tex-archive/macros/latex/contrib/cleveref/cleveref.pdf
+
+%%%%% THEOREM STYLES
+%%% THEOREM STYLE
+\declaretheoremstyle[
+  spaceabove=\baselineskip,
+  spacebelow=\baselineskip,
+  headfont=\normalfont\bfseries,
+  notefont=\normalfont\bfseries,
+  bodyfont=\normalfont\itshape,
+  headpunct={.\newline}
+]{theoremstyle}
+%%% DEFINITION STYLE
+\declaretheoremstyle[
+  spaceabove=\baselineskip,
+  spacebelow=\baselineskip,
+  headfont=\normalfont\bfseries,
+  notefont=\normalfont\bfseries,
+  bodyfont=\normalfont,
+]{definitionstyle}
+%%% REMARK STYLE
+\declaretheoremstyle[
+  headfont=\normalfont\itshape,
+  notefont=\normalfont\itshape,
+  bodyfont=\normalfont,
+]{remarkstyle}
+
+%%%%% THEOREM DECLARATIONS
+\declaretheorem[style=theoremstyle, parent=section]{theorem}
+\declaretheorem[style=theoremstyle, sibling=theorem]{
+  lemma,
+  corollary,
+  proposition,
+  conjecture,
+  criterion,
+  assertion
+}
+\declaretheorem[style=theoremstyle, numbered=no]{
+  theorem*,
+  lemma*,
+  corollary*,
+  proposition*,
+  conjecture*,
+  criterion*,
+  assertion*
+}
 
 %%%%% DEFINITION STYLE ENVIRONMENTS
-%%% STYLE
-\theoremstyle{plain}
-\theoremheaderfont{\normalfont\bfseries}
-\theorembodyfont{\upshape}
-\theoremseparator{.}
-\theoremprework{\bigskip\hrule}
-\theorempostwork{\hrule\bigskip}
 %%% ENVIRONMENTS
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{condition}[theorem]{Condition}
-\newtheorem{problem}[theorem]{Problem}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{algorithm}[theorem]{Algorithm}
-\newtheorem{question}[theorem]{Question}
-\newtheorem{axiom}[theorem]{Axiom}
-\newtheorem{property}[theorem]{Property}
-\newtheorem{assumption}[theorem]{Assumption}
-\newtheorem{hypothesis}[theorem]{Hypothesis}
+\declaretheorem[style=definitionstyle, sibling=theorem]{
+  definition,
+  condition,
+  problem,
+  example,
+  exercise,
+  algorithm,
+  question,
+  axiom,
+  property,
+  assumption,
+  hypothesis
+}
+\declaretheorem[style=definitionstyle, numbered=no]{
+  definition*,
+  condition*,
+  problem*,
+  example*,
+  exercise*,
+  algorithm*,
+  question*,
+  axiom*,
+  property*,
+  assumption*,
+  hypothesis*
+}
 
 %%%%%% REMARK STYLE ENVIRONMENTS
-%%% STYLE
-\theoremstyle{plain}
-\theoremheaderfont{\normalfont\bfseries}
-\theorembodyfont{\upshape}
-\theoremseparator{.}
 %%% ENVIRONMENTS
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{note}[theorem]{Note}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{summary}[theorem]{Summary}
-\newtheorem{acknowledgement}[theorem]{Acknowledgement}
-\newtheorem{case}[theorem]{Case}
-\newtheorem{conclusion}[theorem]{Conclusion}
+\declaretheorem[style=remarkstyle, sibling=theorem]{
+  remark,
+  note,
+  fact,
+  notation,
+  claim,
+  summary,
+  acknowledgement,
+  case,
+  conclusion
+}
+\declaretheorem[style=remarkstyle, numbered=no]{
+  remark*,
+  note*,
+  fact*,
+  notation*,
+  claim*,
+  summary*,
+  acknowledgement*,
+  case*,
+  conclusion*
+}
+
+%%%%% CHEAT SHEET STYLE ENVIRONMENTS
+\declaretheorem[style=remarkstyle, title=Theorem, numbered=no]{compacttheorem}
+\declaretheorem[style=remarkstyle, title=Lemma, numbered=no]{compactlemma}
+\declaretheorem[style=remarkstyle, title=Corollary, numbered=no]{compactcorollary}
+\declaretheorem[style=remarkstyle, title=Proposition, numbered=no]{compactproposition}
+\declaretheorem[style=remarkstyle, title=Notation, numbered=no]{compactnotation}
+
 
 %%%%% PSET STYLE ENVIRONMENTS
-%%% STYLE
-\theoremstyle{break}
-\theoremheaderfont{\normalfont\bfseries}
-\theorembodyfont{\upshape}
-\theoremseparator{.}
 %%% ENVIRONMENTS
-\newtheorem{psetproblem}{Problem}
-\newtheorem{psettheorem}{Theorem}[psetproblem]
-\newtheorem{psetlemma}[psettheorem]{Lemma}
-\newtheorem{psetclaim}[psettheorem]{Claim}
-\newtheorem{psetcase}{Case}[psetproblem]
+\declaretheorem[style=definitionstyle, title=Problem]{psetproblem}
+\declaretheorem[style=theoremstyle, title=Theorem, parent=psetproblem]{psettheorem}
+\declaretheorem[style=theoremstyle, title=Lemma, parent=psetproblem]{psetlemma}
+\declaretheorem[style=remarkstyle, title=Claim, parent=psetproblem]{psetclaim}
+\declaretheorem[style=remarkstyle, title=Case, parent=psetproblem]{psetcase}
 
 %%%%% PROOF ENVIRONMENTS
-%%% STYLE
-\theoremheaderfont{\itshape}\theorembodyfont{\upshape}
-\theoremstyle{nonumberplain}
-\theoremseparator{.}
-\theoremsymbol{\ensuremath{_\Box}}
 %%% ENViRONMENTS
-\newtheorem{proof}{Proof}
-\newtheorem{solution}{Solution}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 
 %%%%% EQUATION NUMBERING
 %%% TO GET EQUATION NUMBERING TO MATCH STYLE OF THEOREM

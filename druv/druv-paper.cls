@@ -20,3 +20,10 @@
 \RequirePackage{druv-gen}
 \RequirePackage{druv-thm}
 
+%%% DOCUMENT FORMATTING
+\KOMAoptions{
+  paper=letter,
+  usegeometry,
+}
+\RequirePackage{geometry}
+\geometry{margin=1.5cm, includefoot}
