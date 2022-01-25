@@ -14,12 +14,13 @@
 
 %%%%% AMS CORE PACKAGES
 \RequirePackage{amsmath} % https://ctan.org/pkg/amsmath?lang=en
-% \RequirePackage{amssymb} % https://ctan.org/pkg/amsfonts?lang=en
+\RequirePackage{amssymb} % https://ctan.org/pkg/amsfonts?lang=en
 
 %%%%% FONT PACKAGES
 % \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
-\RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
-\RequirePackage[mtpbb]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
+% \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
+% \RequirePackage[mtpbb]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
+\RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
 \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
 
 %%%%% PGF/TIKZ
@@ -37,6 +38,8 @@
 }{}
 
 %%%%% LAYOUT PACKAGES
+%%% THEOREMS
+\RequirePackage{tcolorbox} % https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
 %%% TEXT LAYOUT
 \RequirePackage{multicol} % https://www.overleaf.com/learn/latex/Multiple_columns
 %%% IMAGE LAYOUT
@@ -306,8 +309,10 @@
 \NewDocumentCommand{\ISF}{O{}m}{\operatornamemathsf{ISF}_{#1}\rp{#2}}  % Integrable simple functions
 \RenewDocumentCommand{\L}{}{\operatornamemathsf{L}}  % p-Integrable functions
 \NewDocumentCommand{\C}{}{\operatornamemathsf{C}}  % Continuously differentiable functions
+\NewDocumentCommand{\V}{}{\operatornamemathsf{V}}  % Convex functions
 \NewDocumentCommand{\W}{}{\operatornamemathsf{W}}  % Sobolev spaces
 \NewDocumentCommand{\loc}{}{\mathrm{loc}}  % Local
+\NewDocumentCommand{\op}{}{\mathrm{op}}  % Operator
 
 %%%%% COMPLEX ANALYSIS
 \NewDocumentCommand{\e}{}{\mathrm{e}}
@@ -357,7 +362,7 @@
 \NewDocumentCommand{\mat}{m}{\begin{bmatrix}#1\end{bmatrix}}
 \NewDocumentCommand{\tr}{m}{\operatorname{tr}\rp{#1}}
 \RenewDocumentCommand{\det}{m}{\operatorname{det}\rp{#1}}
-\NewDocumentCommand{\proj}{O{}O{}m}{\operatorname*{proj}_{#1}^{#2}{#3}}
+\NewDocumentCommand{\proj}{O{}O{}m}{\operatorname*{proj}_{#1}^{#2}\rp{#3}}
 \NewDocumentCommand{\diag}{m}{\operatorname{diag}\rp{#1}}
 \NewDocumentCommand{\logdet}{m}{\operatorname{log\ det}\rp{#1}}
 \NewDocumentCommand{\Col}{m}{\operatornamemathsf{Col}\rp{#1}}
@@ -428,6 +433,12 @@
 \NewDocumentCommand{\dBeta}{m}{\operatorname{Beta}\rp{#1}}
 \NewDocumentCommand{\dLaplace}{m}{\operatorname{Laplace}\rp{#1}}
 
+%%%%% NUMERICS
+\NewDocumentCommand{\float}{m}{\operatorname{\texttt{fl}}\rp{#1}}
+\NewDocumentCommand{\alg}{m}{\operatorname{\texttt{alg}}\rp{#1}}
+\NewDocumentCommand{\round}{m}{\operatorname{\texttt{round}}\rp{#1}}
+\NewDocumentCommand{\RRE}{m}{\operatorname{\texttt{RRE}}\rp{#1}}
+
 %%%%% ANNOYING NAMES
 \NewDocumentCommand{\Holder}{}{H\"{o}lder}
 \NewDocumentCommand{\Levy}{}{L\'evy}
@@ -435,3 +446,4 @@
 \NewDocumentCommand{\Caratheodory}{}{Carath\'eodory}
 \NewDocumentCommand{\Erdos}{}{Erd\"{o}s}
 \NewDocumentCommand{\Renyi}{}{R\'enyi}
+\NewDocumentCommand{\Frechet}{}{Fr\'echet}

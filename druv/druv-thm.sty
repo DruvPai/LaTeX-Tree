@@ -13,124 +13,153 @@
 \RequirePackage{thmtools} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/thmtools/doc/thmtools-manual.pdf
 
 \RequirePackage[capitalize, nameinlink]{cleveref} % http://tug.ctan.org/tex-archive/macros/latex/contrib/cleveref/cleveref.pdf
+\RequirePackage{tcolorbox} % https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
+\tcbuselibrary{skins, theorems, xparse, breakable}
 
 %%%%% THEOREM STYLES
-%%% THEOREM STYLE
-\declaretheoremstyle[
-  spaceabove=\baselineskip,
-  spacebelow=\baselineskip,
-  headfont=\normalfont\bfseries,
-  notefont=\normalfont\bfseries,
-  bodyfont=\normalfont\itshape,
-  headpunct={.\newline}
-]{theoremstyle}
-%%% DEFINITION STYLE
-\declaretheoremstyle[
-  spaceabove=\baselineskip,
-  spacebelow=\baselineskip,
-  headfont=\normalfont\bfseries,
-  notefont=\normalfont\bfseries,
-  bodyfont=\normalfont,
-]{definitionstyle}
-%%% REMARK STYLE
-\declaretheoremstyle[
-  headfont=\normalfont\itshape,
-  notefont=\normalfont\itshape,
-  bodyfont=\normalfont,
-]{remarkstyle}
-
-%%%%% THEOREM DECLARATIONS
-\declaretheorem[style=theoremstyle, parent=section]{theorem}
-\declaretheorem[style=theoremstyle, sibling=theorem]{
-  lemma,
-  corollary,
-  proposition,
-  conjecture,
-  criterion,
-  assertion
+\tcbuselibrary{skins, theorems, xparse, breakable}
+\tcbset{
+    % frame stuff
+    breakable,enhanced,frame empty,interior empty,
+    colframe=white,
+    % borderline west={2pt}{0pt}{#4},
+    left=1.5em,
+    bottom=0pt,
+    % title stuff
+    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
+    % boxed title style={colframe=#5},
+    coltitle=black,
+    fonttitle=\bfseries,
+    colback=white,
+    colbacktitle=white,
+    boxed title style={boxrule=.5pt,sharp corners}
 }
-\declaretheorem[style=theoremstyle, numbered=no]{
-  theorem*,
-  lemma*,
-  corollary*,
-  proposition*,
-  conjecture*,
-  criterion*,
-  assertion*
+\@ifundefined{chapter}{
+    \newtcbtheorem[number within=section]{theorem}{Theorem}{
+        borderline west={2pt}{12pt}{blue},
+        boxed title style={colframe=blue},
+        label type=theorem
+    }{thm}
+}{
+    \newtcbtheorem[number within=chapter]{theorem}{Theorem}{
+        borderline west={2pt}{12pt}{blue},
+        boxed title style={colframe=blue},
+        label type=theorem
+    }{thm}
 }
+\newtcbtheorem[use counter from=theorem]{lemma}{Lemma}{
+    borderline west={2pt}{12pt}{blue!50!teal},
+    boxed title style={colframe=blue!50!teal},
+    label type=lemma
+}{lem}
+\newtcbtheorem[use counter from=theorem]{corollary}{Corollary}{
+    borderline west={2pt}{12pt}{blue!50!green},
+    boxed title style={colframe=blue!50!green},
+    label type=corollary
+}{cor}
 
-%%%%% DEFINITION STYLE ENVIRONMENTS
+\newtcbtheorem[use counter from=theorem]{claim}{Claim}{
+    borderline west={2pt}{12pt}{blue!50!violet},
+    boxed title style={colframe=blue!50!violet},
+    label type=claim
+}{claim}
+
+\newtcbtheorem[use counter from=theorem]{definition}{Definition}{
+    borderline west={2pt}{12pt}{violet},
+    boxed title style={colframe=violet},
+    label type=definition
+}{def}
+
+\newtcbtheorem[use counter from=theorem]{proposition}{Proposition}{
+    borderline west={2pt}{12pt}{teal},
+    boxed title style={colframe=teal},
+    label type=proposition
+}{prop}
+
+\newtcbtheorem[use counter from=theorem]{problem}{Problem}{
+    borderline west={2pt}{12pt}{teal!50!violet},
+    boxed title style={colframe=teal!50!violet},
+    label type=problem
+}{prob}
+
+\newtcbtheorem[use counter from=theorem]{algorithm}{Algorithm}{
+    borderline west={2pt}{12pt}{gray},
+    boxed title style={colframe=gray},
+    label type=algorithm
+}{alg}
+
+\newtcbtheorem[use counter from=theorem]{code}{Code Snippet}{
+    borderline west={2pt}{12pt}{gray!75!teal},
+    boxed title style={colframe=gray!75!teal},
+    label type=code
+}{code}
+
+\newtcbtheorem[use counter from=theorem]{conjecture}{Conjecture}{
+    borderline west={2pt}{12pt}{purple!50!violet},
+    boxed title style={colframe=purple!50!violet},
+    label type=conjecture
+}{conj}
+
+\newtcbtheorem[use counter from=theorem]{example}{Example}{
+    borderline west={2pt}{12pt}{purple},
+    boxed title style={colframe=purple},
+    label type=example
+}{ex}
+
+\newtcbtheorem[use counter from=theorem]{exercise}{Exercise}{
+    borderline west={2pt}{12pt}{brown},
+    boxed title style={colframe=brown},
+    label type=exercise
+}{exer}
+
+\newtcbtheorem[use counter from=theorem]{fact}{Fact}{
+    borderline west={2pt}{12pt}{brown!50!orange},
+    boxed title style={colframe=brown!50!orange},
+    label type=fact
+}{fact}
+
+\newtcbtheorem[use counter from=theorem]{remark}{Remark}{
+    borderline west={2pt}{12pt}{orange},
+    boxed title style={colframe=orange},
+    label type=remark
+}{rmk}
+
+\newtcbtheorem[use counter from=theorem]{question}{Question}{
+    borderline west={2pt}{12pt}{orange!50!yellow},
+    boxed title style={colframe=orange!50!yellow},
+    label type=question
+}{ques}
+
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+\newtcbtheorem[use counter from=theorem]{assumption}{Assumption}{
+    borderline west={2pt}{12pt}{yellow},
+    boxed title style={colframe=yellow},
+    label type=assumption
+}{ass}
+
+\crefname{axiom}{Axiom}{Axioms}
+\Crefname{axiom}{Axiom}{Axioms}
+\newtcbtheorem[use counter from=theorem]{axiom}{Axiom}{
+    borderline west={2pt}{12pt}{yellow!50!gray},
+    boxed title style={colframe=yellow!50!gray},
+    label type=axiom
+}{axiom}
+
+\crefname{generalization}{Generalization}{Generalizations}
+\Crefname{generalization}{Generalization}{Generalizations}
+\newtcbtheorem[use counter from=theorem]{generalization}{Generalization}{
+    borderline west={2pt}{12pt}{gray},
+    boxed title style={colframe=gray},
+    label type=generalization
+}{gen}
+%%%%% HOMEWORK ENVIRONMENTS
 %%% ENVIRONMENTS
-\declaretheorem[style=definitionstyle, sibling=theorem]{
-  definition,
-  condition,
-  problem,
-  example,
-  exercise,
-  algorithm,
-  question,
-  axiom,
-  property,
-  assumption,
-  hypothesis
-}
-\declaretheorem[style=definitionstyle, numbered=no]{
-  definition*,
-  condition*,
-  problem*,
-  example*,
-  exercise*,
-  algorithm*,
-  question*,
-  axiom*,
-  property*,
-  assumption*,
-  hypothesis*
-}
-
-%%%%%% REMARK STYLE ENVIRONMENTS
-%%% ENVIRONMENTS
-\declaretheorem[style=remarkstyle, sibling=theorem]{
-  remark,
-  note,
-  fact,
-  notation,
-  claim,
-  summary,
-  acknowledgement,
-  case,
-  conclusion
-}
-\declaretheorem[style=remarkstyle, numbered=no]{
-  remark*,
-  note*,
-  fact*,
-  notation*,
-  claim*,
-  summary*,
-  acknowledgement*,
-  case*,
-  conclusion*
-}
-
-%%%%% CHEAT SHEET STYLE ENVIRONMENTS
-\declaretheorem[style=remarkstyle, title=Theorem, numbered=no]{compacttheorem}
-\declaretheorem[style=remarkstyle, title=Lemma, numbered=no]{compactlemma}
-\declaretheorem[style=remarkstyle, title=Corollary, numbered=no]{compactcorollary}
-\declaretheorem[style=remarkstyle, title=Proposition, numbered=no]{compactproposition}
-\declaretheorem[style=remarkstyle, title=Notation, numbered=no]{compactnotation}
-
-
-%%%%% PSET STYLE ENVIRONMENTS
-%%% ENVIRONMENTS
-\declaretheorem[style=definitionstyle, title=Problem]{psetproblem}
-\declaretheorem[style=theoremstyle, title=Theorem, parent=psetproblem]{psettheorem}
-\declaretheorem[style=theoremstyle, title=Lemma, parent=psetproblem]{psetlemma}
-\declaretheorem[style=remarkstyle, title=Claim, parent=psetproblem]{psetclaim}
-\declaretheorem[style=remarkstyle, title=Case, parent=psetproblem]{psetcase}
-
-%%%%% PROOF ENVIRONMENTS
-%%% ENViRONMENTS
+\newtcbtheorem[auto counter]{psetproblem}{Problem}{
+    borderline west={2pt}{12pt}{white},
+    boxed title style={colframe=white},
+    label type=problem
+}{hw}
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 
 %%%%% EQUATION NUMBERING
