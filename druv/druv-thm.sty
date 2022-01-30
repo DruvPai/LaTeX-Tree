@@ -14,152 +14,105 @@
 
 \RequirePackage[capitalize, nameinlink]{cleveref} % http://tug.ctan.org/tex-archive/macros/latex/contrib/cleveref/cleveref.pdf
 \RequirePackage{tcolorbox} % https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
-\tcbuselibrary{skins, theorems, xparse, breakable}
 
 %%%%% THEOREM STYLES
 \tcbuselibrary{skins, theorems, xparse, breakable}
 \tcbset{
-    % frame stuff
-    breakable,enhanced,frame empty,interior empty,
-    colframe=white,
-    % borderline west={2pt}{0pt}{#4},
-    left=1.5em,
-    bottom=0pt,
-    % title stuff
-    attach boxed title to top left={yshift=-2mm,xshift=-2mm},
-    % boxed title style={colframe=#5},
-    coltitle=black,
-    fonttitle=\bfseries,
-    colback=white,
-    colbacktitle=white,
-    boxed title style={boxrule=.5pt,sharp corners}
+    druvbox/.style={
+        enhanced jigsaw,
+        breakable,
+        fonttitle=\sffamily\bfseries,
+        sharp corners,
+        boxrule=0pt,
+        leftrule=2pt,
+        left=5pt,
+        coltitle=black,
+        attach title to upper=\par,
+        lines before break=4,
+    },
+    druvbluebox/.style={
+        druvbox,
+        coltitle=blue!80!black,
+        colframe=blue!80,
+        colback=blue!7,
+    },
+    druvgreenbox/.style={
+        druvbox,
+        coltitle=green!40!black,
+        colframe=green!70!black,
+        colback=green!6,
+    },
+    druvpurplebox/.style={
+        druvbox,
+        coltitle=purple!40!black,
+        colframe=purple!70!black,
+        colback=purple!7,
+    },
+    druvorangebox/.style={
+        druvbox,
+        coltitle=orange!80!black,
+        colframe=orange!98!black,
+        colback=orange!8,
+    },
+    druvredbox/.style={
+        druvbox,
+        coltitle=red!60!black,
+        colframe=red!80!black,
+        colback=red!6,
+    },
+    druvwhitebox/.style={
+        druvbox,
+        coltitle=black,
+        colframe=white,
+        colback=white,
+    },
+    druvthm/.style={
+        theorem style=break,
+        separator sign none,
+        description delimiters parenthesis,
+        description font=\normalfont\sffamily\small,
+        terminator sign none,
+    },
+    druvbluethm/.style={druvbluebox, druvthm},
+    druvgreenthm/.style={druvgreenbox, druvthm},
+    druvpurplethm/.style={druvpurplebox, druvthm},
+    druvorangethm/.style={druvorangebox, druvthm},
+    druvredthm/.style={druvredbox, druvthm},
+    druvwhitethm/.style={druvwhitebox, druvthm},
 }
-\@ifundefined{chapter}{
-    \newtcbtheorem[number within=section]{theorem}{Theorem}{
-        borderline west={2pt}{12pt}{blue},
-        boxed title style={colframe=blue},
-        label type=theorem
-    }{thm}
-}{
-    \newtcbtheorem[number within=chapter]{theorem}{Theorem}{
-        borderline west={2pt}{12pt}{blue},
-        boxed title style={colframe=blue},
-        label type=theorem
-    }{thm}
+
+\NewDocumentCommand{\druvnewtheorem}{m m m m m m m}{
+	\newtcbtheorem[use counter=#4, crefname={#5}{#6}]{#1}{#2}{#3}{#7}
 }
-\newtcbtheorem[use counter from=theorem]{lemma}{Lemma}{
-    borderline west={2pt}{12pt}{blue!50!teal},
-    boxed title style={colframe=blue!50!teal},
-    label type=lemma
-}{lem}
-\newtcbtheorem[use counter from=theorem]{corollary}{Corollary}{
-    borderline west={2pt}{12pt}{blue!50!green},
-    boxed title style={colframe=blue!50!green},
-    label type=corollary
-}{cor}
+\newcounter{thmcounter}
+\newcounter{probcounter}
+\druvnewtheorem{theorem}{Theorem}{druvbluethm}{thmcounter}{theorem}{theorems}{thm}
+\druvnewtheorem{lemma}{Lemma}{druvbluethm}{thmcounter}{lemma}{lemmas}{lem}
+\druvnewtheorem{corollary}{Corollary}{druvbluethm}{thmcounter}{corollary}{corollaries}{cor}
+\druvnewtheorem{proposition}{Proposition}{druvbluethm}{thmcounter}{proposition}{propositions}{prop}
+\druvnewtheorem{claim}{Claim}{druvbluethm}{thmcounter}{claim}{claims}{claim}
+\druvnewtheorem{conjecture}{conjecture}{druvbluethm}{thmcounter}{conjecture}{conjectures}{conj}
+\druvnewtheorem{algorithm}{Algorithm}{druvbluethm}{thmcounter}{algorithm}{algorithms}{alg}
+\druvnewtheorem{method}{Method}{druvbluethm}{thmcounter}{method}{methods}{method}
 
-\newtcbtheorem[use counter from=theorem]{claim}{Claim}{
-    borderline west={2pt}{12pt}{blue!50!violet},
-    boxed title style={colframe=blue!50!violet},
-    label type=claim
-}{claim}
+\druvnewtheorem{axiom}{Axiom}{druvgreenthm}{thmcounter}{axiom}{axioms}{axiom}
+\druvnewtheorem{assumption}{Assumption}{druvgreenthm}{thmcounter}{assumption}{assumptions}{ass}
+\druvnewtheorem{model}{Mdoel}{druvgreenthm}{thmcounter}{model}{models}{model}
 
-\newtcbtheorem[use counter from=theorem]{definition}{Definition}{
-    borderline west={2pt}{12pt}{violet},
-    boxed title style={colframe=violet},
-    label type=definition
-}{def}
+\druvnewtheorem{definition}{Definition}{druvredthm}{thmcounter}{definition}{definitions}{def}
 
-\newtcbtheorem[use counter from=theorem]{proposition}{Proposition}{
-    borderline west={2pt}{12pt}{teal},
-    boxed title style={colframe=teal},
-    label type=proposition
-}{prop}
+\druvnewtheorem{keyidea}{Key Idea}{druvpurplethm}{thmcounter}{key idea}{key ideas}{key}
 
-\newtcbtheorem[use counter from=theorem]{problem}{Problem}{
-    borderline west={2pt}{12pt}{teal!50!violet},
-    boxed title style={colframe=teal!50!violet},
-    label type=problem
-}{prob}
+\druvnewtheorem{idea}{Idea}{druvorangethm}{thmcounter}{idea}{ideas}{idea}
+\druvnewtheorem{fact}{Fact}{druvorangethm}{thmcounter}{fact}{facts}{fact}
+\druvnewtheorem{remark}{Remark}{druvorangethm}{thmcounter}{remark}{remarks}{rmk}
+\druvnewtheorem{example}{Example}{druvorangethm}{thmcounter}{example}{examples}{ex}
+\druvnewtheorem{exercise}{Exercise}{druvorangethm}{thmcounter}{exercise}{exercises}{exer}
+\druvnewtheorem{problem}{Problem}{druvorangethm}{thmcounter}{problem}{problems}{prob}
 
-\newtcbtheorem[use counter from=theorem]{algorithm}{Algorithm}{
-    borderline west={2pt}{12pt}{gray},
-    boxed title style={colframe=gray},
-    label type=algorithm
-}{alg}
-
-\newtcbtheorem[use counter from=theorem]{code}{Code Snippet}{
-    borderline west={2pt}{12pt}{gray!75!teal},
-    boxed title style={colframe=gray!75!teal},
-    label type=code
-}{code}
-
-\newtcbtheorem[use counter from=theorem]{conjecture}{Conjecture}{
-    borderline west={2pt}{12pt}{purple!50!violet},
-    boxed title style={colframe=purple!50!violet},
-    label type=conjecture
-}{conj}
-
-\newtcbtheorem[use counter from=theorem]{example}{Example}{
-    borderline west={2pt}{12pt}{purple},
-    boxed title style={colframe=purple},
-    label type=example
-}{ex}
-
-\newtcbtheorem[use counter from=theorem]{exercise}{Exercise}{
-    borderline west={2pt}{12pt}{brown},
-    boxed title style={colframe=brown},
-    label type=exercise
-}{exer}
-
-\newtcbtheorem[use counter from=theorem]{fact}{Fact}{
-    borderline west={2pt}{12pt}{brown!50!orange},
-    boxed title style={colframe=brown!50!orange},
-    label type=fact
-}{fact}
-
-\newtcbtheorem[use counter from=theorem]{remark}{Remark}{
-    borderline west={2pt}{12pt}{orange},
-    boxed title style={colframe=orange},
-    label type=remark
-}{rmk}
-
-\newtcbtheorem[use counter from=theorem]{question}{Question}{
-    borderline west={2pt}{12pt}{orange!50!yellow},
-    boxed title style={colframe=orange!50!yellow},
-    label type=question
-}{ques}
-
-\crefname{assumption}{Assumption}{Assumptions}
-\Crefname{assumption}{Assumption}{Assumptions}
-\newtcbtheorem[use counter from=theorem]{assumption}{Assumption}{
-    borderline west={2pt}{12pt}{yellow},
-    boxed title style={colframe=yellow},
-    label type=assumption
-}{ass}
-
-\crefname{axiom}{Axiom}{Axioms}
-\Crefname{axiom}{Axiom}{Axioms}
-\newtcbtheorem[use counter from=theorem]{axiom}{Axiom}{
-    borderline west={2pt}{12pt}{yellow!50!gray},
-    boxed title style={colframe=yellow!50!gray},
-    label type=axiom
-}{axiom}
-
-\crefname{generalization}{Generalization}{Generalizations}
-\Crefname{generalization}{Generalization}{Generalizations}
-\newtcbtheorem[use counter from=theorem]{generalization}{Generalization}{
-    borderline west={2pt}{12pt}{gray},
-    boxed title style={colframe=gray},
-    label type=generalization
-}{gen}
 %%%%% HOMEWORK ENVIRONMENTS
 %%% ENVIRONMENTS
-\newtcbtheorem[auto counter]{psetproblem}{Problem}{
-    borderline west={2pt}{12pt}{white},
-    boxed title style={colframe=white},
-    label type=problem
-}{hw}
+\druvnewtheorem{psetproblem}{Problem}{druvwhitethm}{probcounter}{problem}{problems}{prob}
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 
 %%%%% EQUATION NUMBERING
