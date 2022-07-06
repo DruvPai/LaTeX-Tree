@@ -2,7 +2,7 @@
 \ProvidesClass{druv-paper}
 
 \RequirePackage{druv-hacks}
-\LoadClass{scrartcl}
+\LoadClass{amsart}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
@@ -21,11 +21,11 @@
 \RequirePackage{druv-thm}
 
 %%% DOCUMENT FORMATTING
-\KOMAoptions{
-  paper=letter,
-  fontsize=10pt,
-  usegeometry,
-}
+% \KOMAoptions{
+%   paper=letter,
+%   fontsize=10pt,
+%   usegeometry,
+% }
 \RequirePackage{geometry}
 \geometry{margin=1.5cm}
 \pagenumbering{gobble}

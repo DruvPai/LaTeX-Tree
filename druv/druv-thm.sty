@@ -13,108 +13,143 @@
 \RequirePackage{thmtools} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/thmtools/doc/thmtools-manual.pdf
 
 \RequirePackage[capitalize, nameinlink]{cleveref} % http://tug.ctan.org/tex-archive/macros/latex/contrib/cleveref/cleveref.pdf
-\RequirePackage{tcolorbox} % https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
-
-%%%%% THEOREM STYLES
-\tcbuselibrary{skins, theorems, xparse, breakable}
-\tcbset{
-    druvbox/.style={
-        enhanced jigsaw,
-        breakable,
-        fonttitle=\sffamily\bfseries,
-        sharp corners,
-        boxrule=0pt,
-        leftrule=2pt,
-        left=5pt,
-        coltitle=black,
-        attach title to upper=\par,
-        lines before break=4,
-    },
-    druvbluebox/.style={
-        druvbox,
-        coltitle=blue!80!black,
-        colframe=blue!80,
-        colback=blue!7,
-    },
-    druvgreenbox/.style={
-        druvbox,
-        coltitle=green!40!black,
-        colframe=green!70!black,
-        colback=green!6,
-    },
-    druvpurplebox/.style={
-        druvbox,
-        coltitle=purple!40!black,
-        colframe=purple!70!black,
-        colback=purple!7,
-    },
-    druvorangebox/.style={
-        druvbox,
-        coltitle=orange!80!black,
-        colframe=orange!98!black,
-        colback=orange!8,
-    },
-    druvredbox/.style={
-        druvbox,
-        coltitle=red!60!black,
-        colframe=red!80!black,
-        colback=red!6,
-    },
-    druvwhitebox/.style={
-        druvbox,
-        coltitle=black,
-        colframe=white,
-        colback=white,
-    },
-    druvthm/.style={
-        theorem style=break,
-        separator sign none,
-        description delimiters parenthesis,
-        description font=\normalfont\sffamily\small,
-        terminator sign none,
-    },
-    druvbluethm/.style={druvbluebox, druvthm},
-    druvgreenthm/.style={druvgreenbox, druvthm},
-    druvpurplethm/.style={druvpurplebox, druvthm},
-    druvorangethm/.style={druvorangebox, druvthm},
-    druvredthm/.style={druvredbox, druvthm},
-    druvwhitethm/.style={druvwhitebox, druvthm},
-}
-
-\NewDocumentCommand{\druvnewtheorem}{m m m m m m m}{
-	\newtcbtheorem[use counter=#4, crefname={#5}{#6}]{#1}{#2}{#3}{#7}
-}
+%\RequirePackage{tcolorbox} % https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
+%
+%%%%%% THEOREM STYLES
+%\tcbuselibrary{skins, theorems, xparse, breakable}
+%\tcbset{
+%    druvbox/.style={
+%        enhanced jigsaw,
+%        breakable,
+%        fonttitle=\sffamily\bfseries,
+%        sharp corners,
+%        boxrule=0pt,
+%        leftrule=2pt,
+%        left=5pt,
+%        coltitle=black,
+%        attach title to upper=\par,
+%        lines before break=4,
+%    },
+%    druvbluebox/.style={
+%        druvbox,
+%        coltitle=blue!80!black,
+%        colframe=blue!80,
+%        colback=blue!7,
+%    },
+%    druvgreenbox/.style={
+%        druvbox,
+%        coltitle=green!40!black,
+%        colframe=green!70!black,
+%        colback=green!6,
+%    },
+%    druvpurplebox/.style={
+%        druvbox,
+%        coltitle=purple!40!black,
+%        colframe=purple!70!black,
+%        colback=purple!7,
+%    },
+%    druvorangebox/.style={
+%        druvbox,
+%        coltitle=orange!80!black,
+%        colframe=orange!98!black,
+%        colback=orange!8,
+%    },
+%    druvredbox/.style={
+%        druvbox,
+%        coltitle=red!60!black,
+%        colframe=red!80!black,
+%        colback=red!6,
+%    },
+%    druvwhitebox/.style={
+%        druvbox,
+%        coltitle=black,
+%        colframe=white,
+%        colback=white,
+%        leftrule=0pt,
+%        left=0pt,
+%    },
+%    druvthm/.style={
+%        theorem style=break,
+%        separator sign none,
+%        description delimiters parenthesis,
+%        description font=\normalfont\sffamily\small,
+%        terminator sign none,
+%    },
+%    druvbluethm/.style={druvbluebox, druvthm},
+%    druvgreenthm/.style={druvgreenbox, druvthm},
+%    druvpurplethm/.style={druvpurplebox, druvthm},
+%    druvorangethm/.style={druvorangebox, druvthm},
+%    druvredthm/.style={druvredbox, druvthm},
+%    druvwhitethm/.style={druvwhitebox, druvthm},
+%}
+%
+%\NewDocumentCommand{\druvnewtheorem}{m m m m m m m}{
+%	\newtcbtheorem[use counter=#4, crefname={#5}{#6}]{#1}{#2}{#3}{#7}
+%}
 \newcounter{thmcounter}
 \newcounter{probcounter}
-\druvnewtheorem{theorem}{Theorem}{druvbluethm}{thmcounter}{theorem}{theorems}{thm}
-\druvnewtheorem{lemma}{Lemma}{druvbluethm}{thmcounter}{lemma}{lemmas}{lem}
-\druvnewtheorem{corollary}{Corollary}{druvbluethm}{thmcounter}{corollary}{corollaries}{cor}
-\druvnewtheorem{proposition}{Proposition}{druvbluethm}{thmcounter}{proposition}{propositions}{prop}
-\druvnewtheorem{claim}{Claim}{druvbluethm}{thmcounter}{claim}{claims}{claim}
-\druvnewtheorem{conjecture}{conjecture}{druvbluethm}{thmcounter}{conjecture}{conjectures}{conj}
-\druvnewtheorem{algorithm}{Algorithm}{druvbluethm}{thmcounter}{algorithm}{algorithms}{alg}
-\druvnewtheorem{method}{Method}{druvbluethm}{thmcounter}{method}{methods}{method}
+%\druvnewtheorem{theorem}{Theorem}{druvbluethm}{thmcounter}{theorem}{theorems}{thm}
+%\druvnewtheorem{lemma}{Lemma}{druvbluethm}{thmcounter}{lemma}{lemmas}{lem}
+%\druvnewtheorem{corollary}{Corollary}{druvbluethm}{thmcounter}{corollary}{corollaries}{cor}
+%\druvnewtheorem{proposition}{Proposition}{druvbluethm}{thmcounter}{proposition}{propositions}{prop}
+%\druvnewtheorem{claim}{Claim}{druvbluethm}{thmcounter}{claim}{claims}{claim}
+%\druvnewtheorem{conjecture}{conjecture}{druvbluethm}{thmcounter}{conjecture}{conjectures}{conj}
+%\druvnewtheorem{method}{Method}{druvbluethm}{thmcounter}{method}{methods}{method}
+%
+%\druvnewtheorem{axiom}{Axiom}{druvgreenthm}{thmcounter}{axiom}{axioms}{axiom}
+%\druvnewtheorem{assumption}{Assumption}{druvgreenthm}{thmcounter}{assumption}{assumptions}{ass}
+%\druvnewtheorem{model}{Mdoel}{druvgreenthm}{thmcounter}{model}{models}{model}
+%
+%\druvnewtheorem{definition}{Definition}{druvredthm}{thmcounter}{definition}{definitions}{def}
+%
+%\druvnewtheorem{keyidea}{Key Idea}{druvpurplethm}{thmcounter}{key idea}{key ideas}{key}
+%
+%\druvnewtheorem{idea}{Idea}{druvorangethm}{thmcounter}{idea}{ideas}{idea}
+%\druvnewtheorem{fact}{Fact}{druvorangethm}{thmcounter}{fact}{facts}{fact}
+%\druvnewtheorem{remark}{Remark}{druvorangethm}{thmcounter}{remark}{remarks}{rmk}
+%\druvnewtheorem{example}{Example}{druvorangethm}{thmcounter}{example}{examples}{ex}
+%\druvnewtheorem{exercise}{Exercise}{druvorangethm}{thmcounter}{exercise}{exercises}{exer}
+%\druvnewtheorem{problem}{Problem}{druvorangethm}{thmcounter}{problem}{problems}{prob}
+%
+%%%%%% HOMEWORK ENVIRONMENTS
+%%%% ENVIRONMENTS
+%\druvnewtheorem{psetproblem}{Problem}{druvwhitethm}{probcounter}{problem}{problems}{prob}
 
-\druvnewtheorem{axiom}{Axiom}{druvgreenthm}{thmcounter}{axiom}{axioms}{axiom}
-\druvnewtheorem{assumption}{Assumption}{druvgreenthm}{thmcounter}{assumption}{assumptions}{ass}
-\druvnewtheorem{model}{Mdoel}{druvgreenthm}{thmcounter}{model}{models}{model}
+\theoremstyle{plain}
+\newtheorem{theorem}[thmcounter]{Theorem}
+\newtheorem{corollary}[thmcounter]{Corollary}
+\newtheorem{example}[thmcounter]{Example}
+\newtheorem{keyidea}[thmcounter]{Key Idea}
+\newtheorem{lemma}[thmcounter]{Lemma}
+\newtheorem{method}[thmcounter]{Method}
+\newtheorem{proposition}[thmcounter]{Proposition}
 
-\druvnewtheorem{definition}{Definition}{druvredthm}{thmcounter}{definition}{definitions}{def}
+\theoremstyle{definition}
+\newtheorem{axiom}[thmcounter]{Axiom}
+\newtheorem{assumption}[thmcounter]{Assumption}
+\newtheorem{definition}[thmcounter]{Definition}
+\newtheorem{model}[thmcounter]{Model}
 
-\druvnewtheorem{keyidea}{Key Idea}{druvpurplethm}{thmcounter}{key idea}{key ideas}{key}
+\theoremstyle{remark}
+\newtheorem{claim}[thmcounter]{Claim}
+\newtheorem{conjecture}[thmcounter]{Conjecture}
+\newtheorem{exercise}[thmcounter]{Exercise}
+\newtheorem{idea}[thmcounter]{Idea}
+\newtheorem{fact}[thmcounter]{Fact}
+\newtheorem{problem}[thmcounter]{Problem}
+\newtheorem{remark}[thmcounter]{Remark}
 
-\druvnewtheorem{idea}{Idea}{druvorangethm}{thmcounter}{idea}{ideas}{idea}
-\druvnewtheorem{fact}{Fact}{druvorangethm}{thmcounter}{fact}{facts}{fact}
-\druvnewtheorem{remark}{Remark}{druvorangethm}{thmcounter}{remark}{remarks}{rmk}
-\druvnewtheorem{example}{Example}{druvorangethm}{thmcounter}{example}{examples}{ex}
-\druvnewtheorem{exercise}{Exercise}{druvorangethm}{thmcounter}{exercise}{exercises}{exer}
-\druvnewtheorem{problem}{Problem}{druvorangethm}{thmcounter}{problem}{problems}{prob}
-
-%%%%% HOMEWORK ENVIRONMENTS
-%%% ENVIRONMENTS
-\druvnewtheorem{psetproblem}{Problem}{druvwhitethm}{probcounter}{problem}{problems}{prob}
+%% HWK
+\theoremstyle{plain}
+\newtheorem{psetproblem}[probcounter]{Problem}
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 
 %%%%% EQUATION NUMBERING
 %%% TO GET EQUATION NUMBERING TO MATCH STYLE OF THEOREM
 \numberwithin{equation}{section}
+
+%%%%% ALGORITHM NUMBERING
+%%% MAKE ALGORITHM USE SAME NUMBERING AS ANYTHING ELSE
+\AtBeginEnvironment{algorithm}{
+    \renewcommand{\c@algorithm}{\value{thmcounter}}
+}

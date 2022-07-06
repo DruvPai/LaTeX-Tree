@@ -2,7 +2,7 @@
 \ProvidesClass{druv-notes}
 
 \RequirePackage{druv-hacks}
-\LoadClass{scrreprt}
+\LoadClass[oneside]{amsbook}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
@@ -21,9 +21,16 @@
 \RequirePackage{druv-thm}
 
 %%% DOCUMENT FORMATTING
-\KOMAoptions{
-  paper=letter,
-  usegeometry,
+% \KOMAoptions{
+%   paper=letter,
+%   usegeometry,
+% }
+\pdfstringdefDisableCommands{%
+  \let\enspace\empty  % this causes the warning for \kern
+  \let\noindent\empty % this causes the warning for \indent
 }
 \RequirePackage{geometry}
-\geometry{margin=1.5cm, includefoot}
+\geometry{margin=3cm}
+% \RequirePackage{setspace}  % Line spacing
+% \linespread{1.25} 
+
