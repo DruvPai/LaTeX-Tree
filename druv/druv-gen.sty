@@ -19,12 +19,14 @@
 %%%%% FONT PACKAGES
 \RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
 % \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
-% \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
+\RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
 % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
 \newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
 \newcommand{\bmmax}{0} % https://tex.stackexchange.com/a/243541/189560
 % \RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
-\RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
+% \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
+\RequirePackage{silence} % https://ctan.org/pkg/silence?lang=en
+\WarningFilter{latexfont}{Font shape}
 
 %%%%% PGF/TIKZ
 \iftoggle{druv-gen-tikz}{
@@ -35,6 +37,7 @@
   \RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
   \RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
   \usetikzlibrary{calc, hobby}
+  \RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
 }{}
 
 %%%%% BIBLIOGRAPHY
@@ -82,6 +85,7 @@
 
 %%%%%%%%% MACROS
 %%%%% OPERATOR CONSTRUCTS
+\NewDocumentCommand{\operatornamemathrm}{m}{\operatorname{\ensuremath{\mathrm{#1}}}}
 \NewDocumentCommand{\operatornamemathbb}{m}{\operatorname{\ensuremath{\mathbb{#1}}}}
 \NewDocumentCommand{\operatornamemathbf}{m}{\operatorname{\ensuremath{\mathbf{#1}}}}
 \NewDocumentCommand{\operatornamemathcal}{m}{\operatorname{\ensuremath{\mathcal{#1}}}}
@@ -313,14 +317,14 @@
 \DeclareMathOperator*{\essinf}{ess\ inf}
 \NewDocumentCommand{\TV}{}{\mathrm{TV}}
 %%% REAL ANALYSIS SPACES
-\NewDocumentCommand{\BV}{O{}m}{\operatornamemathscr{BV}_{#1}\rp{#2}}  % Bounded variation
-\NewDocumentCommand{\BMO}{O{}m}{\operatornamemathscr{BMO}_{#1}\rp{#2}}  % Bounded mean oscillation
-\NewDocumentCommand{\ISF}{O{}m}{\operatornamemathscr{ISF}_{#1}\rp{#2}}  % Integrable simple functions
-\RenewDocumentCommand{\L}{}{\operatornamemathscr{L}}  % p-Integrable functions
-\NewDocumentCommand{\C}{}{\operatornamemathscr{C}}  % Continuously differentiable functions
-\NewDocumentCommand{\V}{}{\operatornamemathscr{V}}  % Convex functions
-\RenewDocumentCommand{\S}{}{\operatornamemathscr{S}}  % Strongly convex functions
-\NewDocumentCommand{\W}{}{\operatornamemathscr{W}}  % Sobolev spaces
+\NewDocumentCommand{\BV}{O{}m}{\operatornamemathrm{BV}_{#1}\rp{#2}}  % Bounded variation
+\NewDocumentCommand{\BMO}{O{}m}{\operatornamemathrm{BMO}_{#1}\rp{#2}}  % Bounded mean oscillation
+\NewDocumentCommand{\ISF}{O{}m}{\operatornamemathrm{ISF}_{#1}\rp{#2}}  % Integrable simple functions
+\RenewDocumentCommand{\L}{}{\operatornamemathrm{L}}  % p-Integrable functions
+\NewDocumentCommand{\C}{}{\operatornamemathrm{C}}  % Continuously differentiable functions
+\NewDocumentCommand{\V}{}{\operatornamemathrm{V}}  % Convex functions
+\RenewDocumentCommand{\S}{}{\operatornamemathrm{S}}  % Strongly convex functions
+\NewDocumentCommand{\W}{}{\operatornamemathrm{W}}  % Sobolev spaces
 \NewDocumentCommand{\loc}{}{\mathrm{loc}}  % Local
 \NewDocumentCommand{\op}{}{\mathrm{op}}  % Operator
 \NewDocumentCommand{\dual}{}{\mathrm{dual}}  % Dual
@@ -349,7 +353,7 @@
 \NewDocumentCommand{\volume}{O{}m}{\operatorname{volume}_{#1}\rp{#2}}
 \NewDocumentCommand{\sign}{m}{\operatorname{sign}\rp{#1}}
 %%% PROGRAMMING
-\RequirePackage{minted} % https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
+\RequirePackage{listings} % https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
 %%% ALGORITHMS
 \RequirePackage{algorithm} % https://www.overleaf.com/learn/latex/Algorithms
 \RequirePackage{algpseudocodex} % http://mirrors.ctan.org/macros/latex/contrib/algpseudocodex/documentation.pdf -- remember to use minipage to get correct indent
@@ -376,11 +380,10 @@
 \RenewDocumentCommand{\det}{m}{\operatorname{det}\rp{#1}}
 \NewDocumentCommand{\proj}{O{}O{}m}{\Pi_{#1}^{#2}\rp{#3}}
 \NewDocumentCommand{\diag}{m}{\operatorname{diag}\rp{#1}}
-\NewDocumentCommand{\logdet}{m}{\operatorname{log\ det}\rp{#1}}
+\NewDocumentCommand{\logdet}{m}{\operatorname{logdet}\rp{#1}}
 \NewDocumentCommand{\spec}{}{\mathrm{spec}}
-\NewDocumentCommand{\Col}{m}{\operatornamemathsf{Col}\rp{#1}}
-\NewDocumentCommand{\Row}{m}{\operatornamemathsf{Row}\rp{#1}}
-\NewDocumentCommand{\Null}{m}{\operatornamemathsf{Null}\rp{#1}}
+\NewDocumentCommand{\Range}{m}{\mathcal{R}\rp{#1}}
+\NewDocumentCommand{\Null}{m}{\mathcal{N}\rp{#1}}
 %%% ABSTRACT LINEAR ALGEBRA
 \NewDocumentCommand{\Ker}{m}{\operatornamemathsf{Ker}\rp{#1}}
 \RenewDocumentCommand{\Im}{m}{\operatornamemathsf{Im}\rp{#1}}
@@ -453,8 +456,8 @@
 \NewDocumentCommand{\ind}{}{\perp \!\!\! \perp}
 %%% PROBABILITY DISTRIBUTIONS
 % DISCRETE DISTRIBUTIONS
-\NewDocumentCommand{\dBern}{m}{\operatorname{Bernoulli}\rp{#1}}
-\NewDocumentCommand{\dRad}{m}{\operatorname{Rademacher}\rp{#1}}
+\NewDocumentCommand{\dBern}{m}{\operatorname{Ber}\rp{#1}}
+\NewDocumentCommand{\dRad}{m}{\operatorname{Rad}\rp{#1}}
 \NewDocumentCommand{\dBin}{m}{\operatorname{Bin}\rp{#1}}
 \NewDocumentCommand{\dGeo}{m}{\operatorname{Geo}\rp{#1}}
 \NewDocumentCommand{\dUnif}{m}{\operatornamemathcal{U}\rp{#1}}
@@ -462,7 +465,7 @@
 % CONTINUOUS DISTRIBUTIONS
 \NewDocumentCommand{\dNorm}{m}{\operatornamemathcal{N}\rp{#1}}
 \NewDocumentCommand{\dExp}{m}{\operatorname{Exp}\rp{#1}}
-\NewDocumentCommand{\dErl}{m}{\operatorname{Erlang}\rp{#1}}
+\NewDocumentCommand{\dErl}{m}{\operatorname{Erl}\rp{#1}}
 \NewDocumentCommand{\dGamma}{m}{\operatorname{Gamma}\rp{#1}}
 \NewDocumentCommand{\dBeta}{m}{\operatorname{Beta}\rp{#1}}
 \NewDocumentCommand{\dLaplace}{m}{\operatorname{Laplace}\rp{#1}}

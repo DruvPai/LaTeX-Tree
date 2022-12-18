@@ -2,7 +2,7 @@
 \ProvidesClass{druv-pset}
 
 \RequirePackage{druv-hacks}
-\LoadClass{scrreprt}
+\LoadClass{amsart}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
@@ -19,17 +19,9 @@
 %%% LOAD PACKAGES
 \RequirePackage{druv-gen}
 \RequirePackage{druv-thm}
+\RequirePackage{druv-doc}
 
 
 %%% EXTRA SPECIFIC COMMANDS
-\renewcommand\theequation{\arabic{equation}}
-
-%%% DOCUMENT FORMATTING
-\KOMAoptions{
-  paper=letter,
-  usegeometry,
-}
-\RequirePackage{geometry}
-\geometry{margin=1.5cm}
-\pagenumbering{gobble}
+\renewcommand{\theequation}{\arabic{equation}}
 

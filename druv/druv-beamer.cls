@@ -23,6 +23,9 @@
 \RequirePackage{druv-gen}
 
 %%% THEME
-% \usetheme[block=fill]{metropolis}
-\usetheme{focus}
+\usetheme[block=fill]{metropolis}
 \usefonttheme[onlymath]{serif}
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+\usecolortheme{seahorse}

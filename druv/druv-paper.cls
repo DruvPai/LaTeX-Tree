@@ -2,7 +2,7 @@
 \ProvidesClass{druv-paper}
 
 \RequirePackage{druv-hacks}
-\LoadClass{scrartcl}
+\LoadClass[oneside]{amsart}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
@@ -19,11 +19,4 @@
 %%% LOAD PACKAGES
 \RequirePackage{druv-gen}
 \RequirePackage{druv-thm}
-
-%%% DOCUMENT FORMATTING
-\KOMAoptions{
-  paper=letter,
-  usegeometry,
-}
-\RequirePackage{geometry}
-\geometry{margin=1.5cm, includefoot}
+\RequirePackage{druv-doc}

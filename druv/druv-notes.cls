@@ -19,18 +19,5 @@
 %%% LOAD PACKAGES
 \RequirePackage{druv-gen}
 \RequirePackage{druv-thm}
-
-%%% DOCUMENT FORMATTING
-% \KOMAoptions{
-%   paper=letter,
-%   usegeometry,
-% }
-\pdfstringdefDisableCommands{%
-  \let\enspace\empty  % this causes the warning for \kern
-  \let\noindent\empty % this causes the warning for \indent
-}
-\RequirePackage{geometry}
-\geometry{margin=3cm}
-% \RequirePackage{setspace}  % Line spacing
-% \linespread{1.25} 
+\RequirePackage{druv-doc}
 
