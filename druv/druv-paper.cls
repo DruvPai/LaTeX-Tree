@@ -2,7 +2,7 @@
 \ProvidesClass{druv-paper}
 
 \RequirePackage{druv-hacks}
-\LoadClass[oneside]{amsart}
+\LoadClass[10pt]{scrartcl}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}

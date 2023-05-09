@@ -19,11 +19,11 @@
 %%%%% FONT PACKAGES
 \RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
 % \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
-\RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
+% \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
 % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
 \newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
 \newcommand{\bmmax}{0} % https://tex.stackexchange.com/a/243541/189560
-% \RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
+\RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
 % \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
 \RequirePackage{silence} % https://ctan.org/pkg/silence?lang=en
 \WarningFilter{latexfont}{Font shape}
@@ -36,13 +36,14 @@
   \pgfplotsset{compat=1.18}
   \RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
   \RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
-  \usetikzlibrary{calc, hobby}
+  \usetikzlibrary{calc, scopes, hobby}
   \RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
 }{}
 
 %%%%% BIBLIOGRAPHY
 \iftoggle{druv-gen-bib}{
-  \RequirePackage[style=alphabetic, backend=biber]{biblatex} % https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX
+  \RequirePackage[round]{natbib} % https://www.overleaf.com/learn/latex/Bibliography_management_with_natbib
+  \bibliographystyle{plainnat}
 }{}
 
 %%%%% LAYOUT PACKAGES
@@ -62,9 +63,6 @@
 }
 %%% FIGURE LAYOUT
 \RequirePackage{subcaption} % http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/caption/subcaption.pdf
-
-%%%%% SCIENCE
-\RequirePackage{siunitx}
 
 %%%%% MULTIPLE FILES 
 \iftoggle{druv-gen-beamer}{}{
@@ -315,6 +313,7 @@
 \NewDocumentCommand{\dist}{O{}O{}m}{\operatorname{dist}_{#1}^{#2}\rp{#3}}
 \DeclareMathOperator*{\esssup}{ess\ sup}
 \DeclareMathOperator*{\essinf}{ess\ inf}
+\NewDocumentCommand{\KL}{}{\mathrm{KL}}
 \NewDocumentCommand{\TV}{}{\mathrm{TV}}
 %%% REAL ANALYSIS SPACES
 \NewDocumentCommand{\BV}{O{}m}{\operatornamemathrm{BV}_{#1}\rp{#2}}  % Bounded variation
@@ -378,7 +377,7 @@
 \NewDocumentCommand{\mat}{m}{\begin{bmatrix}#1\end{bmatrix}}
 \NewDocumentCommand{\tr}{m}{\operatorname{tr}\rp{#1}}
 \RenewDocumentCommand{\det}{m}{\operatorname{det}\rp{#1}}
-\NewDocumentCommand{\proj}{O{}O{}m}{\Pi_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\proj}{O{}O{}m}{\operatorname{proj}_{#1}^{#2}\rp{#3}}
 \NewDocumentCommand{\diag}{m}{\operatorname{diag}\rp{#1}}
 \NewDocumentCommand{\logdet}{m}{\operatorname{logdet}\rp{#1}}
 \NewDocumentCommand{\spec}{}{\mathrm{spec}}
@@ -396,6 +395,7 @@
 \NewDocumentCommand{\codim}{m}{\operatorname{codim}\rp{#1}}
 \NewDocumentCommand{\rank}{m}{\operatorname{rank}\rp{#1}}
 %%% LINEAR ALGEBRAIC SPACES
+\NewDocumentCommand{\Lin}{O{}m}{\operatornamemathsf{Lin}_{#1}\rp{#2}}
 \NewDocumentCommand{\M}{O{}m}{\operatornamemathsf{M}_{#1}\rp{#2}}
 \NewDocumentCommand{\GL}{m}{\operatornamemathsf{GL}\rp{#1}}
 \NewDocumentCommand{\SL}{m}{\operatornamemathsf{SL}\rp{#1}}
@@ -444,16 +444,18 @@
 \NewDocumentCommand{\given}{}{\;\ifnumequal{\currentgrouptype}{16}{\middle|}{\mid}\;}
 % https://tex.stackexchange.com/questions/54052/applying-middle-outside-of-a-left-right-group
 \NewDocumentCommand{\suchthat}{}{\given}
+\NewDocumentCommand{\wrt}{}{\;\ifnumequal{\currentgrouptype}{16}{\middle|\!\middle|}{\mid\!\mid}\;}
 
-\RenewDocumentCommand{\Pr}{O{}O{}m}{\operatornamemathbf{P}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Ex}{O{}O{}m}{\operatornamemathbf{E}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Cov}{O{}O{}m}{\operatorname{Cov}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Var}{O{}O{}m}{\operatorname{Var}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Corr}{O{}O{}m}{\operatorname{Corr}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Lin}{O{}O{}m}{\operatorname{L}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\indvar}{O{}m}{\mathbf{1}_{#1}\rp{#2}}
+\RenewDocumentCommand{\Pr}{O{}O{}m}{\operatornamemathbb{P}_{#1}^{#2}\rs{#3}}
+\NewDocumentCommand{\Ex}{O{}O{}m}{\operatornamemathbb{E}_{#1}^{#2}\rs{#3}}
+\NewDocumentCommand{\Cov}{O{}O{}m}{\operatorname{Cov}_{#1}^{#2}\rs{#3}}
+\NewDocumentCommand{\Var}{O{}O{}m}{\operatorname{Var}_{#1}^{#2}\rs{#3}}
+\NewDocumentCommand{\Corr}{O{}O{}m}{\operatorname{Corr}_{#1}^{#2}\rs{#3}}
+\NewDocumentCommand{\indvar}{O{}m}{\mathbf{1}_{#1}\rs{#2}}
 \NewDocumentCommand{\iid}{}{\mathrm{i.i.d.}}
+\NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
 \NewDocumentCommand{\ind}{}{\perp \!\!\! \perp}
+\NewDocumentCommand{\softmax}{m}{\operatornamemathrm{softmax}\rp{#1}}
 %%% PROBABILITY DISTRIBUTIONS
 % DISCRETE DISTRIBUTIONS
 \NewDocumentCommand{\dBern}{m}{\operatorname{Ber}\rp{#1}}
@@ -464,17 +466,24 @@
 \NewDocumentCommand{\dPois}{m}{\operatorname{Pois}\rp{#1}}
 % CONTINUOUS DISTRIBUTIONS
 \NewDocumentCommand{\dNorm}{m}{\operatornamemathcal{N}\rp{#1}}
+\NewDocumentCommand{\dChi}{m}{\chi^{2}\rp{#1}}
 \NewDocumentCommand{\dExp}{m}{\operatorname{Exp}\rp{#1}}
 \NewDocumentCommand{\dErl}{m}{\operatorname{Erl}\rp{#1}}
 \NewDocumentCommand{\dGamma}{m}{\operatorname{Gamma}\rp{#1}}
 \NewDocumentCommand{\dBeta}{m}{\operatorname{Beta}\rp{#1}}
 \NewDocumentCommand{\dLaplace}{m}{\operatorname{Laplace}\rp{#1}}
+\NewDocumentCommand{\dSG}{m}{\operatorname{SG}\rp{#1}}
+\NewDocumentCommand{\dSE}{m}{\operatorname{SE}\rp{#1}}
 
 %%%%% NUMERICS
 \NewDocumentCommand{\float}{m}{\operatorname{\texttt{fl}}\rp{#1}}
 \NewDocumentCommand{\alg}{m}{\operatorname{\texttt{alg}}\rp{#1}}
 \NewDocumentCommand{\round}{m}{\operatorname{\texttt{round}}\rp{#1}}
 \NewDocumentCommand{\RRE}{m}{\operatorname{\texttt{RRE}}\rp{#1}}
+
+%%%%% LEARNING THEORY
+\NewDocumentCommand{\LD}{m}{\operatorname{LD}\rp{#1}}
+\NewDocumentCommand{\VC}{m}{\operatorname{VC}\rp{#1}}
 
 %%%%% CONVEX ANALYSIS
 \NewDocumentCommand{\Aff}{O{}O{}m}{\operatornamemathsf{Aff}_{#1}^{#2}\rp{#3}}

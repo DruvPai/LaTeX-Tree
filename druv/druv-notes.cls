@@ -2,7 +2,7 @@
 \ProvidesClass{druv-notes}
 
 \RequirePackage{druv-hacks}
-\LoadClass[oneside]{amsbook}
+\LoadClass[oneside, 10pt]{scrbook}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
