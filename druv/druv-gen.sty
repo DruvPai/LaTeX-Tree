@@ -23,27 +23,29 @@
 % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
 \newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
 \newcommand{\bmmax}{0} % https://tex.stackexchange.com/a/243541/189560
-\RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
+% \RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
 % \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
+\RequirePackage{bbold} % https://ctan.org/pkg/bbold?lang=en
+\RequirePackage{bm} % http://mirrors.ctan.org/macros/latex/required/tools/bm.pdf
 \RequirePackage{silence} % https://ctan.org/pkg/silence?lang=en
 \WarningFilter{latexfont}{Font shape}
 
 %%%%% PGF/TIKZ
 \iftoggle{druv-gen-tikz}{
-  \RequirePackage{tikz} % https://www.overleaf.com/learn/latex/TikZ_package
-  \RequirePackage{pgf}
-  \RequirePackage{pgfplots} % https://www.overleaf.com/learn/latex/Pgfplots_package
-  \pgfplotsset{compat=1.18}
-  \RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
-  \RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
-  \usetikzlibrary{calc, scopes, hobby}
-  \RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
+	\RequirePackage{tikz} % https://www.overleaf.com/learn/latex/TikZ_package
+	\RequirePackage{pgf}
+	\RequirePackage{pgfplots} % https://www.overleaf.com/learn/latex/Pgfplots_package
+	\pgfplotsset{compat=1.18}
+	\RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
+	\RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
+	\usetikzlibrary{calc, scopes, hobby}
+	\RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
 }{}
 
 %%%%% BIBLIOGRAPHY
 \iftoggle{druv-gen-bib}{
-  \RequirePackage[round]{natbib} % https://www.overleaf.com/learn/latex/Bibliography_management_with_natbib
-  \bibliographystyle{plainnat}
+	\RequirePackage[round]{natbib} % https://www.overleaf.com/learn/latex/Bibliography_management_with_natbib
+	\bibliographystyle{plainnat}
 }{}
 
 %%%%% LAYOUT PACKAGES
@@ -59,25 +61,25 @@
 \RequirePackage{booktabs} % https://ctan.math.illinois.edu/macros/latex/contrib/booktabs/booktabs.pdf
 %%% ENUMERATE LAYOUT
 \iftoggle{druv-gen-beamer}{}{
-  \RequirePackage[shortlabels]{enumitem} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/enumitem/enumitem.pdf
+	\RequirePackage[shortlabels]{enumitem} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/enumitem/enumitem.pdf
 }
 %%% FIGURE LAYOUT
 \RequirePackage{subcaption} % http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/caption/subcaption.pdf
 
 %%%%% MULTIPLE FILES 
 \iftoggle{druv-gen-beamer}{}{
-  \RequirePackage{subfiles} % https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects
+	\RequirePackage{subfiles} % https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects
 }
 
 %%%%% REFERENCES
 \iftoggle{druv-gen-beamer}{}{
-  \RequirePackage[colorlinks=true]{hyperref} % https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
-  \hypersetup{urlcolor = violet, linkcolor = blue, citecolor = cyan}
+	\RequirePackage[colorlinks=true]{hyperref} % https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
+	\hypersetup{urlcolor = violet, linkcolor = blue, citecolor = cyan}
 }
 
 %%%%% PAGE BREAK
 \iftoggle{druv-gen-beamer}{}{
-  \allowdisplaybreaks
+	\allowdisplaybreaks
 }
 
 
@@ -101,145 +103,40 @@
 \NewDocumentCommand{\bp}{m}{\left(#1\right)}
 \NewDocumentCommand{\bs}{m}{\left[#1\right]}
 \NewDocumentCommand{\bc}{m}{\left\{#1\right\}}
-\NewDocumentCommand{\ba}{m}{\left\langle#1\right\rangle}
 %%% REDUCED-SPACED DELIMITERS
 \NewDocumentCommand{\rp}{m}{\mleft(#1\mright)}
 \NewDocumentCommand{\rs}{m}{\mleft[#1\mright]}
 \NewDocumentCommand{\rc}{m}{\mleft\{#1\mright\}}
-\NewDocumentCommand{\ra}{m}{\mleft\langle#1\mright\rangle}
 
+\NewDocumentCommand{\eps}{}{\varepsilon}
 
 %%%%% FONT SHORTHANDS
-\NewDocumentCommand{\bA}{}{\mathbb{A}}
-\NewDocumentCommand{\bB}{}{\mathbb{B}}
-\NewDocumentCommand{\bC}{}{\mathbb{C}}
-\NewDocumentCommand{\bD}{}{\mathbb{D}}
-\NewDocumentCommand{\bE}{}{\mathbb{E}}
-\NewDocumentCommand{\bF}{}{\mathbb{F}}
-\NewDocumentCommand{\bG}{}{\mathbb{G}}
-\NewDocumentCommand{\bH}{}{\mathbb{H}}
-\NewDocumentCommand{\bI}{}{\mathbb{I}}
-\NewDocumentCommand{\bJ}{}{\mathbb{J}}
-\NewDocumentCommand{\bK}{}{\mathbb{K}}
-\NewDocumentCommand{\bL}{}{\mathbb{L}}
-\NewDocumentCommand{\bM}{}{\mathbb{M}}
-\NewDocumentCommand{\bN}{}{\mathbb{N}}
-\NewDocumentCommand{\bO}{}{\mathbb{O}}
-\NewDocumentCommand{\bP}{}{\mathbb{P}}
-\NewDocumentCommand{\bQ}{}{\mathbb{Q}}
-\NewDocumentCommand{\bR}{}{\mathbb{R}}
-\NewDocumentCommand{\bS}{}{\mathbb{S}}
-\NewDocumentCommand{\bT}{}{\mathbb{T}}
-\NewDocumentCommand{\bU}{}{\mathbb{U}}
-\NewDocumentCommand{\bV}{}{\mathbb{V}}
-\NewDocumentCommand{\bW}{}{\mathbb{W}}
-\NewDocumentCommand{\bX}{}{\mathbb{X}}
-\NewDocumentCommand{\bY}{}{\mathbb{Y}}
-\NewDocumentCommand{\bZ}{}{\mathbb{Z}}
-\NewDocumentCommand{\cA}{}{\mathcal{A}}
-\NewDocumentCommand{\cB}{}{\mathcal{B}}
-\NewDocumentCommand{\cC}{}{\mathcal{C}}
-\NewDocumentCommand{\cD}{}{\mathcal{D}}
-\NewDocumentCommand{\cE}{}{\mathcal{E}}
-\NewDocumentCommand{\cF}{}{\mathcal{F}}
-\NewDocumentCommand{\cG}{}{\mathcal{G}}
-\NewDocumentCommand{\cH}{}{\mathcal{H}}
-\NewDocumentCommand{\cI}{}{\mathcal{I}}
-\NewDocumentCommand{\cJ}{}{\mathcal{J}}
-\NewDocumentCommand{\cK}{}{\mathcal{K}}
-\NewDocumentCommand{\cL}{}{\mathcal{L}}
-\NewDocumentCommand{\cM}{}{\mathcal{M}}
-\NewDocumentCommand{\cN}{}{\mathcal{N}}
-\NewDocumentCommand{\cO}{}{\mathcal{O}}
-\NewDocumentCommand{\cP}{}{\mathcal{P}}
-\NewDocumentCommand{\cQ}{}{\mathcal{Q}}
-\NewDocumentCommand{\cR}{}{\mathcal{R}}
-\NewDocumentCommand{\cS}{}{\mathcal{S}}
-\NewDocumentCommand{\cT}{}{\mathcal{T}}
-\NewDocumentCommand{\cU}{}{\mathcal{U}}
-\NewDocumentCommand{\cV}{}{\mathcal{V}}
-\NewDocumentCommand{\cW}{}{\mathcal{W}}
-\NewDocumentCommand{\cX}{}{\mathcal{X}}
-\NewDocumentCommand{\cY}{}{\mathcal{Y}}
-\NewDocumentCommand{\cZ}{}{\mathcal{Z}}
-\NewDocumentCommand{\sA}{}{\mathscr{A}}
-\NewDocumentCommand{\sB}{}{\mathscr{B}}
-\NewDocumentCommand{\sC}{}{\mathscr{C}}
-\NewDocumentCommand{\sD}{}{\mathscr{D}}
-\NewDocumentCommand{\sE}{}{\mathscr{E}}
-\NewDocumentCommand{\sF}{}{\mathscr{F}}
-\NewDocumentCommand{\sG}{}{\mathscr{G}}
-\NewDocumentCommand{\sH}{}{\mathscr{H}}
-\NewDocumentCommand{\sI}{}{\mathscr{I}}
-\NewDocumentCommand{\sJ}{}{\mathscr{J}}
-\NewDocumentCommand{\sK}{}{\mathscr{K}}
-\NewDocumentCommand{\sL}{}{\mathscr{L}}
-\NewDocumentCommand{\sM}{}{\mathscr{M}}
-\NewDocumentCommand{\sN}{}{\mathscr{N}}
-\NewDocumentCommand{\sO}{}{\mathscr{O}}
-\NewDocumentCommand{\sP}{}{\mathscr{P}}
-\NewDocumentCommand{\sQ}{}{\mathscr{Q}}
-\NewDocumentCommand{\sR}{}{\mathscr{R}}
-\NewDocumentCommand{\sS}{}{\mathscr{S}}
-\NewDocumentCommand{\sT}{}{\mathscr{T}}
-\NewDocumentCommand{\sU}{}{\mathscr{U}}
-\NewDocumentCommand{\sV}{}{\mathscr{V}}
-\NewDocumentCommand{\sW}{}{\mathscr{W}}
-\NewDocumentCommand{\sX}{}{\mathscr{X}}
-\NewDocumentCommand{\sY}{}{\mathscr{Y}}
-\NewDocumentCommand{\sZ}{}{\mathscr{Z}}
-\NewDocumentCommand{\fA}{}{\mathfrak{A}}
-\NewDocumentCommand{\fB}{}{\mathfrak{B}}
-\NewDocumentCommand{\fC}{}{\mathfrak{C}}
-\NewDocumentCommand{\fD}{}{\mathfrak{D}}
-\NewDocumentCommand{\fE}{}{\mathfrak{E}}
-\NewDocumentCommand{\fF}{}{\mathfrak{F}}
-\NewDocumentCommand{\fG}{}{\mathfrak{G}}
-\NewDocumentCommand{\fH}{}{\mathfrak{H}}
-\NewDocumentCommand{\fI}{}{\mathfrak{I}}
-\NewDocumentCommand{\fJ}{}{\mathfrak{J}}
-\NewDocumentCommand{\fK}{}{\mathfrak{K}}
-\NewDocumentCommand{\fL}{}{\mathfrak{L}}
-\NewDocumentCommand{\fM}{}{\mathfrak{M}}
-\NewDocumentCommand{\fN}{}{\mathfrak{N}}
-\NewDocumentCommand{\fO}{}{\mathfrak{O}}
-\NewDocumentCommand{\fP}{}{\mathfrak{P}}
-\NewDocumentCommand{\fQ}{}{\mathfrak{Q}}
-\NewDocumentCommand{\fR}{}{\mathfrak{R}}
-\NewDocumentCommand{\fS}{}{\mathfrak{S}}
-\NewDocumentCommand{\fT}{}{\mathfrak{T}}
-\NewDocumentCommand{\fU}{}{\mathfrak{U}}
-\NewDocumentCommand{\fV}{}{\mathfrak{V}}
-\NewDocumentCommand{\fW}{}{\mathfrak{W}}
-\NewDocumentCommand{\fX}{}{\mathfrak{X}}
-\NewDocumentCommand{\fY}{}{\mathfrak{Y}}
-\NewDocumentCommand{\fZ}{}{\mathfrak{Z}}
-\NewDocumentCommand{\fa}{}{\mathfrak{a}}
-\NewDocumentCommand{\fb}{}{\mathfrak{b}}
-\NewDocumentCommand{\fc}{}{\mathfrak{c}}
-\NewDocumentCommand{\fd}{}{\mathfrak{d}}
-\NewDocumentCommand{\fe}{}{\mathfrak{e}}
-\NewDocumentCommand{\ff}{}{\mathfrak{f}}
-\NewDocumentCommand{\fg}{}{\mathfrak{g}}
-\NewDocumentCommand{\fh}{}{\mathfrak{h}}
-\NewDocumentCommand{\fri}{}{\mathfrak{i}}
-\NewDocumentCommand{\fj}{}{\mathfrak{j}}
-\NewDocumentCommand{\fk}{}{\mathfrak{k}}
-\NewDocumentCommand{\fl}{}{\mathfrak{l}}
-\NewDocumentCommand{\fm}{}{\mathfrak{m}}
-\NewDocumentCommand{\fn}{}{\mathfrak{n}}
-\NewDocumentCommand{\fo}{}{\mathfrak{o}}
-\NewDocumentCommand{\fp}{}{\mathfrak{p}}
-\NewDocumentCommand{\fq}{}{\mathfrak{q}}
-\NewDocumentCommand{\fr}{}{\mathfrak{r}}
-\NewDocumentCommand{\fs}{}{\mathfrak{s}}
-\NewDocumentCommand{\ft}{}{\mathfrak{t}}
-\NewDocumentCommand{\fu}{}{\mathfrak{u}}
-\NewDocumentCommand{\fv}{}{\mathfrak{v}}
-\NewDocumentCommand{\fw}{}{\mathfrak{w}}
-\NewDocumentCommand{\fx}{}{\mathfrak{x}}
-\NewDocumentCommand{\fy}{}{\mathfrak{y}}
-\NewDocumentCommand{\fz}{}{\mathfrak{z}}
+\newcommand{\fontmakerlatinlowercase}[1]{
+	\csdef{fr#1}{\mathfrak{#1}}
+	\csdef{sf#1}{\mathsf{#1}}
+	\csdef{rm#1}{\mathrm{#1}}
+	\csdef{bf#1}{\mathbf{#1}}
+	\csdef{v#1}{\bm{#1}}
+}
+\forcsvlist{\fontmakerlatinlowercase}{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
+\newcommand{\fontmakerlatinuppercase}[1]{
+	\csdef{b#1}{\mathbb{#1}}
+	\csdef{fr#1}{\mathfrak{#1}}
+	\csdef{sf#1}{\mathsf{#1}}
+	\csdef{rm#1}{\mathrm{#1}}
+	\csdef{bf#1}{\mathbf{#1}}
+	\csdef{v#1}{\bm{#1}}
+	
+	\csdef{c#1}{\mathcal{#1}}
+	\csdef{sc#1}{\mathscr{#1}}
+}
+\forcsvlist{\fontmakerlatinuppercase}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+\newcommand{\fontmakergreek}[1]{
+	\csdef{v#1}{\bm{\csname#1\endcsname}}
+}
+\forcsvlist{\fontmakergreek}{alpha,beta,gamma,delta,epsilon,eps,phi,zeta,eta,theta,vartheta,gamma,kappa,lambda,mu,nu,xi,pi,varpi,rho,varrho,sigma,varsigma,tau,upsilon,phi,varphi,chi,psi,omega}
+\forcsvlist{\fontmakergreek}{Gamma,Delta,Theta,Lambda,Xi,Pi,Sigma,Upsilon,Phi,Psi,Omega}
+
 
 %%%%% COMMON TEXT SHORTHANDS
 \NewDocumentCommand{\vocab}{m}{\textbf{#1}}
@@ -247,6 +144,7 @@
 \NewDocumentCommand{\nd}{}{^{\textnormal{nd}}}
 \NewDocumentCommand{\rd}{}{^{\textnormal{rd}}}
 \RenewDocumentCommand{\th}{}{^{\textnormal{th}}}
+
 
 %%%%% COMMON MATH MODE SHORTHANDS
 \RequirePackage{centernot} % http://mirrors.ctan.org/macros/latex/contrib/oberdiek/centernot.pdf
@@ -256,6 +154,7 @@
 \NewDocumentCommand{\wh}{m}{\widehat{#1}} % {\what{#1}}
 \NewDocumentCommand{\ob}{mm}{\overbrace{#1}^{#2}}
 \NewDocumentCommand{\ub}{mm}{\underbrace{#1}_{#2}}
+
 
 %%%%% COMMON EQUATION SHORTHANDS
 \NewDocumentCommand{\casework}{m}{\begin{cases}#1\end{cases}}
@@ -267,90 +166,87 @@
 \NewDocumentCommand{\qqm}{m}{\qquad\ensuremath{#1}\qquad}
 \NewDocumentCommand{\qqc}{}{, \qquad}
 
-%%%%% TRIGONOMETRY
-\RenewDocumentCommand{\sin}{m}{\operatorname{sin}\rp{#1}}
-\RenewDocumentCommand{\cos}{m}{\operatorname{cos}\rp{#1}}
-\RenewDocumentCommand{\tan}{m}{\operatorname{tan}\rp{#1}}
-\RenewDocumentCommand{\csc}{m}{\operatorname{csc}\rp{#1}}
-\RenewDocumentCommand{\sec}{m}{\operatorname{sec}\rp{#1}}
-\RenewDocumentCommand{\cot}{m}{\operatorname{cot}\rp{#1}}
-\RenewDocumentCommand{\sinh}{m}{\operatorname{sinh}\rp{#1}}
-\RenewDocumentCommand{\cosh}{m}{\operatorname{cosh}\rp{#1}}
-\RenewDocumentCommand{\tanh}{m}{\operatorname{tanh}\rp{#1}}
-\NewDocumentCommand{\csch}{m}{\operatorname{csch}\rp{#1}}
-\NewDocumentCommand{\sech}{m}{\operatorname{sech}\rp{#1}}
-\RenewDocumentCommand{\coth}{m}{\operatorname{coth}\rp{#1}}
-\RenewDocumentCommand{\arcsin}{m}{\operatorname{sin}^{-1}\rp{#1}}
-\RenewDocumentCommand{\arccos}{m}{\operatorname{cos}^{-1}\rp{#1}}
-\RenewDocumentCommand{\arctan}{m}{\operatorname{tan}^{-1}\rp{#1}}
-\NewDocumentCommand{\arccsc}{m}{\operatorname{csc}^{-1}\rp{#1}}
-\NewDocumentCommand{\arcsec}{m}{\operatorname{sec}^{-1}\rp{#1}}
-\NewDocumentCommand{\arccot}{m}{\operatorname{cot}^{-1}\rp{#1}}
-\NewDocumentCommand{\arcsinh}{m}{\operatorname{sinh}^{-1}\rp{#1}}
-\NewDocumentCommand{\arccosh}{m}{\operatorname{cosh}^{-1}\rp{#1}}
-\NewDocumentCommand{\arctanh}{m}{\operatorname{tanh}^{-1}{\rp#1}}
-\NewDocumentCommand{\arccsch}{m}{\operatorname{csch}^{-1}\rp{#1}}
-\NewDocumentCommand{\arcsech}{m}{\operatorname{sech}^{-1}\rp{#1}}
-\NewDocumentCommand{\arccoth}{m}{\operatorname{coth}^{-1}\rp{#1}}
 
-%%%%% REAL ANALYSIS
-%%% REAL ANALYSIS CONSTRUCTS
-\RequirePackage{derivative} % http://mirrors.ctan.org/macros/latex/contrib/derivative/derivative.pdf
-\RequirePackage{esint} % https://ctan.math.illinois.edu/macros/latex/contrib/esint/esint-doc.pdf
+%%%%% DELIMITERS
 \RequirePackage{interval} % https://ctan.math.illinois.edu/macros/latex/contrib/interval/interval.pdf
 \intervalconfig{soft open fences} % for open intervals, use () instead of ][
 \xpatchcmd{\interval}{interval,}{interval,scaled,}{}{} % auto-scales intervals
-\NewDocumentCommand{\eps}{}{\varepsilon}
-\NewDocumentCommand{\vphi}{}{\varphi}
-\NewDocumentCommand{\abs}{m}{\left|#1\right|}
-\NewDocumentCommand{\norm}{m}{\left\Vert#1\right\Vert}
-\NewDocumentCommand{\ip}{mm}{\ba{#1, #2}}
-\NewDocumentCommand{\ipip}{m}{\ip{#1}{#1}} % Repeats the first argument in e.g. Hilbert spaces as a replacement for norm.
-\NewDocumentCommand{\eval}{m}{{\left.#1\right|}}
-\NewDocumentCommand{\restr}{mm}{{\left.#1\right|_{#2}}} 
-% https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
 
-\NewDocumentCommand{\dist}{O{}O{}m}{\operatorname{dist}_{#1}^{#2}\rp{#3}}
+%%% REGULARLY SIZED DELIMITERS
+\NewDocumentCommand{\abs}{m}{\lvert#1\rvert}
+\NewDocumentCommand{\norm}{m}{\Vert#1\Vert}
+\NewDocumentCommand{\ip}{mm}{\langle#1, #2\rangle}
+\NewDocumentCommand{\ipip}{m}{\ip{#1}{#1}} % Repeats the first argument in e.g. Hilbert spaces as a replacement for norm.
+\NewDocumentCommand{\eval}{m}{#1\rvert} % https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
+\NewDocumentCommand{\floor}{m}{\lfloor#1\rfloor}
+\NewDocumentCommand{\ceiling}{m}{\lceil#1\rceil}
+
+%%% AUTO SIZED DELIMITERS
+\NewDocumentCommand{\babs}{m}{\left\lvert#1\right\rvert}
+\NewDocumentCommand{\bnorm}{m}{\left\Vert#1\right\Vert}
+\NewDocumentCommand{\bip}{mm}{\left\langle#1, #2\right\rangle}
+\NewDocumentCommand{\bipip}{m}{\bip{#1}{#1}} 
+\NewDocumentCommand{\beval}{m}{\left.#1\right\rvert} 
+\NewDocumentCommand{\bfloor}{m}{\left\lfloor#1\right\rfloor}
+\NewDocumentCommand{\bceiling}{m}{\left\lceil#1\right\rceil}
+
+
+%%%%% TRIGONOMETRY
+\NewDocumentCommand{\csch}{}{\operatorname{csch}}
+\NewDocumentCommand{\sech}{}{\operatorname{sech}}
+\NewDocumentCommand{\arccsc}{}{\operatorname{csc}^{-1}}
+\NewDocumentCommand{\arcsec}{}{\operatorname{sec}^{-1}}
+\NewDocumentCommand{\arccot}{}{\operatorname{cot}^{-1}}
+\NewDocumentCommand{\arcsinh}{}{\operatorname{sinh}^{-1}}
+\NewDocumentCommand{\arccosh}{}{\operatorname{cosh}^{-1}}
+\NewDocumentCommand{\arctanh}{}{\operatorname{tanh}^{-1}}
+\NewDocumentCommand{\arccsch}{}{\operatorname{csch}^{-1}}
+\NewDocumentCommand{\arcsech}{}{\operatorname{sech}^{-1}}
+\NewDocumentCommand{\arccoth}{}{\operatorname{coth}^{-1}}
+
+%%%%% BASIC SETS
+\NewDocumentCommand{\R}{}{\mathbb{R}}
+\NewDocumentCommand{\C}{}{\mathbb{C}}
+\NewDocumentCommand{\N}{}{\mathbb{N}}
+\NewDocumentCommand{\Z}{}{\mathbb{Z}}
+
+
+%%%%% REAL ANALYSIS
+\RequirePackage{derivative} % http://mirrors.ctan.org/macros/latex/contrib/derivative/derivative.pdf
+\RequirePackage{esint} % https://ctan.math.illinois.edu/macros/latex/contrib/esint/esint-doc.pdf
+
+%%% OPERATORS
+%%% REAL ANALYSIS CONSTRUCTS
 \DeclareMathOperator*{\esssup}{ess\ sup}
 \DeclareMathOperator*{\essinf}{ess\ inf}
-\NewDocumentCommand{\KL}{}{\mathrm{KL}}
-\NewDocumentCommand{\TV}{}{\mathrm{TV}}
-%%% REAL ANALYSIS SPACES
-\NewDocumentCommand{\BV}{O{}m}{\operatornamemathrm{BV}_{#1}\rp{#2}}  % Bounded variation
-\NewDocumentCommand{\BMO}{O{}m}{\operatornamemathrm{BMO}_{#1}\rp{#2}}  % Bounded mean oscillation
-\NewDocumentCommand{\ISF}{O{}m}{\operatornamemathrm{ISF}_{#1}\rp{#2}}  % Integrable simple functions
-\RenewDocumentCommand{\L}{}{\operatornamemathrm{L}}  % p-Integrable functions
-\NewDocumentCommand{\C}{}{\operatornamemathrm{C}}  % Continuously differentiable functions
-\NewDocumentCommand{\V}{}{\operatornamemathrm{V}}  % Convex functions
-\RenewDocumentCommand{\S}{}{\operatornamemathrm{S}}  % Strongly convex functions
-\NewDocumentCommand{\W}{}{\operatornamemathrm{W}}  % Sobolev spaces
+\DeclareMathOperator*{\argmin}{arg\ min}
+\DeclareMathOperator*{\argmax}{arg\ max}
+
+%%% SHORTHANDS
 \NewDocumentCommand{\loc}{}{\mathrm{loc}}  % Local
 \NewDocumentCommand{\op}{}{\mathrm{op}}  % Operator
 \NewDocumentCommand{\dual}{}{\mathrm{dual}}  % Dual
 
+
 %%%%% COMPLEX ANALYSIS
 \NewDocumentCommand{\e}{}{\mathrm{e}}
 \RenewDocumentCommand{\i}{}{\mathrm{i}}
-\RenewDocumentCommand{\Re}{m}{\operatorname{Re}\rp{#1}}
-\RenewDocumentCommand{\Im}{m}{\operatorname{Im}\rp{#1}}
-\RenewDocumentCommand{\exp}{m}{\operatorname{exp}\rp{#1}}
-\RenewDocumentCommand{\log}{O{}m}{\operatorname{log}_{#1}\rp{#2}}
-\NewDocumentCommand{\res}{O{}m}{\operatorname{Res}_{#1}\rp{#2}}
+\RenewDocumentCommand{\Re}{}{\operatornamemathsf{Re}}
+\RenewDocumentCommand{\Im}{}{\operatornamemathsf{Im}}
+\NewDocumentCommand{\res}{}{\operatorname{Res}}
+
 
 %%%%% DISCRETE MATH, COMBINATORICS, AND ALGORITHMS
 %%% DISCRETE MATH
-\DeclareMathOperator*{\argmin}{arg\ min}
-\DeclareMathOperator*{\argmax}{arg\ max}
-\NewDocumentCommand{\floor}{m}{\left\lfloor#1\right\rfloor}
-\NewDocumentCommand{\ceiling}{m}{\left\lceil#1\right\rceil}
-\RenewDocumentCommand{\gcd}{m}{\operatorname{gcd}\rp{#1}}
-\NewDocumentCommand{\lcm}{m}{\operatorname{lcm}\rp{#1}}
+\RenewDocumentCommand{\gcd}{}{\operatorname{gcd}}
+\NewDocumentCommand{\lcm}{}{\operatorname{lcm}}
+
 %%% COMBINATORICS
-\RenewDocumentCommand{\deg}{O{}m}{\operatorname{deg}_{#1}\rp{#2}}
-\NewDocumentCommand{\diam}{O{}m}{\operatorname{diam}_{#1}\rp{#2}}
-\NewDocumentCommand{\area}{O{}m}{\operatorname{area}_{#1}\rp{#2}}
-\NewDocumentCommand{\volume}{O{}m}{\operatorname{volume}_{#1}\rp{#2}}
-\NewDocumentCommand{\sign}{m}{\operatorname{sign}\rp{#1}}
+\NewDocumentCommand{\diam}{}{\operatorname{diam}}
+\NewDocumentCommand{\area}{}{\operatorname{area}}
+\NewDocumentCommand{\volume}{}{\operatorname{volume}}
+\NewDocumentCommand{\sign}{}{\operatorname{sign}}
+
 %%% PROGRAMMING
 \RequirePackage{listings} % https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
 %%% ALGORITHMS
@@ -358,84 +254,81 @@
 \RequirePackage{algpseudocodex} % http://mirrors.ctan.org/macros/latex/contrib/algpseudocodex/documentation.pdf -- remember to use minipage to get correct indent
 \algrenewcommand\algorithmicrequire{\textbf{Input:}} % Remaps \Require to Input`
 \algrenewcommand\algorithmicensure{\textbf{Output:}} % Remaps \Ensure to Output
-\NewDocumentCommand{\p}{}{\textsf{P}}
-\NewDocumentCommand{\np}{}{\textsf{NP}}
-\NewDocumentCommand{\bqp}{}{\textsf{BQP}}
-\NewDocumentCommand{\opt}{}{\textsf{OPT}}
-\NewDocumentCommand{\tm}{}{\textsf{TM}}
+\RenewDocumentCommand{\P}{}{\textsf{P}}
+\NewDocumentCommand{\NP}{}{\textsf{NP}}
+\NewDocumentCommand{\BQP}{}{\textsf{BQP}}
+\NewDocumentCommand{\OPT}{}{\textsf{OPT}}
+\NewDocumentCommand{\TM}{}{\textsf{TM}}
+
 
 %%%%% ABSTRACT ALGEBRA
-\NewDocumentCommand{\ord}{m}{\operatorname{ord}\rp{#1}}
-\NewDocumentCommand{\Hom}{m}{\operatornamemathsf{Hom}\rp{#1}}
-\NewDocumentCommand{\Endo}{m}{\operatornamemathsf{End}\rp{#1}}
-\NewDocumentCommand{\Gal}{m}{\operatornamemathsf{Gal}\rp{#1}}
-\NewDocumentCommand{\Spec}{m}{\operatornamemathsf{Spec}\rp{#1}}
+\NewDocumentCommand{\ord}{}{\operatorname{ord}}
+\NewDocumentCommand{\Hom}{}{\operatornamemathsf{Hom}}
+\NewDocumentCommand{\Endo}{}{\operatornamemathsf{End}}
+\NewDocumentCommand{\Gal}{}{\operatornamemathsf{Gal}}
+\NewDocumentCommand{\Spec}{}{\operatornamemathsf{Spec}}
+
 
 %%%%% LINEAR ALGEBRA
-\RequirePackage{bm} % http://mirrors.ctan.org/macros/latex/required/tools/bm.pdf
 %%% COMPUTATIONAL LINEAR ALGEBRA
 \NewDocumentCommand{\mat}{m}{\begin{bmatrix}#1\end{bmatrix}}
-\NewDocumentCommand{\tr}{m}{\operatorname{tr}\rp{#1}}
-\RenewDocumentCommand{\det}{m}{\operatorname{det}\rp{#1}}
-\NewDocumentCommand{\proj}{O{}O{}m}{\operatorname{proj}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\diag}{m}{\operatorname{diag}\rp{#1}}
-\NewDocumentCommand{\logdet}{m}{\operatorname{logdet}\rp{#1}}
+\NewDocumentCommand{\tr}{}{\operatorname{tr}}
+\NewDocumentCommand{\proj}{}{\operatorname{proj}}
+\NewDocumentCommand{\diag}{}{\operatorname{diag}}
+\NewDocumentCommand{\logdet}{}{\operatorname{logdet}}
 \NewDocumentCommand{\spec}{}{\mathrm{spec}}
-\NewDocumentCommand{\Range}{m}{\mathcal{R}\rp{#1}}
-\NewDocumentCommand{\Null}{m}{\mathcal{N}\rp{#1}}
+\NewDocumentCommand{\Range}{}{\mathcal{R}}
+\NewDocumentCommand{\Null}{}{\mathcal{N}}
+
 %%% ABSTRACT LINEAR ALGEBRA
-\NewDocumentCommand{\Ker}{m}{\operatornamemathsf{Ker}\rp{#1}}
-\RenewDocumentCommand{\Im}{m}{\operatornamemathsf{Im}\rp{#1}}
-\NewDocumentCommand{\Span}{m}{\operatornamemathsf{Span}\rp{#1}}
-\NewDocumentCommand{\Supp}{m}{\operatornamemathsf{Supp}\rp{#1}}
-\NewDocumentCommand{\Dom}{m}{\operatornamemathsf{Dom}\rp{#1}}
-\NewDocumentCommand{\Codom}{m}{\operatornamemathsf{Codom}\rp{#1}}
-\RenewDocumentCommand{\dim}{m}{\operatorname{dim}\rp{#1}}
-\NewDocumentCommand{\lindim}{m}{\operatorname{lindim}\rp{#1}}
-\NewDocumentCommand{\codim}{m}{\operatorname{codim}\rp{#1}}
-\NewDocumentCommand{\rank}{m}{\operatorname{rank}\rp{#1}}
+\NewDocumentCommand{\Ker}{}{\operatornamemathsf{Ker}}
+\RenewDocumentCommand{\Im}{}{\operatornamemathsf{Im}}
+\NewDocumentCommand{\Span}{}{\operatornamemathsf{Span}}
+\NewDocumentCommand{\Supp}{}{\operatornamemathsf{Supp}}
+\NewDocumentCommand{\Dom}{}{\operatornamemathsf{Dom}}
+\NewDocumentCommand{\Codom}{}{\operatornamemathsf{Codom}}
+\NewDocumentCommand{\lindim}{}{\operatorname{lindim}}
+\NewDocumentCommand{\codim}{}{\operatorname{codim}}
+\NewDocumentCommand{\rank}{}{\operatorname{rank}}
+
 %%% LINEAR ALGEBRAIC SPACES
-\NewDocumentCommand{\Lin}{O{}m}{\operatornamemathsf{Lin}_{#1}\rp{#2}}
-\NewDocumentCommand{\M}{O{}m}{\operatornamemathsf{M}_{#1}\rp{#2}}
-\NewDocumentCommand{\GL}{m}{\operatornamemathsf{GL}\rp{#1}}
-\NewDocumentCommand{\SL}{m}{\operatornamemathsf{SL}\rp{#1}}
-\RenewDocumentCommand{\O}{m}{\operatornamemathsf{O}\rp{#1}}
-\NewDocumentCommand{\SO}{m}{\operatornamemathsf{SO}\rp{#1}}
-\NewDocumentCommand{\U}{m}{\operatornamemathsf{U}\rp{#1}}
-\NewDocumentCommand{\SU}{m}{\operatornamemathsf{SU}\rp{#1}}
-\NewDocumentCommand{\Sym}{m}{\operatornamemathsf{Sym}\rp{#1}}
-\NewDocumentCommand{\Herm}{m}{\operatornamemathsf{Herm}\rp{#1}}
-\NewDocumentCommand{\PSD}{m}{\operatornamemathsf{PSD}\rp{#1}}
-\NewDocumentCommand{\PD}{m}{\operatornamemathsf{PD}\rp{#1}}
-\NewDocumentCommand{\Gr}{O{}m}{\operatornamemathsf{Gr}_{#1}\rp{#2}}
+\NewDocumentCommand{\Lin}{}{\operatornamemathsf{Lin}}
+\NewDocumentCommand{\M}{}{\operatornamemathsf{M}}
+\NewDocumentCommand{\GL}{}{\operatornamemathsf{GL}}
+\NewDocumentCommand{\SL}{}{\operatornamemathsf{SL}}
+\RenewDocumentCommand{\O}{}{\operatornamemathsf{O}}
+\NewDocumentCommand{\SO}{}{\operatornamemathsf{SO}}
+\NewDocumentCommand{\U}{}{\operatornamemathsf{U}}
+\NewDocumentCommand{\SU}{}{\operatornamemathsf{SU}}
+\NewDocumentCommand{\Sym}{}{\operatornamemathsf{Sym}}
+\NewDocumentCommand{\Herm}{}{\operatornamemathsf{Herm}}
+\NewDocumentCommand{\PSD}{}{\operatornamemathsf{PSD}}
+\NewDocumentCommand{\PD}{}{\operatornamemathsf{PD}}
+\NewDocumentCommand{\Gr}{}{\operatornamemathsf{Gr}}
+
 
 %%%%% TOPOLOGY
 %%% TOPOLOGICAL CONSTRUCTS
 \NewDocumentCommand{\id}{}{\operatorname{id}}
-\NewDocumentCommand{\Cl}{O{}O{}m}{\operatornamemathsf{Cl}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Int}{O{}O{}m}{\operatornamemathsf{Int}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Ext}{O{}O{}m}{\operatornamemathsf{Ext}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Bd}{O{}O{}m}{\operatornamemathsf{Bd}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Relint}{O{}O{}m}{\operatornamemathsf{Relint}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Cl}{}{\operatornamemathsf{Cl}}
+\NewDocumentCommand{\Int}{}{\operatornamemathsf{Int}}
+\NewDocumentCommand{\Ext}{}{\operatornamemathsf{Ext}}
+\NewDocumentCommand{\Bd}{}{\operatornamemathsf{Bd}}
+\NewDocumentCommand{\Relint}{}{\operatornamemathsf{Relint}}
+
 %%% TOPOLOGICAL SPACES
-\NewDocumentCommand{\Ball}{}{\bB}
-\NewDocumentCommand{\Sphere}{}{\bS}
-\NewDocumentCommand{\Torus}{}{\bT}
-\NewDocumentCommand{\RP}{}{\bR\bP}
-\NewDocumentCommand{\CP}{}{\bC\bP}
+\NewDocumentCommand{\Ball}{}{\mathbb{B}}
+\NewDocumentCommand{\Sphere}{}{\mathbb{S}}
+\NewDocumentCommand{\Torus}{}{\mathbb{T}}
+\NewDocumentCommand{\RP}{}{\mathbb{R}\mathbb{P}}
+\NewDocumentCommand{\CP}{}{\mathbb{C}\mathbb{P}}
+
 
 %%%%% GEOMETRY
 %%% GEOMETRIC CONSTRUCTS
-\NewDocumentCommand{\differential}{}{\mathrm{D}}
-\NewDocumentCommand{\retraction}{}{\mathrm{R}}
-\NewDocumentCommand{\tangent}{}{\mathrm{T}}
 \NewDocumentCommand{\paralleltransport}{}{\mathrm{PT}}
-\NewDocumentCommand{\projection}{}{\operatorname{Proj}}
-\NewDocumentCommand{\distance}{}{\operatorname{dist}}
 \NewDocumentCommand{\gradient}{}{\operatorname{grad}}
 \NewDocumentCommand{\hessian}{}{\operatorname{Hess}}
-\NewDocumentCommand{\exponential}{}{\operatorname{Exp}}
-\NewDocumentCommand{\logarithmic}{}{\operatorname{Log}}
 \NewDocumentCommand{\firstfundamentalform}{}{\operatorname{I}}
 \NewDocumentCommand{\secondfundamentalform}{}{\operatorname{I\!I}}
 
@@ -443,55 +336,48 @@
 %%% BASIC QUANTITIES
 \NewDocumentCommand{\given}{}{\;\ifnumequal{\currentgrouptype}{16}{\middle|}{\mid}\;}
 % https://tex.stackexchange.com/questions/54052/applying-middle-outside-of-a-left-right-group
-\NewDocumentCommand{\suchthat}{}{\given}
 \NewDocumentCommand{\wrt}{}{\;\ifnumequal{\currentgrouptype}{16}{\middle|\!\middle|}{\mid\!\mid}\;}
 
-\RenewDocumentCommand{\Pr}{O{}O{}m}{\operatornamemathbb{P}_{#1}^{#2}\rs{#3}}
-\NewDocumentCommand{\Ex}{O{}O{}m}{\operatornamemathbb{E}_{#1}^{#2}\rs{#3}}
-\NewDocumentCommand{\Cov}{O{}O{}m}{\operatorname{Cov}_{#1}^{#2}\rs{#3}}
-\NewDocumentCommand{\Var}{O{}O{}m}{\operatorname{Var}_{#1}^{#2}\rs{#3}}
-\NewDocumentCommand{\Corr}{O{}O{}m}{\operatorname{Corr}_{#1}^{#2}\rs{#3}}
-\NewDocumentCommand{\indvar}{O{}m}{\mathbf{1}_{#1}\rs{#2}}
+\RenewDocumentCommand{\Pr}{}{\operatornamemathbb{P}}
+\NewDocumentCommand{\Ex}{}{\operatornamemathbb{E}}
+\NewDocumentCommand{\Cov}{}{\operatorname{Cov}}
+\NewDocumentCommand{\Var}{}{\operatorname{Var}}
+\NewDocumentCommand{\Corr}{}{\operatorname{Corr}}
+\NewDocumentCommand{\indvar}{}{\mathbf{1}}
 \NewDocumentCommand{\iid}{}{\mathrm{i.i.d.}}
 \NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
 \NewDocumentCommand{\ind}{}{\perp \!\!\! \perp}
-\NewDocumentCommand{\softmax}{m}{\operatornamemathrm{softmax}\rp{#1}}
+\NewDocumentCommand{\softmax}{}{\operatornamemathrm{softmax}}
 %%% PROBABILITY DISTRIBUTIONS
 % DISCRETE DISTRIBUTIONS
-\NewDocumentCommand{\dBern}{m}{\operatorname{Ber}\rp{#1}}
-\NewDocumentCommand{\dRad}{m}{\operatorname{Rad}\rp{#1}}
-\NewDocumentCommand{\dBin}{m}{\operatorname{Bin}\rp{#1}}
-\NewDocumentCommand{\dGeo}{m}{\operatorname{Geo}\rp{#1}}
-\NewDocumentCommand{\dUnif}{m}{\operatornamemathcal{U}\rp{#1}}
-\NewDocumentCommand{\dPois}{m}{\operatorname{Pois}\rp{#1}}
+\NewDocumentCommand{\dBern}{}{\operatorname{Ber}}
+\NewDocumentCommand{\dRad}{}{\operatorname{Rad}}
+\NewDocumentCommand{\dBin}{}{\operatorname{Bin}}
+\NewDocumentCommand{\dGeo}{}{\operatorname{Geo}}
+\NewDocumentCommand{\dUnif}{}{\operatornamemathcal{U}}
+\NewDocumentCommand{\dPois}{}{\operatorname{Pois}}
 % CONTINUOUS DISTRIBUTIONS
-\NewDocumentCommand{\dNorm}{m}{\operatornamemathcal{N}\rp{#1}}
-\NewDocumentCommand{\dChi}{m}{\chi^{2}\rp{#1}}
-\NewDocumentCommand{\dExp}{m}{\operatorname{Exp}\rp{#1}}
-\NewDocumentCommand{\dErl}{m}{\operatorname{Erl}\rp{#1}}
-\NewDocumentCommand{\dGamma}{m}{\operatorname{Gamma}\rp{#1}}
-\NewDocumentCommand{\dBeta}{m}{\operatorname{Beta}\rp{#1}}
-\NewDocumentCommand{\dLaplace}{m}{\operatorname{Laplace}\rp{#1}}
-\NewDocumentCommand{\dSG}{m}{\operatorname{SG}\rp{#1}}
-\NewDocumentCommand{\dSE}{m}{\operatorname{SE}\rp{#1}}
-
-%%%%% NUMERICS
-\NewDocumentCommand{\float}{m}{\operatorname{\texttt{fl}}\rp{#1}}
-\NewDocumentCommand{\alg}{m}{\operatorname{\texttt{alg}}\rp{#1}}
-\NewDocumentCommand{\round}{m}{\operatorname{\texttt{round}}\rp{#1}}
-\NewDocumentCommand{\RRE}{m}{\operatorname{\texttt{RRE}}\rp{#1}}
+\NewDocumentCommand{\dNorm}{}{\operatornamemathcal{N}}
+\NewDocumentCommand{\dChi}{}{\chi^{2}}
+\NewDocumentCommand{\dExp}{}{\operatorname{Exp}}
+\NewDocumentCommand{\dErl}{}{\operatorname{Erl}}
+\NewDocumentCommand{\dGamma}{}{\operatorname{Gamma}}
+\NewDocumentCommand{\dBeta}{}{\operatorname{Beta}}
+\NewDocumentCommand{\dLaplace}{}{\operatorname{Laplace}}
+\NewDocumentCommand{\dSG}{}{\operatorname{SG}}
+\NewDocumentCommand{\dSE}{}{\operatorname{SE}}
 
 %%%%% LEARNING THEORY
-\NewDocumentCommand{\LD}{m}{\operatorname{LD}\rp{#1}}
-\NewDocumentCommand{\VC}{m}{\operatorname{VC}\rp{#1}}
+\NewDocumentCommand{\LD}{}{\operatorname{LD}}
+\NewDocumentCommand{\VC}{}{\operatorname{VC}}
 
 %%%%% CONVEX ANALYSIS
-\NewDocumentCommand{\Aff}{O{}O{}m}{\operatornamemathsf{Aff}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Conv}{O{}O{}m}{\operatornamemathsf{Conv}_{#1}^{#2}\rp{#3}}
-\NewDocumentCommand{\Epi}{O{}O{}m}{\operatornamemathsf{Epi}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\Aff}{}{\operatornamemathsf{Aff}}
+\NewDocumentCommand{\Conv}{}{\operatornamemathsf{Conv}}
+\NewDocumentCommand{\Epi}{}{\operatornamemathsf{Epi}}
 
 %%%%% GAME THEORY
-\NewDocumentCommand{\BR}{O{}O{}m}{\operatorname{BR}_{#1}^{#2}\rp{#3}}
+\NewDocumentCommand{\BR}{}{\operatorname{BR}}
 
 %%%%% ANNOYING NAMES
 \NewDocumentCommand{\Holder}{}{H\"{o}lder}
