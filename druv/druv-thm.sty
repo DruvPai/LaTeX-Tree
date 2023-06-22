@@ -30,6 +30,7 @@
 \newtheorem{assumption}[thmcounter]{Assumption}
 \newtheorem{definition}[thmcounter]{Definition}
 \newtheorem{model}[thmcounter]{Model}
+\newtheorem{notation}[thmcounter]{Notation}
 
 \theoremstyle{remark}
 \newtheorem{example}[thmcounter]{Example}
@@ -52,7 +53,12 @@
 
 %%%%% EQUATION NUMBERING
 %%% TO GET EQUATION NUMBERING TO MATCH STYLE OF THEOREM
-\numberwithin{equation}{section}
+\RequirePackage{chngcntr}
+\counterwithout{equation}{section}
+\ifdef{\chapter}{
+    \counterwithout{equation}{chapter}
+}{}
+
 
 %%%%% ALGORITHM NUMBERING
 %%% MAKE ALGORITHM USE SAME NUMBERING AS ANYTHING ELSE

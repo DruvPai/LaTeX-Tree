@@ -17,8 +17,8 @@
 \RequirePackage{amssymb} % https://ctan.org/pkg/amsfonts?lang=en
 
 %%%%% FONT PACKAGES
-\RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
-% \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
+% \RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
+\RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
 % \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
 % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
 \newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
@@ -96,6 +96,7 @@
 %%%%% COLOR
 \NewDocumentCommand{\ans}{m}{{\color{blue} #1}}
 \NewDocumentCommand{\todo}{m}{{\color{red} \textbf{TODO:} #1}}
+\NewDocumentCommand{\DP}{m}{{\color{brown} \textbf{DP:} #1}}
 
 %%%%% DELIMITERS
 \RequirePackage{mleftright} % https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right/
@@ -136,6 +137,7 @@
 }
 \forcsvlist{\fontmakergreek}{alpha,beta,gamma,delta,epsilon,eps,phi,zeta,eta,theta,vartheta,gamma,kappa,lambda,mu,nu,xi,pi,varpi,rho,varrho,sigma,varsigma,tau,upsilon,phi,varphi,chi,psi,omega}
 \forcsvlist{\fontmakergreek}{Gamma,Delta,Theta,Lambda,Xi,Pi,Sigma,Upsilon,Phi,Psi,Omega}
+\NewDocumentCommand{\vzero}{}{\bm{0}}
 
 
 %%%%% COMMON TEXT SHORTHANDS
@@ -178,6 +180,7 @@
 \NewDocumentCommand{\ip}{mm}{\langle#1, #2\rangle}
 \NewDocumentCommand{\ipip}{m}{\ip{#1}{#1}} % Repeats the first argument in e.g. Hilbert spaces as a replacement for norm.
 \NewDocumentCommand{\eval}{m}{#1\rvert} % https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
+\NewDocumentCommand{\restr}{m}{#1\rvert} % https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
 \NewDocumentCommand{\floor}{m}{\lfloor#1\rfloor}
 \NewDocumentCommand{\ceiling}{m}{\lceil#1\rceil}
 
@@ -187,6 +190,7 @@
 \NewDocumentCommand{\bip}{mm}{\left\langle#1, #2\right\rangle}
 \NewDocumentCommand{\bipip}{m}{\bip{#1}{#1}} 
 \NewDocumentCommand{\beval}{m}{\left.#1\right\rvert} 
+\NewDocumentCommand{\brestr}{m}{\left.#1\right\rvert} 
 \NewDocumentCommand{\bfloor}{m}{\left\lfloor#1\right\rfloor}
 \NewDocumentCommand{\bceiling}{m}{\left\lceil#1\right\rceil}
 
@@ -334,9 +338,9 @@
 
 %%%%% PROBABILITY
 %%% BASIC QUANTITIES
-\NewDocumentCommand{\given}{}{\;\ifnumequal{\currentgrouptype}{16}{\middle|}{\mid}\;}
+\NewDocumentCommand{\given}{}{\ifnumequal{\currentgrouptype}{16}{\middle|}{\mid}}
 % https://tex.stackexchange.com/questions/54052/applying-middle-outside-of-a-left-right-group
-\NewDocumentCommand{\wrt}{}{\;\ifnumequal{\currentgrouptype}{16}{\middle|\!\middle|}{\mid\!\mid}\;}
+\NewDocumentCommand{\wrt}{}{\ifnumequal{\currentgrouptype}{16}{\middle|\!\middle|}{\mid\!\mid}}
 
 \RenewDocumentCommand{\Pr}{}{\operatornamemathbb{P}}
 \NewDocumentCommand{\Ex}{}{\operatornamemathbb{E}}
@@ -375,6 +379,7 @@
 \NewDocumentCommand{\Aff}{}{\operatornamemathsf{Aff}}
 \NewDocumentCommand{\Conv}{}{\operatornamemathsf{Conv}}
 \NewDocumentCommand{\Epi}{}{\operatornamemathsf{Epi}}
+\NewDocumentCommand{\prox}{}{\operatorname{prox}}
 
 %%%%% GAME THEORY
 \NewDocumentCommand{\BR}{}{\operatorname{BR}}
