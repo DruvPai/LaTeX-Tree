@@ -21,6 +21,7 @@
 %%% LOAD PACKAGES
 \LoadClass[aspectratio=169]{beamer}
 \RequirePackage{druv-gen}
+\RequirePackage{druv-macros}
 
 %%% THEME
 \usetheme[block=fill]{metropolis}

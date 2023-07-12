@@ -18,5 +18,6 @@
 
 %%% LOAD PACKAGES
 \RequirePackage{druv-gen}
+\RequirePackage{druv-macros}
 \RequirePackage{druv-thm}
 \RequirePackage{druv-doc}
