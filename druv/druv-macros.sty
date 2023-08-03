@@ -41,33 +41,70 @@
 
 %%%%% FONT SHORTHANDS
 \RequirePackage{bbold} % https://ctan.org/pkg/bbold?lang=en
-\RequirePackage{bm} % http://mirrors.ctan.org/macros/latex/required/tools/bm.pdf
-\newcommand{\fontmakerlatinlowercase}[1]{
-	\csdef{fr#1}{\mathfrak{#1}}
-	\csdef{sf#1}{\mathsf{#1}}
-	\csdef{rm#1}{\mathrm{#1}}
-	\csdef{bf#1}{\mathbf{#1}}
-	\csdef{v#1}{\bm{#1}}
+\@ifpackageloaded{unicode-math}{
+	% Documentation: https://ctan.math.utah.edu/ctan/tex-archive/macros/unicodetex/latex/unicode-math/unicode-math.pdf
+	\newcommand{\fontmakerlatinlowercase}[1]{
+		\csdef{fr#1}{\symfrak{#1}}
+		\csdef{sf#1}{\symsfup{#1}}
+		\csdef{rm#1}{\symup{#1}}
+		\csdef{bf#1}{\symbfup{#1}}
+		\csdef{v#1}{\symbfit{#1}}
+	}
+	\forcsvlist{\fontmakerlatinlowercase}{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
+	\newcommand{\fontmakerlatinuppercase}[1]{
+		\csdef{fr#1}{\symfrak{#1}}
+		\csdef{sf#1}{\symsfup{#1}}
+		\csdef{rm#1}{\symup{#1}}
+		\csdef{bf#1}{\symbfup{#1}}
+		\csdef{v#1}{\symbfit{#1}}
+		
+		\csdef{b#1}{\symbb{#1}}
+		\csdef{c#1}{\symcal{#1}}
+		\csdef{sc#1}{\symscr{#1}}
+	}
+	\forcsvlist{\fontmakerlatinuppercase}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+	\newcommand{\fontmakergreeklowercase}[1]{
+		\csdef{v#1}{\symbfit{\csname#1\endcsname}}
+	}
+	\forcsvlist{\fontmakergreeklowercase}{alpha,beta,gamma,delta,epsilon,eps,phi,zeta,eta,theta,vartheta,gamma,kappa,lambda,mu,nu,xi,pi,varpi,rho,varrho,sigma,varsigma,tau,upsilon,phi,varphi,chi,psi,omega}
+	\newcommand{\fontmakergreekuppercase}[1]{
+		\csdef{v#1}{\symbfup{\csname#1\endcsname}}
+	}
+	\forcsvlist{\fontmakergreekuppercase}{Gamma,Delta,Theta,Lambda,Xi,Pi,Sigma,Upsilon,Phi,Psi,Omega}
+	\NewDocumentCommand{\vzero}{}{\symbfup{0}}
+}{
+	\RequirePackage{bm} % http://mirrors.ctan.org/macros/latex/required/tools/bm.pdf
+	\newcommand{\fontmakerlatinlowercase}[1]{
+		\csdef{fr#1}{\mathfrak{#1}}
+		\csdef{sf#1}{\mathsf{#1}}
+		\csdef{rm#1}{\mathrm{#1}}
+		\csdef{bf#1}{\mathbf{#1}}
+		\csdef{v#1}{\bm{#1}}
+	}
+	\forcsvlist{\fontmakerlatinlowercase}{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
+	\newcommand{\fontmakerlatinuppercase}[1]{
+		\csdef{fr#1}{\mathfrak{#1}}
+		\csdef{sf#1}{\mathsf{#1}}
+		\csdef{rm#1}{\mathrm{#1}}
+		\csdef{bf#1}{\mathbf{#1}}
+		\csdef{v#1}{\bm{#1}}
+		
+		\csdef{b#1}{\mathbb{#1}}
+		\csdef{c#1}{\mathcal{#1}}
+		\csdef{sc#1}{\mathscr{#1}}
+	}
+	\forcsvlist{\fontmakerlatinuppercase}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+	\newcommand{\fontmakergreeklowercase}[1]{
+		\csdef{v#1}{\bm{\csname#1\endcsname}}
+	}
+	\forcsvlist{\fontmakergreeklowercase}{alpha,beta,gamma,delta,epsilon,eps,phi,zeta,eta,theta,vartheta,gamma,kappa,lambda,mu,nu,xi,pi,varpi,rho,varrho,sigma,varsigma,tau,upsilon,phi,varphi,chi,psi,omega}
+	\newcommand{\fontmakergreekuppercase}[1]{
+		\csdef{v#1}{\bm{\csname#1\endcsname}}
+	}
+	\forcsvlist{\fontmakergreekuppercase}{Gamma,Delta,Theta,Lambda,Xi,Pi,Sigma,Upsilon,Phi,Psi,Omega}
+	\NewDocumentCommand{\vzero}{}{\bm{0}}
 }
-\forcsvlist{\fontmakerlatinlowercase}{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
-\newcommand{\fontmakerlatinuppercase}[1]{
-	\csdef{b#1}{\mathbb{#1}}
-	\csdef{fr#1}{\mathfrak{#1}}
-	\csdef{sf#1}{\mathsf{#1}}
-	\csdef{rm#1}{\mathrm{#1}}
-	\csdef{bf#1}{\mathbf{#1}}
-	\csdef{v#1}{\bm{#1}}
-	
-	\csdef{c#1}{\mathcal{#1}}
-	\csdef{sc#1}{\mathscr{#1}}
-}
-\forcsvlist{\fontmakerlatinuppercase}{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
-\newcommand{\fontmakergreek}[1]{
-	\csdef{v#1}{\bm{\csname#1\endcsname}}
-}
-\forcsvlist{\fontmakergreek}{alpha,beta,gamma,delta,epsilon,eps,phi,zeta,eta,theta,vartheta,gamma,kappa,lambda,mu,nu,xi,pi,varpi,rho,varrho,sigma,varsigma,tau,upsilon,phi,varphi,chi,psi,omega}
-\forcsvlist{\fontmakergreek}{Gamma,Delta,Theta,Lambda,Xi,Pi,Sigma,Upsilon,Phi,Psi,Omega}
-\NewDocumentCommand{\vzero}{}{\bm{0}}
+
 
 
 %%%%% COMMON TEXT SHORTHANDS
