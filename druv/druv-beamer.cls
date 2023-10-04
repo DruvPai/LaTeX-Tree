@@ -23,10 +23,9 @@
 \RequirePackage{druv-gen}
 \RequirePackage{druv-macros}
 
+\AfterBeginDocument{
+    \setbeamercolor{page number in head/foot}{}
+}
+
 %%% THEME
-\usetheme[block=fill]{metropolis}
-\usefonttheme[onlymath]{serif}
-\useoutertheme{metropolis}
-\useinnertheme{metropolis}
-\usefonttheme{metropolis}
-\usecolortheme{seahorse}
+\usetheme{auriga}

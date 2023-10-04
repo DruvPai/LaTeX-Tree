@@ -142,14 +142,14 @@
 \xpatchcmd{\interval}{interval,}{interval,scaled,}{}{} % auto-scales intervals
 
 %%% REGULARLY SIZED DELIMITERS
-\NewDocumentCommand{\abs}{m}{\lvert#1\rvert}
-\NewDocumentCommand{\norm}{m}{\Vert#1\Vert}
-\NewDocumentCommand{\ip}{mm}{\langle#1, #2\rangle}
-\NewDocumentCommand{\ipip}{m}{\ip{#1}{#1}} % Repeats the first argument in e.g. Hilbert spaces as a replacement for norm.
-\NewDocumentCommand{\eval}{m}{#1\rvert} % https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
-\NewDocumentCommand{\restr}{m}{#1\rvert} % https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
-\NewDocumentCommand{\floor}{m}{\lfloor#1\rfloor}
-\NewDocumentCommand{\ceiling}{m}{\lceil#1\rceil}
+\NewDocumentCommand{\abs}{sm}{\IfBooleanTF{#1}{\left\lvert#2\right\rvert}{\lvert#2\rvert}}
+\NewDocumentCommand{\norm}{sm}{\IfBooleanTF{#1}{\left\Vert#2\right\Vert}{\Vert#2\Vert}}
+\NewDocumentCommand{\ip}{smm}{\IfBooleanTF{#1}{\left\langle#2, #3\right\rangle}{\langle#2, #3\rangle}}
+\NewDocumentCommand{\ipip}{sm}{\IfBooleanTF{#1}{\ip*{#2}}{\ip{#2}}} % Repeats the first argument in e.g. Hilbert spaces as a replacement for norm.
+\NewDocumentCommand{\eval}{sm}{\IfBooleanTF{#1}{\left.#2\right\rvert}{#2\rvert}} % https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
+\NewDocumentCommand{\restr}{sm}{\IfBooleanTF{#1}{\left.#2\right\rvert}{#2\rvert}} % https://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
+\NewDocumentCommand{\floor}{sm}{\IfBooleanTF{#1}{\left\lfloor#2\right\rfloor}{\lfloor#2\rfloor}}
+\NewDocumentCommand{\ceiling}{sm}{\IfBooleanTF{#1}{\left\lceil#2\right\rceil}{\lceil#2\rceil}}
 
 %%% AUTO SIZED DELIMITERS
 \NewDocumentCommand{\babs}{m}{\left\lvert#1\right\rvert}
@@ -235,6 +235,7 @@
 
 %%%%% ABSTRACT ALGEBRA
 \NewDocumentCommand{\ord}{}{\operatorname{ord}}
+\NewDocumentCommand{\Aut}{}{\operatornamemathsf{Aut}}
 \NewDocumentCommand{\Hom}{}{\operatornamemathsf{Hom}}
 \NewDocumentCommand{\Endo}{}{\operatornamemathsf{End}}
 \NewDocumentCommand{\Gal}{}{\operatornamemathsf{Gal}}
@@ -339,6 +340,10 @@
 \NewDocumentCommand{\dLaplace}{}{\operatorname{Laplace}}
 \NewDocumentCommand{\dSG}{}{\operatorname{SG}}
 \NewDocumentCommand{\dSE}{}{\operatorname{SE}}
+%%% PROBABILITY METRICS
+\NewDocumentCommand{\TV}{}{\operatornamemathsf{TV}}
+\NewDocumentCommand{\KL}{}{\operatornamemathsf{KL}}
+\NewDocumentCommand{\W}{}{\operatornamemathsf{W}}
 
 %%%%% LEARNING THEORY
 \NewDocumentCommand{\LD}{}{\operatorname{LD}}

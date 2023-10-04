@@ -26,20 +26,20 @@
 %%%%% FONT PACKAGES
 \RequirePackage{fontspec}
 \RequirePackage{unicode-math}
-% \setmainfont{TeX Gyre Termes}
-% \setmathfont{TeX Gyre Termes Math}
-\setmainfont{TeX Gyre Pagella}
-\setmathfont{TeX Gyre Pagella Math} \setmathfont[range=\mathscr]{XITS Math}
-\setsansfont[Scale = 0.9]{TeX Gyre Heros}
-\setmonofont{Source Code Pro}
-% \RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
+\newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
+\newcommand{\bmmax}{0} % https://tex.stackexchange.com/a/243541/189560
+\RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
 % \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
 % \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
 % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
-\newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
-\newcommand{\bmmax}{0} % https://tex.stackexchange.com/a/243541/189560
 % \RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
 % \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
+\setmainfont{TeX Gyre Termes}
+%\setmathfont{TeX Gyre Termes Math}
+%\setmainfont{TeX Gyre Pagella}
+%\setmathfont{TeX Gyre Pagella Math} \setmathfont[range=\mathscr]{XITS Math}
+\setsansfont[Scale = 0.9]{TeX Gyre Heros}
+\setmonofont{Source Code Pro}
 \RequirePackage{silence} % https://ctan.org/pkg/silence?lang=en
 \WarningFilter{latexfont}{Font shape}
 
