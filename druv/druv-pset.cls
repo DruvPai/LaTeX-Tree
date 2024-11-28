@@ -2,7 +2,7 @@
 \ProvidesClass{druv-pset}
 
 \RequirePackage{druv-hacks}
-\LoadClass[10pt]{scrartcl}
+\LoadClass[12pt]{article}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}

@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{druv-paper}
+\ProvidesClass{druv-cheatsheet}
 
 \RequirePackage{druv-hacks}
 \LoadClass{amsart}

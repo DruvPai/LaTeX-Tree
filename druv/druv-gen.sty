@@ -24,41 +24,43 @@
 \RequirePackage{amsthm} % https://ctan.org/pkg/amsthm?lang=en
 
 %%%%% FONT PACKAGES
-\RequirePackage{fontspec}
-\RequirePackage{unicode-math}
-\newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
-\newcommand{\bmmax}{0} % https://tex.stackexchange.com/a/243541/189560
-\RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
-% \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
-% \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
-% \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
-% \RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
-% \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
-\setmainfont{TeX Gyre Termes}
-%\setmathfont{TeX Gyre Termes Math}
-%\setmainfont{TeX Gyre Pagella}
-%\setmathfont{TeX Gyre Pagella Math} \setmathfont[range=\mathscr]{XITS Math}
-\setsansfont[Scale = 0.9]{TeX Gyre Heros}
-\setmonofont{Source Code Pro}
-\RequirePackage{silence} % https://ctan.org/pkg/silence?lang=en
-\WarningFilter{latexfont}{Font shape}
+\iftoggle{druv-gen-beamer}{}{
+    % \RequirePackage{fontspec}
+    % \RequirePackage{unicode-math}
+    \newcommand{\hmmax}{0} % https://tex.stackexchange.com/a/243541/189560
+    \newcommand{\bmmax}{0} % https://tex.stackexchange.com/a/243541/189560
+    \RequirePackage{lmodern} % https://ctan.org/pkg/lm?lang=en
+    \RequirePackage{libertineRoman} % https://ctan.org/pkg/libertine
+    % \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
+    % \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
+    % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
+    % \RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
+    % \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
+    %\setmainfont{TeX Gyre Termes}
+    %\setmathfont{TeX Gyre Termes Math}
+    %\setmainfont{TeX Gyre Pagella}
+    %\setmathfont{TeX Gyre Pagella Math} \setmathfont[range=\mathscr]{XITS Math}
+    %\setsansfont[Scale = 0.9]{TeX Gyre Heros}
+    %\setmonofont{Source Code Pro}
+    \RequirePackage{silence} % https://ctan.org/pkg/silence?lang=en
+    \WarningFilter{latexfont}{Font shape}
+}
 
 %%%%% PGF/TIKZ
 \iftoggle{druv-gen-tikz}{
-	\RequirePackage{tikz} % https://www.overleaf.com/learn/latex/TikZ_package
-	\RequirePackage{pgf}
-	\RequirePackage{pgfplots} % https://www.overleaf.com/learn/latex/Pgfplots_package
-	\pgfplotsset{compat=1.18}
-	\RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
-	\RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
-	\usetikzlibrary{calc, scopes, hobby}
-	\RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
+    \RequirePackage{tikz} % https://www.overleaf.com/learn/latex/TikZ_package
+    \RequirePackage{pgf}
+    \RequirePackage{pgfplots} % https://www.overleaf.com/learn/latex/Pgfplots_package
+    \pgfplotsset{compat=1.18}
+    \RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
+    \RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
+    \usetikzlibrary{calc, scopes, hobby}
+    \RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
 }{}
 
 %%%%% BIBLIOGRAPHY
 \iftoggle{druv-gen-bib}{
-	\RequirePackage[round]{natbib} % https://www.overleaf.com/learn/latex/Bibliography_management_with_natbib
-	\bibliographystyle{plainnat}
+    \RequirePackage[style=numeric, sorting=nty]{biblatex} % https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex
 }{}
 
 %%%%% LAYOUT PACKAGES
@@ -67,6 +69,7 @@
 %%% TEXT LAYOUT
 \RequirePackage{multicol} % https://www.overleaf.com/learn/latex/Multiple_columns
 %%% IMAGE LAYOUT
+\RequirePackage{graphicx} % https://ctan.math.washington.edu/tex-archive/macros/latex/required/graphics/grfguide.pdf
 \RequirePackage{float} % https://ctan.org/pkg/float?lang=en
 %%% ARRAY/TABULAR LAYOUT
 \RequirePackage{array} % https://mirrors.rit.edu/CTAN/macros/latex/required/tools/array.pdf
@@ -74,25 +77,32 @@
 \RequirePackage{booktabs} % https://ctan.math.illinois.edu/macros/latex/contrib/booktabs/booktabs.pdf
 %%% ENUMERATE LAYOUT
 \iftoggle{druv-gen-beamer}{}{
-	\RequirePackage[shortlabels]{enumitem} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/enumitem/enumitem.pdf
+    \RequirePackage[shortlabels]{enumitem} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/enumitem/enumitem.pdf
 }
 %%% FIGURE LAYOUT
 \RequirePackage{subcaption} % http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/caption/subcaption.pdf
 
 %%%%% MULTIPLE FILES 
 \iftoggle{druv-gen-beamer}{}{
-	\RequirePackage{subfiles} % https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects
+    \RequirePackage{subfiles} % https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects
 }
+
+%%%%% EMBED MP4 
+\iftoggle{druv-gen-beamer}{
+    \RequirePackage{multimedia} % https://mirror.math.princeton.edu/pub/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+}{}
 
 %%%%% REFERENCES
 \iftoggle{druv-gen-beamer}{}{
-	\RequirePackage[colorlinks=true]{hyperref} % https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
-	\hypersetup{urlcolor = violet, linkcolor = blue, citecolor = cyan}
+    \RequirePackage[colorlinks=true]{hyperref} % https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
+    \hypersetup{urlcolor = violet, linkcolor = blue, citecolor = cyan}
 }
 
-%%%%% PAGE BREAK
-\iftoggle{druv-gen-beamer}{}{
-	\allowdisplaybreaks
+%%%%% PAGE BREAK AND PRESENTER NOTES
+\iftoggle{druv-gen-beamer}{
+    \RequirePackage{pgfpages}
+}{
+    \allowdisplaybreaks
 }
 
 
