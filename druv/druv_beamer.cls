@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{druv-beamer}
+\ProvidesClass{druv_beamer}
 
-\RequirePackage{druv-hacks}
+\RequirePackage{druv_hacks}
 
 %%% TOGGLES
 \newtoggle{druvbib} \togglefalse{druvbib}
@@ -15,20 +15,20 @@
 \DeclareOption{notes}{\toggletrue{druvnotes}}
 \ProcessOptions
 %%% PASS OPTIONS
-\iftoggle{druvbib}{\PassOptionsToPackage{bib}{druv-gen}}{}
-\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv-gen}}{}
+\iftoggle{druvbib}{\PassOptionsToPackage{bib}{druv_gen}}{}
+\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv_gen}}{}
 \iftoggle{druvhandout}{\PassOptionsToClass{handout}{beamer}}{}
-\PassOptionsToPackage{beamer}{druv-gen}
+\PassOptionsToPackage{beamer}{druv_gen}
 
 %%% LOAD PACKAGES
-\LoadClass[aspectratio=169, 9pt]{beamer}
+\LoadClass{beamer}
 \iftoggle{druvnotes}{
     \setbeamertemplate{note page}[plain]
     \setbeameroption{show notes on second screen=right}
 }{}
 
-\RequirePackage{druv-gen}
-\RequirePackage{druv-macros}
+\RequirePackage{druv_gen}
+\RequirePackage{druv_macros}
 
 %%% THEME
 \usetheme{auriga}

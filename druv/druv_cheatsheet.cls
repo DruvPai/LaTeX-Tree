@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{druv-cheatsheet}
+\ProvidesClass{druv_cheatsheet}
 
-\RequirePackage{druv-hacks}
+\RequirePackage{druv_hacks}
 \LoadClass{amsart}
 
 %%% TOGGLES
@@ -12,14 +12,14 @@
 \DeclareOption{tikz}{\toggletrue{druvtikz}}
 \ProcessOptions
 %%% PASS OPTIONS
-\iftoggle{druvbib}{\PassOptionsToPackage{bib}{druv-gen}}{}
-\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv-gen}}{}
+\iftoggle{druvbib}{\PassOptionsToPackage{bib}{druv_gen}}{}
+\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv_gen}}{}
 
 
 %%% LOAD PACKAGES
-\RequirePackage{druv-gen}
-\RequirePackage{druv-macros}
-\RequirePackage{druv-thm}
+\RequirePackage{druv_gen}
+\RequirePackage{druv_macros}
+\RequirePackage{druv_thm}
 
 %%% DOCUMENT FORMATTING
 % \KOMAoptions{

@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{druv-poster}
+\ProvidesClass{druv_poster}
 
-\RequirePackage{druv-hacks}
+\RequirePackage{druv_hacks}
 
 %%% TOGGLES
 \newtoggle{druvtikz} \togglefalse{druvtikz}
@@ -18,14 +18,14 @@
 \ProcessKeyOptions
 
 %%% PASS OPTIONS
-\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv-gen}}{}
-\PassOptionsToPackage{beamer}{druv-gen}
+\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv_gen}}{}
+\PassOptionsToPackage{beamer}{druv_gen}
 
 %%% LOAD PACKAGES
 \LoadClass[final]{beamer}
 
-\RequirePackage{druv-gen}
-\RequirePackage{druv-macros}
+\RequirePackage{druv_gen}
+\RequirePackage{druv_macros}
 
 %%% THEME
 \RequirePackage[size=custom, width=\posterwidth, height=\posterheight, scale=\posterscale]{beamerposter}

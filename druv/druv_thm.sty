@@ -1,0 +1,146 @@
+\ProvidesPackage{druv_thm}
+
+\RequirePackage{druv_hacks}
+
+%%%%% ASSUMPTION: NOT USING BEAMER
+
+%%%%% PACKAGE ARGUMENTS
+%%% TOGGLES
+\newtoggle{druv_thm_chapters} \togglefalse{druv_thm_chapters}
+%%% OPTIONS
+\DeclareOption{chapters}{\toggletrue{druv_thm_chapters}}
+\ProcessOptions
+
+\RequirePackage{amsthm} % http://www.ams.org/arc/tex/amscls/amsthdoc.pdf
+\RequirePackage{thmtools} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/thmtools/doc/thmtools-manual.pdf
+\RequirePackage{xcolor} % https://ctan.org/pkg/xcolor?lang=en
+\RequirePackage{tcolorbox} % https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
+
+\RequirePackage[capitalize, nameinlink]{cleveref} % http://tug.ctan.org/tex-archive/macros/latex/contrib/cleveref/cleveref.pdf
+
+\NewDocumentCommand{\definetheoremboxstyle}{mm}{
+    \tcbset{
+        #1/.style={
+            enhanced,
+            theorem style=plain,
+            fonttitle=\bfseries\upshape,
+            fontupper=\itshape,
+            lower separated=false,
+            breakable,
+            colback=#2,
+            colframe=#2,
+            colbacktitle=black,
+            coltitle=black,
+            arc=0mm,
+            top=0em,
+            bottom=0em,
+            left=0em,
+            right=0em,
+            before skip=1em,
+            after skip=1em,
+        },
+    }
+}
+\definetheoremboxstyle{theorembox}{gray!15!white}
+\definetheoremboxstyle{theoremboxblue}{blue!7!white}
+\definetheoremboxstyle{theoremboxred}{red!10!white}
+
+% https://tex.stackexchange.com/a/380507
+% Want to make the theorem names, etc., be title case
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\titleuppercase}{m}{\text_titlecase:n{#1}}
+\ExplSyntaxOff
+
+\NewDocumentCommand{\addenvtocref}{mmm}{
+    \crefname{#1}{#2}{#3}
+    \Crefname{#1}{\titleuppercase{#2}}{\titleuppercase{#3}}
+}
+
+\NewDocumentCommand{\definetheoremenv}{mmmmmo}{
+    \addenvtocref{#1}{#2}{#3}
+    \IfNoValueTF{#6}{
+        \newtcbtheorem[auto counter]{#1}{\titleuppercase{#2}}{#4, label type=#1}{#5}
+    }{
+        \newtcbtheorem[auto counter, #6]{#1}{\titleuppercase{#2}}{#4, label type=#1}{#5}
+    }
+}
+
+
+\iftoggle{druv_thm_chapters}{
+    \definetheoremenv{theorem}{theorem}{theorems}{theorembox}{thm}[number within=section]
+}{
+    \definetheoremenv{theorem}{theorem}{theorems}{theorembox}{thm}
+}
+
+\definetheoremenv{corollary}{corollary}{corollaries}{theorembox}{cor}[use counter from=theorem]
+\definetheoremenv{keyidea}{key idea}{key ideas}{theorembox}{key}[use counter from=theorem]
+\definetheoremenv{lemma}{lemma}{lemmas}{theorembox}{lem}[use counter from=theorem]
+\definetheoremenv{method}{method}{methods}{theorembox}{method}[use counter from=theorem]
+\definetheoremenv{proposition}{proposition}{propositions}{theorembox}{prop}[use counter from=theorem]
+\definetheoremenv{definition}{definition}{definitions}{theorembox}{def}[use counter from=theorem]
+
+\definetheoremenv{axiom}{axiom}{axioms}{theoremboxblue}{axiom}
+\definetheoremenv{assumption}{assumption}{assumptions}{theoremboxblue}{ass}
+\definetheoremenv{model}{model}{models}{theoremboxblue}{model}
+\definetheoremenv{notation}{notation}{notations}{theoremboxblue}{notation}
+
+\definetheoremenv{example}{example}{examples}{theoremboxred}{ex}[use counter from=theorem]
+\definetheoremenv{claim}{claim}{claims}{theoremboxred}{claim}[use counter from=theorem]
+\definetheoremenv{conjecture}{conjecture}{conjectures}{theoremboxred}{conj}[use counter from=theorem]
+\definetheoremenv{exercise}{exercise}{exercises}{theoremboxred}{exercise}[use counter from=theorem]
+\definetheoremenv{idea}{idea}{ideas}{theoremboxred}{idea}[use counter from=theorem]
+\definetheoremenv{fact}{fact}{facts}{theoremboxred}{fact}[use counter from=theorem]
+
+% %% HOMEWORK
+\theoremstyle{definition}
+\newtheorem{hwproblem}{Problem}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+%%%%% EQUATION NUMBERING
+%%% TO GET EQUATION NUMBERING TO MATCH STYLE OF THEOREM
+\iftoggle{druv_thm_chapters}{
+    \RequirePackage{chngcntr}
+    \counterwithin{equation}{chapter}
+}{}
+\addenvtocref{equation}{}{}
+
+
+%%%%% ALGORITHM NUMBERING
+\newcommand{\alglistingcounter}{\c@tcb@cnt@theorem}%{\value{theorem}}
+%%% MAKE ALGORITHM USE SAME NUMBERING AS ANYTHING ELSE
+\AtBeginEnvironment{algorithm}{
+    \renewcommand{\c@algorithm}{\alglistingcounter}
+}
+\iftoggle{druv_thm_chapters}{
+    \renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
+}{
+    \renewcommand{\thealgorithm}{\arabic{algorithm}}
+}
+
+
+%%%%% LISTING SETTING FOR PYTHON (ONLY)
+\AtBeginEnvironment{lstlisting}{
+    \renewcommand{\c@lstlisting}{\alglistingcounter}
+}
+\lstset{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{gray!75!white},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{gray!75!white},
+    stringstyle=\color{green!50!black},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    frame=none,
+    language=Python,
+    morekeywords={self, if, else, try, except, finally, for, while, with, as, import, from, def, class, return, yield, lambda, True, False, None, and, or, not, in, is},
+    emph={[2]range,int,str,list,dict,set,bool,bytes,tuple,float},
+    emphstyle={[2]\color{violet}},
+}

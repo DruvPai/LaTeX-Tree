@@ -1,4 +1,4 @@
-\ProvidesPackage{druv-macros}
+\ProvidesPackage{druv_macros}
 
 %%%%% PACKAGES FOR STY HACKING
 \RequirePackage{etoolbox}
@@ -9,6 +9,9 @@
 %%%%% AMS CORE PACKAGES
 \RequirePackage{amsmath} % https://ctan.org/pkg/amsmath?lang=en
 \RequirePackage{amssymb} % https://ctan.org/pkg/amsfonts?lang=en
+
+%%%%% OTHER CORE PACKAGES
+\RequirePackage{mathtools} % https://ctan.org/pkg/mathtools?lang=en
 
 %%%%%%%%% MACROS
 %%%%% OPERATOR CONSTRUCTS
@@ -33,6 +36,9 @@
 \NewDocumentCommand{\ans}{m}{{\color{blue} #1}}
 \NewDocumentCommand{\todo}{m}{{\color{red} \textbf{TODO:} #1}}
 \NewDocumentCommand{\DP}{m}{{\color{brown} \textbf{DP:} #1}}
+
+%%%%% FRACTIONS
+\RequirePackage{xfrac}
 
 %%%%% DELIMITERS
 \RequirePackage{mleftright} % https://tex.stackexchange.com/questions/2607/spacing-around-left-and-right/
@@ -65,7 +71,7 @@
 		\csdef{rm#1}{\symup{#1}}
 		\csdef{bf#1}{\symbfup{#1}}
 		\csdef{v#1}{\symbfit{#1}}
-		
+
 		\csdef{b#1}{\symbb{#1}}
 		\csdef{c#1}{\symcal{#1}}
 		\csdef{sc#1}{\symscr{#1}}
@@ -97,7 +103,7 @@
 		\csdef{rm#1}{\mathrm{#1}}
 		\csdef{bf#1}{\mathbf{#1}}
 		\csdef{v#1}{\bm{#1}}
-		
+
 		\csdef{b#1}{\mathbb{#1}}
 		\csdef{c#1}{\mathcal{#1}}
 		\csdef{sc#1}{\mathscr{#1}}
@@ -161,16 +167,6 @@
 \NewDocumentCommand{\floor}{sm}{\IfBooleanTF{#1}{\left\lfloor#2\right\rfloor}{\lfloor#2\rfloor}}
 \NewDocumentCommand{\ceiling}{sm}{\IfBooleanTF{#1}{\left\lceil#2\right\rceil}{\lceil#2\rceil}}
 
-%%% AUTO SIZED DELIMITERS
-\NewDocumentCommand{\babs}{m}{\left\lvert#1\right\rvert}
-\NewDocumentCommand{\bnorm}{m}{\left\Vert#1\right\Vert}
-\NewDocumentCommand{\bip}{mm}{\left\langle#1, #2\right\rangle}
-\NewDocumentCommand{\bipip}{m}{\bip{#1}{#1}} 
-\NewDocumentCommand{\beval}{m}{\left.#1\right\rvert} 
-\NewDocumentCommand{\brestr}{m}{\left.#1\right\rvert} 
-\NewDocumentCommand{\bfloor}{m}{\left\lfloor#1\right\rfloor}
-\NewDocumentCommand{\bceiling}{m}{\left\lceil#1\right\rceil}
-
 
 %%%%% TRIGONOMETRY
 \NewDocumentCommand{\csch}{}{\operatorname{csch}}
@@ -226,7 +222,7 @@
 \NewDocumentCommand{\dist}{}{\operatorname{dist}}
 \NewDocumentCommand{\diam}{}{\operatorname{diam}}
 \NewDocumentCommand{\area}{}{\operatorname{area}}
-\NewDocumentCommand{\volume}{}{\operatorname{volume}}
+\NewDocumentCommand{\vol}{}{\operatorname{vol}}
 \NewDocumentCommand{\sign}{}{\operatorname{sign}}
 
 %%% PROGRAMMING
@@ -317,7 +313,7 @@
 
 %%%%% PROBABILITY
 %%% BASIC QUANTITIES
-\NewDocumentCommand{\given}{}{\ifnumequal{\currentgrouptype}{16}{\middle|}{\mid}}
+\NewDocumentCommand{\given}{}{\ifnumequal{\currentgrouptype}{16}{~\middle|~}{\mid}}
 % https://tex.stackexchange.com/questions/54052/applying-middle-outside-of-a-left-right-group
 \NewDocumentCommand{\wrt}{}{\ifnumequal{\currentgrouptype}{16}{\middle|\!\middle|}{\mid\!\mid}}
 
@@ -331,6 +327,7 @@
 \NewDocumentCommand{\iid}{}{\mathrm{i.i.d.}}
 \NewDocumentCommand{\simiid}{}{\stackrel{\iid}{\sim}}
 \NewDocumentCommand{\ind}{}{\perp \!\!\! \perp}
+\NewDocumentCommand{\simind}{}{\stackrel{\ind}{\sim}}
 \NewDocumentCommand{\softmax}{}{\operatornamerm{softmax}}
 %%% PROBABILITY DISTRIBUTIONS
 % DISCRETE DISTRIBUTIONS
@@ -338,7 +335,7 @@
 \NewDocumentCommand{\dRad}{}{\operatorname{Rad}}
 \NewDocumentCommand{\dBin}{}{\operatorname{Bin}}
 \NewDocumentCommand{\dGeo}{}{\operatorname{Geo}}
-\NewDocumentCommand{\dUnif}{}{\operatornormcal{U}}
+\NewDocumentCommand{\dUnif}{}{\operatornamecal{U}}
 \NewDocumentCommand{\dPois}{}{\operatorname{Pois}}
 % CONTINUOUS DISTRIBUTIONS
 \NewDocumentCommand{\dNorm}{}{\operatornamecal{N}}
