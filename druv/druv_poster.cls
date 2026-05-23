@@ -3,12 +3,6 @@
 
 \RequirePackage{druv_hacks}
 
-%%% TOGGLES
-\newtoggle{druvtikz} \togglefalse{druvtikz}
-%%% OPTIONS
-\DeclareOption{tikz}{\toggletrue{druvtikz}}
-\ProcessOptions
-
 \DeclareKeys{
     width.store = \posterwidth,
     height.store = \posterheight,
@@ -18,7 +12,6 @@
 \ProcessKeyOptions
 
 %%% PASS OPTIONS
-\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv_gen}}{}
 \PassOptionsToPackage{beamer}{druv_gen}
 
 %%% LOAD PACKAGES

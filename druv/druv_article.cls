@@ -4,17 +4,11 @@
 \RequirePackage{druv_hacks}
 
 %%% TOGGLES
-\newtoggle{druvbib} \togglefalse{druvbib}
-\newtoggle{druvtikz} \togglefalse{druvtikz}
 \newtoggle{druvchapters} \togglefalse{druvchapters}
 %%% OPTIONS
-\DeclareOption{bib}{\toggletrue{druvbib}}
-\DeclareOption{tikz}{\toggletrue{druvtikz}}
 \DeclareOption{chapters}{\toggletrue{druvchapters}}
 \ProcessOptions
 %%% PASS OPTIONS
-\iftoggle{druvbib}{\PassOptionsToPackage{bib}{druv_gen}}{}
-\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv_gen}}{}
 \iftoggle{druvchapters}{\LoadClass[oneside]{book}\PassOptionsToPackage{chapters}{druv_thm}}{\LoadClass{article}}
 
 %%% LOAD PACKAGES

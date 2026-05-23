@@ -4,18 +4,6 @@
 \RequirePackage{druv_hacks}
 \LoadClass{amsart}
 
-%%% TOGGLES
-\newtoggle{druvbib} \togglefalse{druvbib}
-\newtoggle{druvtikz} \togglefalse{druvtikz}
-%%% OPTIONS
-\DeclareOption{bib}{\toggletrue{druvbib}}
-\DeclareOption{tikz}{\toggletrue{druvtikz}}
-\ProcessOptions
-%%% PASS OPTIONS
-\iftoggle{druvbib}{\PassOptionsToPackage{bib}{druv_gen}}{}
-\iftoggle{druvtikz}{\PassOptionsToPackage{tikz}{druv_gen}}{}
-
-
 %%% LOAD PACKAGES
 \RequirePackage{druv_gen}
 \RequirePackage{druv_macros}

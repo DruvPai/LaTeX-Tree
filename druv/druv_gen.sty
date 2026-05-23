@@ -1,4 +1,4 @@
-\ProvidesPackage{druv_gen}
+druv/druv_gen.sty\ProvidesPackage{druv_gen}
 
 \RequirePackage{druv_hacks}
 
@@ -6,12 +6,8 @@
 %%%%% PACKAGE ARGUMENTS
 %%% TOGGLES
 \newtoggle{druv_gen_beamer} \togglefalse{druv_gen_beamer}
-\newtoggle{druv_gen_bib} \togglefalse{druv_gen_bib}
-\newtoggle{druv_gen_tikz} \togglefalse{druv_gen_tikz}
 %%% OPTIONS
 \DeclareOption{beamer}{\toggletrue{druv_gen_beamer}}
-\DeclareOption{bib}{\toggletrue{druv_gen_bib}}
-\DeclareOption{tikz}{\toggletrue{druv_gen_tikz}}
 \ProcessOptions
 
 %%%%% AMS CORE PACKAGES
@@ -29,10 +25,13 @@
     % \RequirePackage{libertineRoman} % https://ctan.org/pkg/libertine
     % \RequirePackage[libertine]{newtxmath} % https://ctan.org/pkg/newtx
     % \RequirePackage{mlmodern} % https://ctan.org/pkg/lm?lang=en
-    \RequirePackage{newtxtext}  % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
-    % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
+    \RequirePackage{newtxtext}  %
+    % https://ctan.math.washington.edu/tex-archive/fonts/newtx/doc/newtxdoc.pdf
+    % \RequirePackage[mtpbb, mtpccal, mtpscr]{mtpro2} %
+    % https://www.pctex.com/files/managed/1/1b/mtpro2Abbrev.pdf
     % \RequirePackage{mathpazo} % https://ctan.org/pkg/mathpazo?lang=en
-    % \RequirePackage{mathrsfs} % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
+    % \RequirePackage{mathrsfs} %
+    % https://tex.stackexchange.com/questions/532897/what-package-should-i-use-for-mathscrc
     % \setmainfont{TeX Gyre Termes}
     % \setmathfont{TeX Gyre Termes Math}
     %\setmainfont{TeX Gyre Pagella}
@@ -44,66 +43,83 @@
 }
 
 %%%%% PGF/TIKZ
-\iftoggle{druv_gen_tikz}{
-    \RequirePackage{tikz} % https://www.overleaf.com/learn/latex/TikZ_package
-    \RequirePackage{pgf}
-    \RequirePackage{pgfplots} % https://www.overleaf.com/learn/latex/Pgfplots_package
-    \pgfplotsset{compat=1.18}
-    \RequirePackage{tikz-cd} % https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf -- need for quiver diagrams
-    \RequirePackage[american]{circuitikz} % https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
-    \usetikzlibrary{calc, scopes, hobby}
-    \RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
-}{}
+\RequirePackage{tikz} %
+% https://www.overleaf.com/learn/latex/TikZ_package
+\RequirePackage{pgf}
+\RequirePackage{pgfplots} %
+% https://www.overleaf.com/learn/latex/Pgfplots_package
+\pgfplotsset{compat=1.18}
+\RequirePackage{tikz-cd} %
+% https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf
+% -- need for quiver diagrams
+\RequirePackage[american]{circuitikz} %
+% https://ctan.math.illinois.edu/graphics/pgf/contrib/circuitikz/doc/circuitikzmanual.pdf
+\usetikzlibrary{calc, scopes, hobby}
+\RequirePackage{blox} % https://ctan.org/pkg/blox?lang=en
 
 %%%%% BIBLIOGRAPHY
-\iftoggle{druv_gen_bib}{
-    \RequirePackage[
+\RequirePackage[
     style=authoryear,
     maxbibnames=3,
     minbibnames=3,
     maxcitenames=1,
     mincitenames=1,
     uniquelist=false
-]{biblatex} % https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex
-}{}
+]{biblatex} %
+% https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex
 
 %%%%% LAYOUT PACKAGES
 %%% THEOREMS
-\RequirePackage{xcolor} % https://ctan.org/pkg/xcolor?lang=en
-\RequirePackage[most]{tcolorbox} % https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
+\RequirePackage[dvipsnames]{xcolor} % https://ctan.org/pkg/xcolor?lang=en
+\RequirePackage[most]{tcolorbox} %
+% https://mirrors.mit.edu/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
 %%% TEXT LAYOUT
-\RequirePackage{multicol} % https://www.overleaf.com/learn/latex/Multiple_columns
+\RequirePackage{multicol} %
+% https://www.overleaf.com/learn/latex/Multiple_columns
 %%% IMAGE LAYOUT
-\RequirePackage{graphicx} % https://ctan.math.washington.edu/tex-archive/macros/latex/required/graphics/grfguide.pdf
+\RequirePackage{graphicx} %
+% https://ctan.math.washington.edu/tex-archive/macros/latex/required/graphics/grfguide.pdf
 \RequirePackage{float} % https://ctan.org/pkg/float?lang=en
 %%% ARRAY/TABULAR LAYOUT
-\RequirePackage{array} % https://mirrors.rit.edu/CTAN/macros/latex/required/tools/array.pdf
-\RequirePackage{multirow} % https://texblog.org/2012/12/21/multi-column-and-multi-row-cells-in-latex-tables/
-\RequirePackage{booktabs} % https://ctan.math.illinois.edu/macros/latex/contrib/booktabs/booktabs.pdf
+\RequirePackage{array} %
+% https://mirrors.rit.edu/CTAN/macros/latex/required/tools/array.pdf
+\RequirePackage{multirow} %
+% https://texblog.org/2012/12/21/multi-column-and-multi-row-cells-in-latex-tables/
+\RequirePackage{booktabs} %
+% https://ctan.math.illinois.edu/macros/latex/contrib/booktabs/booktabs.pdf
 %%% CODE AND ALGORITHMS
-\RequirePackage{listings} % https://www.overleaf.com/learn/latex/Code_listing?lang=en
-\RequirePackage{algorithm} % https://www.overleaf.com/learn/latex/Algorithms?lang=en
-\RequirePackage{algpseudocodex} % http://mirrors.ctan.org/macros/latex/contrib/algpseudocodex/documentation.pdf -- remember to use minipage to get correct indent
+\RequirePackage{listings} %
+% https://www.overleaf.com/learn/latex/Code_listing?lang=en
+\RequirePackage{algorithm} %
+% https://www.overleaf.com/learn/latex/Algorithms?lang=en
+\RequirePackage{algpseudocodex} %
+% http://mirrors.ctan.org/macros/latex/contrib/algpseudocodex/documentation.pdf
+% -- remember to use minipage to get correct indent
 %%% ENUMERATE LAYOUT
 \iftoggle{druv_gen_beamer}{}{
-    \RequirePackage[shortlabels]{enumitem} % https://ctan.mirrors.hoobly.com/macros/latex/contrib/enumitem/enumitem.pdf
+    \RequirePackage[shortlabels]{enumitem} %
+    % https://ctan.mirrors.hoobly.com/macros/latex/contrib/enumitem/enumitem.pdf
 }
 %%% FIGURE LAYOUT
-\RequirePackage{subcaption} % http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/caption/subcaption.pdf
+\RequirePackage{subcaption} %
+% http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/caption/subcaption.pdf
 
 %%%%% MULTIPLE FILES
 \iftoggle{druv_gen_beamer}{}{
-    \RequirePackage{subfiles} % https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects
+    \RequirePackage{subfiles} %
+    % https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects
 }
 
 %%%%% EMBED MP4
 \iftoggle{druv_gen_beamer}{
-    \RequirePackage{multimedia} % https://mirror.math.princeton.edu/pub/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+    \RequirePackage{multimedia} %
+    % https://mirror.math.princeton.edu/pub/CTAN/macros/latex/contrib/beamer/doc/beameruserguide.pdf
 }{}
 
 %%%%% REFERENCES
 \iftoggle{druv_gen_beamer}{}{
-    \RequirePackage[colorlinks=true]{hyperref} % https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
+    \RequirePackage[colorlinks=true]{hyperref} %
+    % https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
     \hypersetup{urlcolor = violet, linkcolor = blue, citecolor = cyan}
 }
 
